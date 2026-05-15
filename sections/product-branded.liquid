@@ -1,0 +1,197 @@
+<main class="pt-10 pb-stack-lg max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+  <!-- Product Hero Section -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+    <!-- Image Gallery -->
+    <div class="lg:col-span-7 space-y-4">
+      <div class="aspect-[4/5] rounded-xl overflow-hidden bg-surface-container shadow-sm border border-border-subtle group">
+        <img src="{{ product.featured_image | image_url: width: 1200 }}" 
+             alt="{{ product.title }}" 
+             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+      </div>
+      {%- if product.images.size > 1 -%}
+        <div class="flex gap-4 overflow-x-auto custom-scrollbar pb-2 no-scrollbar">
+          {%- for image in product.images -%}
+            <div class="w-24 h-24 flex-shrink-0 rounded-lg border {% if forloop.first %}border-primary border-2{% else %}border-border-subtle{% endif %} overflow-hidden cursor-pointer opacity-70 hover:opacity-100 transition-opacity">
+              <img src="{{ image | image_url: width: 200 }}" class="w-full h-full object-cover">
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- Product Info -->
+    <div class="lg:col-span-5 space-y-6">
+      <div class="space-y-2">
+        <span class="inline-block px-3 py-1 rounded-full bg-primary-container text-white font-bold text-[12px] border border-primary/20">Official TGPCOP Resource</span>
+        <h1 class="font-bold text-[32px] leading-[40px] text-primary">{{ product.title }}</h1>
+        <div class="flex items-center gap-2">
+          <div class="flex text-primary">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star_half</span>
+          </div>
+          <span class="font-bold text-sm text-on-surface-variant">(128 Reviews)</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <span class="font-bold text-[40px] text-primary">{{ product.price | money }}</span>
+        {%- if product.compare_at_price > product.price -%}
+          <span class="text-lg text-on-surface-variant line-through">{{ product.compare_at_price | money }}</span>
+          <span class="px-2 py-1 bg-error-container text-on-error-container rounded-lg font-bold text-sm">
+            Save {{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}%
+          </span>
+        {%- endif -%}
+      </div>
+
+      <div class="p-4 rounded-xl bg-surface-container-low border border-primary/10 flex items-start gap-3">
+        <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+        <div>
+          <p class="font-bold text-sm text-on-surface">Verified Academic Content</p>
+          <p class="text-sm text-on-surface-variant">Instant PDF delivery. Access your notes immediately after payment.</p>
+        </div>
+      </div>
+
+      <p class="text-lg text-on-surface-variant leading-relaxed">
+        {{ product.description }}
+      </p>
+
+      <div class="grid grid-cols-2 gap-4 pt-4">
+        <form method="post" action="/cart/add">
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+          <button type="submit" class="w-full py-4 rounded-xl bg-white border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all shadow-sm">
+            Add to Cart
+          </button>
+        </form>
+        <form method="post" action="/cart/add">
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+          <input type="hidden" name="return_to" value="/checkout" />
+          <button type="submit" class="w-full py-4 rounded-xl bg-primary text-on-primary font-bold hover:opacity-90 transition-all flex justify-center items-center gap-2 shadow-md">
+            Buy Now <span class="material-symbols-outlined text-sm">bolt</span>
+          </button>
+        </form>
+      </div>
+
+      <div class="pt-6 space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          <span class="text-sm text-on-surface-variant">PCI Syllabus Aligned (Latest 2024)</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          <span class="text-sm text-on-surface-variant">Hand-drawn Mechanism Diagrams</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+          <span class="text-sm text-on-surface-variant">GPAT Focused Quick-Recall Points</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bento Features Grid -->
+  <section class="mt-20">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+      <div class="md:col-span-2 p-8 rounded-xl bg-primary text-on-primary space-y-4 flex flex-col justify-center border border-primary/20">
+        <span class="material-symbols-outlined text-4xl">school</span>
+        <h3 class="font-bold text-[24px]">Designed for Pharmacy Excellence</h3>
+        <p class="text-lg opacity-90">Every chapter follows the PCI syllabus precisely, ensuring you don't miss a single credit-worthy topic. Our notes are the result of 10+ years of collective teaching experience.</p>
+      </div>
+      <div class="p-8 rounded-xl bg-primary-container text-white space-y-4 border border-primary/10">
+        <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">verified</span>
+        <h3 class="font-bold text-[24px]">GPAT Ready</h3>
+        <p class="text-sm opacity-90">Includes high-yield bullet points and mnemonic devices specifically for entrance exam preparation.</p>
+      </div>
+      <div class="p-8 rounded-xl glass-card space-y-4 border border-border-subtle">
+        <span class="material-symbols-outlined text-primary text-4xl">smartphone</span>
+        <h3 class="font-bold text-[24px] text-on-surface">Mobile-First Reading</h3>
+        <p class="text-sm text-on-surface-variant">Optimized for reading on tablets and smartphones during your commute or in the lab.</p>
+      </div>
+      <div class="md:col-span-2 p-8 rounded-xl bg-secondary-container text-on-secondary-container flex items-center gap-8 border border-primary/10">
+        <div class="hidden sm:block w-32 h-32 rounded-lg overflow-hidden bg-white/40 p-2">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhfmORgRtOg2tRwuyFtkuFySFacNg-gVyhm-yBB5BzXL_NP7H9MZEzAw81YveORvaw3_K51eYp3d-f6ZnpexEXmwa65TN4KUSLCARubhFV0qkRBw_VVEXSUJ3R1iczp1hv2fLwHl8LOG-fviryh8E7T3GR1Iwgy5O2GHVlgqKiFBQ6cp2n68kCBlDicOW8QI4Hn_e97TK4ZtfnoQ_ctGrc5MZ8To_--L8LePvMLLaCuOJ_COVNDDo42_e6ju_4w-jjScvJVbhcTpyt" class="w-full h-full object-contain">
+        </div>
+        <div class="space-y-2">
+          <h3 class="font-bold text-[24px]">Free Semester Updates</h3>
+          <p class="text-sm opacity-90">Buy once, get lifetime updates for this semester package. As the syllabus evolves, so do your notes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Student Reviews -->
+  <section class="mt-20 space-y-8">
+    <div class="flex flex-col md:flex-row justify-between items-end gap-4">
+      <div class="space-y-2">
+        <h2 class="font-bold text-[32px] text-primary">Student Experiences</h2>
+        <p class="text-lg text-on-surface-variant">Trusted by over 5,000+ Pharmacy students across India.</p>
+      </div>
+      <button class="px-6 py-2 rounded-lg border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all">Write a Review</button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+      <div class="p-6 rounded-xl glass-card space-y-4 border border-border-subtle">
+        <div class="flex gap-1 text-primary">
+          <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+        </div>
+        <p class="text-sm text-on-surface italic">"The medicinal chemistry structures are so easy to understand. I used to struggle with SAR, but these notes made it clear."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-primary-container text-white flex items-center justify-center font-bold">AS</div>
+          <div>
+            <p class="font-bold text-sm">Ananya Sharma</p>
+            <p class="text-[12px] text-on-surface-variant">4th Year, B.Pharm</p>
+          </div>
+        </div>
+      </div>
+      <!-- Add more reviews here -->
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="mt-20 max-w-3xl mx-auto space-y-6">
+    <h2 class="font-bold text-[32px] text-primary text-center">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      <details class="group p-4 rounded-xl border border-border-subtle bg-white hover:border-primary transition-all shadow-sm">
+        <summary class="flex justify-between items-center cursor-pointer list-none font-bold text-sm text-on-surface">
+          What format are the notes in?
+          <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+        </summary>
+        <p class="mt-4 text-sm text-on-surface-variant">All our notes are delivered as high-resolution PDF files. They are compatible with all devices including smartphones, tablets, laptops, and can be printed if desired.</p>
+      </details>
+    </div>
+  </section>
+</main>
+
+<!-- Sticky Purchase Bar (Mobile/Scroll) -->
+<div class="fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant px-margin-mobile py-3 md:hidden z-50 flex items-center justify-between shadow-2xl">
+  <div class="flex flex-col">
+    {%- if product.compare_at_price > product.price -%}
+      <span class="text-[12px] text-on-surface-variant line-through">{{ product.compare_at_price | money }}</span>
+    {%- endif -%}
+    <span class="font-bold text-[20px] text-primary">{{ product.price | money }}</span>
+  </div>
+  <form method="post" action="/cart/add">
+    <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+    <input type="hidden" name="return_to" value="/checkout" />
+    <button type="submit" class="px-8 py-3 rounded-xl bg-primary text-on-primary font-bold shadow-lg active:scale-95 transition-all">
+      Unlock Notes
+    </button>
+  </form>
+</div>
+
+{% schema %}
+{
+  "name": "Branded Product Page",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Branded Product Page"
+    }
+  ]
+}
+{% endschema %}
