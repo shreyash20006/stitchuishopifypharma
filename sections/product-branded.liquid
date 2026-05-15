@@ -123,29 +123,6 @@
         <p class="text-lg text-on-surface-variant">Trusted by over 5,000+ Pharmacy students across India.</p>
       </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'review' -%}
-          <div class="p-6 rounded-xl glass-card space-y-4 border border-border-subtle">
-            <div class="flex gap-1 text-primary">
-              {%- for i in (1..block.settings.rating) -%}
-                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-              {%- endfor -%}
-            </div>
-            <p class="text-sm text-on-surface italic">"{{ block.settings.content }}"</p>
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full bg-primary-container text-white flex items-center justify-center font-bold">
-                {{ block.settings.author | slice: 0, 2 | upcase }}
-              </div>
-              <div>
-                <p class="font-bold text-sm">{{ block.settings.author }}</p>
-                <p class="text-[12px] text-on-surface-variant">{{ block.settings.author_info }}</p>
-              </div>
-            </div>
-          </div>
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
   </section>
 </main>
 
