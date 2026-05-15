@@ -5,23 +5,27 @@
         <h2 class="font-bold text-[32px] leading-[40px] text-primary">{{ section.settings.title }}</h2>
         <p class="text-on-surface-variant font-medium mt-2 max-w-xl">{{ section.settings.subtitle }}</p>
       </div>
-      <a href="{{ section.settings.collection.url | default: '/collections/all' }}" class="text-primary font-bold flex items-center gap-1 hover:underline">
+      <a href="/collections/all" class="text-primary font-bold flex items-center gap-1 hover:underline">
         View All Products
         <span class="material-symbols-outlined">chevron_right</span>
       </a>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
-      {%- assign collection = section.settings.collection -%}
-      {%- if collection != blank and collection.products_count > 0 -%}
+      {%- comment -%}
+        If a collection is selected, use it. Otherwise, pull from 'all' collection automatically.
+      {%- endcomment -%}
+      {%- assign collection = section.settings.collection | default: collections.all -%}
+      
+      {%- if collection.products_count > 0 -%}
         {%- for product in collection.products limit: section.settings.products_to_show -%}
           <div class="group">
             {% render 'product-card', product: product %}
           </div>
         {%- endfor -%}
       {%- else -%}
-        <!-- Onboarding state if no collection is selected -->
-        {%- for i in (1..section.settings.products_to_show) -%}
+        <!-- Onboarding state -->
+        {%- for i in (1..4) -%}
           <div class="bg-surface-container rounded-2xl aspect-[3/4] animate-pulse"></div>
         {%- endfor -%}
       {%- endif -%}
@@ -31,24 +35,25 @@
 
 {% schema %}
 {
-  "name": "Featured Products Grid",
+  "name": "Automatic Product Grid",
   "settings": [
     {
       "type": "text",
       "id": "title",
       "label": "Title",
-      "default": "Premium Study Materials"
+      "default": "Latest Study Resources"
     },
     {
       "type": "textarea",
       "id": "subtitle",
       "label": "Subtitle",
-      "default": "Handpicked resources to help you excel in your pharmacy exams."
+      "default": "New products added to the store will automatically appear here."
     },
     {
       "type": "collection",
       "id": "collection",
-      "label": "Collection"
+      "label": "Select Collection (Optional)",
+      "info": "Leave empty to show all new products automatically."
     },
     {
       "type": "range",
@@ -62,7 +67,7 @@
   ],
   "presets": [
     {
-      "name": "Featured Products Grid"
+      "name": "Automatic Product Grid"
     }
   ]
 }
