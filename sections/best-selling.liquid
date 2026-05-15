@@ -1,67 +1,61 @@
-<section class="py-20 bg-background overflow-hidden">
-  <div class="max-w-container-max mx-auto px-margin-desktop">
-    <div class="flex justify-between items-center mb-12">
-      <h2 class="font-bold text-[32px] text-on-surface">{{ section.settings.title }}</h2>
-      <div class="flex gap-2">
-        <button class="w-10 h-10 rounded-full border border-outline flex items-center justify-center hover:bg-surface-container transition-colors">
-          <span class="material-symbols-outlined">chevron_left</span>
-        </button>
-        <button class="w-10 h-10 rounded-full border border-outline flex items-center justify-center hover:bg-surface-container transition-colors">
-          <span class="material-symbols-outlined">chevron_right</span>
-        </button>
-      </div>
+<section class="py-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto overflow-hidden">
+  <div class="flex justify-between items-end mb-10">
+    <div>
+      <h2 class="font-bold text-[32px] text-primary">{{ section.settings.title }}</h2>
+      <p class="text-on-surface-variant text-sm">{{ section.settings.subtitle }}</p>
     </div>
-    <div class="flex gap-gutter overflow-x-auto pb-8 snap-x no-scrollbar">
-      {%- for product in collections[section.settings.collection].products limit: section.settings.products_to_show -%}
-        <div class="min-w-[280px] md:min-w-[320px] snap-start group">
+    <a href="{{ section.settings.collection.url }}" class="text-primary font-bold flex items-center gap-1 hover:underline">
+      View All
+      <span class="material-symbols-outlined">chevron_right</span>
+    </a>
+  </div>
+
+  <div class="flex gap-6 overflow-x-auto pb-8 snap-x no-scrollbar">
+    {%- assign collection = section.settings.collection -%}
+    {%- if collection != blank and collection.products_count > 0 -%}
+      {%- for product in collection.products limit: 8 -%}
+        <div class="min-w-[280px] md:min-w-[320px] snap-start">
           {% render 'product-card', product: product %}
         </div>
-      {%- else -%}
-        {%- for i in (1..4) -%}
-          <div class="min-w-[280px] md:min-w-[320px] snap-start group">
-            <div class="relative bg-white rounded-2xl overflow-hidden shadow-sm border border-outline-variant">
-              <div class="aspect-[3/4] bg-surface-container"></div>
-              <div class="p-6">
-                <div class="h-4 w-1/2 bg-surface-container-high rounded mb-2"></div>
-                <div class="h-6 w-3/4 bg-surface-container-high rounded mb-4"></div>
-                <div class="h-6 w-1/4 bg-surface-container-high rounded"></div>
-              </div>
-            </div>
-          </div>
-        {%- endfor -%}
       {%- endfor -%}
-    </div>
+    {%- else -%}
+      <!-- Fallback for empty collection during setup -->
+      {%- for i in (1..4) -%}
+        <div class="min-w-[280px] md:min-w-[320px] snap-start opacity-50">
+          <div class="bg-surface-container h-80 rounded-2xl mb-4 animate-pulse"></div>
+          <div class="h-4 bg-surface-container rounded w-3/4 mb-2"></div>
+          <div class="h-4 bg-surface-container rounded w-1/2"></div>
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Best Selling Products",
+  "name": "Dynamic Best Sellers",
   "settings": [
     {
       "type": "text",
       "id": "title",
-      "label": "Title",
-      "default": "Bestsellers This Week"
+      "label": "Section Title",
+      "default": "Best Selling Notes"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Most loved by Pharmacy students"
     },
     {
       "type": "collection",
       "id": "collection",
-      "label": "Collection"
-    },
-    {
-      "type": "range",
-      "id": "products_to_show",
-      "min": 2,
-      "max": 12,
-      "step": 1,
-      "default": 6,
-      "label": "Products to show"
+      "label": "Select Collection"
     }
   ],
   "presets": [
     {
-      "name": "Best Selling Products"
+      "name": "Dynamic Best Sellers"
     }
   ]
 }

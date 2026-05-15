@@ -1,0 +1,34 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "title": "QUALITY PHARMACY NOTES MADE FOR B.PHARM STUDENTS",
+        "description": "Handwritten exam-focused notes, GPAT materials & instant PDF downloads. Master your curriculum with clarity and speed."
+      }
+    },
+    "featured_products": {
+      "type": "featured-products",
+      "settings": {
+        "title": "Latest Semester Notes",
+        "subtitle": "Get instant access to real, exam-focused study materials added to our store."
+      }
+    },
+    "featured_collections": {
+      "type": "featured-collections",
+      "settings": {}
+    },
+    "best_sellers": {
+      "type": "best-selling",
+      "settings": {
+        "title": "GPAT Top Picks"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "featured_products",
+    "featured_collections",
+    "best_sellers"
+  ]
+}

@@ -1,0 +1,69 @@
+<section class="py-20 bg-background-main">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+      <div>
+        <h2 class="font-bold text-[32px] leading-[40px] text-primary">{{ section.settings.title }}</h2>
+        <p class="text-on-surface-variant font-medium mt-2 max-w-xl">{{ section.settings.subtitle }}</p>
+      </div>
+      <a href="{{ section.settings.collection.url | default: '/collections/all' }}" class="text-primary font-bold flex items-center gap-1 hover:underline">
+        View All Products
+        <span class="material-symbols-outlined">chevron_right</span>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+      {%- assign collection = section.settings.collection -%}
+      {%- if collection != blank and collection.products_count > 0 -%}
+        {%- for product in collection.products limit: section.settings.products_to_show -%}
+          <div class="group">
+            {% render 'product-card', product: product %}
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <!-- Onboarding state if no collection is selected -->
+        {%- for i in (1..section.settings.products_to_show) -%}
+          <div class="bg-surface-container rounded-2xl aspect-[3/4] animate-pulse"></div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Products Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Premium Study Materials"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Handpicked resources to help you excel in your pharmacy exams."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 12,
+      "step": 4,
+      "default": 8,
+      "label": "Products to show"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Products Grid"
+    }
+  ]
+}
+{% endschema %}
