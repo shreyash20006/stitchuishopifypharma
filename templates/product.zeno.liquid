@@ -1,0 +1,37 @@
+<section class="section-padding">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;">
+      <div class="product-media">
+        {% if product.featured_image != blank %}
+          <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.title }}" style="border-radius: var(--radius-xl); box-shadow: var(--shadow-lg);">
+        {% else %}
+          <div style="background: var(--color-surface); aspect-ratio: 1; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 5rem;">📄</div>
+        {% endif %}
+      </div>
+      
+      <div class="product-info">
+        <h1 style="font-size: 2.5rem; margin-bottom: 12px;">{{ product.title }}</h1>
+        <p style="font-size: 1.5rem; font-weight: 800; color: var(--color-primary); margin-bottom: 24px;">{{ product.price | money }}</p>
+        
+        <div style="margin-bottom: 32px; line-height: 1.8; opacity: 0.8;">
+          {{ product.description }}
+        </div>
+
+        <form action="/cart/add" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+          <button type="submit" class="btn btn--primary btn--lg btn--full" style="width: 100%;">
+            Add to Cart
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+        <div class="zn-content product">
+          {% assign productKey = 'zeno-product-' | append: product.id %}
+          <link rel="stylesheet" href="{{ productKey | append: '.css' | asset_url }}">
+          {% include productKey %}
+          <script src="{{ productKey | append: '.js' | asset_url }}"></script>
+        </div>
+      
