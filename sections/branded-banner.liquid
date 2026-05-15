@@ -1,0 +1,45 @@
+<section class="w-full overflow-hidden bg-background-main">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
+    <div class="relative group rounded-3xl overflow-hidden shadow-2xl border border-primary/10">
+      {%- if section.settings.banner_image != blank -%}
+        <a href="{{ section.settings.link | default: '#' }}" class="block">
+          <img src="{{ section.settings.banner_image | image_url: width: 2000 }}" 
+               alt="TGPCOP Community Banner" 
+               class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105">
+        </a>
+      {%- else -%}
+        <div class="w-full aspect-[21/9] bg-surface-container flex items-center justify-center text-on-surface-variant flex-col gap-4 p-12 text-center">
+          <span class="material-symbols-outlined text-6xl">image</span>
+          <div>
+            <p class="font-bold text-lg">Upload your TGPCOP Community Banner here</p>
+            <p class="text-sm opacity-60">This will replace the manual links with your high-quality brand image.</p>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Branded Banner Image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image (Upload your TGPCOP Banner)"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Primary Link (e.g., WhatsApp Channel)",
+      "default": "/collections/all"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Branded Banner Image"
+    }
+  ]
+}
+{% endschema %}

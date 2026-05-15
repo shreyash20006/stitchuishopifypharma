@@ -1,144 +1,76 @@
 <footer class="w-full mt-20 bg-inverse-surface text-surface-variant pt-16 pb-8 px-margin-mobile md:px-margin-desktop">
-  <div class="max-w-container-max mx-auto space-y-16">
+  <div class="max-w-container-max mx-auto space-y-12">
     
-    <!-- Follow Community Section -->
-    <div class="space-y-8">
-      <div class="flex items-center justify-center gap-4 text-primary-fixed">
-        <span class="material-symbols-outlined">eco</span>
-        <h3 class="font-bold text-lg tracking-widest uppercase">FOLLOW THE TGPCOP NOTES COMMUNITY</h3>
-        <span class="material-symbols-outlined">eco</span>
-      </div>
-      
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-        <!-- WhatsApp -->
-        <a href="https://whatsapp.com/channel/0029Vb7bPYAICVfklGHiIW0v" target="_blank" class="flex flex-col items-center text-center group">
-          <div class="w-12 h-12 rounded-full bg-[#25D366]/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-            <img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png" class="w-6 h-6 grayscale group-hover:grayscale-0 transition-all">
-          </div>
-          <span class="font-bold text-sm text-white">WhatsApp</span>
-          <span class="text-[10px] text-primary-fixed">Join Now</span>
-        </a>
-
-        <!-- Telegram -->
-        <a href="https://t.me/tgpcopnotes" target="_blank" class="flex flex-col items-center text-center group">
-          <div class="w-12 h-12 rounded-full bg-[#0088cc]/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" class="w-6 h-6 grayscale group-hover:grayscale-0 transition-all">
-          </div>
-          <span class="font-bold text-sm text-white">Telegram</span>
-          <span class="text-[10px] text-primary-fixed">Join Now</span>
-        </a>
-
-        <!-- Instagram -->
-        <a href="https://instagram.com/tgpcop.notes" target="_blank" class="flex flex-col items-center text-center group">
-          <div class="w-12 h-12 rounded-full bg-[#E1306C]/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-            <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" class="w-6 h-6 grayscale group-hover:grayscale-0 transition-all">
-          </div>
-          <span class="font-bold text-sm text-white">Instagram</span>
-          <span class="text-[10px] text-primary-fixed">Follow Us</span>
-        </a>
-
-        <!-- X (Twitter) -->
-        <a href="https://x.com/TGPCOPNOTES" target="_blank" class="flex flex-col items-center text-center group">
-          <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968830.png" class="w-6 h-6 invert opacity-50 group-hover:opacity-100 transition-all">
-          </div>
-          <span class="font-bold text-sm text-white">X (Twitter)</span>
-          <span class="text-[10px] text-primary-fixed">Follow Us</span>
-        </a>
-
-        <!-- Pinterest -->
-        <a href="https://pin.it/6Df5gqrxL" target="_blank" class="flex flex-col items-center text-center group">
-          <div class="w-12 h-12 rounded-full bg-[#BD081C]/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-            <img src="https://cdn-icons-png.flaticon.com/512/145/145808.png" class="w-6 h-6 grayscale group-hover:grayscale-0 transition-all">
-          </div>
-          <span class="font-bold text-sm text-white">Pinterest</span>
-          <span class="text-[10px] text-primary-fixed">Follow Us</span>
-        </a>
-
-        <!-- Threads -->
-        <a href="https://threads.com/@tgpcop.notes" target="_blank" class="flex flex-col items-center text-center group">
-          <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-            <img src="https://cdn-icons-png.flaticon.com/512/10551/10551713.png" class="w-6 h-6 invert opacity-50 group-hover:opacity-100 transition-all">
-          </div>
-          <span class="font-bold text-sm text-white">Threads</span>
-          <span class="text-[10px] text-primary-fixed">Follow Us</span>
-        </a>
+    <!-- Follow Community Image (Hardcoded Path) -->
+    <div class="w-full rounded-2xl overflow-hidden shadow-2xl border border-white/5">
+      <a href="https://whatsapp.com/channel/0029Vb7bPYAICVfklGHiIW0v" target="_blank" class="block">
+        {%- assign footer_banner = 'tgpcop-banner.jpg' | asset_url -%}
+        <img src="{{ footer_banner }}" 
+             alt="TGPCOP Community" 
+             class="w-full h-auto object-cover"
+             onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=2000';this.onerror=null;">
+      </a>
+      <div class="bg-white/5 p-4 flex flex-wrap justify-center gap-6 text-[10px] uppercase tracking-widest text-primary-fixed font-bold">
+        <a href="https://whatsapp.com/channel/0029Vb7bPYAICVfklGHiIW0v">WhatsApp</a>
+        <a href="https://t.me/tgpcopnotes">Telegram</a>
+        <a href="https://instagram.com/tgpcop.notes">Instagram</a>
+        <a href="https://x.com/TGPCOPNOTES">X (Twitter)</a>
+        <a href="https://pin.it/6Df5gqrxL">Pinterest</a>
       </div>
     </div>
 
-    <!-- Trust Badges Section -->
-    <div class="grid grid-cols-2 lg:grid-cols-5 gap-8 pt-16 border-t border-white/10">
+    <!-- Trust Badges -->
+    <div class="grid grid-cols-2 lg:grid-cols-5 gap-8 pt-12 border-t border-white/10">
       <div class="flex items-center gap-4">
         <span class="material-symbols-outlined text-primary-fixed text-4xl">cloud_download</span>
         <div>
           <h4 class="font-bold text-xs text-white">INSTANT DOWNLOAD</h4>
-          <p class="text-[10px] opacity-60">Get notes instantly after purchase</p>
+          <p class="text-[10px] opacity-60">Get notes instantly</p>
         </div>
       </div>
       <div class="flex items-center gap-4">
         <span class="material-symbols-outlined text-primary-fixed text-4xl">verified_user</span>
         <div>
-          <h4 class="font-bold text-xs text-white">100% SAFE PAYMENT</h4>
-          <p class="text-[10px] opacity-60">Secure & trusted checkout</p>
+          <h4 class="font-bold text-xs text-white">SAFE PAYMENT</h4>
+          <p class="text-[10px] opacity-60">Secure checkout</p>
         </div>
       </div>
       <div class="flex items-center gap-4">
         <span class="material-symbols-outlined text-primary-fixed text-4xl">picture_as_pdf</span>
         <div>
-          <h4 class="font-bold text-xs text-white">HIGH QUALITY PDFs</h4>
-          <p class="text-[10px] opacity-60">Well organized & exam focused</p>
+          <h4 class="font-bold text-xs text-white">EXAM FOCUSED</h4>
+          <p class="text-[10px] opacity-60">High quality PDFs</p>
         </div>
       </div>
       <div class="flex items-center gap-4">
         <span class="material-symbols-outlined text-primary-fixed text-4xl">headset_mic</span>
         <div>
-          <h4 class="font-bold text-xs text-white">STUDENT SUPPORT</h4>
-          <p class="text-[10px] opacity-60">We're here to help anytime</p>
+          <h4 class="font-bold text-xs text-white">SUPPORT</h4>
+          <p class="text-[10px] opacity-60">Available 24/7</p>
         </div>
       </div>
       <div class="flex items-center gap-4">
         <span class="material-symbols-outlined text-primary-fixed text-4xl">eco</span>
         <div>
-          <h4 class="font-bold text-xs text-white">MADE FOR PHARMACY</h4>
+          <h4 class="font-bold text-xs text-white">PHARMACY FIRST</h4>
           <p class="text-[10px] opacity-60">By students, for students</p>
         </div>
       </div>
     </div>
 
-    <!-- Branding & Footer Bottom -->
-    <div class="pt-16 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8">
-      <div class="flex items-center gap-6">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhfmORgRtOg2tRwuyFtkuFySFacNg-gVyhm-yBB5BzXL_NP7H9MZEzAw81YveORvaw3_K51eYp3d-f6ZnpexEXmwa65TN4KUSLCARubhFV0qkRBw_VVEXSUJ3R1iczp1hv2fLwHl8LOG-fviryh8E7T3GR1Iwgy5O2GHVlgqKiFBQ6cp2n68kCBlDicOW8QI4Hn_e97TK4ZtfnoQ_ctGrc5MZ8To_--L8LePvMLLaCuOJ_COVNDDo42_e6ju_4w-jjScvJVbhcTpyt" 
-             class="h-12 w-auto invert brightness-0 opacity-80">
-        <div class="flex flex-col">
-          <span class="font-bold text-white text-lg">TGPCOP NOTES</span>
-          <span class="text-[10px] tracking-[0.2em] opacity-60">I WILL SHARE NOTES</span>
-        </div>
+    <!-- Bottom Bar -->
+    <div class="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="flex items-center gap-4">
+        <span class="text-white font-bold text-lg">TGPCOP NOTES</span>
+        <div class="h-4 w-px bg-white/20"></div>
+        <span class="text-[10px] opacity-60 italic">Dream it. Plan it. Study it.</span>
       </div>
-
-      <div class="flex items-center gap-3 italic text-primary-fixed">
-        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
-        <span class="text-sm">Dream it. Plan it. Study it. Make it happen.</span>
+      <div class="flex gap-4 opacity-40">
+        <img src="https://img.icons8.com/color/48/visa.png" class="h-5">
+        <img src="https://img.icons8.com/color/48/mastercard.png" class="h-5">
+        <img src="https://img.icons8.com/color/48/upi.png" class="h-5">
       </div>
-
-      <div class="flex flex-col items-center md:items-end gap-2">
-        <div class="flex items-center gap-4 opacity-60">
-          <span class="text-[10px]">We Accept</span>
-          <div class="flex gap-2">
-            <img src="https://img.icons8.com/color/48/visa.png" class="h-6 w-auto grayscale group-hover:grayscale-0">
-            <img src="https://img.icons8.com/color/48/mastercard.png" class="h-6 w-auto grayscale">
-            <img src="https://img.icons8.com/color/48/upi.png" class="h-6 w-auto grayscale">
-          </div>
-        </div>
-        <p class="text-[10px] opacity-40">© 2025 TGPCOP NOTES. All Rights Reserved. Made with ❤️ for B.Pharmacy Students.</p>
-      </div>
+      <p class="text-[10px] opacity-40">© 2025 TGPCOP NOTES.</p>
     </div>
   </div>
 </footer>
-
-{% schema %}
-{
-  "name": "Branded Footer",
-  "settings": []
-}
-{% endschema %}
