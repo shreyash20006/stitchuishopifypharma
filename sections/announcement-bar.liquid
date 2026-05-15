@@ -1,16 +1,18 @@
-<div class="bg-primary text-on-primary py-2 text-center font-bold text-[12px] tracking-wide z-[60] relative">
-  {{ section.settings.text | upcase }}
+<div class="bg-primary text-white py-2.5 px-4 text-center overflow-hidden relative">
+  <div class="max-w-container-max mx-auto">
+    <p class="text-[11px] md:text-xs font-bold uppercase tracking-[0.2em] animate-pulse">
+      🎉 Welcome to TGPCOP Digital Hub | Instant PDF Notes for All Semesters
+    </p>
+  </div>
 </div>
 
 {% schema %}
 {
   "name": "Announcement Bar",
-  "settings": [
+  "settings": [],
+  "presets": [
     {
-      "type": "text",
-      "id": "text",
-      "label": "Announcement text",
-      "default": "FREE GPAT PYQ BUNDLE ON ORDERS ABOVE ₹499 • LIMITED TIME OFFER"
+      "name": "Announcement Bar"
     }
   ]
 }
