@@ -12,22 +12,23 @@
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
-        "settings": {
-          "text": "Free GPAT 2025 Study Plan Available Now!"
-        }
+        "settings": {}
       },
       "header": {
         "type": "header",
-        "settings": {
-          "logo": "shopify://shop_images/logo_notes.jpg",
-          "menu": "main-menu"
-        }
+        "settings": {}
       },
       "footer": {
         "type": "footer",
         "settings": {
           "footer_banner": "shopify://shop_images/WhatsApp_Image_2026-05-15_at_11.52.50_PM.jpg",
-          "banner_link": ""
+          "banner_link": "",
+          "pay_visa": "shopify://shop_images/WhatsApp_Image_2026-05-16_at_1.34.18_AM.jpg",
+          "pay_mastercard": "shopify://shop_images/WhatsApp_Image_2026-05-16_at_1.31.32_AM.jpg",
+          "pay_rupay": "shopify://shop_images/WhatsApp_Image_2026-05-16_at_1.37.21_AM.jpg",
+          "pay_upi": "shopify://shop_images/WhatsApp_Image_2026-05-16_at_1.38.43_AM.jpg",
+          "pay_razorpay": "shopify://shop_images/WhatsApp_Image_2026-05-16_at_1.40.03_AM.jpg",
+          "pay_cashfree": "shopify://shop_images/WhatsApp_Image_2026-05-16_at_1.41.34_AM.jpg"
         }
       },
       "hero-banner": {
@@ -47,8 +48,7 @@
         "type": "featured-collections",
         "settings": {
           "title": "Featured Collections",
-          "description": "Curated resources for every stage of your pharmacy journey.",
-          "view_all_link": ""
+          "description": "Curated resources for every stage of your pharmacy journey."
         }
       },
       "why-choose-us": {
@@ -72,13 +72,6 @@
           "button_text": "Join WhatsApp Group",
           "link": "https://whatsapp.com/channel/0029Vb7bPYAICVfklGHiIW0v",
           "image": "shopify://shop_images/ChatGPT_Image_May_15_2026_06_58_28_PM.png"
-        }
-      },
-      "faq-testimonials": {
-        "type": "faq-testimonials",
-        "settings": {
-          "faq_title": "Frequently Asked Questions",
-          "testimonial_title": "Student Success Stories"
         }
       }
     },
