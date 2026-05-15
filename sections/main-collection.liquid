@@ -1,0 +1,58 @@
+<section class="pt-10 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+  <!-- Collection Header -->
+  <div class="mb-12 space-y-4">
+    <div class="flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest">
+      <a href="/">Home</a>
+      <span class="material-symbols-outlined text-sm">chevron_right</span>
+      <span>{{ collection.title }}</span>
+    </div>
+    <h1 class="font-bold text-[40px] leading-[48px] text-primary">{{ collection.title }}</h1>
+    {%- if collection.description != blank -%}
+      <div class="text-on-surface-variant max-w-3xl text-lg">{{ collection.description }}</div>
+    {%- endif -%}
+  </div>
+
+  <!-- Product Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+    {%- paginate collection.products by 12 -%}
+      {%- if collection.products_count > 0 -%}
+        {%- for product in collection.products -%}
+          <div class="animate-in fade-in slide-in-from-bottom-4 duration-500" style="animation-delay: {{ forloop.index | times: 100 }}ms">
+            {% render 'product-card', product: product %}
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <div class="col-span-full py-20 text-center glass-card rounded-2xl">
+          <span class="material-symbols-outlined text-[64px] text-primary/20 mb-4">search_off</span>
+          <h2 class="font-bold text-2xl">No products found</h2>
+          <p class="text-on-surface-variant mt-2">Try checking back later or explore other collections.</p>
+          <a href="/collections/all" class="mt-6 inline-block bg-primary text-white px-8 py-3 rounded-xl font-bold">View All Products</a>
+        </div>
+      {%- endif -%}
+
+      <!-- Pagination -->
+      {%- if paginate.pages > 1 -%}
+        <div class="col-span-full mt-16 flex justify-center gap-2">
+          {{ paginate | default_pagination }}
+        </div>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main Collection",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 24,
+      "step": 4,
+      "default": 12,
+      "label": "Products per page"
+    }
+  ]
+}
+{% endschema %}
