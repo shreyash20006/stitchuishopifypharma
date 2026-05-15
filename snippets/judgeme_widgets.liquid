@@ -1,0 +1,46 @@
+{% comment %}
+  Judge.me Widgets - Core Integration Bridge
+  This file connects your Shopify theme to the Judge.me Product Reviews app.
+{% endcomment %}
+
+{% case widget_type %}
+  {% when 'judgeme_review_widget' %}
+    <div style='clear:both'></div>
+    <div id='judgeme_product_reviews' 
+         class='jdgm-widget jdgm-review-widget' 
+         data-id='{{ product.id }}'
+         data-product-title='{{ product.title | escape }}'
+         data-product-url='{{ shop.url }}{{ product.url }}'>
+      {{ product.metafields.judgeme.widget }}
+    </div>
+
+  {% when 'judgeme_preview_badge' %}
+    <div style='{{ jm_style }}' 
+         class='jdgm-widget jdgm-preview-badge' 
+         data-id='{{ product.id }}'
+         data-product-title='{{ product.title | escape }}'
+         data-product-url='{{ shop.url }}{{ product.url }}'>
+      {{ product.metafields.judgeme.badge }}
+    </div>
+
+  {% when 'judgeme_verified_reviews_count_badge' %}
+    <div style='{{ jm_style }}' class='jdgm-widget jdgm-verified-reviews-count-badge' data-id='{{ product.id }}'>
+      {{ product.metafields.judgeme.verified_reviews_count_badge }}
+    </div>
+
+  {% when 'judgeme_all_reviews_rating_badge' %}
+    <div style='{{ jm_style }}' class='jdgm-widget jdgm-all-reviews-rating-badge'>
+      {{ shop.metafields.judgeme.all_reviews_rating_badge }}
+    </div>
+
+  {% when 'judgeme_medals' %}
+    <div style='{{ jm_style }}' class='jdgm-widget jdgm-medals'>
+      {{ shop.metafields.judgeme.medals }}
+    </div>
+
+  {% when 'judgeme_floating_tab' %}
+    <section class='jdgm-widget jdgm-floating-tab'>
+      {% render 'judgeme_all_reviews_rating' %}
+    </section>
+
+{% endcase %}
