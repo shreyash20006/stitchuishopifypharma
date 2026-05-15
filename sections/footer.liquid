@@ -1,22 +1,22 @@
-<footer class="w-full mt-20 bg-inverse-surface text-surface-variant pt-16 pb-8 px-margin-mobile md:px-margin-desktop">
+<footer class="w-full mt-20 bg-gradient-to-br from-[#004429] to-[#002111] text-surface-variant pt-16 pb-8 px-margin-mobile md:px-margin-desktop border-t border-white/5">
   <div class="max-w-container-max mx-auto space-y-16">
     
-    <!-- Follow Community Image (DYNAMIC SETTING) -->
-    <div class="w-full rounded-3xl overflow-hidden shadow-2xl border border-white/5">
+    <!-- Follow Community Image -->
+    <div class="w-full rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
       {%- if section.settings.footer_banner != blank -%}
-        <a href="{{ section.settings.banner_link | default: '#' }}" class="block">
+        <a href="{{ section.settings.banner_link | default: '#' }}" class="block overflow-hidden">
           <img src="{{ section.settings.footer_banner | image_url: width: 2000 }}" 
                alt="TGPCOP Community" 
-               class="w-full h-auto object-cover transition-transform duration-500 hover:scale-[1.02]">
+               class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.03]">
         </a>
       {%- else -%}
         <div class="w-full py-20 bg-white/5 flex flex-col items-center justify-center border-2 border-dashed border-white/20 rounded-2xl">
-          <span class="material-symbols-outlined text-5xl mb-4 opacity-40">image</span>
-          <p class="font-bold opacity-60">Click "Select Image" in Footer settings to add your banner</p>
+          <span class="material-symbols-outlined text-5xl mb-4 opacity-40 text-primary-fixed">image</span>
+          <p class="font-bold opacity-60 text-primary-fixed">Click "Select Image" in Footer settings to add your banner</p>
         </div>
       {%- endif -%}
       
-      <div class="bg-white/5 p-4 flex flex-wrap justify-center gap-6 text-[10px] uppercase tracking-widest text-primary-fixed font-bold">
+      <div class="bg-black/20 backdrop-blur-md p-4 flex flex-wrap justify-center gap-6 text-[11px] uppercase tracking-[0.2em] text-primary-fixed font-black">
         <a href="https://whatsapp.com/channel/0029Vb7bPYAICVfklGHiIW0v" target="_blank" class="hover:text-white transition-colors">WhatsApp</a>
         <a href="https://t.me/tgpcopnotes" target="_blank" class="hover:text-white transition-colors">Telegram</a>
         <a href="https://instagram.com/tgpcop.notes" target="_blank" class="hover:text-white transition-colors">Instagram</a>
@@ -29,106 +29,123 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-8 pt-4">
       <!-- Brand Column -->
       <div class="space-y-6">
-        <h3 class="text-white font-black text-2xl tracking-tight">TGPCOP NOTES</h3>
-        <p class="text-sm leading-relaxed opacity-60 max-w-xs">
+        <h3 class="text-white font-black text-2xl tracking-tighter">TGPCOP NOTES</h3>
+        <p class="text-sm leading-relaxed text-white/60 max-w-xs">
           Empowering pharmacy students across India with premium, exam-focused handwritten notes and GPAT study materials. 
         </p>
-        <div class="flex gap-4 opacity-60">
-          <img src="https://img.icons8.com/color/48/visa.png" class="h-6 grayscale hover:grayscale-0 transition-all">
-          <img src="https://img.icons8.com/color/48/mastercard.png" class="h-6 grayscale hover:grayscale-0 transition-all">
-          <img src="https://img.icons8.com/color/48/upi.png" class="h-6 grayscale hover:grayscale-0 transition-all">
-        </div>
       </div>
 
       <!-- Quick Navigation -->
       <div class="space-y-6">
-        <h4 class="text-white font-bold text-sm uppercase tracking-widest">Explore</h4>
+        <h4 class="text-primary-fixed font-black text-xs uppercase tracking-widest">Explore</h4>
         <nav class="flex flex-col gap-4">
-          <a href="{{ routes.root_url }}" class="text-sm hover:text-primary-fixed hover:translate-x-1 transition-all">Home</a>
-          <a href="/collections/b-pharm" class="text-sm hover:text-primary-fixed hover:translate-x-1 transition-all">B.Pharmacy Notes</a>
-          <a href="/collections/d-pharm" class="text-sm hover:text-primary-fixed hover:translate-x-1 transition-all">D.Pharmacy Notes</a>
-          <a href="/collections/all" class="text-sm hover:text-primary-fixed hover:translate-x-1 transition-all">All Resources</a>
+          <a href="{{ routes.root_url }}" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">Home</a>
+          <a href="/collections/b-pharm" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">B.Pharmacy Notes</a>
+          <a href="/collections/d-pharm" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">D.Pharmacy Notes</a>
+          <a href="/collections/all" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">All Resources</a>
         </nav>
       </div>
 
       <!-- Professional Policies -->
       <div class="space-y-6">
-        <h4 class="text-white font-bold text-sm uppercase tracking-widest">Policies</h4>
+        <h4 class="text-primary-fixed font-black text-xs uppercase tracking-widest">Policies</h4>
         <nav class="flex flex-col gap-4">
-          <a href="/policies/refund-policy" class="text-sm hover:text-primary-fixed hover:translate-x-1 transition-all">Return & Refund Policy</a>
-          <a href="/policies/privacy-policy" class="text-sm hover:text-primary-fixed hover:translate-x-1 transition-all">Privacy Policy</a>
-          <a href="/policies/terms-of-service" class="text-sm hover:text-primary-fixed hover:translate-x-1 transition-all">Terms of Service</a>
-          <a href="/policies/shipping-policy" class="text-sm hover:text-primary-fixed hover:translate-x-1 transition-all">Shipping Policy</a>
-          <a href="/policies/legal-notice" class="text-sm hover:text-primary-fixed hover:translate-x-1 transition-all">Legal Notice</a>
+          <a href="/policies/refund-policy" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">Return & Refund Policy</a>
+          <a href="/policies/privacy-policy" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">Privacy Policy</a>
+          <a href="/policies/terms-of-service" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">Terms of Service</a>
+          <a href="/policies/shipping-policy" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">Shipping Policy</a>
+          <a href="/policies/legal-notice" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">Legal Notice</a>
         </nav>
       </div>
 
       <!-- Contact Support -->
       <div class="space-y-6">
-        <h4 class="text-white font-bold text-sm uppercase tracking-widest">Contact Support</h4>
+        <h4 class="text-primary-fixed font-black text-xs uppercase tracking-widest">Support</h4>
         <div class="space-y-4">
-          <a href="mailto:contact@tgpcoppharma.shop" class="flex items-center gap-3 text-sm group">
+          <a href="mailto:contact@tgpcoppharma.shop" class="flex items-center gap-3 text-sm text-white/70 group">
             <span class="material-symbols-outlined text-primary-fixed group-hover:scale-110 transition-transform">mail</span>
             contact@tgpcoppharma.shop
           </a>
-          <a href="/policies/contact-information" class="flex items-center gap-3 text-sm group">
+          <a href="/policies/contact-information" class="flex items-center gap-3 text-sm text-white/70 group">
             <span class="material-symbols-outlined text-primary-fixed group-hover:scale-110 transition-transform">location_on</span>
             Contact Information
           </a>
-          <div class="pt-2">
-            <p class="text-[10px] opacity-40 uppercase font-bold mb-2">Availability</p>
-            <p class="text-xs opacity-60">Mon - Sat: 10:00 AM - 6:00 PM</p>
-          </div>
         </div>
       </div>
     </div>
 
-    <!-- Trust Badges (Horizontal on Desktop, Grid on Mobile) -->
+    <!-- Trust Badges -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 py-12 border-y border-white/10">
       <div class="flex items-center gap-4 group">
         <span class="material-symbols-outlined text-primary-fixed text-4xl group-hover:rotate-12 transition-transform">cloud_download</span>
         <div>
-          <h4 class="font-bold text-xs text-white">INSTANT DOWNLOAD</h4>
-          <p class="text-[10px] opacity-40">Get notes instantly</p>
+          <h4 class="font-black text-[10px] text-white uppercase tracking-wider">INSTANT DOWNLOAD</h4>
+          <p class="text-[10px] text-white/40 uppercase">Get notes instantly</p>
         </div>
       </div>
       <div class="flex items-center gap-4 group">
         <span class="material-symbols-outlined text-primary-fixed text-4xl group-hover:rotate-12 transition-transform">verified_user</span>
         <div>
-          <h4 class="font-bold text-xs text-white">SAFE PAYMENT</h4>
-          <p class="text-[10px] opacity-40">Secure checkout</p>
+          <h4 class="font-black text-[10px] text-white uppercase tracking-wider">SAFE PAYMENT</h4>
+          <p class="text-[10px] text-white/40 uppercase">Secure checkout</p>
         </div>
       </div>
       <div class="flex items-center gap-4 group">
         <span class="material-symbols-outlined text-primary-fixed text-4xl group-hover:rotate-12 transition-transform">picture_as_pdf</span>
         <div>
-          <h4 class="font-bold text-xs text-white">EXAM FOCUSED</h4>
-          <p class="text-[10px] opacity-40">High quality PDFs</p>
+          <h4 class="font-black text-[10px] text-white uppercase tracking-wider">EXAM FOCUSED</h4>
+          <p class="text-[10px] text-white/40 uppercase">High quality PDFs</p>
         </div>
       </div>
       <div class="flex items-center gap-4 group">
         <span class="material-symbols-outlined text-primary-fixed text-4xl group-hover:rotate-12 transition-transform">headset_mic</span>
         <div>
-          <h4 class="font-bold text-xs text-white">SUPPORT</h4>
-          <p class="text-[10px] opacity-40">Available 24/7</p>
+          <h4 class="font-black text-[10px] text-white uppercase tracking-wider">SUPPORT</h4>
+          <p class="text-[10px] text-white/40 uppercase">Available 24/7</p>
         </div>
       </div>
     </div>
 
-    <!-- Bottom Bar -->
-    <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
-      <div class="flex items-center gap-4">
-        <span class="text-white/40 text-[10px] font-medium tracking-[0.2em] uppercase">Dream it. Plan it. Study it.</span>
+    <!-- Dynamic Payment Icons Section -->
+    <div class="flex flex-col items-center gap-8 py-4">
+      <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-6">
+        {%- if section.settings.pay_visa != blank -%}
+          <img src="{{ section.settings.pay_visa | image_url: height: 40 }}" alt="Visa" class="h-6 md:h-8 w-auto object-contain hover:scale-110 transition-transform">
+        {%- endif -%}
+        {%- if section.settings.pay_mastercard != blank -%}
+          <img src="{{ section.settings.pay_mastercard | image_url: height: 40 }}" alt="Mastercard" class="h-6 md:h-8 w-auto object-contain hover:scale-110 transition-transform">
+        {%- endif -%}
+        {%- if section.settings.pay_rupay != blank -%}
+          <img src="{{ section.settings.pay_rupay | image_url: height: 40 }}" alt="RuPay" class="h-6 md:h-8 w-auto object-contain hover:scale-110 transition-transform">
+        {%- endif -%}
+        {%- if section.settings.pay_upi != blank -%}
+          <img src="{{ section.settings.pay_upi | image_url: height: 40 }}" alt="UPI" class="h-6 md:h-8 w-auto object-contain hover:scale-110 transition-transform">
+        {%- endif -%}
+        {%- if section.settings.pay_razorpay != blank -%}
+          <img src="{{ section.settings.pay_razorpay | image_url: height: 40 }}" alt="Razorpay" class="h-6 md:h-8 w-auto object-contain hover:scale-110 transition-transform">
+        {%- endif -%}
+        {%- if section.settings.pay_cashfree != blank -%}
+          <img src="{{ section.settings.pay_cashfree | image_url: height: 40 }}" alt="Cashfree" class="h-6 md:h-8 w-auto object-contain hover:scale-110 transition-transform">
+        {%- endif -%}
       </div>
-      <p class="text-[10px] opacity-40">© 2025 TGPCOP NOTES. All Rights Reserved.</p>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-white/5">
+      <p class="text-[10px] text-white/30 uppercase tracking-[0.3em] font-medium">Dream it. Plan it. Study it.</p>
+      <p class="text-[10px] text-white/30 tracking-wider">© 2025 TGPCOP NOTES. All Rights Reserved.</p>
     </div>
   </div>
 </footer>
 
 {% schema %}
 {
-  "name": "Branded Footer",
+  "name": "TGPCOP Branded Footer",
   "settings": [
+    {
+      "type": "header",
+      "content": "Branding Content"
+    },
     {
       "type": "image_picker",
       "id": "footer_banner",
@@ -138,6 +155,40 @@
       "type": "url",
       "id": "banner_link",
       "label": "Banner Click Link"
+    },
+    {
+      "type": "header",
+      "content": "Payment Logos (Colorful PNGs recommended)"
+    },
+    {
+      "type": "image_picker",
+      "id": "pay_visa",
+      "label": "1. Visa Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "pay_mastercard",
+      "label": "2. MasterCard Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "pay_rupay",
+      "label": "3. RuPay Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "pay_upi",
+      "label": "4. UPI Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "pay_razorpay",
+      "label": "5. Razorpay Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "pay_cashfree",
+      "label": "6. Cashfree Logo"
     }
   ]
 }
