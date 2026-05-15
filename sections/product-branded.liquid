@@ -19,13 +19,8 @@
       <div class="space-y-4">
         <div class="flex items-center gap-4">
           <span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">PCI New Syllabus</span>
-          <div class="flex text-tertiary">
-            <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-          </div>
+          <!-- Judge.me Preview Badge -->
+          {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', product: product %}
         </div>
         <h1 class="text-4xl md:text-5xl font-bold text-on-surface leading-tight">{{ product.title }}</h1>
         <div class="flex items-end gap-4">
@@ -115,13 +110,10 @@
     </div>
   </section>
 
-  <!-- Student Reviews -->
-  <section class="mt-32 space-y-12">
-    <div class="flex flex-col md:flex-row justify-between items-end gap-6 border-b border-outline-variant pb-8">
-      <div class="space-y-4">
-        <h2 class="text-3xl md:text-4xl font-bold">What Students Say</h2>
-        <p class="text-lg text-on-surface-variant">Trusted by over 5,000+ Pharmacy students across India.</p>
-      </div>
+  <!-- Judge.me Review Widget -->
+  <section class="mt-32 pt-16 border-t border-outline-variant">
+    <div class="max-w-4xl mx-auto">
+      {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', jm_style: '', product: product %}
     </div>
   </section>
 </main>

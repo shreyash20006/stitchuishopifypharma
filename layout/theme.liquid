@@ -122,7 +122,16 @@
       .no-scrollbar::-webkit-scrollbar { display: none; }
       .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
-  </head>
+    <!-- Judge.me Custom Styling -->
+  <style>
+    .jdgm-widget.jdgm-widget {
+      --jdgm-primary-color: #004429 !important;
+      --jdgm-star-color: #004429 !important;
+    }
+    .jdgm-rev-widg__title { font-weight: 900 !important; }
+    .jdgm-preview-badge .jdgm-star { color: #004429 !important; }
+  </style>
+</head>
 
   <body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
     {% section 'announcement-bar' %}
