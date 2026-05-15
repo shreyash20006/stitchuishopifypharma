@@ -1,0 +1,70 @@
+<header class="site-header">
+  <div class="container">
+    <div class="site-header__inner">
+      <a href="/" class="logo-link">
+        {% if section.settings.logo != blank %}
+          <img src="{{ section.settings.logo | image_url: height: 100 }}" alt="{{ shop.name }}" class="logo-img">
+        {% else %}
+          <span class="logo-text" style="font-family: var(--font-heading); font-weight: 800; font-size: 1.5rem; color: var(--color-primary);">TGPCOP <span style="color: var(--color-text);">NOTES</span></span>
+        {% endif %}
+      </a>
+
+      <nav class="site-header__nav desktop-only">
+        <ul class="nav-list">
+          {% for link in section.settings.menu.links %}
+            <li>
+              <a href="{{ link.url }}" class="nav-link {% if link.active %}active{% endif %}">
+                {{ link.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <div class="site-header__actions">
+        <a href="/cart" class="cart-link btn btn--outline btn--sm">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+          <span class="cart-count">{{ cart.item_count }}</span>
+        </a>
+        <button class="hamburger mobile-only">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  .desktop-only { display: flex; }
+  .mobile-only { display: none; }
+  @media (max-width: 768px) {
+    .desktop-only { display: none; }
+    .mobile-only { display: flex; }
+  }
+  .hamburger {
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-text);
+    transition: var(--transition);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

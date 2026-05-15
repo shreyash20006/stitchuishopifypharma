@@ -1,0 +1,57 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="/" class="logo-link">
+          <span class="logo-text" style="color: #fff; font-size: 1.5rem; font-weight: 800;">TGPCOP <span style="color: var(--color-primary);">NOTES</span></span>
+        </a>
+        <p style="margin-top: 16px; opacity: 0.7;">Empowering pharmacy students with high-quality study materials and resources.</p>
+      </div>
+      
+      <div class="footer-col">
+        <h4 style="margin-bottom: 20px;">Quick Links</h4>
+        <ul style="display: flex; flex-direction: column; gap: 10px; opacity: 0.8;">
+          {% for link in section.settings.menu.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 style="margin-bottom: 20px;">Support</h4>
+        <ul style="display: flex; flex-direction: column; gap: 10px; opacity: 0.8;">
+          <li><a href="/pages/contact">Contact Us</a></li>
+          <li><a href="/pages/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/pages/terms">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 style="margin-bottom: 20px;">Follow Us</h4>
+        <div style="display: flex; gap: 12px;">
+          {% if section.settings.telegram_link != blank %}
+            <a href="{{ section.settings.telegram_link }}" class="social-link">Telegram</a>
+          {% endif %}
+          {% if section.settings.instagram_link != blank %}
+            <a href="{{ section.settings.instagram_link }}" class="social-link">Instagram</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    
+    <div style="margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; opacity: 0.6; font-size: 0.85rem;">
+      <p>&copy; {{ 'now' | date: "%Y" }} {{ shop.name }}. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" },
+    { "type": "url", "id": "telegram_link", "label": "Telegram Link" },
+    { "type": "url", "id": "instagram_link", "label": "Instagram Link" }
+  ]
+}
+{% endschema %}

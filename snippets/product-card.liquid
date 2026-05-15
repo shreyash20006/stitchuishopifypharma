@@ -1,0 +1,23 @@
+<div class="product-card">
+  <a href="{{ product.url }}" class="product-card__image">
+    {% if product.featured_image != blank %}
+      <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" loading="lazy">
+    {% else %}
+      <div style="display:flex; align-items:center; justify-content:center; height:100%; font-size:4rem;">📄</div>
+    {% endif %}
+  </a>
+  <div class="product-card__info">
+    <h3 class="product-card__title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+    <div class="product-card__price">
+      {{ product.price | money }}
+    </div>
+    <form action="/cart/add" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+      <button type="submit" class="btn btn--primary btn--sm btn--full" style="margin-top: 16px; width: 100%;">
+        Add to Cart
+      </button>
+    </form>
+  </div>
+</div>

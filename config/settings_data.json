@@ -1,0 +1,29 @@
+{
+  "current": {
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "show_announcement": true,
+          "text": "Free GPAT 2025 Study Plan Available Now!"
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {}
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {}
+      }
+    },
+    "content_for_index": [
+      "hero-banner",
+      "featured-collections",
+      "whatsapp-banner",
+      "testimonials",
+      "faq"
+    ]
+  },
+  "presets": {}
+}

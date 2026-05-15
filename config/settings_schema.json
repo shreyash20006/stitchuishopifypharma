@@ -1,0 +1,20 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "TGPCOP Notes",
+    "theme_version": "1.0.0",
+    "theme_author": "Antigravity",
+    "theme_documentation_url": "https://github.com",
+    "theme_support_url": "https://github.com"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      { "type": "color", "id": "colors_primary", "label": "Primary Color", "default": "#0B5D3B" },
+      { "type": "color", "id": "colors_secondary", "label": "Secondary Color", "default": "#8B5CF6" },
+      { "type": "color", "id": "colors_background", "label": "Background Color", "default": "#FFFFFF" },
+      { "type": "color", "id": "colors_text", "label": "Text Color", "default": "#1A1A1A" },
+      { "type": "color", "id": "colors_text_muted", "label": "Text Muted Color", "default": "#6B7280" }
+    ]
+  }
+]

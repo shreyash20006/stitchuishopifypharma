@@ -1,0 +1,47 @@
+<section class="section-padding">
+  <div class="container" style="max-width: 800px;">
+    <div class="section-header">
+      <h2 class="section-title">{{ section.settings.title | default: "Frequently Asked Questions" }}</h2>
+    </div>
+    
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      {% for block in section.blocks %}
+        <details style="background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden;">
+          <summary style="padding: 20px; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none;">
+            {{ block.settings.question }}
+            <span class="icon">+</span>
+          </summary>
+          <div style="padding: 0 20px 20px; color: var(--color-text-muted);">
+            {{ block.settings.answer }}
+          </div>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  summary::-webkit-details-marker { display: none; }
+  details[open] summary .icon { transform: rotate(45deg); }
+  .icon { transition: transform 0.3s ease; }
+</style>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Frequently Asked Questions" }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "textarea", "id": "answer", "label": "Answer" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "FAQ" }]
+}
+{% endschema %}

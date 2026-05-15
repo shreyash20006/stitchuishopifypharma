@@ -1,0 +1,24 @@
+<section class="section-padding">
+  <div class="container">
+    <div class="whatsapp-banner">
+      <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; gap: 16px;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M12.012 2c-5.508 0-9.987 4.479-9.987 9.987 0 1.757.463 3.407 1.268 4.843l-1.293 4.717 4.828-1.266c1.401.764 2.992 1.193 4.684 1.193 5.508 0 9.987-4.479 9.987-9.987 0-5.508-4.479-9.987-9.987-9.987zm0 1.744c4.544 0 8.244 3.7 8.244 8.244 0 4.544-3.7 8.244-8.244 8.244-1.614 0-3.118-.466-4.392-1.265l-.315-.187-2.883.754.77-2.812-.206-.328c-.851-1.353-1.341-2.952-1.341-4.66.001-4.544 3.701-8.244 8.244-8.244zm-3.834 4.503c-.144 0-.376.054-.572.269-.196.214-.75.732-.75 1.786 0 1.054.768 2.072.875 2.215.107.143 1.481 2.373 3.642 3.239.514.206.914.331 1.226.43.518.163.989.141 1.361.086.415-.062 1.277-.521 1.455-1.025.178-.504.178-.937.125-1.025-.054-.089-.196-.143-.411-.25s-1.277-.63-1.473-.701c-.196-.071-.339-.107-.482.107-.143.214-.553.701-.678.844-.125.143-.25.161-.464.054s-.904-.333-1.723-1.063c-.637-.568-1.067-1.269-1.192-1.483s-.014-.33.093-.437c.096-.096.214-.25.321-.375.107-.125.143-.214.214-.357s.036-.268-.018-.375c-.054-.107-.482-1.161-.661-1.589-.174-.419-.348-.362-.482-.369l-.41-.008z"/></svg>
+        <h2 style="margin: 0;">{{ section.settings.heading | default: "Join our WhatsApp Group" }}</h2>
+        <p style="margin: 0;">{{ section.settings.text | default: "Get instant updates and daily pharmacy quiz directly on your phone." }}</p>
+        <a href="{{ section.settings.link }}" class="btn" style="background: #fff; color: #25D366;">Join Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "WhatsApp Banner",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Join our WhatsApp Group" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "url", "id": "link", "label": "Link" }
+  ],
+  "presets": [{ "name": "WhatsApp Banner" }]
+}
+{% endschema %}
