@@ -26,8 +26,8 @@
       "footer": {
         "type": "footer",
         "settings": {
-          "bio": "Empowering Pharmacy Excellence through curated, high-quality handwritten notes and GPAT resources.",
-          "copyright_text": "Empowering Pharmacy Excellence. Built for Students, by Students."
+          "footer_banner": "shopify://shop_images/WhatsApp_Image_2026-05-15_at_11.52.50_PM.jpg",
+          "banner_link": ""
         }
       },
       "hero-banner": {
