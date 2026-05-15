@@ -1,67 +1,203 @@
-<section class="py-20 bg-surface-container-lowest">
-  <div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
-    {%- for block in section.blocks -%}
-      <div class="text-center p-8 rounded-2xl hover:bg-background transition-colors border border-transparent hover:border-outline-variant">
-        <div class="w-16 h-16 {{ block.settings.bg_color }} {{ block.settings.text_color }} rounded-2xl flex items-center justify-center mx-auto mb-6">
-          <span class="material-symbols-outlined text-[32px]">{{ block.settings.icon }}</span>
-        </div>
-        <h4 class="font-bold text-[24px] mb-2">{{ block.settings.title }}</h4>
-        <p class="text-on-surface-variant text-base">{{ block.settings.text }}</p>
+<section class="py-24 bg-white overflow-hidden">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop space-y-20">
+    
+    <!-- Section Header -->
+    <div class="text-center space-y-6 max-w-3xl mx-auto" data-aos="fade-up">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/10 mb-2">
+        <span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+        <span class="text-[10px] font-black uppercase tracking-widest text-primary">Trusted by 50,000+ B.Pharmacy Students</span>
       </div>
-    {%- endfor -%}
+      <h2 class="text-4xl md:text-6xl font-black text-[#001D11] tracking-tight">Why study with <span class="text-primary italic">TGPCOP?</span></h2>
+      <p class="text-lg text-on-surface-variant/80 font-medium leading-relaxed">We don't just provide notes; we provide a high-performance visual learning system designed specifically for pharmacy excellence.</p>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <!-- Card 1: Visual Learning -->
+      <div class="group relative bg-white rounded-[2.5rem] p-8 border border-outline-variant hover:border-primary transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,68,41,0.1)] flex flex-col h-full" data-aos="fade-up" data-aos-delay="100">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2.5rem]"></div>
+        
+        <div class="relative space-y-6 flex-grow">
+          <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-500">
+            <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">psychology</span>
+          </div>
+          
+          <div class="space-y-3">
+            <h3 class="text-2xl font-black text-[#001D11]">Visual Learning Strategy</h3>
+            <p class="text-sm text-on-surface-variant leading-relaxed">Structured handwritten-style notes with memory anchors and visual understanding blocks.</p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant">
+              <p class="text-xl font-black text-primary">70%</p>
+              <p class="text-[10px] uppercase font-bold opacity-40">Faster Recall</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant">
+              <p class="text-xl font-black text-primary">100%</p>
+              <p class="text-[10px] uppercase font-bold opacity-40">Syllabus</p>
+            </div>
+          </div>
+
+          <!-- Image Area -->
+          <div class="relative aspect-video rounded-2xl overflow-hidden bg-surface-container-high border border-outline-variant group/media">
+            {% if section.settings.card_1_img %}
+              <img src="{{ section.settings.card_1_img | image_url: width: 800 }}" alt="Visual Learning" class="w-full h-full object-cover transition-transform duration-700 group-hover/media:scale-110">
+            {% else %}
+              <div class="w-full h-full flex flex-col items-center justify-center opacity-20">
+                <span class="material-symbols-outlined text-4xl mb-2">draw</span>
+                <p class="text-[10px] font-bold">Handwritten Samples</p>
+              </div>
+            {% endif %}
+            <div class="absolute inset-0 bg-primary/40 backdrop-blur-sm opacity-0 group-hover/media:opacity-100 transition-all duration-300 flex items-center justify-center">
+              <span class="px-6 py-2 bg-white rounded-full text-primary font-black text-xs uppercase tracking-widest shadow-xl">Preview Notes</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="/collections/all" class="relative mt-8 w-full py-4 rounded-2xl bg-[#001D11] text-white font-black text-sm uppercase tracking-widest text-center hover:bg-primary transition-all shadow-lg active:scale-95">
+          View Sample Notes
+        </a>
+      </div>
+
+      <!-- Card 2: Quick Revision -->
+      <div class="group relative bg-[#001D11] rounded-[2.5rem] p-8 border border-white/10 hover:border-primary transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col h-full" data-aos="fade-up" data-aos-delay="200">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2.5rem]"></div>
+        
+        <div class="relative space-y-6 flex-grow">
+          <div class="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center text-primary-fixed group-hover:scale-110 transition-transform duration-500">
+            <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">bolt</span>
+          </div>
+          
+          <div class="space-y-3">
+            <h3 class="text-2xl font-black text-white">Quick Revision</h3>
+            <p class="text-sm text-white/60 leading-relaxed">One-shot revision tables and exam-focused summaries for last minute preparation.</p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+              <p class="text-xl font-black text-primary-fixed">5 Min</p>
+              <p class="text-[10px] uppercase font-bold text-white/40">Quick Sheets</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+              <p class="text-xl font-black text-primary-fixed">IMP</p>
+              <p class="text-[10px] uppercase font-bold text-white/40">Topic Focus</p>
+            </div>
+          </div>
+
+          <!-- Image Area -->
+          <div class="relative aspect-video rounded-2xl overflow-hidden bg-white/5 border border-white/10 group/media">
+            {% if section.settings.card_2_img %}
+              <img src="{{ section.settings.card_2_img | image_url: width: 800 }}" alt="Quick Revision" class="w-full h-full object-cover transition-transform duration-700 group-hover/media:scale-110">
+            {% else %}
+              <div class="w-full h-full flex flex-col items-center justify-center opacity-20 text-white">
+                <span class="material-symbols-outlined text-4xl mb-2">table_rows</span>
+                <p class="text-[10px] font-bold">Revision Tables</p>
+              </div>
+            {% endif %}
+            <div class="absolute inset-0 bg-primary/40 backdrop-blur-sm opacity-0 group-hover/media:opacity-100 transition-all duration-300 flex items-center justify-center">
+              <span class="px-6 py-2 bg-white rounded-full text-primary font-black text-xs uppercase tracking-widest shadow-xl">View Charts</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="/collections/all" class="relative mt-8 w-full py-4 rounded-2xl bg-primary text-white font-black text-sm uppercase tracking-widest text-center hover:bg-white hover:text-primary transition-all shadow-lg active:scale-95 border-2 border-transparent">
+          Download Preview
+        </a>
+      </div>
+
+      <!-- Card 3: Exam Oriented -->
+      <div class="group relative bg-white rounded-[2.5rem] p-8 border border-outline-variant hover:border-primary transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,68,41,0.1)] flex flex-col h-full" data-aos="fade-up" data-aos-delay="300">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[2.5rem]"></div>
+        
+        <div class="relative space-y-6 flex-grow">
+          <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-500">
+            <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">assignment_turned_in</span>
+          </div>
+          
+          <div class="space-y-3">
+            <h3 class="text-2xl font-black text-[#001D11]">Exam Oriented Content</h3>
+            <p class="text-sm text-on-surface-variant leading-relaxed">Previous year questions, important answers and university-focused preparation.</p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant">
+              <p class="text-xl font-black text-primary">PYQs</p>
+              <p class="text-[10px] uppercase font-bold opacity-40">Included</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant">
+              <p class="text-xl font-black text-primary">TOP</p>
+              <p class="text-[10px] uppercase font-bold opacity-40">Most Asked</p>
+            </div>
+          </div>
+
+          <!-- Image Area -->
+          <div class="relative aspect-video rounded-2xl overflow-hidden bg-surface-container-high border border-outline-variant group/media">
+            {% if section.settings.card_3_img %}
+              <img src="{{ section.settings.card_3_img | image_url: width: 800 }}" alt="Exam Oriented" class="w-full h-full object-cover transition-transform duration-700 group-hover/media:scale-110">
+            {% else %}
+              <div class="w-full h-full flex flex-col items-center justify-center opacity-20">
+                <span class="material-symbols-outlined text-4xl mb-2">quiz</span>
+                <p class="text-[10px] font-bold">Paper Samples</p>
+              </div>
+            {% endif %}
+            <div class="absolute inset-0 bg-primary/40 backdrop-blur-sm opacity-0 group-hover/media:opacity-100 transition-all duration-300 flex items-center justify-center">
+              <span class="px-6 py-2 bg-white rounded-full text-primary font-black text-xs uppercase tracking-widest shadow-xl">Start Learning</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="/collections/all" class="relative mt-8 w-full py-4 rounded-2xl bg-[#001D11] text-white font-black text-sm uppercase tracking-widest text-center hover:bg-primary transition-all shadow-lg active:scale-95">
+          Get Started
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Rating Strip & Community -->
+    <div class="flex flex-col md:flex-row items-center justify-between gap-8 pt-12 border-t border-outline-variant">
+      <div class="flex items-center gap-4">
+        <div class="flex text-primary">
+          <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+          <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+        </div>
+        <span class="text-sm font-bold text-[#001D11]">4.9/5 Average Student Rating</span>
+      </div>
+      
+      <a href="https://t.me/tgpcopnotes" target="_blank" class="flex items-center gap-3 px-6 py-3 rounded-full bg-blue-50 text-blue-600 border border-blue-100 hover:bg-blue-600 hover:text-white transition-all group">
+        <span class="material-symbols-outlined group-hover:rotate-12 transition-transform">send</span>
+        <span class="text-sm font-black uppercase tracking-widest">Join Telegram Community</span>
+      </a>
+    </div>
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Why Choose Us",
-  "blocks": [
+  "name": "Why Study With TGPCOP",
+  "settings": [
     {
-      "type": "feature",
-      "name": "Feature",
-      "settings": [
-        {
-          "type": "text",
-          "id": "icon",
-          "label": "Material Icon Name",
-          "default": "edit_note"
-        },
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Handwritten"
-        },
-        {
-          "type": "textarea",
-          "id": "text",
-          "label": "Text",
-          "default": "Personalized, easy-to-read notes that feel like your own best work."
-        },
-        {
-          "type": "text",
-          "id": "bg_color",
-          "label": "Background Class",
-          "default": "bg-primary/10"
-        },
-        {
-          "type": "text",
-          "id": "text_color",
-          "label": "Text Color Class",
-          "default": "text-primary"
-        }
-      ]
+      "type": "image_picker",
+      "id": "card_1_img",
+      "label": "Card 1: Visual Learning Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_2_img",
+      "label": "Card 2: Quick Revision Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "card_3_img",
+      "label": "Card 3: Exam Oriented Image"
     }
   ],
   "presets": [
     {
-      "name": "Why Choose Us",
-      "blocks": [
-        { "type": "feature", "settings": { "icon": "edit_note", "title": "Handwritten", "bg_color": "bg-primary/10", "text_color": "text-primary" } },
-        { "type": "feature", "settings": { "icon": "target", "title": "Exam Focused", "bg_color": "bg-tertiary/10", "text_color": "text-tertiary" } },
-        { "type": "feature", "settings": { "icon": "download", "title": "Instant Download", "bg_color": "bg-secondary/10", "text_color": "text-secondary" } },
-        { "type": "feature", "settings": { "icon": "school", "title": "GPAT Ready", "bg_color": "bg-primary/10", "text_color": "text-primary" } }
-      ]
+      "name": "Why Study With TGPCOP"
     }
   ]
 }
