@@ -1,21 +1,21 @@
 <header class="fixed top-0 w-full z-50 backdrop-blur-md bg-surface-glass border-b border-outline-variant shadow-sm h-16">
   <div class="flex justify-between items-center px-margin-desktop h-full w-full max-w-container-max mx-auto">
     <div class="flex items-center gap-2">
-      <a href="/" class="flex items-center gap-2">
+      <a href="{{ routes.root_url }}" class="flex items-center gap-2">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhfmORgRtOg2tRwuyFtkuFySFacNg-gVyhm-yBB5BzXL_NP7H9MZEzAw81YveORvaw3_K51eYp3d-f6ZnpexEXmwa65TN4KUSLCARubhFV0qkRBw_VVEXSUJ3R1iczp1hv2fLwHl8LOG-fviryh8E7T3GR1Iwgy5O2GHVlgqKiFBQ6cp2n68kCBlDicOW8QI4Hn_e97TK4ZtfnoQ_ctGrc5MZ8To_--L8LePvMLLaCuOJ_COVNDDo42_e6ju_4w-jjScvJVbhcTpyt" 
              alt="TGPCOP Logo" class="h-10 w-auto object-contain">
       </a>
     </div>
 
     <nav class="hidden md:flex items-center gap-8">
-      <a href="/" class="font-bold text-sm text-on-surface-variant hover:text-primary transition-colors">Home</a>
+      <a href="{{ routes.root_url }}" class="font-bold text-sm text-on-surface-variant hover:text-primary transition-colors">Home</a>
       <a href="/collections/all" class="font-bold text-sm text-on-surface-variant hover:text-primary transition-colors">Catalog</a>
       <a href="/collections/semester-notes" class="font-bold text-sm text-on-surface-variant hover:text-primary transition-colors">Semester Notes</a>
       <a href="/pages/contact" class="font-bold text-sm text-on-surface-variant hover:text-primary transition-colors">Contact</a>
     </nav>
 
     <div class="flex items-center gap-4">
-      <a href="/cart" class="relative p-2 text-primary group">
+      <a href="{{ routes.cart_url }}" class="relative p-2 text-primary group">
         <span class="material-symbols-outlined">shopping_cart</span>
         {%- if cart.item_count > 0 -%}
           <span class="absolute top-0 right-0 bg-error text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full border-2 border-white">
@@ -23,7 +23,7 @@
           </span>
         {%- endif -%}
       </a>
-      <a href="/account" class="p-2 text-primary">
+      <a href="{{ routes.account_url }}" class="p-2 text-primary">
         <span class="material-symbols-outlined">account_circle</span>
       </a>
     </div>
