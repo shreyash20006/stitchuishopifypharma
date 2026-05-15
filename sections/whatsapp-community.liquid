@@ -1,0 +1,80 @@
+<section class="py-20 px-margin-desktop">
+  <div class="max-w-container-max mx-auto bg-gradient-to-r from-primary to-[#25D366] rounded-[32px] overflow-hidden shadow-2xl">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-12 md:p-20">
+      <div class="text-on-primary">
+        <div class="flex items-center gap-4 mb-8">
+          {%- if section.settings.logo != blank -%}
+            <img src="{{ section.settings.logo | image_url: width: 100 }}" class="w-20 h-20 object-contain rounded-full bg-white p-2">
+          {%- endif -%}
+          <span class="font-bold text-xl text-white">{{ section.settings.badge_text }}</span>
+        </div>
+        <h2 class="font-bold text-[40px] leading-[48px] mb-6">{{ section.settings.title }}</h2>
+        <p class="text-lg text-primary-fixed opacity-90 mb-10">
+          {{ section.settings.description }}
+        </p>
+        <a href="{{ section.settings.link }}" class="bg-white text-[#25D366] px-10 py-5 rounded-2xl font-bold text-xl flex items-center gap-3 hover:scale-105 transition-transform shadow-xl w-fit">
+          <span class="material-symbols-outlined font-bold">chat</span>
+          {{ section.settings.button_text }}
+        </a>
+      </div>
+      <div class="relative hidden lg:block">
+        <div class="absolute inset-0 bg-white/10 blur-3xl rounded-full"></div>
+        {%- if section.settings.image != blank -%}
+          <img src="{{ section.settings.image | image_url: width: 600 }}" class="relative z-10 w-full max-w-sm mx-auto drop-shadow-2xl">
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "WhatsApp Community",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Small Logo"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "Official Community"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Join Our 50K+ Strong Pharmacy Community"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Get daily MCQ polls, GPAT tips, and early access to new notes directly on your WhatsApp. No spam, just pure value."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Join WhatsApp Group"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "WhatsApp Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Featured Image (e.g. Phone Mockup)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "WhatsApp Community"
+    }
+  ]
+}
+{% endschema %}

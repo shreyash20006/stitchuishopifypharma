@@ -1,0 +1,68 @@
+<section class="py-20 bg-surface-container-lowest">
+  <div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+    {%- for block in section.blocks -%}
+      <div class="text-center p-8 rounded-2xl hover:bg-background transition-colors border border-transparent hover:border-outline-variant">
+        <div class="w-16 h-16 {{ block.settings.bg_color }} {{ block.settings.text_color }} rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <span class="material-symbols-outlined text-[32px]">{{ block.settings.icon }}</span>
+        </div>
+        <h4 class="font-bold text-[24px] mb-2">{{ block.settings.title }}</h4>
+        <p class="text-on-surface-variant text-base">{{ block.settings.text }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why Choose Us",
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Material Icon Name",
+          "default": "edit_note"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Handwritten"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Personalized, easy-to-read notes that feel like your own best work."
+        },
+        {
+          "type": "text",
+          "id": "bg_color",
+          "label": "Background Class",
+          "default": "bg-primary/10"
+        },
+        {
+          "type": "text",
+          "id": "text_color",
+          "label": "Text Color Class",
+          "default": "text-primary"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Choose Us",
+      "blocks": [
+        { "type": "feature", "settings": { "icon": "edit_note", "title": "Handwritten", "bg_color": "bg-primary/10", "text_color": "text-primary" } },
+        { "type": "feature", "settings": { "icon": "target", "title": "Exam Focused", "bg_color": "bg-tertiary/10", "text_color": "text-tertiary" } },
+        { "type": "feature", "settings": { "icon": "download", "title": "Instant Download", "bg_color": "bg-secondary/10", "text_color": "text-secondary" } },
+        { "type": "feature", "settings": { "icon": "school", "title": "GPAT Ready", "bg_color": "bg-primary/10", "text_color": "text-primary" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,102 @@
+<section class="py-20 bg-surface-container-low">
+  <div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-20">
+    <!-- FAQ Section -->
+    <div>
+      <h2 class="font-bold text-[32px] text-on-surface mb-8">{{ section.settings.faq_title }}</h2>
+      <div class="space-y-4">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'faq' -%}
+            <div class="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant">
+              <details class="group">
+                <summary class="flex justify-between items-center cursor-pointer list-none">
+                  <span class="font-bold text-sm">{{ block.settings.question }}</span>
+                  <span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform">keyboard_arrow_down</span>
+                </summary>
+                <div class="mt-4 text-on-surface-variant text-sm">
+                  {{ block.settings.answer }}
+                </div>
+              </details>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div>
+      <h2 class="font-bold text-[32px] text-on-surface mb-8">{{ section.settings.testimonial_title }}</h2>
+      <div class="space-y-6">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'testimonial' -%}
+            <div class="glass-card p-8 rounded-3xl relative">
+              <span class="material-symbols-outlined text-primary/20 text-[80px] absolute -top-4 -left-4">format_quote</span>
+              <p class="text-lg text-on-surface mb-8 relative z-10">
+                "{{ block.settings.text }}"
+              </p>
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-primary-fixed overflow-hidden">
+                  {%- if block.settings.image != blank -%}
+                    <img src="{{ block.settings.image | image_url: width: 100 }}" class="w-full h-full object-cover">
+                  {%- else -%}
+                    <div class="w-full h-full bg-primary flex items-center justify-center text-white font-bold">
+                      {{ block.settings.author | slice: 0 }}
+                    </div>
+                  {%- endif -%}
+                </div>
+                <div>
+                  <p class="font-bold text-sm">{{ block.settings.author }}</p>
+                  <p class="text-on-surface-variant text-[12px]">{{ block.settings.subtitle }}</p>
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ & Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "faq_title",
+      "label": "FAQ Title",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_title",
+      "label": "Testimonial Title",
+      "default": "Student Success Stories"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "How will I receive my notes?" },
+        { "type": "textarea", "id": "answer", "label": "Answer", "default": "You will receive an instant download link on your email after successful payment." }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "textarea", "id": "text", "label": "Text", "default": "TGPCOP Notes completely changed my semester prep." },
+        { "type": "text", "id": "author", "label": "Author", "default": "Rahul Sharma" },
+        { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "3rd Year, B.Pharm" },
+        { "type": "image_picker", "id": "image", "label": "Author Image" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ & Testimonials"
+    }
+  ]
+}
+{% endschema %}

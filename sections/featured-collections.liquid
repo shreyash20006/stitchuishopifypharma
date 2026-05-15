@@ -1,38 +1,81 @@
-<section class="section-padding">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">{{ section.settings.title | default: "Featured Notes" }}</h2>
-      <p class="section-sub">{{ section.settings.subtitle }}</p>
+<section class="py-20 bg-background-main">
+  <div class="max-w-container-max mx-auto px-margin-desktop">
+    <div class="flex justify-between items-end mb-12">
+      <div>
+        <h2 class="font-bold text-[32px] leading-[40px] text-on-surface">{{ section.settings.title }}</h2>
+        <p class="text-on-surface-variant font-medium mt-2">{{ section.settings.description }}</p>
+      </div>
+      <a class="text-primary font-semibold hover:underline" href="{{ section.settings.view_all_link }}">View All Collections →</a>
     </div>
-
-    <div class="product-grid">
-      {% if section.settings.collection != blank %}
-        {% for product in section.settings.collection.products limit: 8 %}
-          {% render 'product-card', product: product %}
-        {% endfor %}
-      {% else %}
-        {% for i in (1..4) %}
-          <div class="product-card">
-            <div class="product-card__image" style="display:flex; align-items:center; justify-content:center; font-size:4rem;">📄</div>
-            <div class="product-card__info">
-              <h3 class="product-card__title">Sample Note {{ i }}</h3>
-              <p class="product-card__price">$9.99</p>
-            </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
+      {%- for block in section.blocks -%}
+        <div class="group relative overflow-hidden rounded-2xl aspect-[4/5] shadow-sm hover:shadow-xl transition-all duration-300">
+          {%- if block.settings.collection.image != blank -%}
+            <img src="{{ block.settings.collection.image | image_url: width: 800 }}" 
+                 class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                 alt="{{ block.settings.collection.title }}">
+          {%- else -%}
+            <div class="absolute inset-0 bg-surface-container-high"></div>
+          {%- endif -%}
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-8">
+            <h3 class="text-white font-bold text-[24px] mb-2">{{ block.settings.collection.title }}</h3>
+            <a href="{{ block.settings.collection.url }}" class="bg-white/20 backdrop-blur-md text-white border border-white/30 px-4 py-2 rounded-lg font-semibold inline-block">
+              {{ block.settings.button_text }}
+            </a>
           </div>
-        {% endfor %}
-      {% endif %}
+        </div>
+      {%- endfor -%}
     </div>
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Featured Products",
+  "name": "Featured Collections",
+  "max_blocks": 3,
   "settings": [
-    { "type": "text", "id": "title", "label": "Title", "default": "Featured Notes" },
-    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Hand-picked resources for your studies" },
-    { "type": "collection", "id": "collection", "label": "Collection" }
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Featured Collections"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "Curated resources for every stage of your pharmacy journey."
+    },
+    {
+      "type": "url",
+      "id": "view_all_link",
+      "label": "View All Link"
+    }
   ],
-  "presets": [{ "name": "Featured Products" }]
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Explore Now"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collections"
+    }
+  ]
 }
 {% endschema %}

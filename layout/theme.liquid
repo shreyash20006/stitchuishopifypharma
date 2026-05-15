@@ -1,10 +1,10 @@
 <!doctype html>
-<html class="no-js" lang="{{ request.locale.iso_code }}">
+<html class="light" lang="{{ request.locale.iso_code }}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="#0B5D3B">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="theme-color" content="#004429">
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
 
@@ -23,42 +23,108 @@
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
 
-    {% render 'meta-tags' %}
-
-    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
-
     {{ content_for_header }}
 
-    {%- liquid
-      assign body_font = settings.type_body_font
-      assign header_font = settings.type_header_font
-    -%}
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-
-    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-secondary-fixed-variant": "#354b41",
+                "secondary": "#4c6358",
+                "on-tertiary-fixed-variant": "#5a00c6",
+                "outline-variant": "#bfc9c0",
+                "tertiary-container": "#6616d7",
+                "tertiary-fixed-dim": "#d2bbff",
+                "inverse-primary": "#8dd6ab",
+                "secondary-container": "#cfe9da",
+                "primary-container": "#0b5d3b",
+                "on-surface-variant": "#404942",
+                "background": "#f9f9ff",
+                "surface-tint": "#004429",
+                "inverse-surface": "#293040",
+                "surface-container": "#e9edff",
+                "primary-fixed": "#a8f3c6",
+                "surface-container-highest": "#dce2f7",
+                "on-secondary-fixed": "#092017",
+                "surface": "#f9f9ff",
+                "on-error": "#ffffff",
+                "tertiary": "#4b00a7",
+                "on-tertiary-fixed": "#25005a",
+                "error": "#ba1a1a",
+                "primary-fixed-dim": "#8dd6ab",
+                "on-primary": "#ffffff",
+                "on-background": "#141b2b",
+                "surface-glass": "rgba(255, 255, 255, 0.7)",
+                "surface-bright": "#f9f9ff",
+                "tertiary-fixed": "#eaddff",
+                "primary": "#004429",
+                "background-main": "#F9FAFB",
+                "secondary-fixed-dim": "#b3ccbe",
+                "surface-container-low": "#f1f3ff",
+                "on-primary-fixed": "#002111",
+                "on-error-container": "#93000a",
+                "inverse-on-surface": "#edf0ff",
+                "surface-variant": "#dce2f7",
+                "on-surface": "#141b2b",
+                "surface-container-lowest": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "on-secondary-container": "#52695e",
+                "on-tertiary-container": "#d1b9ff",
+                "surface-dim": "#d3daef",
+                "error-container": "#ffdad6",
+                "on-primary-container": "#8ad4a8",
+                "outline": "#707a72",
+                "border-subtle": "#E5E7EB",
+                "on-secondary": "#ffffff",
+                "on-primary-fixed-variant": "#005232",
+                "surface-container-high": "#e1e8fd",
+                "secondary-fixed": "#cfe9da"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "margin-mobile": "1rem",
+                "container-max": "1280px",
+                "gutter": "1.5rem",
+                "margin-desktop": "2rem",
+                "stack-md": "1rem",
+                "stack-sm": "0.5rem",
+                "stack-lg": "2rem"
+            }
+          }
+        }
+      }
+    </script>
 
     <style>
-      :root {
-        --color-primary: {{ settings.colors_primary | default: '#0B5D3B' }};
-        --color-primary-rgb: {{ settings.colors_primary | color_to_rgb | remove: 'rgb(' | remove: ')' }};
-        --color-secondary: {{ settings.colors_secondary | default: '#8B5CF6' }};
-        --color-background: {{ settings.colors_background | default: '#FFFFFF' }};
-        --color-text: {{ settings.colors_text | default: '#1A1A1A' }};
-        --color-text-muted: {{ settings.colors_text_muted | default: '#666666' }};
-        --font-body: 'Inter', sans-serif;
-        --font-heading: 'Manrope', sans-serif;
+      .glass-card {
+          background: rgba(255, 255, 255, 0.7);
+          backdrop-filter: blur(12px);
+          border: 1px solid rgba(229, 231, 235, 0.5);
       }
+      .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      /* Hide scrollbar for clean horizontal scrolling */
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
   </head>
 
-  <body class="gradient">
-    <a class="skip-to-content-link button visually-hidden" href="#MainContent">
-      {{ "accessibility.skip_to_text" | t }}
-    </a>
-
+  <body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
     {% section 'announcement-bar' %}
     {% section 'header' %}
 
@@ -68,30 +134,13 @@
 
     {% section 'footer' %}
 
-    <ul hidden>
-      <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
-    </ul>
+    <!-- FAB for WhatsApp -->
+    <div class="fixed bottom-8 right-8 z-[70]">
+      <a class="w-16 h-16 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-2xl hover:scale-110 active:scale-95 transition-all" href="https://wa.me/{{ settings.whatsapp_number }}">
+        <span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">chat</span>
+      </a>
+    </div>
 
-    <script>
-      window.shopUrl = '{{ request.origin }}';
-      window.routes = {
-        cart_add_url: '{{ routes.cart_add_url }}',
-        cart_change_url: '{{ routes.cart_change_url }}',
-        cart_update_url: '{{ routes.cart_update_url }}',
-        cart_url: '{{ routes.cart_url }}',
-        predictive_search_url: '{{ routes.predictive_search_url }}'
-      };
-
-      window.cartStrings = {
-        error: `{{ 'sections.cart.cart_error' | t }}`,
-        quantityError: `{{ 'sections.cart.cart_quantity_error_html' | t: quantity: '[quantity]' }}`
-      };
-
-      window.variantStrings = {
-        addToCart: `{{ 'products.product.add_to_cart' | t }}`,
-        soldOut: `{{ 'products.product.sold_out' | t }}`,
-        unavailable: `{{ 'products.product.unavailable' | t }}`,
-      };
-    </script>
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
   </body>
 </html>
