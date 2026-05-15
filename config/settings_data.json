@@ -1,29 +1,86 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "current": {
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
         "settings": {
-          "show_announcement": true,
           "text": "Free GPAT 2025 Study Plan Available Now!"
         }
       },
       "header": {
         "type": "header",
-        "settings": {}
+        "settings": {
+          "logo": "shopify://shop_images/logo_notes.jpg",
+          "menu": "main-menu"
+        }
       },
       "footer": {
         "type": "footer",
+        "settings": {
+          "bio": "Empowering Pharmacy Excellence through curated, high-quality handwritten notes and GPAT resources.",
+          "copyright_text": "Empowering Pharmacy Excellence. Built for Students, by Students."
+        }
+      },
+      "hero-banner": {
+        "type": "hero-banner",
+        "settings": {
+          "badge_text": "TRUSTED BY 10,000+ PHARMACY STUDENTS",
+          "title": "QUALITY PHARMACY NOTES MADE FOR B.PHARM STUDENTS",
+          "description": "Handwritten exam-focused notes, GPAT materials & instant PDF downloads. Master your curriculum with clarity and speed.",
+          "button_text": "Shop Notes",
+          "button_link": "",
+          "secondary_button_text": "Join WhatsApp",
+          "secondary_button_link": ""
+        }
+      },
+      "featured-collections": {
+        "type": "featured-collections",
+        "settings": {
+          "title": "Featured Collections",
+          "description": "Curated resources for every stage of your pharmacy journey.",
+          "view_all_link": ""
+        }
+      },
+      "why-choose-us": {
+        "type": "why-choose-us",
         "settings": {}
+      },
+      "best-selling": {
+        "type": "best-selling",
+        "settings": {
+          "title": "Bestsellers This Week",
+          "collection": "",
+          "products_to_show": 6
+        }
+      },
+      "whatsapp-community": {
+        "type": "whatsapp-community",
+        "settings": {
+          "badge_text": "Official Community",
+          "title": "Join Our 50K+ Strong Pharmacy Community",
+          "description": "Get daily MCQ polls, GPAT tips, and early access to new notes directly on your WhatsApp. No spam, just pure value.",
+          "button_text": "Join WhatsApp Group",
+          "link": ""
+        }
+      },
+      "faq-testimonials": {
+        "type": "faq-testimonials",
+        "settings": {
+          "faq_title": "Frequently Asked Questions",
+          "testimonial_title": "Student Success Stories"
+        }
       }
     },
-    "content_for_index": [
-      "hero-banner",
-      "featured-collections",
-      "whatsapp-banner",
-      "testimonials",
-      "faq"
-    ]
+    "content_for_index": []
   },
   "presets": {}
 }
