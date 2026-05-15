@@ -40,9 +40,10 @@
         <span class="text-lg font-bold text-primary">{{ product.price | money }}</span>
       </div>
       
-      <form action="/cart/add" method="post" enctype="multipart/form-data">
+      <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="{{ product.variants.first.id }}">
         <input type="hidden" name="quantity" value="1">
+        <input type="hidden" name="return_to" value="back">
         <button type="submit" class="bg-primary text-white w-10 h-10 rounded-xl flex items-center justify-center hover:bg-primary/90 transition-all shadow-md group-hover:scale-110 active:scale-95">
           <span class="material-symbols-outlined">add_shopping_cart</span>
         </button>
