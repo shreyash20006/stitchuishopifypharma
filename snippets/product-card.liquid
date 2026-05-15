@@ -20,8 +20,11 @@
       <h3 class="font-bold text-base text-on-surface line-clamp-2 min-h-[3rem]">
         <a href="{{ product.url }}" class="hover:text-primary transition-colors">{{ product.title }}</a>
       </h3>
-      <!-- Judge.me Preview Badge -->
-      {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', product: product %}
+      <!-- Start of Judge.me code --> 
+      <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'> 
+        {{ product.metafields.judgeme.badge }} 
+      </div> 
+      <!-- End of Judge.me code -->
     </div>
 
     <div class="flex items-center justify-between gap-4 pt-4 border-t border-outline-variant">
