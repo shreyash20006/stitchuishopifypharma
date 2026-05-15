@@ -39,7 +39,8 @@
           "button_text": "Shop Notes",
           "button_link": "",
           "secondary_button_text": "Join WhatsApp",
-          "secondary_button_link": ""
+          "secondary_button_link": "",
+          "hero_image": "shopify://shop_images/WhatsApp_Image_2026-05-14_at_10.17.21_PM.jpg"
         }
       },
       "featured-collections": {
@@ -58,8 +59,8 @@
         "type": "best-selling",
         "settings": {
           "title": "Bestsellers This Week",
-          "collection": "",
-          "products_to_show": 6
+          "subtitle": "Automatically updated based on your latest additions.",
+          "collection": ""
         }
       },
       "whatsapp-community": {
