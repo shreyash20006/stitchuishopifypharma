@@ -12,9 +12,14 @@
     "main": {
       "type": "product-branded",
       "settings": {}
+    },
+    "1778877851f5c4afd6": {
+      "type": "apps",
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "1778877851f5c4afd6"
   ]
 }
