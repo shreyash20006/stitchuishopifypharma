@@ -1,16 +1,21 @@
 <header id="site-header" class="sticky top-0 w-full z-50 backdrop-blur-xl bg-surface-glass/90 border-b border-outline-variant shadow-sm h-20 transition-all duration-300">
   <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-full w-full max-w-container-max mx-auto">
     
-    <!-- Logo -->
-    <div class="flex items-center">
+    <div class="flex items-center gap-4">
+      <!-- Mobile Menu Toggle -->
+      <button id="mobile-menu-open" class="lg:hidden p-2 text-primary hover:bg-primary/5 rounded-full transition-colors">
+        <span class="material-symbols-outlined text-[28px]">menu</span>
+      </button>
+
+      <!-- Logo -->
       <a href="{{ routes.root_url }}" class="flex items-center gap-2 group">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhfmORgRtOg2tRwuyFtkuFySFacNg-gVyhm-yBB5BzXL_NP7H9MZEzAw81YveORvaw3_K51eYp3d-f6ZnpexEXmwa65TN4KUSLCARubhFV0qkRBw_VVEXSUJ3R1iczp1hv2fLwHl8LOG-fviryh8E7T3GR1Iwgy5O2GHVlgqKiFBQ6cp2n68kCBlDicOW8QI4Hn_e97TK4ZtfnoQ_ctGrc5MZ8To_--L8LePvMLLaCuOJ_COVNDDo42_e6ju_4w-jjScvJVbhcTpyt" 
              alt="TGPCOP Logo" 
-             class="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+             class="h-9 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
       </a>
     </div>
 
-    <!-- Main Navigation -->
+    <!-- Desktop Navigation -->
     <nav class="hidden lg:flex items-center gap-10">
       <a href="{{ routes.root_url }}" class="nav-link font-bold text-sm text-on-surface-variant hover:text-primary transition-all relative py-2">
         Home
@@ -32,7 +37,7 @@
 
     <!-- Icons -->
     <div class="flex items-center gap-2 md:gap-4">
-      <a href="{{ routes.cart_url }}" class="relative p-2.5 text-primary group bg-primary/5 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
+      <a href="{{ routes.cart_url }}" class="relative p-2 text-primary group bg-primary/5 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
         <span class="material-symbols-outlined">shopping_cart</span>
         {%- if cart.item_count > 0 -%}
           <span class="absolute -top-1 -right-1 bg-error text-white text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full border-2 border-white shadow-sm">
@@ -40,12 +45,52 @@
           </span>
         {%- endif -%}
       </a>
-      <a href="{{ routes.account_url }}" class="p-2.5 text-primary bg-primary/5 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
+      <a href="{{ routes.account_url }}" class="p-2 text-primary bg-primary/5 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
         <span class="material-symbols-outlined">account_circle</span>
       </a>
     </div>
   </div>
 </header>
+
+<!-- Mobile Menu Drawer Overlay -->
+<div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-[100] backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+<!-- Mobile Menu Drawer -->
+<div id="mobile-menu-drawer" class="fixed top-0 left-0 h-full w-[80%] max-w-[320px] bg-white z-[101] -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl p-6">
+  <div class="flex justify-between items-center mb-10">
+    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhfmORgRtOg2tRwuyFtkuFySFacNg-gVyhm-yBB5BzXL_NP7H9MZEzAw81YveORvaw3_K51eYp3d-f6ZnpexEXmwa65TN4KUSLCARubhFV0qkRBw_VVEXSUJ3R1iczp1hv2fLwHl8LOG-fviryh8E7T3GR1Iwgy5O2GHVlgqKiFBQ6cp2n68kCBlDicOW8QI4Hn_e97TK4ZtfnoQ_ctGrc5MZ8To_--L8LePvMLLaCuOJ_COVNDDo42_e6ju_4w-jjScvJVbhcTpyt" 
+         alt="Logo" class="h-8 w-auto">
+    <button id="mobile-menu-close" class="p-2 text-on-surface-variant hover:bg-on-surface/5 rounded-full">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+
+  <nav class="flex flex-col gap-6">
+    <a href="{{ routes.root_url }}" class="flex items-center gap-4 text-lg font-bold text-on-surface hover:text-primary transition-colors">
+      <span class="material-symbols-outlined text-primary">home</span> Home
+    </a>
+    <a href="/collections/b-pharm" class="flex items-center gap-4 text-lg font-bold text-on-surface hover:text-primary transition-colors">
+      <span class="material-symbols-outlined text-primary">school</span> B.Pharm
+    </a>
+    <a href="/collections/d-pharm" class="flex items-center gap-4 text-lg font-bold text-on-surface hover:text-primary transition-colors">
+      <span class="material-symbols-outlined text-primary">medication</span> D.Pharm
+    </a>
+    <hr class="border-outline-variant my-2">
+    <a href="/collections/all" class="flex items-center gap-4 text-lg font-bold text-on-surface-variant hover:text-primary transition-colors">
+      <span class="material-symbols-outlined">grid_view</span> All Catalog
+    </a>
+    <a href="{{ routes.account_url }}" class="flex items-center gap-4 text-lg font-bold text-on-surface-variant hover:text-primary transition-colors">
+      <span class="material-symbols-outlined">person</span> My Account
+    </a>
+  </nav>
+
+  <div class="absolute bottom-10 left-6 right-6">
+    <div class="p-4 rounded-xl bg-primary/5 border border-primary/10">
+      <p class="text-sm font-bold text-primary mb-1">Need Support?</p>
+      <p class="text-[12px] text-on-surface-variant">contact@tgpcoppharma.shop</p>
+    </div>
+  </div>
+</div>
 
 <style>
   .nav-link:hover .nav-underline {
@@ -57,9 +102,14 @@
     background-color: rgba(255, 255, 255, 0.95);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   }
+
+  body.menu-open {
+    overflow: hidden;
+  }
 </style>
 
 <script>
+  // Sticky Header Scroll
   window.addEventListener('scroll', function() {
     const header = document.getElementById('site-header');
     if (window.scrollY > 50) {
@@ -68,4 +118,26 @@
       header.classList.remove('scrolled');
     }
   });
+
+  // Mobile Menu Logic
+  const menuOpenBtn = document.getElementById('mobile-menu-open');
+  const menuCloseBtn = document.getElementById('mobile-menu-close');
+  const menuOverlay = document.getElementById('mobile-menu-overlay');
+  const menuDrawer = document.getElementById('mobile-menu-drawer');
+
+  function openMenu() {
+    menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+    menuDrawer.classList.remove('-translate-x-full');
+    document.body.classList.add('menu-open');
+  }
+
+  function closeMenu() {
+    menuOverlay.classList.add('opacity-0', 'pointer-events-none');
+    menuDrawer.classList.add('-translate-x-full');
+    document.body.classList.remove('menu-open');
+  }
+
+  menuOpenBtn.addEventListener('click', openMenu);
+  menuCloseBtn.addEventListener('click', closeMenu);
+  menuOverlay.addEventListener('click', closeMenu);
 </script>
