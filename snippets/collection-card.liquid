@@ -1,0 +1,21 @@
+<div class="group relative overflow-hidden rounded-2xl aspect-[4/5] shadow-sm hover:shadow-xl transition-all duration-300">
+  {%- if collection.image != blank -%}
+    <img src="{{ collection.image | image_url: width: 800 }}" 
+         class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+         alt="{{ collection.title }}">
+  {%- elsif collection.products.first.featured_image != blank -%}
+    <img src="{{ collection.products.first.featured_image | image_url: width: 800 }}" 
+         class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+         alt="{{ collection.title }}">
+  {%- else -%}
+    <div class="absolute inset-0 bg-surface-container-high"></div>
+  {%- endif -%}
+  
+  <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+  <div class="absolute bottom-0 left-0 p-8">
+    <h3 class="text-white font-bold text-[24px] mb-2">{{ collection.title }}</h3>
+    <a href="{{ collection.url }}" class="bg-white/20 backdrop-blur-md text-white border border-white/30 px-4 py-2 rounded-lg font-semibold inline-block hover:bg-white hover:text-primary transition-all">
+      {{ button_text | default: 'Explore Now' }}
+    </a>
+  </div>
+</div>

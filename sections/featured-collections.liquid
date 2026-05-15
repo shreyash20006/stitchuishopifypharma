@@ -1,31 +1,26 @@
 <section class="py-20 bg-background-main">
   <div class="max-w-container-max mx-auto px-margin-desktop">
-    <div class="flex justify-between items-end mb-12">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
       <div>
         <h2 class="font-bold text-[32px] leading-[40px] text-on-surface">{{ section.settings.title }}</h2>
         <p class="text-on-surface-variant font-medium mt-2">{{ section.settings.description }}</p>
       </div>
-      <a class="text-primary font-semibold hover:underline" href="{{ section.settings.view_all_link }}">View All Collections →</a>
+      <a class="text-primary font-semibold hover:underline" href="/collections">View All Collections →</a>
     </div>
+
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
-      {%- for block in section.blocks -%}
-        <div class="group relative overflow-hidden rounded-2xl aspect-[4/5] shadow-sm hover:shadow-xl transition-all duration-300">
-          {%- if block.settings.collection.image != blank -%}
-            <img src="{{ block.settings.collection.image | image_url: width: 800 }}" 
-                 class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                 alt="{{ block.settings.collection.title }}">
-          {%- else -%}
-            <div class="absolute inset-0 bg-surface-container-high"></div>
-          {%- endif -%}
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-          <div class="absolute bottom-0 left-0 p-8">
-            <h3 class="text-white font-bold text-[24px] mb-2">{{ block.settings.collection.title }}</h3>
-            <a href="{{ block.settings.collection.url }}" class="bg-white/20 backdrop-blur-md text-white border border-white/30 px-4 py-2 rounded-lg font-semibold inline-block">
-              {{ block.settings.button_text }}
-            </a>
-          </div>
-        </div>
-      {%- endfor -%}
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {% render 'collection-card', collection: block.settings.collection, button_text: block.settings.button_text %}
+        {%- endfor -%}
+      {%- else -%}
+        {%- comment -%} Automatic Mode: Show first 3 collections if no blocks are added {%- endcomment -%}
+        {%- for collection in collections limit: 3 -%}
+          {%- unless collection.handle == 'all' or collection.handle == 'frontpage' -%}
+            {% render 'collection-card', collection: collection, button_text: 'Explore Now' %}
+          {%- endunless -%}
+        {%- endfor -%}
+      {%- endif -%}
     </div>
   </div>
 </section>
@@ -33,7 +28,6 @@
 {% schema %}
 {
   "name": "Featured Collections",
-  "max_blocks": 3,
   "settings": [
     {
       "type": "text",
@@ -46,11 +40,6 @@
       "id": "description",
       "label": "Description",
       "default": "Curated resources for every stage of your pharmacy journey."
-    },
-    {
-      "type": "url",
-      "id": "view_all_link",
-      "label": "View All Link"
     }
   ],
   "blocks": [
