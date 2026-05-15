@@ -1,52 +1,43 @@
-<main class="pt-10 pb-stack-lg max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-  <!-- Product Hero Section -->
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<main class="pt-24 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
     <!-- Image Gallery -->
-    <div class="lg:col-span-7 space-y-4">
-      <div class="aspect-[4/5] rounded-xl overflow-hidden bg-surface-container shadow-sm border border-border-subtle group">
-        <img src="{{ product.featured_image | image_url: width: 1200 }}" 
-             alt="{{ product.title }}" 
-             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+    <div class="lg:col-span-7 space-y-6">
+      <div class="aspect-[4/5] rounded-3xl overflow-hidden glass-card">
+        <img src="{{ product.featured_image | image_url: width: 1200 }}" alt="{{ product.title }}" class="w-full h-full object-cover">
       </div>
-      {%- if product.images.size > 1 -%}
-        <div class="flex gap-4 overflow-x-auto custom-scrollbar pb-2 no-scrollbar">
-          {%- for image in product.images -%}
-            <div class="w-24 h-24 flex-shrink-0 rounded-lg border {% if forloop.first %}border-primary border-2{% else %}border-border-subtle{% endif %} overflow-hidden cursor-pointer opacity-70 hover:opacity-100 transition-opacity">
-              <img src="{{ image | image_url: width: 200 }}" class="w-full h-full object-cover">
-            </div>
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
+      <div class="grid grid-cols-4 gap-4">
+        {%- for image in product.images limit: 4 -%}
+          <div class="aspect-square rounded-2xl overflow-hidden glass-card cursor-pointer hover:border-primary transition-all">
+            <img src="{{ image | image_url: width: 300 }}" alt="{{ product.title }}" class="w-full h-full object-cover">
+          </div>
+        {%- endfor -%}
+      </div>
     </div>
 
     <!-- Product Info -->
-    <div class="lg:col-span-5 space-y-6">
-      <div class="space-y-2">
-        <span class="inline-block px-3 py-1 rounded-full bg-primary-container text-white font-bold text-[12px] border border-primary/20">Official TGPCOP Resource</span>
-        <h1 class="font-bold text-[32px] leading-[40px] text-primary">{{ product.title }}</h1>
-        <div class="flex items-center gap-2">
-          <div class="flex text-primary">
-            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star_half</span>
+    <div class="lg:col-span-5 space-y-8 sticky top-24 h-fit">
+      <div class="space-y-4">
+        <div class="flex items-center gap-4">
+          <span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">PCI New Syllabus</span>
+          <div class="flex text-tertiary">
+            <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
           </div>
-          <span class="font-bold text-sm text-on-surface-variant">(128 Reviews)</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-on-surface leading-tight">{{ product.title }}</h1>
+        <div class="flex items-end gap-4">
+          <span class="text-3xl font-bold text-primary">{{ product.price | money }}</span>
+          {%- if product.compare_at_price > product.price -%}
+            <span class="text-xl text-on-surface-variant line-through mb-1">{{ product.compare_at_price | money }}</span>
+            <span class="bg-error/10 text-error px-3 py-1 rounded-lg text-sm font-bold mb-1">Save {{ product.compare_at_price | minus: product.price | money }}</span>
+          {%- endif -%}
         </div>
       </div>
 
-      <div class="flex items-center gap-4">
-        <span class="font-bold text-[40px] text-primary">{{ product.price | money }}</span>
-        {%- if product.compare_at_price > product.price -%}
-          <span class="text-lg text-on-surface-variant line-through">{{ product.compare_at_price | money }}</span>
-          <span class="px-2 py-1 bg-error-container text-on-error-container rounded-lg font-bold text-sm">
-            Save {{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}%
-          </span>
-        {%- endif -%}
-      </div>
-
-      <div class="p-4 rounded-xl bg-surface-container-low border border-primary/10 flex items-start gap-3">
+      <div class="flex items-start gap-4 p-4 rounded-2xl bg-primary/5 border border-primary/10">
         <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
         <div>
           <p class="font-bold text-sm text-on-surface">Verified Academic Content</p>
@@ -58,23 +49,23 @@
         {{ product.description }}
       </p>
 
-      <div class="grid grid-cols-2 gap-4 pt-4">
-        <form method="post" action="/cart/add">
-          <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
-          <button type="submit" class="w-full py-4 rounded-xl bg-white border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all shadow-sm">
-            Add to Cart
+      <div class="space-y-4 pt-6">
+        <form action="/cart/add" method="post" enctype="multipart/form-data" class="space-y-4">
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+          <input type="hidden" name="quantity" value="1">
+          
+          <button type="submit" class="w-full py-4 rounded-xl bg-primary text-white font-bold hover:bg-primary/90 transition-all shadow-lg flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined">shopping_cart</span>
+            ADD TO CART - {{ product.price | money }}
           </button>
-        </form>
-        <form method="post" action="/cart/add">
-          <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
-          <input type="hidden" name="return_to" value="/checkout" />
-          <button type="submit" class="w-full py-4 rounded-xl bg-primary text-on-primary font-bold hover:opacity-90 transition-all flex justify-center items-center gap-2 shadow-md">
-            Buy Now <span class="material-symbols-outlined text-sm">bolt</span>
+          
+          <button type="button" onclick="location.href='/checkout'" class="w-full py-4 rounded-xl bg-white border-2 border-primary text-primary font-bold hover:bg-primary/5 transition-all">
+            BUY IT NOW
           </button>
         </form>
       </div>
 
-      <div class="pt-6 space-y-4">
+      <div class="pt-6 space-y-4 border-t border-outline-variant">
         <div class="flex items-center gap-3">
           <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
           <span class="text-sm text-on-surface-variant">PCI Syllabus Aligned (Latest 2024)</span>
@@ -92,25 +83,43 @@
   </div>
 
   <!-- Bento Features Grid -->
-  <section class="mt-20">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'feature' -%}
-          <div class="{% if block.settings.wide %}md:col-span-2{% endif %} p-8 rounded-xl {{ block.settings.bg_class }} space-y-4 flex flex-col justify-center border border-primary/10">
-            <span class="material-symbols-outlined text-4xl">{{ block.settings.icon }}</span>
-            <h3 class="font-bold text-[24px]">{{ block.settings.title }}</h3>
-            <p class="text-lg opacity-90">{{ block.settings.text }}</p>
+  <section class="mt-32 space-y-12">
+    <div class="text-center space-y-4">
+      <h2 class="text-3xl md:text-4xl font-bold">Why study with TGPCOP?</h2>
+      <p class="text-on-surface-variant">Optimized for rapid understanding and exam success.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="md:col-span-2 glass-card p-10 rounded-3xl space-y-6 bg-gradient-to-br from-white/80 to-primary/5">
+        <span class="material-symbols-outlined text-5xl text-primary">psychology</span>
+        <h3 class="text-2xl font-bold">Visual Learning Strategy</h3>
+        <p class="text-on-surface-variant leading-relaxed">Our notes use hierarchical information design and mnemonic anchors to help you remember complex drug classifications and chemical structures with 70% less effort.</p>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-white/50 p-4 rounded-2xl border border-white">
+            <p class="font-bold text-primary">70%</p>
+            <p class="text-xs">Faster Recall</p>
           </div>
-        {%- endif -%}
-      {%- endfor -%}
+          <div class="bg-white/50 p-4 rounded-2xl border border-white">
+            <p class="font-bold text-primary">100%</p>
+            <p class="text-xs">Syllabus Coverage</p>
+          </div>
+        </div>
+      </div>
+      <div class="glass-card p-10 rounded-3xl space-y-6 bg-surface-container-low">
+        <span class="material-symbols-outlined text-5xl text-tertiary">bolt</span>
+        <h3 class="text-2xl font-bold">Quick Revision</h3>
+        <p class="text-on-surface-variant">Summary tables at the end of every chapter for last-minute exam preparation.</p>
+        <div class="aspect-video rounded-2xl overflow-hidden bg-primary/10 flex items-center justify-center">
+          <span class="material-symbols-outlined text-4xl opacity-20">table_view</span>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Student Reviews -->
-  <section class="mt-20 space-y-8">
-    <div class="flex flex-col md:flex-row justify-between items-end gap-4">
-      <div class="space-y-2">
-        <h2 class="font-bold text-[32px] text-primary">Student Experiences</h2>
+  <section class="mt-32 space-y-12">
+    <div class="flex flex-col md:flex-row justify-between items-end gap-6 border-b border-outline-variant pb-8">
+      <div class="space-y-4">
+        <h2 class="text-3xl md:text-4xl font-bold">What Students Say</h2>
         <p class="text-lg text-on-surface-variant">Trusted by over 5,000+ Pharmacy students across India.</p>
       </div>
     </div>
@@ -148,49 +157,57 @@
     {%- endif -%}
     <span class="font-bold text-[20px] text-primary">{{ product.price | money }}</span>
   </div>
-  <form method="post" action="/cart/add">
-    <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
-    <input type="hidden" name="return_to" value="/checkout" />
-    <button type="submit" class="px-8 py-3 rounded-xl bg-primary text-on-primary font-bold shadow-lg active:scale-95 transition-all">
-      Unlock Notes
+  <form action="/cart/add" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+    <button type="submit" class="px-8 py-3 rounded-xl bg-primary text-white font-bold shadow-lg active:scale-95 transition-all flex items-center gap-2">
+      <span class="material-symbols-outlined text-sm">shopping_cart</span>
+      Add
     </button>
   </form>
 </div>
 
 {% schema %}
 {
-  "name": "Branded Product Page",
+  "name": "Branded Product",
   "settings": [],
   "blocks": [
-    {
-      "type": "feature",
-      "name": "Bento Feature",
-      "settings": [
-        { "type": "text", "id": "title", "label": "Title", "default": "Feature Title" },
-        { "type": "textarea", "id": "text", "label": "Text", "default": "Feature description goes here." },
-        { "type": "text", "id": "icon", "label": "Icon Name", "default": "school" },
-        { "type": "text", "id": "bg_class", "label": "Background Class", "default": "bg-primary text-on-primary" },
-        { "type": "checkbox", "id": "wide", "label": "Wide Block (2 columns)", "default": false }
-      ]
-    },
     {
       "type": "review",
       "name": "Student Review",
       "settings": [
-        { "type": "text", "id": "author", "label": "Author Name", "default": "Student Name" },
-        { "type": "text", "id": "author_info", "label": "Author Info", "default": "4th Year, B.Pharm" },
-        { "type": "textarea", "id": "content", "label": "Review Content", "default": "Great notes!" },
-        { "type": "range", "id": "rating", "min": 1, "max": 5, "step": 1, "default": 5, "label": "Rating" }
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Student Name",
+          "default": "Aditya Sharma"
+        },
+        {
+          "type": "text",
+          "id": "author_info",
+          "label": "Semester/College",
+          "default": "6th Sem, B.Pharm"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Review Content",
+          "default": "The pharmacological classifications are so easy to remember now. Highly recommended for anyone struggling with memorization."
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5,
+          "label": "Rating"
+        }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Branded Product Page",
-      "blocks": [
-        { "type": "feature", "settings": { "title": "Pharmacy Excellence", "text": "Aligned with PCI syllabus.", "wide": true } },
-        { "type": "review", "settings": { "author": "Ananya Sharma", "content": "The notes are amazing!" } }
-      ]
+      "name": "Branded Product"
     }
   ]
 }
