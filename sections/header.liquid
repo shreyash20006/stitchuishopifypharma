@@ -1,22 +1,52 @@
 <header id="site-header" class="sticky top-0 w-full z-50 backdrop-blur-xl bg-surface-glass/90 border-b border-outline-variant shadow-sm h-20 transition-all duration-300">
-  <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-full w-full max-w-container-max mx-auto">
-    
-    <div class="flex items-center gap-4">
-      <!-- Mobile Menu Toggle -->
-      <button id="mobile-menu-open" class="lg:hidden p-2 text-primary hover:bg-primary/5 rounded-full transition-colors">
+  
+  <!-- Mobile Header (Visible only on lg:hidden) -->
+  <div class="grid grid-cols-3 items-center px-margin-mobile h-full w-full lg:hidden">
+    <!-- Left: Hamburger Menu -->
+    <div class="flex justify-start">
+      <button id="mobile-menu-open" class="p-2 text-primary hover:bg-primary/5 rounded-full transition-colors">
         <span class="material-symbols-outlined text-[28px]">menu</span>
       </button>
+    </div>
 
-      <!-- Logo -->
-      <a href="{{ routes.root_url }}" class="flex items-center gap-2 group">
+    <!-- Center: Perfectly Centered Logo -->
+    <div class="flex justify-center">
+      <a href="{{ routes.root_url }}" class="flex items-center">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhfmORgRtOg2tRwuyFtkuFySFacNg-gVyhm-yBB5BzXL_NP7H9MZEzAw81YveORvaw3_K51eYp3d-f6ZnpexEXmwa65TN4KUSLCARubhFV0qkRBw_VVEXSUJ3R1iczp1hv2fLwHl8LOG-fviryh8E7T3GR1Iwgy5O2GHVlgqKiFBQ6cp2n68kCBlDicOW8QI4Hn_e97TK4ZtfnoQ_ctGrc5MZ8To_--L8LePvMLLaCuOJ_COVNDDo42_e6ju_4w-jjScvJVbhcTpyt" 
              alt="TGPCOP Logo" 
-             class="h-9 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+             class="h-9 w-auto object-contain transition-transform duration-300 active:scale-95">
       </a>
     </div>
 
-    <!-- Desktop Navigation -->
-    <nav class="hidden lg:flex items-center gap-10">
+    <!-- Right: Cart & Account Icons -->
+    <div class="flex justify-end items-center gap-1">
+      <a href="{{ routes.cart_url }}" class="relative p-2 text-primary bg-primary/5 rounded-full active:scale-90 transition-all">
+        <span class="material-symbols-outlined text-[24px]">shopping_cart</span>
+        {%- if cart.item_count > 0 -%}
+          <span class="absolute -top-1 -right-1 bg-error text-white text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full border-2 border-white">
+            {{ cart.item_count }}
+          </span>
+        {%- endif -%}
+      </a>
+      <a href="{{ routes.account_url }}" class="p-2 text-primary bg-primary/5 rounded-full active:scale-90 transition-all">
+        <span class="material-symbols-outlined text-[24px]">account_circle</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Desktop Header (Visible only on lg:flex) -->
+  <div class="hidden lg:flex justify-between items-center px-margin-desktop h-full w-full max-w-container-max mx-auto">
+    <!-- Desktop Logo -->
+    <div class="flex items-center">
+      <a href="{{ routes.root_url }}" class="flex items-center gap-2 group">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhfmORgRtOg2tRwuyFtkuFySFacNg-gVyhm-yBB5BzXL_NP7H9MZEzAw81YveORvaw3_K51eYp3d-f6ZnpexEXmwa65TN4KUSLCARubhFV0qkRBw_VVEXSUJ3R1iczp1hv2fLwHl8LOG-fviryh8E7T3GR1Iwgy5O2GHVlgqKiFBQ6cp2n68kCBlDicOW8QI4Hn_e97TK4ZtfnoQ_ctGrc5MZ8To_--L8LePvMLLaCuOJ_COVNDDo42_e6ju_4w-jjScvJVbhcTpyt" 
+             alt="TGPCOP Logo" 
+             class="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+      </a>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="flex items-center gap-10">
       <a href="{{ routes.root_url }}" class="nav-link font-bold text-sm text-on-surface-variant hover:text-primary transition-all relative py-2">
         Home
         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 nav-underline"></span>
@@ -35,9 +65,9 @@
       </a>
     </nav>
 
-    <!-- Icons -->
-    <div class="flex items-center gap-2 md:gap-4">
-      <a href="{{ routes.cart_url }}" class="relative p-2 text-primary group bg-primary/5 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
+    <!-- Desktop Icons -->
+    <div class="flex items-center gap-4">
+      <a href="{{ routes.cart_url }}" class="relative p-2.5 text-primary group bg-primary/5 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
         <span class="material-symbols-outlined">shopping_cart</span>
         {%- if cart.item_count > 0 -%}
           <span class="absolute -top-1 -right-1 bg-error text-white text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full border-2 border-white shadow-sm">
@@ -45,7 +75,7 @@
           </span>
         {%- endif -%}
       </a>
-      <a href="{{ routes.account_url }}" class="p-2 text-primary bg-primary/5 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
+      <a href="{{ routes.account_url }}" class="p-2.5 text-primary bg-primary/5 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
         <span class="material-symbols-outlined">account_circle</span>
       </a>
     </div>
@@ -125,10 +155,20 @@
   const menuOverlay = document.getElementById('mobile-menu-overlay');
   const menuDrawer = document.getElementById('mobile-menu-drawer');
 
-  function openMenu() {
-    menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
-    menuDrawer.classList.remove('-translate-x-full');
-    document.body.classList.add('menu-open');
+  if(menuOpenBtn) {
+    menuOpenBtn.addEventListener('click', () => {
+      menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+      menuDrawer.classList.remove('-translate-x-full');
+      document.body.classList.add('menu-open');
+    });
+  }
+
+  if(menuCloseBtn) {
+    menuCloseBtn.addEventListener('click', closeMenu);
+  }
+  
+  if(menuOverlay) {
+    menuOverlay.addEventListener('click', closeMenu);
   }
 
   function closeMenu() {
@@ -136,8 +176,4 @@
     menuDrawer.classList.add('-translate-x-full');
     document.body.classList.remove('menu-open');
   }
-
-  menuOpenBtn.addEventListener('click', openMenu);
-  menuCloseBtn.addEventListener('click', closeMenu);
-  menuOverlay.addEventListener('click', closeMenu);
 </script>
