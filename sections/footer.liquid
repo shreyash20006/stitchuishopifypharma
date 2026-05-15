@@ -1,21 +1,28 @@
 <footer class="w-full mt-20 bg-inverse-surface text-surface-variant pt-16 pb-8 px-margin-mobile md:px-margin-desktop">
   <div class="max-w-container-max mx-auto space-y-12">
     
-    <!-- Follow Community Image (Hardcoded Path) -->
+    <!-- Follow Community Image (DYNAMIC SETTING) -->
     <div class="w-full rounded-2xl overflow-hidden shadow-2xl border border-white/5">
-      <a href="https://whatsapp.com/channel/0029Vb7bPYAICVfklGHiIW0v" target="_blank" class="block">
-        {%- assign footer_banner = 'tgpcop-banner.jpg' | asset_url -%}
-        <img src="{{ footer_banner }}" 
-             alt="TGPCOP Community" 
-             class="w-full h-auto object-cover"
-             onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=2000';this.onerror=null;">
-      </a>
+      {%- if section.settings.footer_banner != blank -%}
+        <a href="{{ section.settings.banner_link | default: '#' }}" class="block">
+          <img src="{{ section.settings.footer_banner | image_url: width: 2000 }}" 
+               alt="TGPCOP Community" 
+               class="w-full h-auto object-cover transition-transform duration-500 hover:scale-[1.02]">
+        </a>
+      {%- else -%}
+        <!-- Placeholder if no image is selected -->
+        <div class="w-full py-20 bg-white/5 flex flex-col items-center justify-center border-2 border-dashed border-white/20 rounded-2xl">
+          <span class="material-symbols-outlined text-5xl mb-4 opacity-40">image</span>
+          <p class="font-bold opacity-60">Click "Select Image" in Footer settings to add your banner</p>
+        </div>
+      {%- endif -%}
+      
       <div class="bg-white/5 p-4 flex flex-wrap justify-center gap-6 text-[10px] uppercase tracking-widest text-primary-fixed font-bold">
-        <a href="https://whatsapp.com/channel/0029Vb7bPYAICVfklGHiIW0v">WhatsApp</a>
-        <a href="https://t.me/tgpcopnotes">Telegram</a>
-        <a href="https://instagram.com/tgpcop.notes">Instagram</a>
-        <a href="https://x.com/TGPCOPNOTES">X (Twitter)</a>
-        <a href="https://pin.it/6Df5gqrxL">Pinterest</a>
+        <a href="https://whatsapp.com/channel/0029Vb7bPYAICVfklGHiIW0v" target="_blank">WhatsApp</a>
+        <a href="https://t.me/tgpcopnotes" target="_blank">Telegram</a>
+        <a href="https://instagram.com/tgpcop.notes" target="_blank">Instagram</a>
+        <a href="https://x.com/TGPCOPNOTES" target="_blank">X (Twitter)</a>
+        <a href="https://pin.it/6Df5gqrxL" target="_blank">Pinterest</a>
       </div>
     </div>
 
@@ -59,10 +66,10 @@
     </div>
 
     <!-- Bottom Bar -->
-    <div class="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+    <div class="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
       <div class="flex items-center gap-4">
         <span class="text-white font-bold text-lg">TGPCOP NOTES</span>
-        <div class="h-4 w-px bg-white/20"></div>
+        <div class="hidden md:block h-4 w-px bg-white/20"></div>
         <span class="text-[10px] opacity-60 italic">Dream it. Plan it. Study it.</span>
       </div>
       <div class="flex gap-4 opacity-40">
@@ -70,7 +77,25 @@
         <img src="https://img.icons8.com/color/48/mastercard.png" class="h-5">
         <img src="https://img.icons8.com/color/48/upi.png" class="h-5">
       </div>
-      <p class="text-[10px] opacity-40">© 2025 TGPCOP NOTES.</p>
+      <p class="text-[10px] opacity-40">© 2025 TGPCOP NOTES. All Rights Reserved.</p>
     </div>
   </div>
 </footer>
+
+{% schema %}
+{
+  "name": "Branded Footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "footer_banner",
+      "label": "Community Banner Image"
+    },
+    {
+      "type": "url",
+      "id": "banner_link",
+      "label": "Banner Click Link"
+    }
+  ]
+}
+{% endschema %}
