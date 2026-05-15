@@ -94,30 +94,15 @@
   <!-- Bento Features Grid -->
   <section class="mt-20">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-      <div class="md:col-span-2 p-8 rounded-xl bg-primary text-on-primary space-y-4 flex flex-col justify-center border border-primary/20">
-        <span class="material-symbols-outlined text-4xl">school</span>
-        <h3 class="font-bold text-[24px]">Designed for Pharmacy Excellence</h3>
-        <p class="text-lg opacity-90">Every chapter follows the PCI syllabus precisely, ensuring you don't miss a single credit-worthy topic. Our notes are the result of 10+ years of collective teaching experience.</p>
-      </div>
-      <div class="p-8 rounded-xl bg-primary-container text-white space-y-4 border border-primary/10">
-        <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">verified</span>
-        <h3 class="font-bold text-[24px]">GPAT Ready</h3>
-        <p class="text-sm opacity-90">Includes high-yield bullet points and mnemonic devices specifically for entrance exam preparation.</p>
-      </div>
-      <div class="p-8 rounded-xl glass-card space-y-4 border border-border-subtle">
-        <span class="material-symbols-outlined text-primary text-4xl">smartphone</span>
-        <h3 class="font-bold text-[24px] text-on-surface">Mobile-First Reading</h3>
-        <p class="text-sm text-on-surface-variant">Optimized for reading on tablets and smartphones during your commute or in the lab.</p>
-      </div>
-      <div class="md:col-span-2 p-8 rounded-xl bg-secondary-container text-on-secondary-container flex items-center gap-8 border border-primary/10">
-        <div class="hidden sm:block w-32 h-32 rounded-lg overflow-hidden bg-white/40 p-2">
-          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhfmORgRtOg2tRwuyFtkuFySFacNg-gVyhm-yBB5BzXL_NP7H9MZEzAw81YveORvaw3_K51eYp3d-f6ZnpexEXmwa65TN4KUSLCARubhFV0qkRBw_VVEXSUJ3R1iczp1hv2fLwHl8LOG-fviryh8E7T3GR1Iwgy5O2GHVlgqKiFBQ6cp2n68kCBlDicOW8QI4Hn_e97TK4ZtfnoQ_ctGrc5MZ8To_--L8LePvMLLaCuOJ_COVNDDo42_e6ju_4w-jjScvJVbhcTpyt" class="w-full h-full object-contain">
-        </div>
-        <div class="space-y-2">
-          <h3 class="font-bold text-[24px]">Free Semester Updates</h3>
-          <p class="text-sm opacity-90">Buy once, get lifetime updates for this semester package. As the syllabus evolves, so do your notes.</p>
-        </div>
-      </div>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'feature' -%}
+          <div class="{% if block.settings.wide %}md:col-span-2{% endif %} p-8 rounded-xl {{ block.settings.bg_class }} space-y-4 flex flex-col justify-center border border-primary/10">
+            <span class="material-symbols-outlined text-4xl">{{ block.settings.icon }}</span>
+            <h3 class="font-bold text-[24px]">{{ block.settings.title }}</h3>
+            <p class="text-lg opacity-90">{{ block.settings.text }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
     </div>
   </section>
 
@@ -128,46 +113,34 @@
         <h2 class="font-bold text-[32px] text-primary">Student Experiences</h2>
         <p class="text-lg text-on-surface-variant">Trusted by over 5,000+ Pharmacy students across India.</p>
       </div>
-      <button class="px-6 py-2 rounded-lg border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all">Write a Review</button>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-      <div class="p-6 rounded-xl glass-card space-y-4 border border-border-subtle">
-        <div class="flex gap-1 text-primary">
-          <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-        </div>
-        <p class="text-sm text-on-surface italic">"The medicinal chemistry structures are so easy to understand. I used to struggle with SAR, but these notes made it clear."</p>
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-primary-container text-white flex items-center justify-center font-bold">AS</div>
-          <div>
-            <p class="font-bold text-sm">Ananya Sharma</p>
-            <p class="text-[12px] text-on-surface-variant">4th Year, B.Pharm</p>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'review' -%}
+          <div class="p-6 rounded-xl glass-card space-y-4 border border-border-subtle">
+            <div class="flex gap-1 text-primary">
+              {%- for i in (1..block.settings.rating) -%}
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+              {%- endfor -%}
+            </div>
+            <p class="text-sm text-on-surface italic">"{{ block.settings.content }}"</p>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-primary-container text-white flex items-center justify-center font-bold">
+                {{ block.settings.author | slice: 0, 2 | upcase }}
+              </div>
+              <div>
+                <p class="font-bold text-sm">{{ block.settings.author }}</p>
+                <p class="text-[12px] text-on-surface-variant">{{ block.settings.author_info }}</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <!-- Add more reviews here -->
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="mt-20 max-w-3xl mx-auto space-y-6">
-    <h2 class="font-bold text-[32px] text-primary text-center">Frequently Asked Questions</h2>
-    <div class="space-y-4">
-      <details class="group p-4 rounded-xl border border-border-subtle bg-white hover:border-primary transition-all shadow-sm">
-        <summary class="flex justify-between items-center cursor-pointer list-none font-bold text-sm text-on-surface">
-          What format are the notes in?
-          <span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
-        </summary>
-        <p class="mt-4 text-sm text-on-surface-variant">All our notes are delivered as high-resolution PDF files. They are compatible with all devices including smartphones, tablets, laptops, and can be printed if desired.</p>
-      </details>
+        {%- endif -%}
+      {%- endfor -%}
     </div>
   </section>
 </main>
 
-<!-- Sticky Purchase Bar (Mobile/Scroll) -->
+<!-- Sticky Purchase Bar -->
 <div class="fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant px-margin-mobile py-3 md:hidden z-50 flex items-center justify-between shadow-2xl">
   <div class="flex flex-col">
     {%- if product.compare_at_price > product.price -%}
@@ -188,9 +161,36 @@
 {
   "name": "Branded Product Page",
   "settings": [],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Bento Feature",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Feature Title" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Feature description goes here." },
+        { "type": "text", "id": "icon", "label": "Icon Name", "default": "school" },
+        { "type": "text", "id": "bg_class", "label": "Background Class", "default": "bg-primary text-on-primary" },
+        { "type": "checkbox", "id": "wide", "label": "Wide Block (2 columns)", "default": false }
+      ]
+    },
+    {
+      "type": "review",
+      "name": "Student Review",
+      "settings": [
+        { "type": "text", "id": "author", "label": "Author Name", "default": "Student Name" },
+        { "type": "text", "id": "author_info", "label": "Author Info", "default": "4th Year, B.Pharm" },
+        { "type": "textarea", "id": "content", "label": "Review Content", "default": "Great notes!" },
+        { "type": "range", "id": "rating", "min": 1, "max": 5, "step": 1, "default": 5, "label": "Rating" }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Branded Product Page"
+      "name": "Branded Product Page",
+      "blocks": [
+        { "type": "feature", "settings": { "title": "Pharmacy Excellence", "text": "Aligned with PCI syllabus.", "wide": true } },
+        { "type": "review", "settings": { "author": "Ananya Sharma", "content": "The notes are amazing!" } }
+      ]
     }
   ]
 }
