@@ -23,12 +23,17 @@
       "settings": {
         "title": "GPAT Top Picks"
       }
+    },
+    "faq_scroller": {
+      "type": "faq-scroller",
+      "settings": {}
     }
   },
   "order": [
     "hero",
     "featured_products",
     "featured_collections",
-    "best_sellers"
+    "best_sellers",
+    "faq_scroller"
   ]
 }
