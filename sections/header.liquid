@@ -1,4 +1,4 @@
-<header id="site-header" class="fixed top-0 w-full z-50 transition-all duration-500 h-20 flex items-center">
+<header id="site-header" class="sticky top-0 w-full z-50 transition-all duration-500 h-20 lg:h-24 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm flex items-center">
   
   <!-- Mobile Header (Visible only on lg:hidden) -->
   <div class="grid grid-cols-3 items-center px-margin-mobile h-full w-full lg:hidden">
@@ -39,32 +39,31 @@
 
   <!-- Desktop Header (Visible only on lg:flex) -->
   <div class="hidden lg:flex justify-between items-center px-margin-desktop h-full w-full max-w-container-max mx-auto">
-    <!-- Desktop Logo -->
     <div class="flex items-center">
-      <a href="{{ routes.root_url }}" class="flex items-center gap-2 group">
+      <a href="{{ routes.root_url }}" class="flex items-center gap-2 group py-2">
         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhfmORgRtOg2tRwuyFtkuFySFacNg-gVyhm-yBB5BzXL_NP7H9MZEzAw81YveORvaw3_K51eYp3d-f6ZnpexEXmwa65TN4KUSLCARubhFV0qkRBw_VVEXSUJ3R1iczp1hv2fLwHl8LOG-fviryh8E7T3GR1Iwgy5O2GHVlgqKiFBQ6cp2n68kCBlDicOW8QI4Hn_e97TK4ZtfnoQ_ctGrc5MZ8To_--L8LePvMLLaCuOJ_COVNDDo42_e6ju_4w-jjScvJVbhcTpyt" 
              alt="TGPCOP Logo" 
-             class="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+             class="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
       </a>
     </div>
 
     <!-- Main Navigation -->
-    <nav class="flex items-center gap-10">
-      <a href="{{ routes.root_url }}" class="nav-link font-bold text-sm text-on-surface-variant hover:text-primary transition-all relative py-2">
+    <nav class="flex items-center gap-12">
+      <a href="{{ routes.root_url }}" class="nav-link font-bold text-[13px] uppercase tracking-wider text-on-surface-variant hover:text-primary transition-all relative py-4">
         Home
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 nav-underline"></span>
+        <span class="absolute bottom-2 left-0 w-0 h-0.5 bg-primary transition-all duration-300 nav-underline"></span>
       </a>
-      <a href="/search?q=B.Pharm&options[prefix]=last&type=product" class="nav-link font-bold text-sm text-on-surface-variant hover:text-primary transition-all relative py-2">
+      <a href="/search?q=B.Pharm&options[prefix]=last&type=product" class="nav-link font-bold text-[13px] uppercase tracking-wider text-on-surface-variant hover:text-primary transition-all relative py-4">
         B.Pharm
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 nav-underline"></span>
+        <span class="absolute bottom-2 left-0 w-0 h-0.5 bg-primary transition-all duration-300 nav-underline"></span>
       </a>
-      <a href="/search?q=D.Pharm&options[prefix]=last&type=product" class="nav-link font-bold text-sm text-on-surface-variant hover:text-primary transition-all relative py-2">
+      <a href="/search?q=D.Pharm&options[prefix]=last&type=product" class="nav-link font-bold text-[13px] uppercase tracking-wider text-on-surface-variant hover:text-primary transition-all relative py-4">
         D.Pharm
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 nav-underline"></span>
+        <span class="absolute bottom-2 left-0 w-0 h-0.5 bg-primary transition-all duration-300 nav-underline"></span>
       </a>
-      <a href="/collections/all" class="nav-link font-bold text-sm text-on-surface-variant hover:text-primary transition-all relative py-2">
+      <a href="/collections/all" class="nav-link font-bold text-[13px] uppercase tracking-wider text-on-surface-variant hover:text-primary transition-all relative py-4">
         All Catalog
-        <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 nav-underline"></span>
+        <span class="absolute bottom-2 left-0 w-0 h-0.5 bg-primary transition-all duration-300 nav-underline"></span>
       </a>
     </nav>
 
@@ -152,11 +151,11 @@
   }
   
   header.scrolled {
-    height: 68px;
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+    height: 76px;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(25px);
+    border-bottom: 1px solid rgba(0, 68, 41, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   }
 
   #search-overlay.active {
