@@ -146,5 +146,30 @@
 
 
     <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+
+    <!-- Subscription Popup Suppression -->
+    <script>
+      (function() {
+        const isSubscribed = localStorage.getItem('tgpcop_subscribed') === 'true';
+        
+        if (isSubscribed) {
+          // Disable PushOwl auto-prompts if the object is available
+          window.pushowl = window.pushowl || [];
+          window.pushowl.push(['onPermissionPrompt', function() {
+            return false; // Prevent prompt
+          }]);
+
+          // Proactively hide any common popup containers after they load
+          const observer = new MutationObserver((mutations) => {
+            document.querySelectorAll('.pushowl-optin, .brevo-popup, .newsletter-popup, #pushowl-container').forEach(el => {
+              el.style.display = 'none';
+              el.remove();
+            });
+          });
+
+          observer.observe(document.body, { childList: true, subtree: true });
+        }
+      })();
+    </script>
   </body>
 </html>

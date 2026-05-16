@@ -51,10 +51,16 @@
           </div>
 
           {%- if form.posted_successfully? -%}
-            <p class="mt-4 text-[#0B5D3B] font-bold flex items-center justify-center gap-2">
+            <p class="mt-4 text-[#0B5D3B] font-bold flex items-center justify-center gap-2" id="newsletter-success-msg">
               <span class="material-symbols-outlined">check_circle</span>
               Welcome to the community! Check your inbox soon.
             </p>
+            <script>
+              // Set persistent flag to suppress other popups
+              localStorage.setItem('tgpcop_subscribed', 'true');
+              // Optional: Hide any existing open modals immediately
+              document.querySelectorAll('.pushowl-optin, .brevo-popup, .jdgm-prompt').forEach(el => el.style.display = 'none');
+            </script>
           {%- endif -%}
         {%- endform -%}
       </div>
