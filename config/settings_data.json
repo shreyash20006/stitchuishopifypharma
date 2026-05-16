@@ -41,7 +41,7 @@
           "button_link": "",
           "secondary_button_text": "Join WhatsApp",
           "secondary_button_link": "",
-          "hero_image": "shopify://shop_images/WhatsApp_Image_2026-05-14_at_10.17.21_PM.jpg"
+          "hero_image": "shopify://shop_images/WhatsApp_Image_2026-05-16_at_10.46.13_PM.jpg"
         }
       },
       "featured-collections": {
@@ -74,6 +74,10 @@
           "link": "https://whatsapp.com/channel/0029Vb7bPYAICVfklGHiIW0v",
           "image": "shopify://shop_images/ChatGPT_Image_May_15_2026_06_58_28_PM.png"
         }
+      },
+      "newsletter-premium": {
+        "type": "newsletter-premium",
+        "settings": {}
       }
     },
     "content_for_index": [],
