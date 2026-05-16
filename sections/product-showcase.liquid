@@ -1,0 +1,107 @@
+<section class="py-20 bg-white">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
+      <div class="max-w-2xl">
+        <h2 class="font-bold text-3xl md:text-4xl text-[#0B5D3B] leading-tight">{{ section.settings.title }}</h2>
+        {%- if section.settings.subtitle != blank -%}
+          <p class="text-gray-500 mt-3 text-lg font-medium">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.button_text != blank -%}
+        <a href="{{ section.settings.button_link | default: '/collections/all' }}" class="inline-flex items-center gap-2 bg-[#0B5D3B] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#094d31] transition-all shadow-lg shadow-[#0b5d3b20]">
+          {{ section.settings.button_text }}
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-{{ section.settings.columns_desktop }} gap-8">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.settings.product != blank -%}
+            <div class="product-block" {{ block.shopify_attributes }}>
+              {% render 'product-card', product: block.settings.product %}
+            </div>
+          {%- else -%}
+            <!-- Placeholder for empty blocks in customizer -->
+            <div class="bg-gray-50 border-2 border-dashed border-gray-200 rounded-3xl aspect-[3/4] flex items-center justify-center p-8 text-center text-gray-400">
+              <div>
+                <span class="material-symbols-outlined text-4xl mb-3">add_shopping_cart</span>
+                <p class="text-xs font-bold uppercase tracking-widest">Select Product</p>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        <!-- Empty state -->
+        {%- for i in (1..4) -%}
+          <div class="bg-gray-100 rounded-3xl aspect-[3/4] animate-pulse"></div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Manual Product Showcase",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Handpicked for You"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Sub-title",
+      "default": "Curated study materials selected by our academic experts."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Browse Collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 4,
+      "label": "Products per row (Desktop)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Selected Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Manual Product Showcase",
+      "blocks": [
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" },
+        { "type": "product" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,103 @@
+<style>
+  .scrolling-banner {
+    background: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    padding: 20px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .scrolling-banner__track {
+    display: inline-block;
+    padding-left: 100%;
+    animation: tgp-scroll {{ section.settings.speed }}s linear infinite;
+  }
+
+  .scrolling-banner__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 40px;
+    padding-right: 40px;
+  }
+
+  .scrolling-banner__text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'Manrope', sans-serif;
+  }
+
+  .scrolling-banner__icon {
+    font-size: 2rem;
+    opacity: 0.5;
+  }
+
+  @keyframes tgp-scroll {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+  }
+
+  .scrolling-banner:hover .scrolling-banner__track {
+    animation-play-state: paused;
+  }
+</style>
+
+<div class="scrolling-banner">
+  <div class="scrolling-banner__track">
+    {%- for i in (1..10) -%}
+      <div class="scrolling-banner__item">
+        <span class="scrolling-banner__text">{{ section.settings.text }}</span>
+        <span class="material-symbols-outlined scrolling-banner__icon">{{ section.settings.icon }}</span>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Scrolling Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Scrolling Text",
+      "default": "Instant PDF Downloads • PCI Syllabus Aligned • Exam-Focused Notes • GPAT Materials"
+    },
+    {
+      "type": "text",
+      "id": "icon",
+      "label": "Icon (Material Icon Name)",
+      "default": "verified"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#0B5D3B"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "default": 30,
+      "label": "Scroll Speed (Seconds)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scrolling Banner"
+    }
+  ]
+}
+{% endschema %}

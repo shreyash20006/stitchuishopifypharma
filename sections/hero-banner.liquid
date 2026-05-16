@@ -1,3 +1,19 @@
+<style>
+  .hero-banner__media,
+  .hero-banner__image-wrapper,
+  .hero-banner .media,
+  .hero-media-container {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .hero-img-contain {
+    object-fit: {{ section.settings.image_fit }} !important;
+  }
+</style>
+
 <section class="relative overflow-hidden bg-gradient-to-br from-surface to-secondary-container/20 pt-16 pb-24 md:pt-24 md:pb-32">
   <div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
     <div class="space-y-8">
@@ -21,18 +37,17 @@
       </div>
     </div>
     <div class="relative flex justify-center items-center">
-      <div class="absolute inset-0 w-full h-full bg-tertiary/5 rounded-full blur-3xl opacity-50"></div>
+      <div class="absolute inset-0 w-full h-full bg-primary/5 rounded-full blur-[120px] opacity-30"></div>
       <div class="relative z-10 w-full flex justify-center">
         {%- if section.settings.hero_image != blank -%}
-          <div class="relative w-full max-w-[600px] aspect-square md:aspect-video lg:aspect-square flex items-center justify-center bg-white/40 backdrop-blur-md rounded-[2rem] border border-white/20 shadow-2xl p-4 md:p-8">
-            <img src="{{ section.settings.hero_image | image_url: width: 1200 }}" 
+          <div class="hero-media-container relative w-full max-w-[650px] aspect-square md:aspect-video lg:aspect-square flex items-center justify-center p-0" style="min-height: {{ section.settings.banner_height }}px;">
+            <img src="{{ section.settings.hero_image | image_url: width: 1400 }}" 
                  alt="{{ section.settings.title }}" 
-                 class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 hover:scale-105"
-                 style="background-repeat: no-repeat; background-position: center;">
+                 class="w-full h-full hero-img-contain drop-shadow-[0_20px_50px_rgba(0,68,41,0.15)] transition-transform duration-700 hover:scale-105">
           </div>
         {%- else -%}
-          <div class="rounded-3xl w-full aspect-square bg-surface-container flex items-center justify-center text-on-surface-variant border-2 border-dashed border-outline">
-            <span class="material-symbols-outlined text-6xl opacity-20">image</span>
+          <div class="rounded-3xl w-full aspect-square bg-surface-container/50 flex items-center justify-center text-on-surface-variant border-2 border-dashed border-outline/20">
+            <span class="material-symbols-outlined text-6xl opacity-10">image</span>
           </div>
         {%- endif -%}
       </div>
@@ -88,6 +103,26 @@
       "type": "image_picker",
       "id": "hero_image",
       "label": "Hero Image"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Media Fitting",
+      "options": [
+        { "value": "contain", "label": "Contain (No Cropping)" },
+        { "value": "cover", "label": "Cover (Fill Space)" }
+      ],
+      "default": "contain"
+    },
+    {
+      "type": "range",
+      "id": "banner_height",
+      "min": 400,
+      "max": 800,
+      "step": 50,
+      "default": 600,
+      "unit": "px",
+      "label": "Min Section Height"
     }
   ],
   "presets": [

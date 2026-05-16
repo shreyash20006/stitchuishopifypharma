@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "products_per_page": 12
+      }
+    },
+    "manual_products": {
+      "type": "featured-products",
+      "settings": {
+        "title": "B.Pharm Featured Notes",
+        "description": "Hand-picked essential resources for B.Pharm students."
+      }
+    }
+  },
+  "order": [
+    "manual_products",
+    "main"
+  ]
+}

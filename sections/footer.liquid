@@ -29,47 +29,48 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-8 pt-4">
       <!-- Brand Column -->
       <div class="space-y-6">
-        <h3 class="text-white font-black text-2xl tracking-tighter">TGPCOP NOTES</h3>
+        <h3 class="text-white font-black text-2xl tracking-tighter">{{ section.settings.brand_name | default: 'TGPCOP NOTES' }}</h3>
         <p class="text-sm leading-relaxed text-white/60 max-w-xs">
-          Empowering pharmacy students across India with premium, exam-focused handwritten notes and GPAT study materials. 
+          {{ section.settings.brand_description }}
         </p>
       </div>
 
       <!-- Quick Navigation -->
       <div class="space-y-6">
-        <h4 class="text-primary-fixed font-black text-xs uppercase tracking-widest">Explore</h4>
+        <h4 class="text-primary-fixed font-black text-xs uppercase tracking-widest">{{ section.settings.menu_1_title | default: 'Explore' }}</h4>
         <nav class="flex flex-col gap-4">
-          <a href="{{ routes.root_url }}" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">Home</a>
-          <a href="/collections/b-pharm" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">B.Pharmacy Notes</a>
-          <a href="/collections/d-pharm" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">D.Pharmacy Notes</a>
-          <a href="/collections/all" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">All Resources</a>
+          {%- for link in section.settings.menu_1.links -%}
+            <a href="{{ link.url }}" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">{{ link.title }}</a>
+          {%- endfor -%}
         </nav>
       </div>
 
       <!-- Professional Policies -->
       <div class="space-y-6">
-        <h4 class="text-primary-fixed font-black text-xs uppercase tracking-widest">Policies</h4>
+        <h4 class="text-primary-fixed font-black text-xs uppercase tracking-widest">{{ section.settings.menu_2_title | default: 'Policies' }}</h4>
         <nav class="flex flex-col gap-4">
-          <a href="/policies/refund-policy" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">Return & Refund Policy</a>
-          <a href="/policies/privacy-policy" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">Privacy Policy</a>
-          <a href="/policies/terms-of-service" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">Terms of Service</a>
-          <a href="/policies/shipping-policy" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">Shipping Policy</a>
-          <a href="/policies/legal-notice" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">Legal Notice</a>
+          {%- for link in section.settings.menu_2.links -%}
+            <a href="{{ link.url }}" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">{{ link.title }}</a>
+          {%- endfor -%}
         </nav>
       </div>
 
       <!-- Contact Support -->
       <div class="space-y-6">
-        <h4 class="text-primary-fixed font-black text-xs uppercase tracking-widest">Support</h4>
+        <h4 class="text-primary-fixed font-black text-xs uppercase tracking-widest">{{ section.settings.contact_title | default: 'Support' }}</h4>
         <div class="space-y-4">
-          <a href="mailto:contact@tgpcoppharma.shop" class="flex items-center gap-3 text-sm text-white/70 group">
-            <span class="material-symbols-outlined text-primary-fixed group-hover:scale-110 transition-transform">mail</span>
-            contact@tgpcoppharma.shop
-          </a>
-          <a href="/policies/contact-information" class="flex items-center gap-3 text-sm text-white/70 group">
-            <span class="material-symbols-outlined text-primary-fixed group-hover:scale-110 transition-transform">location_on</span>
-            Contact Information
-          </a>
+          {%- if section.settings.contact_email != blank -%}
+            <a href="mailto:{{ section.settings.contact_email }}" class="flex items-center gap-3 text-sm text-white/70 group">
+              <span class="material-symbols-outlined text-primary-fixed group-hover:scale-110 transition-transform">mail</span>
+              {{ section.settings.contact_email }}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.contact_link != blank -%}
+            <a href="{{ section.settings.contact_link }}" class="flex items-center gap-3 text-sm text-white/70 group">
+              <span class="material-symbols-outlined text-primary-fixed group-hover:scale-110 transition-transform">location_on</span>
+              {{ section.settings.contact_link_text | default: 'Contact Information' }}
+            </a>
+          {%- endif -%}
         </div>
       </div>
     </div>
@@ -167,6 +168,71 @@
       "type": "url",
       "id": "banner_link",
       "label": "Banner Click Link"
+    },
+    {
+      "type": "header",
+      "content": "Footer Navigation"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "TGPCOP NOTES"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_description",
+      "label": "Brand Description",
+      "default": "Empowering pharmacy students across India with premium, exam-focused handwritten notes and GPAT study materials."
+    },
+    {
+      "type": "text",
+      "id": "menu_1_title",
+      "label": "Menu 1 Title",
+      "default": "Explore"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_1",
+      "label": "Menu 1"
+    },
+    {
+      "type": "text",
+      "id": "menu_2_title",
+      "label": "Menu 2 Title",
+      "default": "Policies"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_2",
+      "label": "Menu 2"
+    },
+    {
+      "type": "header",
+      "content": "Contact Support"
+    },
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Contact Title",
+      "default": "Support"
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "Contact Email",
+      "default": "contact@tgpcoppharma.shop"
+    },
+    {
+      "type": "text",
+      "id": "contact_link_text",
+      "label": "Contact Link Text",
+      "default": "Contact Information"
+    },
+    {
+      "type": "url",
+      "id": "contact_link",
+      "label": "Contact Link"
     },
     {
       "type": "header",

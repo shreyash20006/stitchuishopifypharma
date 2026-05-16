@@ -1,45 +1,92 @@
-<section class="section-padding" style="background: var(--color-surface);">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">{{ section.settings.title | default: "What Students Say" }}</h2>
+<section class="py-24 bg-[#F8FAF9]">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-[#0B5D3B] tracking-tight">{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}
+        <p class="mt-4 text-gray-500 text-lg font-medium">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
     </div>
     
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;">
-      {% for block in section.blocks %}
-        <div style="background: #fff; padding: 32px; border-radius: var(--radius-lg); border: 1px solid var(--color-border);">
-          <p style="font-style: italic; margin-bottom: 24px; color: var(--color-text-muted);">"{{ block.settings.text }}"</p>
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <div style="width: 48px; height: 48px; background: var(--color-primary-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--color-primary);">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {%- for block in section.blocks -%}
+        <div class="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 group" {{ block.shopify_attributes }}>
+          <div class="flex gap-1 mb-6">
+            {%- for i in (1..5) -%}
+              <span class="material-symbols-outlined text-[#FFB800] text-xl fill-current">star</span>
+            {%- endfor -%}
+          </div>
+          
+          <blockquote class="text-gray-700 leading-relaxed text-lg mb-8 font-medium italic">
+            "{{ block.settings.text }}"
+          </blockquote>
+          
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 bg-[#E7F5EF] rounded-2xl flex items-center justify-center font-black text-[#0B5D3B] text-xl">
               {{ block.settings.author | slice: 0 }}
             </div>
             <div>
-              <p style="font-weight: 700; margin: 0;">{{ block.settings.author }}</p>
-              <p style="font-size: 0.85rem; color: var(--color-text-muted); margin: 0;">{{ block.settings.role }}</p>
+              <p class="font-bold text-gray-900 text-lg leading-tight">{{ block.settings.author }}</p>
+              <p class="text-[#0B5D3B] font-bold text-xs uppercase tracking-widest mt-1">{{ block.settings.role }}</p>
             </div>
           </div>
         </div>
-      {% endfor %}
+      {%- endfor -%}
     </div>
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Testimonials",
+  "name": "Premium Testimonials",
   "settings": [
-    { "type": "text", "id": "title", "label": "Title", "default": "What Students Say" }
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Trusted by Thousands of Students"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Sub-title",
+      "default": "See why top students choose TGPCOP for their pharmaceutical studies."
+    }
   ],
   "blocks": [
     {
       "type": "testimonial",
       "name": "Testimonial",
       "settings": [
-        { "type": "textarea", "id": "text", "label": "Text" },
-        { "type": "text", "id": "author", "label": "Author" },
-        { "type": "text", "id": "role", "label": "Role" }
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Student's Review",
+          "default": "The handwritten notes are incredible! They saved me during my 4th semester exams. Highly recommended for every B.Pharm student."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Student Name",
+          "default": "Aditya Sharma"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Category/Year",
+          "default": "B.Pharm 4th Year"
+        }
       ]
     }
   ],
-  "presets": [{ "name": "Testimonials" }]
+  "presets": [
+    {
+      "name": "Premium Testimonials",
+      "blocks": [
+        { "type": "testimonial" },
+        { "type": "testimonial" },
+        { "type": "testimonial" }
+      ]
+    }
+  ]
 }
 {% endschema %}

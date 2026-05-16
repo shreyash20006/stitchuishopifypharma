@@ -1,43 +1,182 @@
-<section class="pt-10 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-  <!-- Collection Header -->
-  <div class="mb-12 space-y-4">
-    <div class="flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest">
-      <a href="/">Home</a>
-      <span class="material-symbols-outlined text-sm">chevron_right</span>
-      <span>{{ collection.title }}</span>
-    </div>
-    <h1 class="font-bold text-[40px] leading-[48px] text-primary">{{ collection.title }}</h1>
-    {%- if collection.description != blank -%}
-      <div class="text-on-surface-variant max-w-3xl text-lg">{{ collection.description }}</div>
-    {%- endif -%}
+<style>
+  /* ── TGPCOP Premium Collection Page ── */
+  .tgp-col {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px 24px 100px;
+  }
+
+  /* Breadcrumb */
+  .tgp-col__bread {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #0B5D3B;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 18px;
+  }
+  .tgp-col__bread a { color: inherit; text-decoration: none; opacity: 0.65; transition: opacity 0.2s; }
+  .tgp-col__bread a:hover { opacity: 1; }
+
+  /* Header */
+  .tgp-col__title {
+    font-family: 'Manrope', 'Inter', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    color: #0B5D3B;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+  .tgp-col__desc {
+    color: #6B7280;
+    font-size: 1rem;
+    max-width: 680px;
+    line-height: 1.75;
+    margin-bottom: 32px;
+  }
+
+  /* Meta bar */
+  .tgp-col__meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 28px;
+    border-bottom: 2px solid #F0F0F0;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+  }
+  .tgp-col__count {
+    background: #E7F5EF;
+    color: #0B5D3B;
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 6px 16px;
+    border-radius: 100px;
+    border: 1px solid rgba(11,93,59,0.15);
+  }
+  .tgp-col__pill {
+    background: #fff;
+    color: #374151;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 100px;
+    border: 1px solid #E5E7EB;
+  }
+
+  /* Product Grid */
+  .tgp-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+  @media (max-width: 1100px) {
+    .tgp-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  }
+  @media (max-width: 768px) {
+    .tgp-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .tgp-col { padding: 28px 16px 80px; }
+    .tgp-col__title { font-size: 1.8rem; }
+  }
+  @media (max-width: 480px) {
+    .tgp-grid { grid-template-columns: 1fr; gap: 16px; }
+  }
+
+  /* Empty state */
+  .tgp-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 24px;
+    background: #F9FAFB;
+    border-radius: 20px;
+    border: 1px solid #E5E7EB;
+  }
+  .tgp-empty h2 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 8px;
+    margin-top: 16px;
+  }
+  .tgp-empty p { color: #6B7280; margin-bottom: 24px; }
+  .tgp-empty a {
+    display: inline-block;
+    background: #0B5D3B;
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .tgp-empty a:hover { background: #094d31; }
+
+  /* Pagination */
+  .tgp-pagination {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    margin-top: 56px;
+    gap: 8px;
+  }
+</style>
+
+<section class="tgp-col">
+
+  <!-- Breadcrumb -->
+  <nav class="tgp-col__bread" aria-label="breadcrumb">
+    <a href="/">Home</a>
+    <span>›</span>
+    <span>{{ collection.title }}</span>
+  </nav>
+
+  <!-- Title + Description -->
+  <h1 class="tgp-col__title">{{ collection.title }}</h1>
+  {%- if collection.description != blank -%}
+    <div class="tgp-col__desc">{{ collection.description }}</div>
+  {%- endif -%}
+
+  <!-- Meta bar -->
+  <div class="tgp-col__meta">
+    <span class="tgp-col__count">📚 {{ collection.products_count }} Notes Available</span>
+    <span class="tgp-col__pill">⚡ Instant PDF Download</span>
+    <span class="tgp-col__pill">✅ PCI Syllabus Aligned</span>
   </div>
 
   <!-- Product Grid -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
-    {%- paginate collection.products by 12 -%}
+  <div class="tgp-grid">
+    {%- paginate collection.products by 16 -%}
+
       {%- if collection.products_count > 0 -%}
         {%- for product in collection.products -%}
-          <div class="animate-in fade-in slide-in-from-bottom-4 duration-500" style="animation-delay: {{ forloop.index | times: 100 }}ms">
+          <div>
             {% render 'product-card', product: product %}
           </div>
         {%- endfor -%}
       {%- else -%}
-        <div class="col-span-full py-20 text-center glass-card rounded-2xl">
-          <span class="material-symbols-outlined text-[64px] text-primary/20 mb-4">search_off</span>
-          <h2 class="font-bold text-2xl">No products found</h2>
-          <p class="text-on-surface-variant mt-2">Try checking back later or explore other collections.</p>
-          <a href="/collections/all" class="mt-6 inline-block bg-primary text-white px-8 py-3 rounded-xl font-bold">View All Products</a>
+        <div class="tgp-empty">
+          <div style="font-size:60px;">📖</div>
+          <h2>No products found</h2>
+          <p>New notes are being added — check back soon!</p>
+          <a href="/collections/all">Browse All Notes</a>
         </div>
       {%- endif -%}
 
-      <!-- Pagination -->
       {%- if paginate.pages > 1 -%}
-        <div class="col-span-full mt-16 flex justify-center gap-2">
+        <div class="tgp-pagination">
           {{ paginate | default_pagination }}
         </div>
       {%- endif -%}
+
     {%- endpaginate -%}
   </div>
+
 </section>
 
 {% schema %}
@@ -50,7 +189,7 @@
       "min": 8,
       "max": 24,
       "step": 4,
-      "default": 12,
+      "default": 16,
       "label": "Products per page"
     }
   ]

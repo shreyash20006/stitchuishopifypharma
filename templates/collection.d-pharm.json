@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "products_per_page": 12
+      }
+    },
+    "manual_products": {
+      "type": "featured-products",
+      "settings": {
+        "title": "D.Pharm Featured Notes",
+        "description": "Essential study materials curated for D.Pharm excellence."
+      }
+    }
+  },
+  "order": [
+    "manual_products",
+    "main"
+  ]
+}

@@ -1,47 +1,76 @@
-<section class="section-padding">
-  <div class="container" style="max-width: 800px;">
-    <div class="section-header">
-      <h2 class="section-title">{{ section.settings.title | default: "Frequently Asked Questions" }}</h2>
+<section class="py-24 bg-white">
+  <div class="max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-[#0B5D3B] tracking-tight">{{ section.settings.title }}</h2>
+      {%- if section.settings.subtitle != blank -%}
+        <p class="mt-4 text-gray-500 text-lg font-medium">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
     </div>
-    
-    <div style="display: flex; flex-direction: column; gap: 16px;">
-      {% for block in section.blocks %}
-        <details style="background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden;">
-          <summary style="padding: 20px; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none;">
-            {{ block.settings.question }}
-            <span class="icon">+</span>
+
+    <div class="space-y-4">
+      {%- for block in section.blocks -%}
+        <details class="group bg-[#F8FAF9] rounded-[24px] border border-gray-100 overflow-hidden" {{ block.shopify_attributes }}>
+          <summary class="flex items-center justify-between p-6 md:p-8 cursor-pointer list-none">
+            <h3 class="text-lg md:text-xl font-bold text-gray-900 pr-6">{{ block.settings.question }}</h3>
+            <span class="material-symbols-outlined text-[#0B5D3B] transition-transform duration-300 group-open:rotate-180">expand_more</span>
           </summary>
-          <div style="padding: 0 20px 20px; color: var(--color-text-muted);">
-            {{ block.settings.answer }}
+          <div class="px-6 pb-6 md:px-8 md:pb-8">
+            <div class="prose prose-green text-gray-600 font-medium leading-relaxed">
+              {{ block.settings.answer }}
+            </div>
           </div>
         </details>
-      {% endfor %}
+      {%- endfor -%}
     </div>
   </div>
 </section>
 
-<style>
-  summary::-webkit-details-marker { display: none; }
-  details[open] summary .icon { transform: rotate(45deg); }
-  .icon { transition: transform 0.3s ease; }
-</style>
-
 {% schema %}
 {
-  "name": "FAQ",
+  "name": "Premium FAQ",
   "settings": [
-    { "type": "text", "id": "title", "label": "Title", "default": "Frequently Asked Questions" }
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Got Questions?"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Sub-title",
+      "default": "Everything you need to know about our digital pharmacy notes and access."
+    }
   ],
   "blocks": [
     {
-      "type": "faq_item",
-      "name": "FAQ Item",
+      "type": "faq",
+      "name": "Question & Answer",
       "settings": [
-        { "type": "text", "id": "question", "label": "Question" },
-        { "type": "textarea", "id": "answer", "label": "Answer" }
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How will I receive the notes after purchase?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>You will receive an instant download link on the checkout page and via email immediately after successful payment. All notes are in high-quality PDF format.</p>"
+        }
       ]
     }
   ],
-  "presets": [{ "name": "FAQ" }]
+  "presets": [
+    {
+      "name": "Premium FAQ",
+      "blocks": [
+        { "type": "faq" },
+        { "type": "faq" },
+        { "type": "faq" }
+      ]
+    }
+  ]
 }
 {% endschema %}
