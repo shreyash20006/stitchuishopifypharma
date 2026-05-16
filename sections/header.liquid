@@ -33,11 +33,9 @@
       <div class="flex items-center gap-2">
         <a href="{{ routes.cart_url }}" class="relative p-3 text-[#004429] hover:bg-[#00442905] rounded-2xl transition-all group">
           <span class="material-symbols-outlined text-[24px]">shopping_cart</span>
-          {%- if cart.item_count > 0 -%}
-            <span class="absolute top-2 right-2 bg-[#004429] text-white text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full border-2 border-white">
-              {{ cart.item_count }}
-            </span>
-          {%- endif -%}
+          <span class="cart-count-badge absolute top-2 right-2 bg-[#004429] text-white text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full border-2 border-white {% if cart.item_count == 0 %}hidden{% endif %}">
+            {{ cart.item_count }}
+          </span>
         </a>
         <a href="{{ routes.account_url }}" class="hidden md:flex p-3 text-[#004429] hover:bg-[#00442905] rounded-2xl transition-all">
           <span class="material-symbols-outlined text-[24px]">account_circle</span>

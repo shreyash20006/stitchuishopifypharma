@@ -122,6 +122,12 @@
       /* Hide scrollbar for clean horizontal scrolling */
       .no-scrollbar::-webkit-scrollbar { display: none; }
       .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+      @keyframes cart-bounce {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.3) rotate(-10deg); }
+      }
+      .animate-cart-bounce { animation: cart-bounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
     </style>
     <!-- Judge.me Custom Styling -->
   <style>
@@ -137,6 +143,7 @@
   <body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
     {% section 'announcement-bar' %}
     {% section 'header' %}
+    {% section 'cart-drawer' %}
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
@@ -148,6 +155,126 @@
     <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
 
     <!-- Subscription Popup Suppression -->
+    <!-- Global Cart & UX Logic -->
+    <script>
+      // Cart Drawer Toggle
+      const cartDrawer = document.getElementById('cart-drawer');
+      const cartOverlay = document.getElementById('cart-drawer-overlay');
+      const cartClose = document.getElementById('cart-drawer-close');
+      const cartCountBadges = document.querySelectorAll('#cart-count-badge, .cart-count-badge');
+      const cartToast = document.getElementById('cart-toast');
+
+      function openCart() {
+        cartDrawer.classList.add('open');
+        cartOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeCart() {
+        cartDrawer.classList.remove('open');
+        cartOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      if(cartClose) cartClose.onclick = closeCart;
+      if(cartOverlay) cartOverlay.onclick = closeCart;
+      document.querySelectorAll('#continue-shopping').forEach(btn => btn.onclick = closeCart);
+
+      // Intercept Add to Cart
+      document.addEventListener('submit', function(e) {
+        if (e.target.action && e.target.action.includes('/cart/add')) {
+          e.preventDefault();
+          const formData = new FormData(e.target);
+          
+          fetch('/cart/add.js', {
+            method: 'POST',
+            body: formData
+          })
+          .then(res => res.json())
+          .then(item => {
+            showToast();
+            updateCartDrawer();
+            animateCartIcon();
+            openCart();
+          })
+          .catch(err => console.error('Add to cart error:', err));
+        }
+      });
+
+      // Update Cart Drawer Content
+      function updateCartDrawer() {
+        fetch('/?section_id=cart-drawer')
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const newContent = doc.getElementById('cart-drawer-items').innerHTML;
+            const newFooter = doc.querySelector('#cart-drawer .p-8');
+            const newCount = doc.getElementById('cart-count-badge').innerText;
+
+            document.getElementById('cart-drawer-items').innerHTML = newContent;
+            if (newFooter) {
+              const currentFooter = document.querySelector('#cart-drawer .p-8');
+              if (currentFooter) currentFooter.outerHTML = newFooter.outerHTML;
+              else cartDrawer.appendChild(newFooter);
+            } else {
+              const currentFooter = document.querySelector('#cart-drawer .p-8');
+              if (currentFooter) currentFooter.remove();
+            }
+
+            // Update all count badges
+            document.querySelectorAll('#cart-count-badge, .cart-count-badge').forEach(badge => {
+              badge.innerText = newCount;
+              badge.style.display = parseInt(newCount) > 0 ? 'flex' : 'none';
+            });
+
+            bindRemoveEvents();
+          });
+      }
+
+      // Remove Item Logic
+      function bindRemoveEvents() {
+        document.querySelectorAll('.remove-cart-item').forEach(btn => {
+          btn.onclick = function() {
+            const key = this.getAttribute('data-key');
+            fetch('/cart/change.js', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ id: key, quantity: 0 })
+            })
+            .then(() => updateCartDrawer())
+            .catch(err => console.error('Remove error:', err));
+          };
+        });
+      }
+
+      function showToast() {
+        cartToast.classList.add('active');
+        setTimeout(() => cartToast.classList.remove('active'), 3000);
+      }
+
+      function animateCartIcon() {
+        const icons = document.querySelectorAll('.material-symbols-outlined');
+        icons.forEach(icon => {
+          if (icon.innerText === 'shopping_cart' || icon.innerText === 'shopping_basket') {
+            icon.classList.add('animate-cart-bounce');
+            setTimeout(() => icon.classList.remove('animate-cart-bounce'), 500);
+          }
+        });
+      }
+
+      // Open cart if clicking header cart icon
+      document.addEventListener('click', (e) => {
+        const cartLink = e.target.closest('a[href="/cart"]');
+        if (cartLink) {
+          e.preventDefault();
+          openCart();
+        }
+      });
+
+      bindRemoveEvents();
+    </script>
+
     <script>
       (function() {
         const isSubscribed = localStorage.getItem('tgpcop_subscribed') === 'true';
