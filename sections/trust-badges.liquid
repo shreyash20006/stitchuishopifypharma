@@ -1,0 +1,54 @@
+<section class="bg-surface-container-low py-12 border-y border-outline-variant">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 text-center">
+      {%- for block in section.blocks -%}
+        <div class="flex flex-col items-center gap-2" {{ block.shopify_attributes }}>
+          <span class="material-symbols-outlined text-[#004429] text-4xl" style="font-variation-settings: 'FILL' 1;">
+            {{ block.settings.icon }}
+          </span>
+          <p class="font-semibold text-gray-800 text-sm md:text-base">{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust Badges",
+  "max_blocks": 5,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Material Icon Name",
+          "default": "groups"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "10,000+ Students"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Badges",
+      "blocks": [
+        { "type": "badge", "settings": { "icon": "groups", "text": "10,000+ Students" } },
+        { "type": "badge", "settings": { "icon": "bolt", "text": "Instant PDF Delivery" } },
+        { "type": "badge", "settings": { "icon": "school", "text": "GPAT Ready" } },
+        { "type": "badge", "settings": { "icon": "edit_note", "text": "Handwritten Notes" } },
+        { "type": "badge", "settings": { "icon": "verified_user", "text": "Secure Payments" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

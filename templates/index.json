@@ -3,37 +3,68 @@
     "hero": {
       "type": "hero-banner",
       "settings": {
-        "title": "QUALITY PHARMACY NOTES MADE FOR B.PHARM STUDENTS",
-        "description": "Handwritten exam-focused notes, GPAT materials & instant PDF downloads. Master your curriculum with clarity and speed."
+        "badge_text": "PREMIUM PHARMACY HUB",
+        "title_rich": "QUALITY PHARMACY NOTES MADE FOR <span class=\"text-[#004429]\">B.PHARM & D.PHARM</span> STUDENTS",
+        "description": "Handwritten exam-focused notes, GPAT materials & instant PDF downloads. Master your curriculum with clarity and speed. Curated by experts for pharmacy excellence."
       }
     },
-    "featured_products": {
-      "type": "featured-products",
-      "settings": {
-        "title": "Latest Semester Notes",
-        "subtitle": "Get instant access to real, exam-focused study materials added to our store."
-      }
-    },
-    "featured_collections": {
-      "type": "featured-collections",
+    "trust_badges": {
+      "type": "trust-badges",
       "settings": {}
     },
-    "best_sellers": {
-      "type": "best-selling",
+    "collections": {
+      "type": "collection-list-premium",
       "settings": {
-        "title": "GPAT Top Picks"
+        "title": "Browse Our Collections"
       }
     },
-    "faq_scroller": {
-      "type": "faq-scroller",
-      "settings": {}
+    "trending": {
+      "type": "product-showcase",
+      "settings": {
+        "title": "Trending Resources",
+        "subtitle": "Most downloaded notes this week",
+        "button_text": "View All",
+        "columns_desktop": 4
+      }
+    },
+    "advantage": {
+      "type": "features-grid",
+      "settings": {
+        "title": "The TGPCOP Advantage",
+        "subtitle": "Why 10,000+ pharmacy students trust our resources"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "title": "What Our Students Say",
+        "subtitle": "Trusted by pharmacy aspirants across the country"
+      }
+    },
+    "community": {
+      "type": "community-banner",
+      "settings": {
+        "title": "Join Our Pharmacy Community",
+        "text": "Get free notes, daily quiz, and exam updates directly on your phone. Connect with over 15,000 pharmacy peers.",
+        "button_text": "Join WhatsApp Group"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "settings": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Everything you need to know about our digital pharmacy notes."
+      }
     }
   },
   "order": [
     "hero",
-    "featured_products",
-    "featured_collections",
-    "best_sellers",
-    "faq_scroller"
+    "trust_badges",
+    "collections",
+    "trending",
+    "advantage",
+    "testimonials",
+    "community",
+    "faq"
   ]
 }

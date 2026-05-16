@@ -1,0 +1,77 @@
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-20">
+  <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 text-gray-900">{{ section.settings.title }}</h2>
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+    {%- for block in section.blocks -%}
+      {%- assign collection = block.settings.collection -%}
+      <a href="{{ collection.url | default: '#' }}" class="group block space-y-4" {{ block.shopify_attributes }}>
+        <div class="aspect-square bg-gray-100 rounded-[32px] overflow-hidden shadow-sm group-hover:shadow-xl group-hover:-translate-y-2 transition-all duration-500">
+          {%- if collection.featured_image != blank -%}
+            <img src="{{ collection.featured_image | image_url: width: 600 }}" 
+                 alt="{{ collection.title }}" 
+                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          {%- elsif block.settings.image != blank -%}
+            <img src="{{ block.settings.image | image_url: width: 600 }}" 
+                 alt="{{ block.settings.title }}" 
+                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          {%- else -%}
+            <div class="w-full h-full flex items-center justify-center bg-[#E7F5EF]">
+              <span class="material-symbols-outlined text-5xl text-[#00442920]">category</span>
+            </div>
+          {%- endif -%}
+        </div>
+        <p class="font-bold text-center text-gray-900 group-hover:text-[#004429] transition-colors">
+          {{ block.settings.title | default: collection.title | default: 'Collection' }}
+        </p>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Premium Collection List",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Browse Our Collections"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection Card",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Override Image (Optional)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Override Title (Optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Premium Collection List",
+      "blocks": [
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" }
+      ]
+    }
+  ]
+}
+{% endschema %}
