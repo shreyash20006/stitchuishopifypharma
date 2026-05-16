@@ -12,17 +12,31 @@
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
-        "settings": {}
+        "settings": {
+          "text": "🎉 Welcome to TGPCOP Digital Hub | Instant PDF Notes for All Semesters"
+        }
       },
       "header": {
         "type": "header",
-        "settings": {}
+        "settings": {
+          "menu": "main-menu"
+        }
       },
       "footer": {
         "type": "footer",
         "settings": {
-          "footer_banner": "shopify://shop_images/WhatsApp_Image_2026-05-15_at_11.52.50_PM.jpg",
+          "footer_banner": "shopify://shop_images/6325456670972121487.jpg",
           "banner_link": "",
+          "brand_name": "TGPCOP NOTES",
+          "brand_description": "Empowering pharmacy students across India with premium, exam-focused handwritten notes and GPAT study materials.",
+          "menu_1_title": "Explore",
+          "menu_1": "customer-account-main-menu",
+          "menu_2_title": "Policies",
+          "menu_2": "footer",
+          "contact_title": "Support",
+          "contact_email": "contact@tgpcoppharma.shop",
+          "contact_link_text": "Contact Information",
+          "contact_link": "",
           "pay_visa": "shopify://shop_images/WhatsApp_Image_2026-05-16_at_1.45.52_AM.jpg",
           "pay_mastercard": "shopify://shop_images/WhatsApp_Image_2026-05-16_at_1.46.06_AM.jpg",
           "pay_rupay": "shopify://shop_images/WhatsApp_Image_2026-05-16_at_1.46.26_AM.jpg",
@@ -41,7 +55,9 @@
           "button_link": "",
           "secondary_button_text": "Join WhatsApp",
           "secondary_button_link": "",
-          "hero_image": "shopify://shop_images/WhatsApp_Image_2026-05-16_at_10.46.13_PM.jpg"
+          "hero_image": "shopify://shop_images/WhatsApp_Image_2026-05-16_at_10.46.13_PM.jpg",
+          "image_fit": "contain",
+          "banner_height": 600
         }
       },
       "featured-collections": {
