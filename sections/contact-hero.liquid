@@ -1,0 +1,83 @@
+<section class="relative py-24 md:py-32 overflow-hidden bg-[#F8FAF9]">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <div class="relative z-10 space-y-8 animate-fade-in">
+      <div class="inline-flex items-center gap-2 bg-[#0B5D3B10] text-[#0B5D3B] px-4 py-2 rounded-full font-bold text-sm tracking-widest uppercase">
+        <span class="material-symbols-outlined text-sm">support_agent</span> 24/7 Support Available
+      </div>
+      <h1 class="text-4xl md:text-6xl font-black text-[#0B5D3B] leading-[1.1]">{{ section.settings.title }}</h1>
+      <p class="text-lg md:text-xl text-gray-600 font-medium leading-relaxed max-w-xl">
+        {{ section.settings.subtitle }}
+      </p>
+      
+      <div class="flex flex-wrap gap-4 pt-4">
+        <a href="#contact-form" class="bg-[#0B5D3B] text-white px-10 py-5 rounded-2xl font-bold hover:scale-105 transition-all shadow-xl shadow-[#0b5d3b30]">
+          Send a Message
+        </a>
+        <a href="{{ section.settings.whatsapp_link }}" class="bg-white text-[#0B5D3B] border-2 border-[#0B5D3B20] px-10 py-5 rounded-2xl font-bold hover:bg-[#0B5D3B] hover:text-white transition-all">
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+    
+    <div class="relative animate-float">
+      <div class="absolute inset-0 bg-[#0B5D3B] rounded-[40px] rotate-3 opacity-5 scale-105"></div>
+      <div class="relative rounded-[40px] overflow-hidden shadow-2xl border-4 border-white">
+        {%- if section.settings.image != blank -%}
+          <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="Contact TGPCOP" class="w-full h-full object-cover">
+        {%- else -%}
+          <div class="aspect-square bg-[#E7F5EF] flex items-center justify-center">
+            <span class="material-symbols-outlined text-9xl text-[#0B5D3B20]">contact_support</span>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  .animate-fade-in { animation: fadeIn 1s ease-out forwards; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Contact Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Contact TGPCOP NOTES"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Sub-heading",
+      "default": "We’re here to help B.Pharmacy & D.Pharmacy students with premium handwritten notes, GPAT resources and instant PDF support."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "url",
+      "id": "whatsapp_link",
+      "label": "WhatsApp Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Hero"
+    }
+  ]
+}
+{% endschema %}

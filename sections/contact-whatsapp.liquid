@@ -1,0 +1,61 @@
+<section class="py-20">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+    <div class="bg-gradient-to-br from-[#0B5D3B] to-[#094d31] rounded-[48px] p-12 md:p-24 text-center text-white relative overflow-hidden shadow-2xl shadow-[#0b5d3b30]">
+      <!-- Background elements -->
+      <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl -mr-48 -mt-48"></div>
+      <div class="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-2xl -ml-32 -mb-32"></div>
+
+      <div class="relative z-10 max-w-3xl mx-auto space-y-8">
+        <div class="inline-flex items-center justify-center w-24 h-24 bg-white/10 rounded-3xl backdrop-blur-md mb-4 border border-white/20">
+          <span class="material-symbols-outlined text-5xl">chat_bubble</span>
+        </div>
+        <h2 class="text-3xl md:text-5xl font-black">{{ section.settings.title }}</h2>
+        <p class="text-xl text-white/80 font-medium leading-relaxed">
+          {{ section.settings.description }}
+        </p>
+        <div class="pt-8">
+          <a href="{{ section.settings.whatsapp_link }}" class="inline-flex items-center gap-4 bg-white text-[#0B5D3B] px-12 py-6 rounded-[24px] font-black text-lg hover:scale-110 hover:shadow-2xl transition-all">
+            <span class="material-symbols-outlined">forum</span>
+            {{ section.settings.button_text }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "WhatsApp Support CTA",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Need Instant Help?"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Get quick responses for notes access, semester bundles, GPAT resources and PDF download support."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Chat on WhatsApp"
+    },
+    {
+      "type": "url",
+      "id": "whatsapp_link",
+      "label": "WhatsApp Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "WhatsApp Support CTA"
+    }
+  ]
+}
+{% endschema %}

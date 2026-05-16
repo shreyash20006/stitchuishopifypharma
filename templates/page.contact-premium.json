@@ -1,0 +1,63 @@
+{
+  "sections": {
+    "hero": {
+      "type": "contact-hero",
+      "settings": {
+        "title": "Contact TGPCOP NOTES",
+        "subtitle": "We’re here to help B.Pharmacy & D.Pharmacy students with premium handwritten notes, GPAT resources and instant PDF support."
+      }
+    },
+    "cards": {
+      "type": "contact-cards",
+      "blocks": {
+        "email": { "type": "card", "settings": { "icon": "mail", "title": "Email Support", "text": "support@tgpcop.com" } },
+        "whatsapp": { "type": "card", "settings": { "icon": "chat", "title": "WhatsApp Support", "text": "Click to Chat" } },
+        "instagram": { "type": "card", "settings": { "icon": "photo_camera", "title": "Instagram", "text": "@tgpcop_notes" } },
+        "telegram": { "type": "card", "settings": { "icon": "send", "title": "Telegram", "text": "Join Community" } }
+      }
+    },
+    "whatsapp_cta": {
+      "type": "contact-whatsapp",
+      "settings": {
+        "title": "Need Instant Help?",
+        "description": "Get quick responses for notes access, semester bundles, GPAT resources and PDF download support.",
+        "button_text": "Chat on WhatsApp"
+      }
+    },
+    "stats": {
+      "type": "contact-stats",
+      "blocks": {
+        "students": { "type": "stat", "settings": { "stat": "10,000+", "label": "Pharmacy Students" } },
+        "notes": { "type": "stat", "settings": { "stat": "Premium", "label": "Handwritten Notes" } },
+        "delivery": { "type": "stat", "settings": { "stat": "Instant", "label": "PDF Delivery" } },
+        "gpat": { "type": "stat", "settings": { "stat": "GPAT", "label": "Focused Content" } }
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "settings": {
+        "title": "Student Help Center",
+        "subtitle": "Common questions about our digital notes and student support."
+      },
+      "blocks": {
+        "q1": { "type": "faq", "settings": { "question": "How will I receive notes?", "answer": "<p>You will receive an instant download link on the checkout page and via email immediately after successful payment. All notes are in high-quality PDF format.</p>" } },
+        "q2": { "type": "faq", "settings": { "question": "Are notes handwritten?", "answer": "<p>Yes, all our B.Pharm and D.Pharm notes are premium handwritten materials, meticulously curated by top subject experts for maximum clarity.</p>" } },
+        "q3": { "type": "faq", "settings": { "question": "Is it useful for exams?", "answer": "<p>Absolutely. Our notes are specifically designed as exam-focused summaries, following the PCI syllabus to help you score high with less effort.</p>" } },
+        "q4": { "type": "faq", "settings": { "question": "Do you provide GPAT material?", "answer": "<p>Yes, we have a dedicated section for GPAT resources, including high-yield summaries and previous year question banks.</p>" } },
+        "q5": { "type": "faq", "settings": { "question": "How fast is delivery?", "answer": "<p>Delivery is 100% instant. No waiting. Once your payment is confirmed, the PDF is yours to download immediately.</p>" } }
+      }
+    },
+    "form": {
+      "type": "contact-form-premium",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "cards",
+    "whatsapp_cta",
+    "stats",
+    "faq",
+    "form"
+  ]
+}
