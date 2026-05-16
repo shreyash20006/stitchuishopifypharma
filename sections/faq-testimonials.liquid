@@ -1,0 +1,142 @@
+<section class="py-24 bg-[#F1F3FF]">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+      
+      <!-- FAQ Accordion -->
+      <div>
+        <h2 class="text-3xl md:text-5xl font-black text-[#141b2b] mb-12">{{ section.settings.faq_title }}</h2>
+        <div class="space-y-4">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'faq' -%}
+              <details class="group bg-white rounded-3xl border border-gray-100 overflow-hidden transition-all duration-300 open:shadow-xl" {{ block.shopify_attributes }}>
+                <summary class="flex justify-between items-center p-6 md:p-8 cursor-pointer list-none">
+                  <span class="text-lg md:text-xl font-bold text-[#141b2b] group-hover:text-[#004429] transition-colors pr-8">
+                    {{ block.settings.question }}
+                  </span>
+                  <span class="material-symbols-outlined text-[#004429] transition-transform duration-300 group-open:rotate-180">
+                    keyboard_arrow_down
+                  </span>
+                </summary>
+                <div class="px-8 pb-8 text-gray-500 font-medium leading-relaxed">
+                  {{ block.settings.answer }}
+                </div>
+              </details>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <!-- Testimonials -->
+      <div>
+        <h2 class="text-3xl md:text-5xl font-black text-[#141b2b] mb-12">{{ section.settings.testimonial_title }}</h2>
+        <div class="flex flex-col gap-8">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'testimonial' -%}
+              <div class="bg-white/70 backdrop-blur-xl p-10 md:p-12 rounded-[40px] border border-white/50 shadow-sm relative group" {{ block.shopify_attributes }}>
+                <span class="material-symbols-outlined text-[#004429]/10 text-[100px] absolute -top-4 -left-4 pointer-events-none group-hover:scale-110 transition-transform duration-700">
+                  format_quote
+                </span>
+                <p class="text-xl md:text-2xl text-[#141b2b] font-medium leading-relaxed mb-10 relative z-10 italic">
+                  "{{ block.settings.quote }}"
+                </p>
+                <div class="flex items-center gap-6">
+                  <div class="w-16 h-16 rounded-2xl bg-[#cfe9da] overflow-hidden shadow-inner flex items-center justify-center">
+                    {% if block.settings.image != blank %}
+                      <img src="{{ block.settings.image | image_url: width: 200 }}" alt="{{ block.settings.author }}" class="w-full h-full object-cover">
+                    {% else %}
+                      <span class="material-symbols-outlined text-[#004429] text-3xl">person</span>
+                    {% endif %}
+                  </div>
+                  <div>
+                    <p class="text-lg font-black text-[#141b2b]">{{ block.settings.author }}</p>
+                    <p class="text-[#004429] font-bold text-sm uppercase tracking-widest">{{ block.settings.info }}</p>
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ & Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "faq_title",
+      "label": "FAQ Title",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_title",
+      "label": "Testimonials Title",
+      "default": "Student Success Stories"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How will I receive my notes?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "Get your PDFs immediately after payment. Study anywhere, anytime."
+        }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "TGPCOP Notes completely changed my semester prep. I scored 8.5 CGPA thanks to these!"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Rahul Sharma"
+        },
+        {
+          "type": "text",
+          "id": "info",
+          "label": "Sub-info",
+          "default": "3rd Year, B.Pharm"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Author Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ & Testimonials",
+      "blocks": [
+        { "type": "faq" },
+        { "type": "faq" },
+        { "type": "testimonial" }
+      ]
+    }
+  ]
+}
+{% endschema %}

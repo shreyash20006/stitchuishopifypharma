@@ -1,41 +1,34 @@
-<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-24">
-  <div class="text-center mb-16">
-    <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-4">{{ section.settings.title }}</h2>
-    <p class="text-gray-500 font-medium text-lg">{{ section.settings.subtitle }}</p>
-  </div>
-  
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {%- for block in section.blocks -%}
-      <div class="p-10 border border-gray-100 rounded-[32px] bg-[#F8FAF9] hover:bg-white hover:border-[#00442920] hover:shadow-2xl transition-all duration-500 group" {{ block.shopify_attributes }}>
-        <div class="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-sm group-hover:scale-110 group-hover:bg-[#004429] transition-all duration-500 mb-8">
-          <span class="material-symbols-outlined text-3xl text-[#004429] group-hover:text-white transition-colors">
-            {{ block.settings.icon }}
-          </span>
+<section class="py-24 bg-white">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-{{ section.settings.columns_desktop | default: 4 }} gap-8">
+      {%- for block in section.blocks -%}
+        <div class="text-center p-10 rounded-[32px] hover:bg-[#F9F9FF] transition-all duration-500 border-2 border-transparent hover:border-[#E5E7EB] group" {{ block.shopify_attributes }}>
+          <div class="w-20 h-20 bg-{{ block.settings.color_scheme | default: 'primary' }}/10 text-{{ block.settings.color_scheme | default: 'primary' }} rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-sm"
+               style="background-color: {{ block.settings.bg_color | default: '#00442910' }}; color: {{ block.settings.icon_color | default: '#004429' }};">
+            <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">{{ block.settings.icon }}</span>
+          </div>
+          <h4 class="text-2xl font-black text-[#141b2b] mb-4">{{ block.settings.title }}</h4>
+          <p class="text-gray-500 font-medium leading-relaxed">
+            {{ block.settings.text }}
+          </p>
         </div>
-        <h4 class="text-xl font-black text-gray-900 mb-4">{{ block.settings.title }}</h4>
-        <p class="text-gray-600 leading-relaxed font-medium">
-          {{ block.settings.text }}
-        </p>
-      </div>
-    {%- endfor -%}
+      {%- endfor -%}
+    </div>
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "The TGPCOP Advantage",
+  "name": "Why Choose TGPCOP",
   "settings": [
     {
-      "type": "text",
-      "id": "title",
-      "label": "Section Title",
-      "default": "The TGPCOP Advantage"
-    },
-    {
-      "type": "textarea",
-      "id": "subtitle",
-      "label": "Sub-title",
-      "default": "Why 10,000+ pharmacy students trust our resources"
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 4,
+      "label": "Columns on Desktop"
     }
   ],
   "blocks": [
@@ -47,33 +40,43 @@
           "type": "text",
           "id": "icon",
           "label": "Material Icon Name",
-          "default": "edit_document"
+          "default": "edit_note"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Icon Background Color",
+          "default": "#00442910"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "Icon Color",
+          "default": "#004429"
         },
         {
           "type": "text",
           "id": "title",
           "label": "Title",
-          "default": "Handwritten Content"
+          "default": "Handwritten"
         },
         {
           "type": "textarea",
           "id": "text",
           "label": "Description",
-          "default": "Authored by subject experts, maintaining a personal touch that makes complex topics easier to memorize."
+          "default": "Personalized, easy-to-read notes that feel like your own best work."
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "The TGPCOP Advantage",
+      "name": "Why Choose TGPCOP",
       "blocks": [
-        { "type": "feature", "settings": { "icon": "edit_document", "title": "Handwritten Content" } },
-        { "type": "feature", "settings": { "icon": "target", "title": "Exam Focused" } },
-        { "type": "feature", "settings": { "icon": "download_done", "title": "Instant Download" } },
-        { "type": "feature", "settings": { "icon": "payments", "title": "Affordable Pricing" } },
-        { "type": "feature", "settings": { "icon": "translate", "title": "Easy Language" } },
-        { "type": "feature", "settings": { "icon": "auto_stories", "title": "PCI Syllabus Based" } }
+        { "type": "feature", "settings": { "icon": "edit_note", "bg_color": "#00442910", "icon_color": "#004429", "title": "Handwritten", "text": "Personalized, easy-to-read notes that feel like your own best work." } },
+        { "type": "feature", "settings": { "icon": "target", "bg_color": "#4b00a710", "icon_color": "#4b00a7", "title": "Exam Focused", "text": "Strictly mapped to PCI syllabus and previous year patterns." } },
+        { "type": "feature", "settings": { "icon": "download", "bg_color": "#4c635810", "icon_color": "#4c6358", "title": "Instant Download", "text": "Get your PDFs immediately after payment. Study anywhere, anytime." } },
+        { "type": "feature", "settings": { "icon": "school", "bg_color": "#00442910", "icon_color": "#004429", "title": "GPAT Ready", "text": "Comprehensive materials designed for national competitive excellence." } }
       ]
     }
   ]

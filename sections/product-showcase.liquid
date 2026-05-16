@@ -1,46 +1,74 @@
-<section class="py-20 bg-white">
+<section class="py-24 bg-white overflow-hidden">
   <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
-      <div class="max-w-2xl">
-        <h2 class="font-bold text-3xl md:text-4xl text-[#0B5D3B] leading-tight">{{ section.settings.title }}</h2>
+    <div class="flex justify-between items-center mb-16">
+      <div>
+        <h2 class="text-3xl md:text-5xl font-black text-[#141b2b]">{{ section.settings.title }}</h2>
         {%- if section.settings.subtitle != blank -%}
-          <p class="text-gray-500 mt-3 text-lg font-medium">{{ section.settings.subtitle }}</p>
+          <p class="text-gray-500 font-medium text-lg mt-2">{{ section.settings.subtitle }}</p>
         {%- endif -%}
       </div>
-      {%- if section.settings.button_text != blank -%}
-        <a href="{{ section.settings.button_link | default: '/collections/all' }}" class="inline-flex items-center gap-2 bg-[#0B5D3B] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#094d31] transition-all shadow-lg shadow-[#0b5d3b20]">
-          {{ section.settings.button_text }}
-          <span class="material-symbols-outlined">arrow_forward</span>
-        </a>
-      {%- endif -%}
+      <div class="flex gap-4">
+        <button class="slider-prev w-12 h-12 rounded-full border-2 border-gray-100 flex items-center justify-center hover:bg-[#004429] hover:text-white hover:border-[#004429] transition-all group shadow-sm">
+          <span class="material-symbols-outlined font-bold transition-transform group-hover:-translate-x-1">chevron_left</span>
+        </button>
+        <button class="slider-next w-12 h-12 rounded-full border-2 border-gray-100 flex items-center justify-center hover:bg-[#004429] hover:text-white hover:border-[#004429] transition-all group shadow-sm">
+          <span class="material-symbols-outlined font-bold transition-transform group-hover:translate-x-1">chevron_right</span>
+        </button>
+      </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-{{ section.settings.columns_desktop }} gap-8">
+    <div class="product-slider flex gap-8 overflow-x-auto pb-12 snap-x no-scrollbar -mx-4 px-4">
       {%- if section.blocks.size > 0 -%}
         {%- for block in section.blocks -%}
           {%- if block.settings.product != blank -%}
-            <div class="product-block" {{ block.shopify_attributes }}>
+            <div class="min-w-[280px] md:min-w-[340px] lg:min-w-[380px] snap-start" {{ block.shopify_attributes }}>
               {% render 'product-card', product: block.settings.product %}
-            </div>
-          {%- else -%}
-            <!-- Placeholder for empty blocks in customizer -->
-            <div class="bg-gray-50 border-2 border-dashed border-gray-200 rounded-3xl aspect-[3/4] flex items-center justify-center p-8 text-center text-gray-400">
-              <div>
-                <span class="material-symbols-outlined text-4xl mb-3">add_shopping_cart</span>
-                <p class="text-xs font-bold uppercase tracking-widest">Select Product</p>
-              </div>
             </div>
           {%- endif -%}
         {%- endfor -%}
       {%- else -%}
-        <!-- Empty state -->
+        <!-- Empty state placeholder -->
         {%- for i in (1..4) -%}
-          <div class="bg-gray-100 rounded-3xl aspect-[3/4] animate-pulse"></div>
+          <div class="min-w-[300px] aspect-[3/4] bg-gray-100 rounded-[40px] animate-pulse"></div>
         {%- endfor -%}
       {%- endif -%}
     </div>
+    
+    {% if section.settings.view_all_link != blank %}
+      <div class="mt-12 text-center md:hidden">
+        <a href="{{ section.settings.view_all_link }}" class="inline-block bg-[#004429] text-white px-8 py-4 rounded-2xl font-bold">
+          {{ section.settings.view_all_text }}
+        </a>
+      </div>
+    {% endif %}
   </div>
 </section>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .product-slider { scroll-behavior: smooth; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const sliders = document.querySelectorAll('.product-slider');
+    sliders.forEach(slider => {
+      const parent = slider.closest('section');
+      const prev = parent.querySelector('.slider-prev');
+      const next = parent.querySelector('.slider-next');
+      
+      if (prev && next) {
+        prev.addEventListener('click', () => {
+          slider.scrollBy({ left: -400, behavior: 'smooth' });
+        });
+        next.addEventListener('click', () => {
+          slider.scrollBy({ left: 400, behavior: 'smooth' });
+        });
+      }
+    });
+  });
+</script>
 
 {% schema %}
 {
@@ -50,33 +78,24 @@
       "type": "text",
       "id": "title",
       "label": "Section Title",
-      "default": "Handpicked for You"
+      "default": "Bestsellers This Week"
     },
     {
       "type": "textarea",
       "id": "subtitle",
-      "label": "Sub-title",
-      "default": "Curated study materials selected by our academic experts."
+      "label": "Subtitle",
+      "default": "Most downloaded notes and exam guides."
     },
     {
       "type": "text",
-      "id": "button_text",
-      "label": "Button Text",
-      "default": "Browse Collection"
+      "id": "view_all_text",
+      "label": "Mobile Button Text",
+      "default": "Shop All Notes"
     },
     {
       "type": "url",
-      "id": "button_link",
-      "label": "Button Link"
-    },
-    {
-      "type": "range",
-      "id": "columns_desktop",
-      "min": 2,
-      "max": 4,
-      "step": 1,
-      "default": 4,
-      "label": "Products per row (Desktop)"
+      "id": "view_all_link",
+      "label": "Mobile Button Link"
     }
   ],
   "blocks": [
@@ -94,7 +113,7 @@
   ],
   "presets": [
     {
-      "name": "Manual Product Showcase",
+      "name": "Bestsellers Slider",
       "blocks": [
         { "type": "product" },
         { "type": "product" },

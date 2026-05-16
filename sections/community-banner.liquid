@@ -1,29 +1,70 @@
-<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-20">
-  <div class="bg-[#005232] rounded-[48px] p-12 md:p-24 text-center text-white relative overflow-hidden shadow-2xl shadow-[#00442930] flex flex-col items-center">
-    <!-- Background accents -->
-    <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl -mr-48 -mt-48"></div>
-    <div class="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-2xl -ml-32 -mb-32"></div>
+<section class="py-20 px-margin-mobile md:px-margin-desktop">
+  <div class="max-w-container-max mx-auto bg-gradient-to-br from-[#004429] to-[#25D366] rounded-[48px] overflow-hidden shadow-2xl relative">
+    <!-- Decorative background elements -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-[100px] -mr-48 -mt-48"></div>
+    <div class="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-[80px] -ml-32 -mb-32"></div>
 
-    <div class="relative z-10 max-w-2xl space-y-8 animate-fade-in">
-      <div class="inline-flex items-center justify-center w-20 h-20 bg-white/10 rounded-3xl backdrop-blur-md mb-4 border border-white/20">
-        <span class="material-symbols-outlined text-4xl text-[#8ad4a8]">forum</span>
-      </div>
-      
-      <h2 class="text-3xl md:text-5xl font-black leading-tight">{{ section.settings.title }}</h2>
-      
-      <p class="text-lg md:text-xl text-[#cfe9da] font-medium leading-relaxed">
-        {{ section.settings.text }}
-      </p>
-      
-      <div class="pt-4">
-        <a href="{{ section.settings.link }}" class="inline-flex items-center gap-4 bg-[#8ad4a8] text-[#002111] px-12 py-6 rounded-full font-black text-lg hover:bg-white hover:scale-105 transition-all shadow-xl shadow-black/10 group">
-          <span class="material-symbols-outlined group-hover:rotate-12 transition-transform">chat_bubble</span>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-12 md:p-24 relative z-10">
+      <div class="text-white">
+        <div class="flex items-center gap-6 mb-10">
+          <div class="w-20 h-20 bg-white rounded-3xl p-3 shadow-xl">
+            {% if section.settings.logo != blank %}
+              <img src="{{ section.settings.logo | image_url: width: 200 }}" alt="Logo" class="w-full h-full object-contain">
+            {% else %}
+               <span class="material-symbols-outlined text-[#25D366] text-5xl flex items-center justify-center h-full">groups</span>
+            {% endif %}
+          </div>
+          <span class="text-xl font-bold tracking-tight opacity-90">{{ section.settings.badge_text }}</span>
+        </div>
+        
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-black mb-8 leading-[1.1]">
+          {{ section.settings.title }}
+        </h2>
+        
+        <p class="text-lg md:text-xl text-white/80 font-medium mb-12 max-w-xl leading-relaxed">
+          {{ section.settings.text }}
+        </p>
+        
+        <a href="{{ section.settings.button_link | default: '#' }}" class="inline-flex items-center gap-4 bg-white text-[#25D366] px-10 py-5 rounded-2xl font-black text-lg hover:scale-105 transition-all shadow-2xl group">
+          <span class="material-symbols-outlined font-bold group-hover:rotate-12 transition-transform">chat</span>
           {{ section.settings.button_text }}
         </a>
+      </div>
+
+      <div class="relative hidden lg:flex justify-center">
+        <div class="absolute inset-0 bg-white/5 blur-[120px] rounded-full"></div>
+        {% if section.settings.image != blank %}
+          <img src="{{ section.settings.image | image_url: width: 1000 }}" 
+               alt="Community" 
+               class="relative z-10 w-full max-w-md drop-shadow-[0_40px_80px_rgba(0,0,0,0.3)] animate-float">
+        {% else %}
+           <!-- Placeholder for WhatsApp Interface Mockup -->
+           <div class="relative z-10 bg-white/10 backdrop-blur-2xl border border-white/20 p-8 rounded-[40px] w-full max-w-sm shadow-2xl">
+             <div class="flex items-center gap-4 mb-6">
+               <div class="w-10 h-10 bg-white/20 rounded-full"></div>
+               <div class="h-4 w-32 bg-white/20 rounded-full"></div>
+             </div>
+             <div class="space-y-4">
+               <div class="h-12 w-full bg-white/10 rounded-2xl"></div>
+               <div class="h-12 w-3/4 bg-white/10 rounded-2xl"></div>
+               <div class="h-12 w-full bg-white/20 rounded-2xl self-end"></div>
+             </div>
+           </div>
+        {% endif %}
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+</style>
 
 {% schema %}
 {
@@ -31,15 +72,21 @@
   "settings": [
     {
       "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "Official Community"
+    },
+    {
+      "type": "text",
       "id": "title",
-      "label": "Heading",
-      "default": "Join Our Pharmacy Community"
+      "label": "Title",
+      "default": "Join Our 50K+ Strong Pharmacy Community"
     },
     {
       "type": "textarea",
       "id": "text",
-      "label": "Body Text",
-      "default": "Get free notes, daily quiz, and exam updates directly on your phone. Connect with over 15,000 pharmacy peers."
+      "label": "Description",
+      "default": "Get daily MCQ polls, GPAT tips, and early access to new notes directly on your WhatsApp. No spam, just pure value."
     },
     {
       "type": "text",
@@ -49,8 +96,18 @@
     },
     {
       "type": "url",
-      "id": "link",
-      "label": "WhatsApp Link"
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Overlay"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Right Side Image"
     }
   ],
   "presets": [

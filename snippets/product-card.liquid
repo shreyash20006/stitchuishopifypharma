@@ -1,269 +1,76 @@
 {% comment %}
-  TGPCOP NOTES — Premium Ebook Product Card
-  4-col desktop | 2-col tablet | 1-col mobile
-  object-fit: contain | hover lift | no broken placeholder
+  TGPCOP NOTES — Premium Pharmacy Product Card
+  Based on provided HTML design
 {% endcomment %}
 
-<style>
-  .tgp-card {
-    background: #ffffff;
-    border: 1px solid #E8EEF2;
-    border-radius: 18px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    position: relative;
-    transition: transform 0.3s cubic-bezier(.4,0,.2,1),
-                box-shadow 0.3s cubic-bezier(.4,0,.2,1),
-                border-color 0.3s ease;
-  }
-  .tgp-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 24px 56px rgba(11,93,59,0.15),
-                0 8px 20px rgba(0,0,0,0.08);
-    border-color: rgba(11,93,59,0.25);
-  }
+<div class="relative bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 group flex flex-col h-full">
+  <!-- Badges -->
+  <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+    {% if product.tags contains 'Bestseller' or product.tags contains 'bestseller' %}
+      <span class="bg-[#4b00a7] text-white text-[10px] font-black px-3 py-1.5 rounded-full tracking-widest uppercase shadow-lg">BESTSELLER</span>
+    {% endif %}
+    {% if product.compare_at_price > product.price %}
+      <span class="bg-[#004429] text-white text-[10px] font-black px-3 py-1.5 rounded-full tracking-widest uppercase shadow-lg">SAVE {{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}%</span>
+    {% endif %}
+  </div>
 
-  /* Image Area */
-  .tgp-card__img-wrap {
-    display: block;
-    width: 100%;
-    height: 270px;
-    background: linear-gradient(135deg, #F0F7F4 0%, #EBF5F0 100%);
-    overflow: hidden;
-    position: relative;
-    flex-shrink: 0;
-    text-decoration: none;
-  }
-  .tgp-card__img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    padding: 16px;
-    transition: transform 0.5s cubic-bezier(.4,0,.2,1);
-    display: block;
-  }
-  .tgp-card:hover .tgp-card__img-wrap img {
-    transform: scale(1.05);
-  }
-
-  /* Placeholder (no image uploaded yet) */
-  .tgp-card__placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    background: linear-gradient(135deg, #E7F5EF 0%, #D1EDE2 100%);
-  }
-  .tgp-card__placeholder-icon {
-    font-size: 52px;
-    color: #0B5D3B;
-    opacity: 0.3;
-  }
-  .tgp-card__placeholder-text {
-    font-size: 11px;
-    font-weight: 700;
-    color: #0B5D3B;
-    opacity: 0.4;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  /* Badge */
-  .tgp-card__badge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: #0B5D3B;
-    color: #ffffff;
-    font-size: 9px;
-    font-weight: 800;
-    padding: 4px 10px;
-    border-radius: 100px;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    box-shadow: 0 2px 8px rgba(11,93,59,0.3);
-    z-index: 2;
-  }
-
-  /* Instant download badge */
-  .tgp-card__dl-badge {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: rgba(255,255,255,0.92);
-    backdrop-filter: blur(8px);
-    color: #0B5D3B;
-    font-size: 9px;
-    font-weight: 700;
-    padding: 4px 9px;
-    border-radius: 8px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    border: 1px solid rgba(11,93,59,0.2);
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    gap: 3px;
-  }
-
-  /* Body */
-  .tgp-card__body {
-    padding: 18px 20px 20px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    gap: 14px;
-  }
-
-  /* Semester chip */
-  .tgp-card__tags { display: flex; gap: 6px; flex-wrap: wrap; }
-  .tgp-card__tag {
-    font-size: 9px;
-    font-weight: 700;
-    padding: 3px 9px;
-    border-radius: 6px;
-    background: #F0F7F4;
-    color: #0B5D3B;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  /* Title */
-  .tgp-card__title {
-    font-family: 'Manrope', 'Inter', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: #111827;
-    line-height: 1.5;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    min-height: 2.625rem;
-    flex-grow: 1;
-  }
-  .tgp-card__title a {
-    text-decoration: none;
-    color: inherit;
-    transition: color 0.2s ease;
-  }
-  .tgp-card__title a:hover { color: #0B5D3B; }
-
-  /* Footer */
-  .tgp-card__footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid #F0F0F0;
-    padding-top: 14px;
-    gap: 8px;
-    margin-top: auto;
-  }
-  .tgp-card__price-wrap { display: flex; flex-direction: column; }
-  .tgp-card__price-compare {
-    font-size: 0.72rem;
-    color: #9CA3AF;
-    text-decoration: line-through;
-    margin-bottom: 1px;
-  }
-  .tgp-card__price {
-    font-family: 'Manrope', 'Inter', sans-serif;
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: #0B5D3B;
-    line-height: 1;
-  }
-
-  /* Cart button */
-  .tgp-card__btn {
-    background: #0B5D3B;
-    color: #ffffff;
-    border: none;
-    border-radius: 12px;
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
-    box-shadow: 0 2px 8px rgba(11,93,59,0.25);
-  }
-  .tgp-card__btn:hover {
-    background: #094d31;
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(11,93,59,0.38);
-  }
-  .tgp-card__btn:active { transform: scale(0.96); }
-  .tgp-card__btn .material-symbols-outlined { font-size: 19px; }
-</style>
-
-{%- assign sem_tag = '' -%}
-{%- for tag in product.tags -%}
-  {%- if tag contains 'Sem' or tag contains 'Semester' -%}
-    {%- assign sem_tag = tag -%}
-    {%- break -%}
-  {%- endif -%}
-{%- endfor -%}
-
-<div class="tgp-card">
-
-  <a href="{{ product.url }}" class="tgp-card__img-wrap" aria-label="{{ product.title | escape }}">
-    {%- if product.featured_image -%}
-      <img
-        src="{{ product.featured_image | image_url: width: 600 }}"
-        alt="{{ product.title | escape }}"
-        loading="lazy"
-        width="600"
-        height="270"
-      >
-    {%- else -%}
-      <div class="tgp-card__placeholder">
-        <span class="material-symbols-outlined tgp-card__placeholder-icon">menu_book</span>
-        <span class="tgp-card__placeholder-text">Cover Coming Soon</span>
+  <!-- Image Area -->
+  <a href="{{ product.url }}" class="aspect-[3/4] bg-[#F3F4F6] overflow-hidden block">
+    {% if product.featured_image != blank %}
+      <img src="{{ product.featured_image | image_url: width: 800 }}" 
+           alt="{{ product.title }}" 
+           loading="lazy"
+           class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+    {% else %}
+      <div class="w-full h-full flex items-center justify-center bg-[#E7F5EF]">
+        <span class="material-symbols-outlined text-6xl text-[#00442910]">auto_stories</span>
       </div>
-    {%- endif -%}
-    <span class="tgp-card__badge">PDF Notes</span>
-    <span class="tgp-card__dl-badge">
-      <span class="material-symbols-outlined" style="font-size:10px;">download</span>
-      Instant
-    </span>
+    {% endif %}
   </a>
 
-  <div class="tgp-card__body">
-    {%- if sem_tag != '' -%}
-      <div class="tgp-card__tags">
-        <span class="tgp-card__tag">{{ sem_tag }}</span>
-      </div>
-    {%- endif -%}
+  <!-- Content -->
+  <div class="p-6 md:p-8 flex flex-col flex-grow">
+    <div class="mb-2">
+      {%- assign type_tag = '' -%}
+      {%- for tag in product.tags -%}
+        {%- if tag contains 'B.Pharm' or tag contains 'D.Pharm' or tag contains 'GPAT' -%}
+          {%- assign type_tag = tag -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+      <span class="text-[#004429] font-black text-[10px] uppercase tracking-widest">{{ type_tag | default: product.type | default: 'Pharmacy Notes' }}</span>
+    </div>
 
-    <h3 class="tgp-card__title">
+    <h3 class="text-xl font-black text-[#141b2b] mb-3 group-hover:text-[#004429] transition-colors leading-snug line-clamp-2 min-h-[3.5rem]">
       <a href="{{ product.url }}">{{ product.title }}</a>
     </h3>
 
-    <div class="tgp-card__footer">
-      <div class="tgp-card__price-wrap">
-        {%- if product.compare_at_price > product.price -%}
-          <span class="tgp-card__price-compare">{{ product.compare_at_price | money }}</span>
-        {%- endif -%}
-        <span class="tgp-card__price">{{ product.price | money }}</span>
+    <!-- Ratings (Static for aesthetic as per HTML) -->
+    <div class="flex items-center gap-2 mb-6">
+      <div class="flex text-[#FFB800]">
+        {% for i in (1..5) %}
+          <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+        {% endfor %}
+      </div>
+      <span class="text-gray-400 text-xs font-bold">(128+)</span>
+    </div>
+
+    <!-- Footer -->
+    <div class="mt-auto flex items-center justify-between border-t border-gray-50 pt-6">
+      <div class="flex flex-col">
+        <span class="text-2xl font-black text-[#004429]">{{ product.price | money }}</span>
+        {% if product.compare_at_price > product.price %}
+          <span class="text-sm text-gray-400 line-through font-bold">{{ product.compare_at_price | money }}</span>
+        {% endif %}
       </div>
 
-      <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data">
+      <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" class="flex">
         <input type="hidden" name="id" value="{{ product.variants.first.id }}">
         <input type="hidden" name="quantity" value="1">
-        <input type="hidden" name="return_to" value="back">
-        <button type="submit" class="tgp-card__btn" title="Add to Cart">
-          <span class="material-symbols-outlined">add_shopping_cart</span>
+        <button type="submit" class="bg-[#00442910] text-[#004429] p-4 rounded-2xl hover:bg-[#004429] hover:text-white hover:scale-110 transition-all shadow-sm">
+          <span class="material-symbols-outlined font-bold text-[20px]">add_shopping_cart</span>
         </button>
       </form>
     </div>
   </div>
-
 </div>
