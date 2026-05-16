@@ -20,17 +20,19 @@
         </a>
       </div>
     </div>
-    <div class="relative">
-      <div class="absolute -top-10 -right-10 w-64 h-64 bg-tertiary/10 rounded-full blur-3xl"></div>
-      <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
-      <div class="relative z-10 glass-card p-4 rounded-3xl rotate-2 shadow-2xl">
+    <div class="relative flex justify-center items-center">
+      <div class="absolute inset-0 w-full h-full bg-tertiary/5 rounded-full blur-3xl opacity-50"></div>
+      <div class="relative z-10 w-full flex justify-center">
         {%- if section.settings.hero_image != blank -%}
-          <img src="{{ section.settings.hero_image | image_url: width: 1000 }}" 
-               alt="{{ section.settings.title }}" 
-               class="rounded-2xl w-full h-auto object-cover aspect-[4/3]">
+          <div class="relative w-full max-w-[600px] aspect-square md:aspect-video lg:aspect-square flex items-center justify-center bg-white/40 backdrop-blur-md rounded-[2rem] border border-white/20 shadow-2xl p-4 md:p-8">
+            <img src="{{ section.settings.hero_image | image_url: width: 1200 }}" 
+                 alt="{{ section.settings.title }}" 
+                 class="w-full h-full object-contain drop-shadow-2xl transition-transform duration-700 hover:scale-105"
+                 style="background-repeat: no-repeat; background-position: center;">
+          </div>
         {%- else -%}
-          <div class="rounded-2xl w-full h-auto aspect-[4/3] bg-surface-container flex items-center justify-center text-on-surface-variant">
-            Hero Image Placeholder
+          <div class="rounded-3xl w-full aspect-square bg-surface-container flex items-center justify-center text-on-surface-variant border-2 border-dashed border-outline">
+            <span class="material-symbols-outlined text-6xl opacity-20">image</span>
           </div>
         {%- endif -%}
       </div>

@@ -1,4 +1,4 @@
-<header id="site-header" class="sticky top-0 w-full z-50 backdrop-blur-xl bg-surface-glass/90 border-b border-outline-variant shadow-sm h-20 transition-all duration-300">
+<header id="site-header" class="fixed top-0 w-full z-50 transition-all duration-500 h-20 flex items-center">
   
   <!-- Mobile Header (Visible only on lg:hidden) -->
   <div class="grid grid-cols-3 items-center px-margin-mobile h-full w-full lg:hidden">
@@ -18,8 +18,11 @@
       </a>
     </div>
 
-    <!-- Right: Cart & Account Icons -->
+    <!-- Right: Search, Cart & Account Icons -->
     <div class="flex justify-end items-center gap-1">
+      <button id="search-open" class="p-2 text-primary bg-primary/5 rounded-full active:scale-90 transition-all">
+        <span class="material-symbols-outlined text-[24px]">search</span>
+      </button>
       <a href="{{ routes.cart_url }}" class="relative p-2 text-primary bg-primary/5 rounded-full active:scale-90 transition-all">
         <span class="material-symbols-outlined text-[24px]">shopping_cart</span>
         {%- if cart.item_count > 0 -%}
@@ -51,11 +54,11 @@
         Home
         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 nav-underline"></span>
       </a>
-      <a href="/collections/b-pharm" class="nav-link font-bold text-sm text-on-surface-variant hover:text-primary transition-all relative py-2">
+      <a href="/search?q=B.Pharm&options[prefix]=last&type=product" class="nav-link font-bold text-sm text-on-surface-variant hover:text-primary transition-all relative py-2">
         B.Pharm
         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 nav-underline"></span>
       </a>
-      <a href="/collections/d-pharm" class="nav-link font-bold text-sm text-on-surface-variant hover:text-primary transition-all relative py-2">
+      <a href="/search?q=D.Pharm&options[prefix]=last&type=product" class="nav-link font-bold text-sm text-on-surface-variant hover:text-primary transition-all relative py-2">
         D.Pharm
         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 nav-underline"></span>
       </a>
@@ -66,7 +69,10 @@
     </nav>
 
     <!-- Desktop Icons -->
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-3">
+      <button id="search-open-desktop" class="p-2.5 text-primary bg-primary/5 rounded-full hover:bg-primary hover:text-white transition-all duration-300 group">
+        <span class="material-symbols-outlined">search</span>
+      </button>
       <a href="{{ routes.cart_url }}" class="relative p-2.5 text-primary group bg-primary/5 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
         <span class="material-symbols-outlined">shopping_cart</span>
         {%- if cart.item_count > 0 -%}
@@ -99,10 +105,10 @@
     <a href="{{ routes.root_url }}" class="flex items-center gap-4 text-lg font-bold text-on-surface hover:text-primary transition-colors">
       <span class="material-symbols-outlined text-primary">home</span> Home
     </a>
-    <a href="/collections/b-pharm" class="flex items-center gap-4 text-lg font-bold text-on-surface hover:text-primary transition-colors">
+    <a href="/search?q=B.Pharm&options[prefix]=last&type=product" class="flex items-center gap-4 text-lg font-bold text-on-surface hover:text-primary transition-colors">
       <span class="material-symbols-outlined text-primary">school</span> B.Pharm
     </a>
-    <a href="/collections/d-pharm" class="flex items-center gap-4 text-lg font-bold text-on-surface hover:text-primary transition-colors">
+    <a href="/search?q=D.Pharm&options[prefix]=last&type=product" class="flex items-center gap-4 text-lg font-bold text-on-surface hover:text-primary transition-colors">
       <span class="material-symbols-outlined text-primary">medication</span> D.Pharm
     </a>
     <hr class="border-outline-variant my-2">
@@ -114,10 +120,28 @@
     </a>
   </nav>
 
-  <div class="absolute bottom-10 left-6 right-6">
-    <div class="p-4 rounded-xl bg-primary/5 border border-primary/10">
-      <p class="text-sm font-bold text-primary mb-1">Need Support?</p>
-      <p class="text-[12px] text-on-surface-variant">contact@tgpcoppharma.shop</p>
+  </div>
+</div>
+
+<!-- Search Overlay -->
+<div id="search-overlay" class="fixed inset-0 bg-black/60 z-[200] backdrop-blur-md opacity-0 pointer-events-none transition-all duration-500 flex items-start justify-center pt-20 px-4">
+  <div class="bg-white w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden transform -translate-y-10 transition-transform duration-500" id="search-modal">
+    <div class="p-6 border-b border-outline-variant flex items-center gap-4">
+      <span class="material-symbols-outlined text-primary text-3xl">search</span>
+      <input type="text" id="search-input" placeholder="Search notes, ebooks, materials..." class="flex-1 bg-transparent border-none focus:ring-0 text-xl font-medium outline-none text-on-surface" autocomplete="off">
+      <button id="search-close" class="p-2 hover:bg-surface-container rounded-full transition-colors">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div id="search-results" class="max-h-[60vh] overflow-y-auto p-6 hidden">
+      <!-- Predictive results -->
+    </div>
+    <div id="search-empty" class="p-10 text-center text-on-surface-variant flex flex-col items-center gap-4">
+      <div class="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center">
+        <span class="material-symbols-outlined text-4xl text-primary/40">manage_search</span>
+      </div>
+      <p class="font-bold text-lg text-on-surface">What are you looking for today?</p>
+      <p class="text-sm opacity-60">Try searching for "B.Pharm 1st Sem" or "Pharmacology"</p>
     </div>
   </div>
 </div>
@@ -128,9 +152,20 @@
   }
   
   header.scrolled {
-    height: 64px;
-    background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    height: 68px;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+  }
+
+  #search-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #search-overlay.active #search-modal {
+    transform: translateY(0);
   }
 
   body.menu-open {
@@ -175,5 +210,121 @@
     menuOverlay.classList.add('opacity-0', 'pointer-events-none');
     menuDrawer.classList.add('-translate-x-full');
     document.body.classList.remove('menu-open');
+  }
+
+  // Search Logic
+  const searchOpenBtns = [document.getElementById('search-open'), document.getElementById('search-open-desktop')];
+  const searchCloseBtn = document.getElementById('search-close');
+  const searchOverlay = document.getElementById('search-overlay');
+  const searchModal = document.getElementById('search-modal');
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+  const searchEmpty = document.getElementById('search-empty');
+
+  searchOpenBtns.forEach(btn => {
+    if(btn) {
+      btn.addEventListener('click', () => {
+        searchOverlay.classList.add('active');
+        setTimeout(() => searchInput.focus(), 100);
+        document.body.classList.add('menu-open');
+      });
+    }
+  });
+
+  if(searchCloseBtn) {
+    searchCloseBtn.addEventListener('click', closeSearch);
+  }
+
+  if(searchOverlay) {
+    searchOverlay.addEventListener('click', (e) => {
+      if(e.target === searchOverlay) closeSearch();
+    });
+  }
+
+  function closeSearch() {
+    searchOverlay.classList.remove('active');
+    document.body.classList.remove('menu-open');
+    searchInput.value = '';
+    searchResults.classList.add('hidden');
+    searchEmpty.classList.remove('hidden');
+  }
+
+  let searchTimeout;
+  if(searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.trim();
+      clearTimeout(searchTimeout);
+      
+      if(query.length < 2) {
+        searchResults.classList.add('hidden');
+        searchEmpty.classList.remove('hidden');
+        return;
+      }
+
+      searchTimeout = setTimeout(() => {
+        // Shopify Predictive Search API
+        fetch(`/search/suggest.json?q=${encodeURIComponent(query)}&resources[type]=product,collection,article&resources[limit]=10`)
+          .then(res => res.json())
+          .then(data => {
+            const results = data.resources.results;
+            renderSearchResults(results);
+          })
+          .catch(err => console.error('Search error:', err));
+      }, 300);
+    });
+  }
+
+  function renderSearchResults(results) {
+    const products = results.products || [];
+    const collections = results.collections || [];
+    
+    if(products.length === 0 && collections.length === 0) {
+      searchResults.innerHTML = `
+        <div class="text-center py-12">
+          <span class="material-symbols-outlined text-5xl opacity-10 mb-4">search_off</span>
+          <p class="opacity-60 font-medium">No results found for your search</p>
+        </div>`;
+    } else {
+      let html = '';
+      
+      if(collections.length > 0) {
+        html += `<div class="mb-8"><h3 class="text-[11px] font-black text-primary uppercase tracking-[0.2em] mb-4 opacity-50 px-2">Collections</h3><div class="grid grid-cols-1 gap-2">`;
+        collections.forEach(col => {
+          html += `<a href="${col.url}" class="flex items-center gap-4 p-3 hover:bg-primary/5 rounded-2xl transition-all group">
+            <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
+              <span class="material-symbols-outlined text-primary">folder</span>
+            </div>
+            <span class="font-bold text-on-surface group-hover:text-primary transition-colors">${col.title}</span>
+          </a>`;
+        });
+        html += `</div></div>`;
+      }
+
+      if(products.length > 0) {
+        html += `<div><h3 class="text-[11px] font-black text-primary uppercase tracking-[0.2em] mb-4 opacity-50 px-2">Products & Ebooks</h3><div class="grid grid-cols-1 gap-3">`;
+        products.forEach(prod => {
+          const price = prod.price || '';
+          html += `<a href="${prod.url}" class="flex items-center gap-4 p-3 hover:bg-primary/5 rounded-2xl transition-all group border border-transparent hover:border-primary/10">
+            <div class="w-16 h-16 rounded-xl overflow-hidden bg-surface-container shadow-sm">
+              <img src="${prod.image}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="${prod.title}">
+            </div>
+            <div class="flex-1">
+              <p class="font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-1">${prod.title}</p>
+              <div class="flex items-center gap-2 mt-1">
+                <span class="text-sm font-bold text-primary">${price}</span>
+                <span class="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded-full font-bold uppercase">INSTANT PDF</span>
+              </div>
+            </div>
+            <span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-opacity text-primary">chevron_right</span>
+          </a>`;
+        });
+        html += `</div></div>`;
+      }
+      
+      searchResults.innerHTML = html;
+    }
+    
+    searchResults.classList.remove('hidden');
+    searchEmpty.classList.add('hidden');
   }
 </script>
