@@ -1,0 +1,607 @@
+{%- comment -%}
+  Custom Checkout Section for Pharmacy digital notes storefront
+  Specially tailored to collect student academic information and redirect to Shopify Checkout.
+{%- endcomment -%}
+
+<section class="pt-24 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto min-h-[75vh]">
+  <div class="flex flex-col gap-8">
+    
+    <!-- Title & Navigation -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-outline-variant pb-6 gap-4">
+      <div>
+        <h1 class="text-4xl font-extrabold text-on-surface tracking-tight">Secure Checkout</h1>
+        <p class="text-on-surface-variant text-sm mt-1">Fill in your academic details to receive instant high-quality PDF resources.</p>
+      </div>
+      <a href="/cart" class="text-primary font-bold hover:underline flex items-center gap-2 self-start md:self-auto">
+        <span class="material-symbols-outlined text-lg">arrow_back</span>
+        Return to Shopping Cart
+      </a>
+    </div>
+
+    {%- if cart.item_count > 0 -%}
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left: Checkout Forms & Steps (8 Cols) -->
+        <div class="lg:col-span-7 xl:col-span-8 space-y-8">
+          
+          <!-- Step Progress Tracker -->
+          <div class="glass-card p-4 rounded-2xl flex items-center justify-between border border-outline-variant bg-white/50">
+            <!-- Step 1 -->
+            <div id="tracker-step-1" class="flex items-center gap-3 px-4 py-2 rounded-xl bg-primary text-white transition-all duration-300">
+              <span class="w-7 h-7 rounded-full bg-white text-primary flex items-center justify-center font-black text-sm shadow-sm">1</span>
+              <span class="font-bold text-sm tracking-tight hidden sm:inline">Student Details</span>
+            </div>
+            
+            <!-- Connection Line -->
+            <div class="flex-grow mx-4 h-0.5 bg-gray-200 rounded-full overflow-hidden">
+              <div id="tracker-progress-line" class="h-full bg-primary w-0 transition-all duration-500"></div>
+            </div>
+            
+            <!-- Step 2 -->
+            <div id="tracker-step-2" class="flex items-center gap-3 px-4 py-2 rounded-xl text-on-surface-variant bg-gray-100 transition-all duration-300">
+              <span class="w-7 h-7 rounded-full bg-gray-200 text-on-surface-variant flex items-center justify-center font-black text-sm">2</span>
+              <span class="font-bold text-sm tracking-tight hidden sm:inline">Secure Payment</span>
+            </div>
+          </div>
+
+          <!-- Checkout Form -->
+          <form id="checkout-form" class="space-y-6">
+            
+            <!-- STEP 1: Student Information -->
+            <div id="step-1-container" class="glass-card p-6 md:p-8 rounded-3xl border border-outline-variant shadow-lg space-y-6 transition-all duration-500 transform translate-x-0 opacity-100">
+              <div class="flex items-center gap-3 border-b border-gray-100 pb-4">
+                <span class="material-symbols-outlined text-primary text-2xl font-bold">school</span>
+                <div>
+                  <h3 class="text-xl font-bold text-on-surface">1. Academic & Delivery Info</h3>
+                  <p class="text-xs text-on-surface-variant">We need this to instantly deliver and customize your study materials.</p>
+                </div>
+              </div>
+
+              <!-- Full Name -->
+              <div class="space-y-2 relative">
+                <label for="student-name" class="block text-sm font-bold text-on-surface">Full Name</label>
+                <div class="relative">
+                  <span class="material-symbols-outlined absolute left-4 top-3.5 text-gray-400 text-xl">person</span>
+                  <input type="text" id="student-name" required placeholder="Shreyash Patil" 
+                    class="w-full pl-12 pr-4 py-3.5 bg-white border border-outline-variant rounded-2xl focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-on-surface transition-all">
+                </div>
+              </div>
+
+              <!-- Two column fields: Email and Whatsapp -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Email Address -->
+                <div class="space-y-2">
+                  <label for="student-email" class="block text-sm font-bold text-on-surface">Email Address (For PDF Delivery)</label>
+                  <div class="relative">
+                    <span class="material-symbols-outlined absolute left-4 top-3.5 text-gray-400 text-xl">mail</span>
+                    <input type="email" id="student-email" required placeholder="student@example.com" 
+                      class="w-full pl-12 pr-4 py-3.5 bg-white border border-outline-variant rounded-2xl focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-on-surface transition-all">
+                  </div>
+                </div>
+
+                <!-- Whatsapp Number -->
+                <div class="space-y-2">
+                  <label for="student-whatsapp" class="block text-sm font-bold text-on-surface">WhatsApp Number (For Support & Updates)</label>
+                  <div class="relative">
+                    <span class="fab fa-whatsapp absolute left-4 top-4 text-gray-400 text-xl"></span>
+                    <input type="tel" id="student-whatsapp" required placeholder="9876543210" 
+                      class="w-full pl-12 pr-4 py-3.5 bg-white border border-outline-variant rounded-2xl focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-on-surface transition-all">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Course / Stream Selection -->
+              <div class="space-y-3">
+                <span class="block text-sm font-bold text-on-surface">Select Your Course</span>
+                <input type="hidden" id="student-course" value="B.Pharmacy">
+                <div class="grid grid-cols-3 gap-3">
+                  <button type="button" onclick="setCourse('B.Pharmacy', this)" class="course-pill py-3 px-4 rounded-2xl font-bold text-sm text-center border-2 border-primary bg-primary/5 text-primary transition-all shadow-sm">
+                    B.Pharmacy
+                  </button>
+                  <button type="button" onclick="setCourse('D.Pharmacy', this)" class="course-pill py-3 px-4 rounded-2xl font-bold text-sm text-center border-2 border-outline-variant text-on-surface-variant hover:border-primary hover:bg-primary/5 transition-all">
+                    D.Pharmacy
+                  </button>
+                  <button type="button" onclick="setCourse('GPAT Prep', this)" class="course-pill py-3 px-4 rounded-2xl font-bold text-sm text-center border-2 border-outline-variant text-on-surface-variant hover:border-primary hover:bg-primary/5 transition-all">
+                    GPAT Prep
+                  </button>
+                </div>
+              </div>
+
+              <!-- Two column fields: Year and College -->
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <!-- Academic Year Selection -->
+                <div class="md:col-span-4 space-y-2">
+                  <label for="student-year" class="block text-sm font-bold text-on-surface">Academic Year</label>
+                  <div class="relative">
+                    <span class="material-symbols-outlined absolute left-4 top-3.5 text-gray-400 text-xl">calendar_month</span>
+                    <select id="student-year" class="w-full pl-12 pr-8 py-3.5 bg-white border border-outline-variant rounded-2xl focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-on-surface transition-all appearance-none cursor-pointer">
+                      <option value="1st Year">1st Year</option>
+                      <option value="2nd Year">2nd Year</option>
+                      <option value="3rd Year">3rd Year</option>
+                      <option value="4th Year">4th Year</option>
+                      <option value="Passed Out">Passed Out</option>
+                    </select>
+                    <span class="material-symbols-outlined absolute right-4 top-3.5 text-gray-400 pointer-events-none">expand_more</span>
+                  </div>
+                </div>
+
+                <!-- College Name -->
+                <div class="md:col-span-8 space-y-2">
+                  <label for="student-college" class="block text-sm font-bold text-on-surface">College / University Name</label>
+                  <div class="relative">
+                    <span class="material-symbols-outlined absolute left-4 top-3.5 text-gray-400 text-xl">account_balance</span>
+                    <input type="text" id="student-college" required placeholder="TGP College of Pharmacy" 
+                      class="w-full pl-12 pr-4 py-3.5 bg-white border border-outline-variant rounded-2xl focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none text-on-surface transition-all">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Error Box -->
+              <div id="form-error-step-1" class="hidden bg-error/5 border border-error/20 p-4 rounded-2xl flex items-center gap-3 text-error text-xs font-bold animate-pulse">
+                <span class="material-symbols-outlined">error</span>
+                <span id="form-error-message">Please fill in all mandatory fields correctly.</span>
+              </div>
+
+              <!-- Step 1 Button -->
+              <div class="pt-2">
+                <button type="button" onclick="validateAndGoToStep2()" 
+                  class="w-full py-4.5 bg-primary text-white font-extrabold text-base rounded-2xl hover:bg-primary/95 transition-all shadow-lg shadow-primary/10 flex items-center justify-center gap-3 hover:translate-y-[-2px] active:scale-[0.98]">
+                  CONTINUE TO PAYMENT
+                  <span class="material-symbols-outlined font-black">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- STEP 2: Secure Payment & Discount (Hidden initially) -->
+            <div id="step-2-container" class="hidden glass-card p-6 md:p-8 rounded-3xl border border-outline-variant shadow-lg space-y-6 opacity-0 transform translate-x-12 transition-all duration-500">
+              <div class="flex items-center justify-between border-b border-gray-100 pb-4">
+                <div class="flex items-center gap-3">
+                  <span class="material-symbols-outlined text-primary text-2xl font-bold">verified_user</span>
+                  <div>
+                    <h3 class="text-xl font-bold text-on-surface">2. Complete Your Purchase</h3>
+                    <p class="text-xs text-on-surface-variant">Your checkout is safe and encrypted.</p>
+                  </div>
+                </div>
+                <button type="button" onclick="goToStep1()" class="text-xs font-black text-primary bg-primary/5 hover:bg-primary/10 px-3 py-1.5 rounded-full transition-all flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm font-black">edit</span>
+                  Edit Details
+                </button>
+              </div>
+
+              <!-- Student Details Preview Card -->
+              <div class="p-5 bg-[#00442906] border border-[#00442915] rounded-2xl space-y-3">
+                <h4 class="text-xs font-bold text-[#004429] uppercase tracking-wider">Verified Academic Profile</h4>
+                
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <span class="block text-[10px] text-gray-400 uppercase font-bold tracking-tight">Name</span>
+                    <span id="preview-name" class="font-bold text-[#141b2b]">-</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-gray-400 uppercase font-bold tracking-tight">Delivery Email</span>
+                    <span id="preview-email" class="font-bold text-[#141b2b] break-all">-</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-gray-400 uppercase font-bold tracking-tight">WhatsApp / Course</span>
+                    <span id="preview-course" class="font-bold text-[#141b2b]">-</span>
+                  </div>
+                  <div>
+                    <span class="block text-[10px] text-gray-400 uppercase font-bold tracking-tight">College / University</span>
+                    <span id="preview-college" class="font-bold text-[#141b2b] line-clamp-1">-</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Promo Code Section -->
+              <div class="space-y-2">
+                <label for="checkout-discount" class="block text-sm font-bold text-on-surface">Apply Discount Code (Optional)</label>
+                <div class="flex gap-2">
+                  <div class="relative flex-grow">
+                    <span class="material-symbols-outlined absolute left-4 top-3 text-gray-400 text-lg">sell</span>
+                    <input type="text" id="checkout-discount" placeholder="Enter coupon code (e.g. EXAM25)" 
+                      class="w-full pl-11 pr-4 py-3 bg-white border border-outline-variant rounded-xl focus:border-primary outline-none text-sm transition-all uppercase font-semibold">
+                  </div>
+                  <button type="button" onclick="applyPromoCode()" class="px-5 bg-white border-2 border-primary text-primary font-bold text-sm rounded-xl hover:bg-primary/5 transition-all">
+                    Apply
+                  </button>
+                </div>
+                <!-- Applied Alert -->
+                <div id="discount-status" class="hidden text-xs font-bold text-[#004429] flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-sm">check_circle</span>
+                  <span>Discount code will be automatically applied at the payment page.</span>
+                </div>
+              </div>
+
+              <!-- Payment Gateways Logos -->
+              <div class="p-5 border border-gray-100 rounded-2xl space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="text-sm font-bold text-on-surface">Accepted Secure Methods</span>
+                  <span class="text-[10px] font-black text-gray-400 uppercase flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm text-green-500">lock_open</span>
+                    SSL Encrypted
+                  </span>
+                </div>
+                
+                <div class="grid grid-cols-4 gap-3 bg-gray-50 p-3 rounded-xl">
+                  <div class="bg-white p-2 rounded-lg border border-gray-200 flex items-center justify-center h-10 shadow-sm">
+                    <img src="https://img.icons8.com/color/48/upi.png" class="h-5" alt="UPI">
+                  </div>
+                  <div class="bg-white p-2 rounded-lg border border-gray-200 flex items-center justify-center h-10 shadow-sm">
+                    <img src="https://img.icons8.com/color/48/visa.png" class="h-5" alt="Visa">
+                  </div>
+                  <div class="bg-white p-2 rounded-lg border border-gray-200 flex items-center justify-center h-10 shadow-sm">
+                    <img src="https://img.icons8.com/color/48/mastercard.png" class="h-5" alt="Mastercard">
+                  </div>
+                  <div class="bg-white p-2 rounded-lg border border-gray-200 flex items-center justify-center h-10 shadow-sm">
+                    <img src="https://img.icons8.com/color/48/google-pay.png" class="h-6" alt="GPay">
+                  </div>
+                </div>
+                
+                <p class="text-[10px] text-on-surface-variant/70 leading-relaxed text-center">
+                  Payments are powered by Shopify Secure. We support credit/debit cards, Netbanking, Google Pay, PhonePe, Paytm, and all Indian UPI handles.
+                </p>
+              </div>
+
+              <!-- Proceed to Pay Submit Button -->
+              <div class="space-y-3 pt-2">
+                <button type="submit" id="checkout-submit-btn"
+                  class="w-full py-5 bg-gradient-to-r from-primary to-[#005a36] text-white font-extrabold text-lg rounded-2xl hover:brightness-105 transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-3 active:scale-[0.98]">
+                  <span class="material-symbols-outlined font-black">lock</span>
+                  <span id="btn-text">PAY & SECURELY DOWNLOAD</span>
+                  <span id="btn-spinner" class="hidden animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full"></span>
+                </button>
+                
+                <p class="text-[10px] text-center text-on-surface-variant opacity-60">
+                  By clicking, you will be redirected to the secure gateway. Upon payment, you can instantly download the materials and a copy will be emailed.
+                </p>
+              </div>
+            </div>
+
+          </form>
+        </div>
+        
+        <!-- Right: Order Summary Sidebar (4 Cols) -->
+        <div class="lg:col-span-5 xl:col-span-4 sticky top-28 space-y-6">
+          
+          <div class="glass-card p-6 md:p-8 rounded-3xl border border-outline-variant shadow-xl bg-white space-y-6">
+            <h2 class="text-2xl font-extrabold text-on-surface tracking-tight border-b border-gray-100 pb-4">Order Summary</h2>
+            
+            <!-- Cart Items Container -->
+            <div class="space-y-4 max-h-[300px] overflow-y-auto no-scrollbar pr-1 border-b border-gray-50 pb-5">
+              {%- for item in cart.items -%}
+                <div class="flex gap-4 items-center">
+                  <!-- Product Image / Cover -->
+                  <div class="w-16 h-22 bg-surface-container-low rounded-xl overflow-hidden border border-gray-100 flex-shrink-0 relative">
+                    {%- if item.image -%}
+                      <img src="{{ item.image | image_url: width: 150 }}" alt="{{ item.title }}" class="w-full h-full object-contain p-1.5">
+                    {%- else -%}
+                      <div class="w-full h-full flex items-center justify-center opacity-20">
+                        <span class="material-symbols-outlined text-2xl">book_2</span>
+                      </div>
+                    {%- endif -%}
+                  </div>
+
+                  <!-- Details -->
+                  <div class="flex-grow min-w-0">
+                    <h4 class="font-bold text-sm text-on-surface truncate">
+                      {{ item.product.title }}
+                    </h4>
+                    <p class="text-[10px] font-black text-primary uppercase tracking-widest mt-0.5 flex items-center gap-1">
+                      <span class="material-symbols-outlined text-[10px] font-black">picture_as_pdf</span>
+                      Digital Ebook
+                    </p>
+                    <p class="text-xs text-on-surface-variant italic mt-0.5">{{ item.variant.title | remove: 'Default Title' }}</p>
+                  </div>
+
+                  <!-- Price -->
+                  <div class="text-right">
+                    <span class="font-black text-sm text-primary">{{ item.final_line_price | money }}</span>
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+
+            <!-- Pricing Breakdown -->
+            <div class="space-y-3.5 text-sm">
+              <div class="flex justify-between text-on-surface-variant">
+                <span class="font-semibold">Subtotal ({{ cart.item_count }} items)</span>
+                <span class="font-bold text-on-surface">{{ cart.original_total_price | money }}</span>
+              </div>
+              
+              <div class="flex justify-between text-on-surface-variant">
+                <span class="font-semibold">Digital Delivery</span>
+                <span class="text-primary font-black uppercase text-xs tracking-wider flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm font-black">bolt</span>
+                  Instant Free
+                </span>
+              </div>
+              
+              <div id="discount-row" class="hidden flex justify-between text-[#004429] font-semibold">
+                <span>Applied Discount</span>
+                <span id="discount-amount">TBD at Checkout</span>
+              </div>
+            </div>
+
+            <!-- Absolute Total -->
+            <div class="pt-5 border-t border-outline-variant flex justify-between items-end">
+              <div class="flex flex-col">
+                <span class="text-xs text-on-surface-variant font-bold tracking-wider">TOTAL AMOUNT</span>
+                <span class="text-[9px] text-on-surface-variant opacity-60">No additional/hidden taxes</span>
+              </div>
+              <span class="text-3xl font-black text-primary tracking-tight">{{ cart.total_price | money }}</span>
+            </div>
+            
+            <!-- Safe & Lifetime Updates Banner -->
+            <div class="p-4 bg-[#00442908] border border-[#00442915] rounded-2xl flex items-start gap-3">
+              <span class="material-symbols-outlined text-[#004429] mt-0.5">verified</span>
+              <div>
+                <h5 class="text-xs font-bold text-[#004429]">✓ PCI Syllabus & Free Updates</h5>
+                <p class="text-[10px] text-on-surface-variant/80 mt-0.5 leading-relaxed">
+                  All notes conform to PCI syllabus guidelines. Receive free textbook updates and curriculum revisions directly in your library inbox.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Checkout Security Badges -->
+          <div class="glass-card p-6 rounded-2xl border border-outline-variant bg-white/40 text-center space-y-4">
+            <span class="text-xs font-black text-on-surface-variant/60 uppercase tracking-widest">Guaranteed Safe Checkout</span>
+            <div class="flex justify-center items-center gap-6 opacity-60">
+              <div class="flex flex-col items-center gap-1.5">
+                <span class="material-symbols-outlined text-2xl text-primary">security</span>
+                <span class="text-[9px] font-bold text-on-surface-variant">SSL Secured</span>
+              </div>
+              <div class="w-px h-8 bg-gray-200"></div>
+              <div class="flex flex-col items-center gap-1.5">
+                <span class="material-symbols-outlined text-2xl text-primary">download</span>
+                <span class="text-[9px] font-bold text-on-surface-variant">Instant PDF</span>
+              </div>
+              <div class="w-px h-8 bg-gray-200"></div>
+              <div class="flex flex-col items-center gap-1.5">
+                <span class="material-symbols-outlined text-2xl text-primary">support_agent</span>
+                <span class="text-[9px] font-bold text-on-surface-variant">24/7 Chat</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    {%- else -%}
+      <!-- Empty State -->
+      <div class="flex flex-col items-center justify-center py-24 space-y-6 glass-card rounded-3xl border border-outline-variant max-w-2xl mx-auto w-full text-center p-8">
+        <div class="w-20 h-20 bg-primary/5 rounded-full flex items-center justify-center shadow-inner">
+          <span class="material-symbols-outlined text-4xl text-primary/40">shopping_cart_off</span>
+        </div>
+        <div class="space-y-2">
+          <h2 class="text-2xl font-black text-on-surface">Your checkout is empty</h2>
+          <p class="text-sm text-on-surface-variant max-w-sm mx-auto">
+            You don't have any B.Pharm or D.Pharm study notes in your cart. Add premium digital guides first to check out!
+          </p>
+        </div>
+        <a href="/collections/all" class="bg-primary text-white px-8 py-3.5 rounded-xl font-bold hover:shadow-lg transition-all active:scale-95 flex items-center gap-2">
+          Browse Catalog
+          <span class="material-symbols-outlined text-lg">arrow_forward</span>
+        </a>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<!-- Interactive Logic for checkout -->
+<script>
+  function setCourse(courseName, element) {
+    document.getElementById('student-course').value = courseName;
+    
+    // Toggle active styles on buttons
+    document.querySelectorAll('.course-pill').forEach(pill => {
+      pill.classList.remove('border-primary', 'bg-primary/5', 'text-primary');
+      pill.classList.add('border-outline-variant', 'text-on-surface-variant');
+      pill.classList.remove('shadow-sm');
+    });
+    
+    element.classList.add('border-primary', 'bg-primary/5', 'text-primary');
+    element.classList.remove('border-outline-variant', 'text-on-surface-variant');
+    element.classList.add('shadow-sm');
+  }
+
+  // Go to step 1
+  function goToStep1() {
+    const step1 = document.getElementById('step-1-container');
+    const step2 = document.getElementById('step-2-container');
+    const line = document.getElementById('tracker-progress-line');
+    
+    const step1Tracker = document.getElementById('tracker-step-1');
+    const step2Tracker = document.getElementById('tracker-step-2');
+    
+    // Animate lines
+    line.style.width = '0%';
+    
+    // Tracker update
+    step2Tracker.className = "flex items-center gap-3 px-4 py-2 rounded-xl text-on-surface-variant bg-gray-100 transition-all duration-300";
+    step2Tracker.querySelector('span').className = "w-7 h-7 rounded-full bg-gray-200 text-on-surface-variant flex items-center justify-center font-black text-sm";
+    
+    // View animations
+    step2.classList.add('hidden', 'opacity-0', 'translate-x-12');
+    step1.classList.remove('hidden');
+    setTimeout(() => {
+      step1.classList.remove('opacity-0', '-translate-x-12');
+      step1.classList.add('opacity-100', 'translate-x-0');
+    }, 50);
+  }
+
+  // Check valid step 1 and proceed to step 2
+  function validateAndGoToStep2() {
+    const name = document.getElementById('student-name').value.trim();
+    const email = document.getElementById('student-email').value.trim();
+    const whatsapp = document.getElementById('student-whatsapp').value.trim();
+    const course = document.getElementById('student-course').value;
+    const year = document.getElementById('student-year').value;
+    const college = document.getElementById('student-college').value.trim();
+    
+    const errorBox = document.getElementById('form-error-step-1');
+    const errorMessage = document.getElementById('form-error-message');
+    
+    // Form validations
+    if (!name || !email || !whatsapp || !college) {
+      errorMessage.innerText = "Please fill in all details (Name, Email, WhatsApp, and College).";
+      errorBox.classList.remove('hidden');
+      return;
+    }
+    
+    // Email regex validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      errorMessage.innerText = "Please enter a valid email address for receiving your digital guides.";
+      errorBox.classList.remove('hidden');
+      return;
+    }
+    
+    // WhatsApp number length check (approximate Indian mobile validation)
+    const whatsappClean = whatsapp.replace(/[^0-9]/g, '');
+    if (whatsappClean.length < 10) {
+      errorMessage.innerText = "Please enter a valid 10-digit WhatsApp number for semester updates.";
+      errorBox.classList.remove('hidden');
+      return;
+    }
+    
+    // If all is correct, proceed
+    errorBox.classList.add('hidden');
+    
+    // Set previews
+    document.getElementById('preview-name').innerText = name;
+    document.getElementById('preview-email').innerText = email;
+    document.getElementById('preview-course').innerText = whatsappClean + ' • ' + course + ' (' + year + ')';
+    document.getElementById('preview-college').innerText = college;
+    
+    // Animation transitions
+    const step1 = document.getElementById('step-1-container');
+    const step2 = document.getElementById('step-2-container');
+    const line = document.getElementById('tracker-progress-line');
+    
+    const step2Tracker = document.getElementById('tracker-step-2');
+    
+    // Progress Line
+    line.style.width = '100%';
+    
+    // Tracker Update
+    step2Tracker.className = "flex items-center gap-3 px-4 py-2 rounded-xl bg-primary text-white transition-all duration-300";
+    step2Tracker.querySelector('span').className = "w-7 h-7 rounded-full bg-white text-primary flex items-center justify-center font-black text-sm shadow-sm";
+    
+    // View animations
+    step1.classList.add('hidden', 'opacity-0', '-translate-x-12');
+    step2.classList.remove('hidden');
+    setTimeout(() => {
+      step2.classList.remove('opacity-0', 'translate-x-12');
+      step2.classList.add('opacity-100', 'translate-x-0');
+    }, 50);
+  }
+
+  // Display applied coupons nicely
+  function applyPromoCode() {
+    const code = document.getElementById('checkout-discount').value.trim();
+    const discountStatus = document.getElementById('discount-status');
+    const discountRow = document.getElementById('discount-row');
+    
+    if (code.length > 0) {
+      discountStatus.classList.remove('hidden');
+      discountRow.classList.remove('hidden');
+      
+      // Visual pulse
+      discountStatus.classList.add('animate-bounce');
+      setTimeout(() => discountStatus.classList.remove('animate-bounce'), 1000);
+    } else {
+      discountStatus.classList.add('hidden');
+      discountRow.classList.add('hidden');
+    }
+  }
+
+  // On submit, write cart attributes and redirect to Shopify Checkout prefilled
+  document.getElementById('checkout-form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById('student-name').value.trim();
+    const email = document.getElementById('student-email').value.trim();
+    const whatsapp = document.getElementById('student-whatsapp').value.trim();
+    const course = document.getElementById('student-course').value;
+    const year = document.getElementById('student-year').value;
+    const college = document.getElementById('student-college').value.trim();
+    const discount = document.getElementById('checkout-discount').value.trim();
+    
+    const submitBtn = document.getElementById('checkout-submit-btn');
+    const btnText = document.getElementById('btn-text');
+    const spinner = document.getElementById('btn-spinner');
+    
+    // Show Loading state
+    submitBtn.disabled = true;
+    submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
+    btnText.innerText = "PROCESSING SECURE ORDER...";
+    spinner.classList.remove('hidden');
+    
+    // Formulate Cart Attributes
+    const cartAttributes = {
+      'Student Name': name,
+      'WhatsApp Number': whatsapp,
+      'Course Selected': course,
+      'Academic Year': year,
+      'College Name': college
+    };
+    
+    // AJAX: Update Cart Attributes in Shopify Session
+    fetch('/cart/update.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        attributes: cartAttributes
+      })
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network error while updating cart attributes');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log('Cart attributes successfully updated:', data);
+      
+      // Formulate prefilled checkout parameters
+      // Shopify accepts: /checkout?checkout[email]=email&checkout[billing_address][first_name]=name&discount=discountCode
+      let checkoutUrl = '/checkout?';
+      
+      // Add email
+      checkoutUrl += 'checkout[email]=' + encodeURIComponent(email);
+      
+      // Add name to first name
+      checkoutUrl += '&checkout[billing_address][first_name]=' + encodeURIComponent(name);
+      
+      // Add whatsapp to billing phone (if needed)
+      checkoutUrl += '&checkout[billing_address][phone]=' + encodeURIComponent(whatsapp);
+      
+      // Add discount code if present
+      if (discount) {
+        checkoutUrl += '&discount=' + encodeURIComponent(discount);
+      }
+      
+      // Redirect student instantly to secure Shopify checkout!
+      window.location.href = checkoutUrl;
+    })
+    .catch(error => {
+      console.error('Checkout redirect error:', error);
+      // Fallback: Redirect directly to standard checkout if AJAX fails
+      let fallbackUrl = '/checkout';
+      if (discount) fallbackUrl += '?discount=' + encodeURIComponent(discount);
+      window.location.href = fallbackUrl;
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Main Checkout",
+  "settings": []
+}
+{% endschema %}

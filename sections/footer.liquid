@@ -17,11 +17,11 @@
       {%- endif -%}
       
       <div class="bg-black/20 backdrop-blur-md p-4 flex flex-wrap justify-center gap-6 text-[11px] uppercase tracking-[0.2em] text-primary-fixed font-black">
-        <a href="https://whatsapp.com/channel/0029Vb7bPYAICVfklGHiIW0v" target="_blank" class="hover:text-white transition-colors">WhatsApp</a>
-        <a href="https://t.me/tgpcopnotes" target="_blank" class="hover:text-white transition-colors">Telegram</a>
-        <a href="https://instagram.com/tgpcop.notes" target="_blank" class="hover:text-white transition-colors">Instagram</a>
-        <a href="https://x.com/TGPCOPNOTES" target="_blank" class="hover:text-white transition-colors">X (Twitter)</a>
-        <a href="https://pin.it/6Df5gqrxL" target="_blank" class="hover:text-white transition-colors">Pinterest</a>
+        <a href="{{ settings.social_whatsapp_link | default: 'https://whatsapp.com/channel/0029Vb7bPYAICVfklGHiIW0v' }}" target="_blank" class="hover:text-white transition-colors">WhatsApp</a>
+        <a href="{{ settings.social_telegram_link | default: 'https://t.me/tgpcopnotes' }}" target="_blank" class="hover:text-white transition-colors">Telegram</a>
+        <a href="{{ settings.social_instagram_link | default: 'https://instagram.com/tgpcop.notes' }}" target="_blank" class="hover:text-white transition-colors">Instagram</a>
+        <a href="{{ settings.social_twitter_link | default: 'https://x.com/TGPCOPNOTES' }}" target="_blank" class="hover:text-white transition-colors">X (Twitter)</a>
+        <a href="{{ settings.social_pinterest_link | default: 'https://pin.it/6Df5gqrxL' }}" target="_blank" class="hover:text-white transition-colors">Pinterest</a>
       </div>
     </div>
 
@@ -78,31 +78,31 @@
     <!-- Trust Badges -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 py-12 border-y border-white/10">
       <div class="flex items-center gap-4 group">
-        <span class="material-symbols-outlined text-primary-fixed text-4xl group-hover:rotate-12 transition-transform">cloud_download</span>
+        <span class="material-symbols-outlined text-primary-fixed text-4xl group-hover:rotate-12 transition-transform">{{ section.settings.badge_1_icon | default: 'cloud_download' }}</span>
         <div>
-          <h4 class="font-black text-[10px] text-white uppercase tracking-wider">INSTANT DOWNLOAD</h4>
-          <p class="text-[10px] text-white/40 uppercase">Get notes instantly</p>
+          <h4 class="font-black text-[10px] text-white uppercase tracking-wider">{{ section.settings.badge_1_title | default: 'INSTANT DOWNLOAD' }}</h4>
+          <p class="text-[10px] text-white/40 uppercase">{{ section.settings.badge_1_sub | default: 'Get notes instantly' }}</p>
         </div>
       </div>
       <div class="flex items-center gap-4 group">
-        <span class="material-symbols-outlined text-primary-fixed text-4xl group-hover:rotate-12 transition-transform">verified_user</span>
+        <span class="material-symbols-outlined text-primary-fixed text-4xl group-hover:rotate-12 transition-transform">{{ section.settings.badge_2_icon | default: 'verified_user' }}</span>
         <div>
-          <h4 class="font-black text-[10px] text-white uppercase tracking-wider">SAFE PAYMENT</h4>
-          <p class="text-[10px] text-white/40 uppercase">Secure checkout</p>
+          <h4 class="font-black text-[10px] text-white uppercase tracking-wider">{{ section.settings.badge_2_title | default: 'SAFE PAYMENT' }}</h4>
+          <p class="text-[10px] text-white/40 uppercase">{{ section.settings.badge_2_sub | default: 'Secure checkout' }}</p>
         </div>
       </div>
       <div class="flex items-center gap-4 group">
-        <span class="material-symbols-outlined text-primary-fixed text-4xl group-hover:rotate-12 transition-transform">picture_as_pdf</span>
+        <span class="material-symbols-outlined text-primary-fixed text-4xl group-hover:rotate-12 transition-transform">{{ section.settings.badge_3_icon | default: 'picture_as_pdf' }}</span>
         <div>
-          <h4 class="font-black text-[10px] text-white uppercase tracking-wider">EXAM FOCUSED</h4>
-          <p class="text-[10px] text-white/40 uppercase">High quality PDFs</p>
+          <h4 class="font-black text-[10px] text-white uppercase tracking-wider">{{ section.settings.badge_3_title | default: 'EXAM FOCUSED' }}</h4>
+          <p class="text-[10px] text-white/40 uppercase">{{ section.settings.badge_3_sub | default: 'High quality PDFs' }}</p>
         </div>
       </div>
       <div class="flex items-center gap-4 group">
-        <span class="material-symbols-outlined text-primary-fixed text-4xl group-hover:rotate-12 transition-transform">headset_mic</span>
+        <span class="material-symbols-outlined text-primary-fixed text-4xl group-hover:rotate-12 transition-transform">{{ section.settings.badge_4_icon | default: 'headset_mic' }}</span>
         <div>
-          <h4 class="font-black text-[10px] text-white uppercase tracking-wider">SUPPORT</h4>
-          <p class="text-[10px] text-white/40 uppercase">Available 24/7</p>
+          <h4 class="font-black text-[10px] text-white uppercase tracking-wider">{{ section.settings.badge_4_title | default: 'SUPPORT' }}</h4>
+          <p class="text-[10px] text-white/40 uppercase">{{ section.settings.badge_4_sub | default: 'Available 24/7' }}</p>
         </div>
       </div>
     </div>
@@ -267,6 +267,82 @@
       "type": "image_picker",
       "id": "pay_cashfree",
       "label": "6. Cashfree Logo"
+    },
+    {
+      "type": "header",
+      "content": "Customizable Trust Badges"
+    },
+    {
+      "type": "text",
+      "id": "badge_1_icon",
+      "label": "Badge 1 Icon Name",
+      "default": "cloud_download"
+    },
+    {
+      "type": "text",
+      "id": "badge_1_title",
+      "label": "Badge 1 Title",
+      "default": "INSTANT DOWNLOAD"
+    },
+    {
+      "type": "text",
+      "id": "badge_1_sub",
+      "label": "Badge 1 Subtext",
+      "default": "Get notes instantly"
+    },
+    {
+      "type": "text",
+      "id": "badge_2_icon",
+      "label": "Badge 2 Icon Name",
+      "default": "verified_user"
+    },
+    {
+      "type": "text",
+      "id": "badge_2_title",
+      "label": "Badge 2 Title",
+      "default": "SAFE PAYMENT"
+    },
+    {
+      "type": "text",
+      "id": "badge_2_sub",
+      "label": "Badge 2 Subtext",
+      "default": "Secure checkout"
+    },
+    {
+      "type": "text",
+      "id": "badge_3_icon",
+      "label": "Badge 3 Icon Name",
+      "default": "picture_as_pdf"
+    },
+    {
+      "type": "text",
+      "id": "badge_3_title",
+      "label": "Badge 3 Title",
+      "default": "EXAM FOCUSED"
+    },
+    {
+      "type": "text",
+      "id": "badge_3_sub",
+      "label": "Badge 3 Subtext",
+      "default": "High quality PDFs"
+    },
+    {
+      "type": "text",
+      "id": "badge_4_icon",
+      "label": "Badge 4 Icon Name",
+      "default": "headset_mic"
+    },
+    {
+      "type": "text",
+      "id": "badge_4_title",
+      "label": "Badge 4 Title",
+      "default": "SUPPORT"
+    },
+    {
+      "type": "text",
+      "id": "badge_4_sub",
+      "label": "Badge 4 Subtext",
+      "default": "Available 24/7"
     }
   ]
 }

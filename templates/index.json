@@ -48,6 +48,13 @@
         "faq_title": "Frequently Asked Questions",
         "testimonial_title": "Student Success Stories"
       }
+    },
+    "newsletter": {
+      "type": "newsletter-premium",
+      "settings": {
+        "heading": "Stay Updated with TGPCOP NOTES 📚",
+        "description": "Get latest B.Pharmacy notes, exam updates, GPAT materials, discounts & important PDF uploads directly in your inbox."
+      }
     }
   },
   "order": [
@@ -57,6 +64,7 @@
     "bestsellers",
     "new_arrivals",
     "community",
-    "faq_testimonials"
+    "faq_testimonials",
+    "newsletter"
   ]
 }

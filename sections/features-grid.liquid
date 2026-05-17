@@ -1,5 +1,15 @@
-<section class="py-24 bg-white">
+<section class="py-24" style="background-color: {{ section.settings.bg_color | default: '#ffffff' }};">
   <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+    {%- if section.settings.title != blank or section.settings.subtitle != blank -%}
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+        {%- if section.settings.title != blank -%}
+          <h2 class="text-3xl md:text-5xl font-black text-[#141b2b]">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle != blank -%}
+          <p class="text-gray-500 font-medium text-lg leading-relaxed">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-{{ section.settings.columns_desktop | default: 4 }} gap-8">
       {%- for block in section.blocks -%}
         <div class="text-center p-10 rounded-[32px] hover:bg-[#F9F9FF] transition-all duration-500 border-2 border-transparent hover:border-[#E5E7EB] group" {{ block.shopify_attributes }}>
@@ -29,6 +39,28 @@
       "step": 1,
       "default": 4,
       "label": "Columns on Desktop"
+    },
+    {
+      "type": "header",
+      "content": "Section Title & Heading"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Heading",
+      "default": "Why B.Pharmacy & D.Pharmacy Students Trust Us"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Our materials are custom built to ensure absolute academic excellence."
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background Color",
+      "default": "#ffffff"
     }
   ],
   "blocks": [
