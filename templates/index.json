@@ -1,10 +1,18 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero-banner",
       "settings": {
         "badge_text": "PREMIUM PHARMACY HUB",
-        "title_rich": "QUALITY PHARMACY NOTES MADE FOR <span class=\"text-[#004429]\">B.PHARM & D.PHARM</span> STUDENTS",
         "description": "Handwritten exam-focused notes, GPAT materials & instant PDF downloads. Master your curriculum with clarity and speed."
       }
     },

@@ -1,13 +1,23 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "product-branded",
-      "settings": {},
       "blocks": {
         "badge": {
           "type": "badge",
           "settings": {
-            "badge_text": "PCI New Syllabus"
+            "badge_text": "PCI New Syllabus",
+            "badge_bg": "#0b5d3b",
+            "badge_color": "#0b5d3b"
           }
         },
         "title": {
@@ -18,11 +28,16 @@
           "type": "price",
           "settings": {}
         },
+        "judgeme_widget": {
+          "type": "judgeme_widget",
+          "settings": {}
+        },
         "trust_card": {
           "type": "trust_card",
           "settings": {
             "title": "Verified Academic Content",
-            "text": "Instant PDF delivery. Access your notes immediately after payment."
+            "text": "Instant PDF delivery. Access your notes immediately after payment.",
+            "icon": "verified"
           }
         },
         "description": {
@@ -45,22 +60,19 @@
             "feature_2": "Hand-drawn Mechanism Diagrams",
             "feature_3": "GPAT Focused Quick-Recall Points"
           }
-        },
-        "judgeme_widget": {
-          "type": "judgeme_widget",
-          "settings": {}
         }
       },
       "block_order": [
         "badge",
         "title",
         "price",
+        "judgeme_widget",
         "trust_card",
         "description",
         "buy_buttons",
-        "features",
-        "judgeme_widget"
-      ]
+        "features"
+      ],
+      "settings": {}
     },
     "1778877851f5c4afd6": {
       "type": "apps",
