@@ -3,26 +3,26 @@
   Based on provided HTML design
 {% endcomment %}
 
-<div class="relative bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 group flex flex-col h-full">
+<div class="relative bg-white dark:bg-[#0E1612] rounded-[32px] overflow-hidden shadow-sm hover:shadow-[0_20px_50px_rgba(0,68,41,0.08)] transition-all duration-500 border border-gray-100 dark:border-[#1F362A]/50 group flex flex-col h-full">
   <!-- Badges -->
   <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
     {% if product.tags contains 'Bestseller' or product.tags contains 'bestseller' %}
-      <span class="bg-[#4b00a7] text-white text-[10px] font-black px-3 py-1.5 rounded-full tracking-widest uppercase shadow-lg">BESTSELLER</span>
+      <span class="bg-[#4b00a7] dark:bg-[#6616d7] text-white text-[10px] font-black px-3 py-1.5 rounded-full tracking-widest uppercase shadow-lg">BESTSELLER</span>
     {% endif %}
     {% if product.compare_at_price > product.price %}
-      <span class="bg-[#004429] text-white text-[10px] font-black px-3 py-1.5 rounded-full tracking-widest uppercase shadow-lg">SAVE {{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}%</span>
+      <span class="bg-[#004429] dark:bg-[#0b5d3b] text-white text-[10px] font-black px-3 py-1.5 rounded-full tracking-widest uppercase shadow-lg">SAVE {{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}%</span>
     {% endif %}
   </div>
 
   <!-- Image Area -->
-  <a href="{{ product.url }}" class="aspect-[3/4] bg-[#F3F4F6] overflow-hidden block">
+  <a href="{{ product.url }}" class="aspect-[3/4] bg-[#F3F4F6] dark:bg-[#101B15] overflow-hidden block">
     {% if product.featured_image != blank %}
       <img src="{{ product.featured_image | image_url: width: 800 }}" 
            alt="{{ product.title }}" 
            loading="lazy"
            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
     {% else %}
-      <div class="w-full h-full flex items-center justify-center bg-[#E7F5EF]">
+      <div class="w-full h-full flex items-center justify-center bg-[#E7F5EF] dark:bg-[#15221B]">
         <span class="material-symbols-outlined text-6xl text-[#00442910]">auto_stories</span>
       </div>
     {% endif %}
@@ -38,36 +38,36 @@
           {%- break -%}
         {%- endif -%}
       {%- endfor -%}
-      <span class="text-[#004429] font-black text-[10px] uppercase tracking-widest">{{ type_tag | default: product.type | default: 'Pharmacy Notes' }}</span>
+      <span class="text-[#004429] dark:text-[#8ad4a8] font-black text-[10px] uppercase tracking-widest">{{ type_tag | default: product.type | default: 'Pharmacy Notes' }}</span>
     </div>
 
-    <h3 class="text-xl font-black text-[#141b2b] mb-3 group-hover:text-[#004429] transition-colors leading-snug line-clamp-2 min-h-[3.5rem]">
+    <h3 class="text-xl font-black text-[#141b2b] dark:text-[#EDF7F2] mb-3 group-hover:text-[#004429] dark:group-hover:text-[#8ad4a8] transition-colors leading-snug line-clamp-2 min-h-[3.5rem]">
       <a href="{{ product.url }}">{{ product.title }}</a>
     </h3>
 
     <!-- Ratings (Static for aesthetic as per HTML) -->
     <div class="flex items-center gap-2 mb-6">
-      <div class="flex text-[#FFB800]">
+      <div class="flex text-[#FFB800] dark:text-amber-400">
         {% for i in (1..5) %}
           <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
         {% endfor %}
       </div>
-      <span class="text-gray-400 text-xs font-bold">(128+)</span>
+      <span class="text-gray-400 dark:text-[#9EAF9F]/60 text-xs font-bold">(128+)</span>
     </div>
 
     <!-- Footer -->
-    <div class="mt-auto flex items-center justify-between border-t border-gray-50 pt-6">
+    <div class="mt-auto flex items-center justify-between border-t border-gray-50 dark:border-[#1F362A]/40 pt-6">
       <div class="flex flex-col">
-        <span class="text-2xl font-black text-[#004429]">{{ product.price | money }}</span>
+        <span class="text-2xl font-black text-[#004429] dark:text-[#8ad4a8]">{{ product.price | money }}</span>
         {% if product.compare_at_price > product.price %}
-          <span class="text-sm text-gray-400 line-through font-bold">{{ product.compare_at_price | money }}</span>
+          <span class="text-sm text-gray-400 dark:text-[#9EAF9F]/40 line-through font-bold">{{ product.compare_at_price | money }}</span>
         {% endif %}
       </div>
 
       <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" class="flex">
         <input type="hidden" name="id" value="{{ product.variants.first.id }}">
         <input type="hidden" name="quantity" value="1">
-        <button type="submit" class="bg-[#00442910] text-[#004429] p-4 rounded-2xl hover:bg-[#004429] hover:text-white hover:scale-110 transition-all shadow-sm">
+        <button type="submit" class="bg-[#00442910] text-[#004429] dark:bg-[#004429]/20 dark:text-[#8ad4a8] p-4 rounded-2xl hover:bg-[#004429] dark:hover:bg-[#004429] dark:hover:text-white hover:scale-110 transition-all shadow-sm">
           <span class="material-symbols-outlined font-bold text-[20px]">add_shopping_cart</span>
         </button>
       </form>

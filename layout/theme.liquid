@@ -33,7 +33,7 @@
     {{ content_for_header }}
 
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
@@ -45,6 +45,11 @@
         darkMode: "class",
         theme: {
           extend: {
+            "fontFamily": {
+              "sans": ["Inter", "sans-serif"],
+              "heading": ["Outfit", "Manrope", "sans-serif"],
+              "body": ["Inter", "sans-serif"]
+            },
             "colors": {
                 "on-secondary-fixed-variant": "#354b41",
                 "secondary": "#4c6358",
@@ -151,9 +156,15 @@
 
       /* Base body transition */
       body {
+        font-family: 'Inter', sans-serif !important;
         background-color: var(--color-background);
         color: var(--color-on-background);
         transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Outfit', 'Manrope', sans-serif !important;
+        letter-spacing: -0.02em;
       }
 
       /* Premium Dynamic Overrides for Dark Mode */
