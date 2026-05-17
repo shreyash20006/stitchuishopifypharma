@@ -13,14 +13,26 @@
       "type": "hero-banner",
       "settings": {
         "badge_text": "PREMIUM PHARMACY HUB",
-        "description": "Handwritten exam-focused notes, GPAT materials & instant PDF downloads. Master your curriculum with clarity and speed."
+        "title": "QUALITY PHARMACY NOTES MADE FOR B.PHARM STUDENTS",
+        "description": "Handwritten exam-focused notes, GPAT materials & instant PDF downloads. Master your curriculum with clarity and speed.",
+        "button_text": "Shop Notes",
+        "button_link": "",
+        "secondary_button_text": "Join WhatsApp",
+        "secondary_button_link": "",
+        "hero_image": "shopify://shop_images/rn-image_picker_lib_temp_ea1e45e5-6b6d-4334-8c28-69248595e9e9.png",
+        "image_fit": "contain",
+        "banner_height": 600
       }
     },
     "collections": {
       "type": "collection-list-premium",
       "settings": {
         "title": "Featured Collections",
-        "subtitle": "Curated resources for every stage of your pharmacy journey."
+        "subtitle": "Curated resources for every stage of your pharmacy journey.",
+        "button_label": "Explore Now",
+        "columns_desktop": 3,
+        "view_all_text": "View All Collections",
+        "view_all_link": ""
       }
     },
     "why_us": {
@@ -40,7 +52,8 @@
             "placeholder_icon": "draw",
             "placeholder_text": "Handwritten Samples",
             "hover_badge": "Preview Notes",
-            "btn_text": "View Sample Notes"
+            "btn_text": "View Sample Notes",
+            "btn_link": ""
           }
         },
         "revision": {
@@ -57,7 +70,8 @@
             "placeholder_icon": "table_rows",
             "placeholder_text": "Revision Tables",
             "hover_badge": "View Charts",
-            "btn_text": "Download Preview"
+            "btn_text": "Download Preview",
+            "btn_link": ""
           }
         },
         "exam": {
@@ -74,7 +88,8 @@
             "placeholder_icon": "quiz",
             "placeholder_text": "Paper Samples",
             "hover_badge": "Start Learning",
-            "btn_text": "Get Started"
+            "btn_text": "Get Started",
+            "btn_link": ""
           }
         }
       },
@@ -84,35 +99,36 @@
         "exam"
       ],
       "settings": {
-        "columns_desktop": 3
+        "bg_color": "#ffffff",
+        "columns_desktop": 3,
+        "badge_text": "Trusted by 50,000+ B.Pharmacy Students",
+        "badge_icon": "verified",
+        "title": "Why study with TGPCOP?",
+        "subtitle": "We don't just provide notes; we provide a high-performance visual learning system designed specifically for pharmacy excellence.",
+        "show_rating_strip": true,
+        "rating_text": "4.9/5 Average Student Rating",
+        "social_text": "Join Telegram Community",
+        "social_icon": "send",
+        "social_link": ""
       }
     },
     "bestsellers": {
       "type": "product-showcase",
       "settings": {
         "title": "Bestsellers This Week",
-        "subtitle": "Most downloaded notes and exam guides."
+        "subtitle": "Most downloaded notes and exam guides.",
+        "view_all_text": "Shop All Notes",
+        "view_all_link": ""
       }
     },
     "new_arrivals": {
       "type": "new-arrivals",
       "settings": {
         "title": "New Arrivals",
-        "subtitle": "The latest updates to our curated pharmacy library."
-      }
-    },
-    "community": {
-      "type": "community-banner",
-      "settings": {
-        "title": "Join Our 50K+ Strong Pharmacy Community",
-        "text": "Get daily MCQ polls, GPAT tips, and early access to new notes directly on your WhatsApp. No spam, just pure value."
-      }
-    },
-    "faq_testimonials": {
-      "type": "faq-testimonials",
-      "settings": {
-        "faq_title": "Frequently Asked Questions",
-        "testimonial_title": "Student Success Stories"
+        "subtitle": "The latest updates to our curated pharmacy library.",
+        "link_text": "View All New Arrivals",
+        "link": "",
+        "button_text": "View Details"
       }
     },
     "gpat_updates": {
@@ -120,7 +136,27 @@
       "settings": {
         "badge_text": "GPAT 2026 PREPARATION",
         "title": "National GPAT Alerts & Mnemonic Boards",
-        "subtitle": "Real-time exam insights, syllabus updates, and daily pharmacy preparation challenges."
+        "subtitle": "Real-time exam insights, syllabus updates, and daily pharmacy preparation challenges.",
+        "btn_text": "View GPAT Notes",
+        "btn_link": "",
+        "bg_color": "#ffffff"
+      }
+    },
+    "community": {
+      "type": "community-banner",
+      "settings": {
+        "badge_text": "Official Community",
+        "title": "Join Our 50K+ Strong Pharmacy Community",
+        "text": "Get daily MCQ polls, GPAT tips, and early access to new notes directly on your WhatsApp. No spam, just pure value.",
+        "button_text": "Join WhatsApp Group",
+        "button_link": ""
+      }
+    },
+    "faq_testimonials": {
+      "type": "faq-testimonials",
+      "settings": {
+        "faq_title": "Frequently Asked Questions",
+        "testimonial_title": "Student Success Stories"
       }
     }
   },
