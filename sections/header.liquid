@@ -31,16 +31,22 @@
       </div>
 
       <div class="flex items-center gap-2">
-        <a href="{{ routes.cart_url }}" class="relative p-3 text-[#004429] hover:bg-[#00442905] rounded-2xl transition-all group">
+        <!-- Theme Toggle Switcher -->
+        <button class="theme-toggle-btn p-3 text-[#004429] hover:bg-[#00442905] dark:text-[#EDF7F2] dark:hover:bg-[#1F362A]/20 rounded-2xl transition-all duration-300 flex items-center justify-center" aria-label="Toggle Theme Mode">
+          <span class="theme-toggle-light-icon material-symbols-outlined text-[24px] transition-transform duration-500 hover:rotate-45">light_mode</span>
+          <span class="theme-toggle-dark-icon material-symbols-outlined text-[24px] hidden transition-transform duration-500 hover:-rotate-12">dark_mode</span>
+        </button>
+
+        <a href="{{ routes.cart_url }}" class="relative p-3 text-[#004429] hover:bg-[#00442905] dark:text-[#EDF7F2] dark:hover:bg-[#1F362A]/20 rounded-2xl transition-all group">
           <span class="material-symbols-outlined text-[24px]">shopping_cart</span>
-          <span class="cart-count-badge absolute top-2 right-2 bg-[#004429] text-white text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full border-2 border-white {% if cart.item_count == 0 %}hidden{% endif %}">
+          <span class="cart-count-badge absolute top-2 right-2 bg-[#004429] text-white text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full border-2 border-white dark:border-[#0E1612] {% if cart.item_count == 0 %}hidden{% endif %}">
             {{ cart.item_count }}
           </span>
         </a>
-        <a href="{{ routes.account_url }}" class="hidden md:flex p-3 text-[#004429] hover:bg-[#00442905] rounded-2xl transition-all">
+        <a href="{{ routes.account_url }}" class="hidden md:flex p-3 text-[#004429] hover:bg-[#00442905] dark:text-[#EDF7F2] dark:hover:bg-[#1F362A]/20 rounded-2xl transition-all">
           <span class="material-symbols-outlined text-[24px]">account_circle</span>
         </a>
-        <button id="mobile-menu-open" class="lg:hidden p-3 text-[#004429] hover:bg-[#00442905] rounded-2xl transition-all">
+        <button id="mobile-menu-open" class="lg:hidden p-3 text-[#004429] hover:bg-[#00442905] dark:text-[#EDF7F2] dark:hover:bg-[#1F362A]/20 rounded-2xl transition-all">
           <span class="material-symbols-outlined text-[28px]">menu</span>
         </button>
       </div>
@@ -51,6 +57,7 @@
 <style>
   .nav-link:hover .nav-underline { width: 100%; }
   header.scrolled { height: 64px; background-color: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+  html.dark header.scrolled { background-color: rgba(14, 22, 18, 0.9) !important; box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important; }
   .no-scrollbar::-webkit-scrollbar { display: none; }
 </style>
 

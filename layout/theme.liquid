@@ -1,6 +1,12 @@
 <!doctype html>
-<html class="light" lang="{{ request.locale.iso_code }}">
+<html lang="{{ request.locale.iso_code }}">
   <head>
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme') || 'light';
+        document.documentElement.className = theme;
+      })();
+    </script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -42,41 +48,41 @@
                 "on-secondary-fixed-variant": "#354b41",
                 "secondary": "#4c6358",
                 "on-tertiary-fixed-variant": "#5a00c6",
-                "outline-variant": "#bfc9c0",
+                "outline-variant": "var(--color-outline-variant)",
                 "tertiary-container": "#6616d7",
                 "tertiary-fixed-dim": "#d2bbff",
                 "inverse-primary": "#8dd6ab",
                 "secondary-container": "#cfe9da",
                 "primary-container": "#0b5d3b",
-                "on-surface-variant": "#404942",
-                "background": "#f9f9ff",
+                "on-surface-variant": "var(--color-on-surface-variant)",
+                "background": "var(--color-background)",
                 "surface-tint": "#004429",
                 "inverse-surface": "#293040",
-                "surface-container": "#e9edff",
+                "surface-container": "var(--color-surface-container)",
                 "primary-fixed": "#a8f3c6",
-                "surface-container-highest": "#dce2f7",
+                "surface-container-highest": "var(--color-surface-container-highest)",
                 "on-secondary-fixed": "#092017",
-                "surface": "#f9f9ff",
+                "surface": "var(--color-surface)",
                 "on-error": "#ffffff",
                 "tertiary": "#4b00a7",
                 "on-tertiary-fixed": "#25005a",
                 "error": "#ba1a1a",
                 "primary-fixed-dim": "#8dd6ab",
                 "on-primary": "#ffffff",
-                "on-background": "#141b2b",
-                "surface-glass": "rgba(255, 255, 255, 0.7)",
-                "surface-bright": "#f9f9ff",
+                "on-background": "var(--color-on-background)",
+                "surface-glass": "var(--color-surface-glass)",
+                "surface-bright": "var(--color-surface)",
                 "tertiary-fixed": "#eaddff",
                 "primary": "#004429",
-                "background-main": "#F9FAFB",
+                "background-main": "var(--color-background)",
                 "secondary-fixed-dim": "#b3ccbe",
-                "surface-container-low": "#f1f3ff",
+                "surface-container-low": "var(--color-surface-container-low)",
                 "on-primary-fixed": "#002111",
                 "on-error-container": "#93000a",
                 "inverse-on-surface": "#edf0ff",
-                "surface-variant": "#dce2f7",
-                "on-surface": "#141b2b",
-                "surface-container-lowest": "#ffffff",
+                "surface-variant": "var(--color-surface-container)",
+                "on-surface": "var(--color-on-surface)",
+                "surface-container-lowest": "var(--color-surface-container-lowest)",
                 "on-tertiary": "#ffffff",
                 "on-secondary-container": "#52695e",
                 "on-tertiary-container": "#d1b9ff",
@@ -84,10 +90,10 @@
                 "error-container": "#ffdad6",
                 "on-primary-container": "#8ad4a8",
                 "outline": "#707a72",
-                "border-subtle": "#E5E7EB",
+                "border-subtle": "var(--color-border-subtle)",
                 "on-secondary": "#ffffff",
                 "on-primary-fixed-variant": "#005232",
-                "surface-container-high": "#e1e8fd",
+                "surface-container-high": "var(--color-surface-container-high)",
                 "secondary-fixed": "#cfe9da"
             },
             "borderRadius": {
@@ -111,10 +117,99 @@
     </script>
 
     <style>
+      :root {
+        --color-background: #F9FAFB;
+        --color-on-background: #141b2b;
+        --color-surface: #ffffff;
+        --color-on-surface: #141b2b;
+        --color-surface-container: #F1F3FF;
+        --color-surface-container-low: #F8FAFC;
+        --color-surface-container-lowest: #ffffff;
+        --color-surface-container-high: #E2E8F0;
+        --color-surface-container-highest: #DCE2F7;
+        --color-outline-variant: #E5E7EB;
+        --color-on-surface-variant: #4b5563;
+        --color-surface-glass: rgba(255, 255, 255, 0.7);
+        --color-border-subtle: #E5E7EB;
+      }
+      html.dark {
+        --color-background: #080D0A;
+        --color-on-background: #EDF7F2;
+        --color-surface: #0E1612;
+        --color-on-surface: #EDF7F2;
+        --color-surface-container: #15221B;
+        --color-surface-container-low: #101B15;
+        --color-surface-container-lowest: #0B110E;
+        --color-surface-container-high: #1E3027;
+        --color-surface-container-highest: #283F33;
+        --color-outline-variant: #1F362A;
+        --color-on-surface-variant: #9EAF9F;
+        --color-surface-glass: rgba(14, 22, 18, 0.75);
+        --color-border-subtle: #1F362A;
+      }
+
+      /* Base body transition */
+      body {
+        background-color: var(--color-background);
+        color: var(--color-on-background);
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      }
+
+      /* Premium Dynamic Overrides for Dark Mode */
+      html.dark .bg-white,
+      html.dark .bg-surface-container-lowest,
+      html.dark .bg-surface {
+        background-color: var(--color-surface) !important;
+      }
+      
+      html.dark .bg-gray-50,
+      html.dark .bg-surface-container-low {
+        background-color: var(--color-surface-container-low) !important;
+      }
+      
+      html.dark .bg-surface-container {
+        background-color: var(--color-surface-container) !important;
+      }
+
+      html.dark .bg-gray-100 {
+        background-color: var(--color-surface-container-high) !important;
+      }
+
+      html.dark .text-gray-900,
+      html.dark .text-black,
+      html.dark .text-on-background,
+      html.dark .text-on-surface {
+        color: var(--color-on-background) !important;
+      }
+
+      html.dark .text-gray-500,
+      html.dark .text-gray-600,
+      html.dark .text-on-surface-variant {
+        color: var(--color-on-surface-variant) !important;
+      }
+
+      html.dark .border-gray-100,
+      html.dark .border-gray-200,
+      html.dark .border-outline-variant,
+      html.dark .border-border-subtle {
+        border-color: var(--color-outline-variant) !important;
+      }
+
+      html.dark header#site-header {
+        background-color: rgba(14, 22, 18, 0.8) !important;
+        border-bottom-color: var(--color-outline-variant) !important;
+      }
+
+      html.dark .glass-card {
+        background: rgba(14, 22, 18, 0.7) !important;
+        border: 1px solid rgba(31, 54, 42, 0.5) !important;
+      }
+
       .glass-card {
           background: rgba(255, 255, 255, 0.7);
           backdrop-filter: blur(12px);
           border: 1px solid rgba(229, 231, 235, 0.5);
+          transition: background 0.3s ease, border-color 0.3s ease;
       }
       .material-symbols-outlined {
           font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -273,6 +368,48 @@
       });
 
       bindRemoveEvents();
+
+      // Day/Night Theme Toggling & Icon Sync
+      (function() {
+        function updateThemeIcons(theme) {
+          const darkIcons = document.querySelectorAll('.theme-toggle-dark-icon');
+          const lightIcons = document.querySelectorAll('.theme-toggle-light-icon');
+          if (theme === 'dark') {
+            darkIcons.forEach(i => i.classList.remove('hidden'));
+            lightIcons.forEach(i => i.classList.add('hidden'));
+          } else {
+            darkIcons.forEach(i => i.classList.add('hidden'));
+            lightIcons.forEach(i => i.classList.remove('hidden'));
+          }
+        }
+
+        function toggleTheme() {
+          const isDark = document.documentElement.classList.contains('dark');
+          const newTheme = isDark ? 'light' : 'dark';
+          document.documentElement.className = newTheme;
+          localStorage.setItem('theme', newTheme);
+          updateThemeIcons(newTheme);
+        }
+
+        // Bind events
+        function bindThemeToggles() {
+          const initialTheme = localStorage.getItem('theme') || 'light';
+          updateThemeIcons(initialTheme);
+          document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+            btn.onclick = toggleTheme;
+          });
+        }
+        
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', bindThemeToggles);
+        } else {
+          bindThemeToggles();
+        }
+        
+        // Expose function globally
+        window.initializeThemeToggles = bindThemeToggles;
+        window.updateThemeIcons = updateThemeIcons;
+      })();
     </script>
 
     <script>
