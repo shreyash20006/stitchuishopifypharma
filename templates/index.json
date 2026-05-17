@@ -24,9 +24,67 @@
       }
     },
     "why_us": {
-      "type": "features-grid",
+      "type": "why-choose-us",
+      "blocks": {
+        "visual": {
+          "type": "feature_card",
+          "settings": {
+            "use_dark_theme": false,
+            "icon": "psychology",
+            "title": "Visual Learning Strategy",
+            "description": "Structured handwritten-style notes with memory anchors and visual understanding blocks.",
+            "stat_1_val": "70%",
+            "stat_1_lbl": "Faster Recall",
+            "stat_2_val": "100%",
+            "stat_2_lbl": "Syllabus Coverage",
+            "placeholder_icon": "draw",
+            "placeholder_text": "Handwritten Samples",
+            "hover_badge": "Preview Notes",
+            "btn_text": "View Sample Notes"
+          }
+        },
+        "revision": {
+          "type": "feature_card",
+          "settings": {
+            "use_dark_theme": true,
+            "icon": "bolt",
+            "title": "Quick Revision Strategy",
+            "description": "One-shot revision tables and exam-focused summaries for last minute preparation.",
+            "stat_1_val": "5 Min",
+            "stat_1_lbl": "Quick Sheets",
+            "stat_2_val": "IMP",
+            "stat_2_lbl": "Topic Focus",
+            "placeholder_icon": "table_rows",
+            "placeholder_text": "Revision Tables",
+            "hover_badge": "View Charts",
+            "btn_text": "Download Preview"
+          }
+        },
+        "exam": {
+          "type": "feature_card",
+          "settings": {
+            "use_dark_theme": false,
+            "icon": "assignment_turned_in",
+            "title": "Exam Oriented Content",
+            "description": "Previous year questions, important answers and university-focused preparation.",
+            "stat_1_val": "PYQs",
+            "stat_1_lbl": "Included",
+            "stat_2_val": "TOP",
+            "stat_2_lbl": "Most Asked",
+            "placeholder_icon": "quiz",
+            "placeholder_text": "Paper Samples",
+            "hover_badge": "Start Learning",
+            "btn_text": "Get Started"
+          }
+        }
+      },
+      "block_order": [
+        "visual",
+        "revision",
+        "exam"
+      ],
       "settings": {
-        "columns_desktop": 4
+        "columns_desktop": 3
       }
     },
     "bestsellers": {
