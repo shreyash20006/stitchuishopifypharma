@@ -435,5 +435,180 @@
         }
       })();
     </script>
+
+    <!-- TGPCOP Store Control Center (Floating Owner Tools) -->
+    {%- assign show_admin_controls = false -%}
+    {%- if request.design_mode or customer.tags contains 'admin' -%}
+      {%- assign show_admin_controls = true -%}
+    {%- endif -%}
+
+    <div id="tgpcop-admin-panel" class="fixed bottom-6 left-6 z-[9999] {% unless show_admin_controls %}hidden{% endunless %} font-sans">
+      <!-- Trigger Button -->
+      <button id="tgpcop-admin-btn" class="w-12 h-12 rounded-full bg-primary hover:scale-105 active:scale-95 text-white shadow-[0_10px_30px_rgba(0,0,0,0.15)] flex items-center justify-center relative border border-white/20 transition-all">
+        <span class="material-symbols-outlined text-[24px]">tune</span>
+        <span class="absolute -top-1.5 -right-1.5 bg-error text-white font-black text-[8px] px-1.5 py-0.5 rounded-full uppercase tracking-wider scale-75 border border-white">owner</span>
+      </button>
+
+      <!-- Glassmorphic Admin Console Menu -->
+      <div id="tgpcop-admin-console" class="absolute bottom-16 left-0 w-80 bg-white/95 dark:bg-[#0E1612]/95 backdrop-blur-xl rounded-[28px] border border-outline-variant shadow-[0_20px_50px_rgba(0,0,0,0.15)] p-6 space-y-5 hidden transition-all duration-300">
+        <div class="flex items-center justify-between pb-3 border-b border-outline-variant/30">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-[22px]">admin_panel_settings</span>
+            <span class="font-black text-xs text-on-surface uppercase tracking-wider">TGPCOP Owner Console</span>
+          </div>
+          <button id="tgpcop-admin-close" class="text-on-surface-variant hover:text-on-surface transition-colors flex items-center justify-center">
+            <span class="material-symbols-outlined text-lg">close</span>
+          </button>
+        </div>
+
+        <!-- Dynamic Context actions -->
+        <div class="space-y-2.5">
+          <p class="text-[9px] font-black uppercase tracking-widest text-on-surface-variant/40">Active View Options</p>
+          
+          {%- if template.name == 'product' -%}
+            <a href="/admin/products/{{ product.id }}" target="_blank" class="flex items-center justify-between p-3.5 rounded-2xl bg-primary/10 text-primary border border-primary/15 hover:bg-primary/15 transition-all group/item">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-xl">edit_square</span>
+                <span class="text-xs font-black">Edit Current Product</span>
+              </div>
+              <span class="material-symbols-outlined text-sm opacity-0 group-hover/item:opacity-100 transition-opacity">open_in_new</span>
+            </a>
+          {%- elsif template.name == 'collection' -%}
+            <a href="/admin/collections/{{ collection.id }}" target="_blank" class="flex items-center justify-between p-3.5 rounded-2xl bg-primary/10 text-primary border border-primary/15 hover:bg-primary/15 transition-all group/item">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-xl">category</span>
+                <span class="text-xs font-black">Edit Collection Details</span>
+              </div>
+              <span class="material-symbols-outlined text-sm opacity-0 group-hover/item:opacity-100 transition-opacity">open_in_new</span>
+            </a>
+          {%- elsif template.name == 'page' -%}
+            <a href="/admin/pages/{{ page.id }}" target="_blank" class="flex items-center justify-between p-3.5 rounded-2xl bg-primary/10 text-primary border border-primary/15 hover:bg-primary/15 transition-all group/item">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-xl">edit_document</span>
+                <span class="text-xs font-black">Edit Current Page</span>
+              </div>
+              <span class="material-symbols-outlined text-sm opacity-0 group-hover/item:opacity-100 transition-opacity">open_in_new</span>
+            </a>
+            <a href="/admin/pages/{{ page.id }}" target="_blank" class="flex items-center justify-between p-3.5 rounded-2xl bg-error/10 text-error border border-error/15 hover:bg-error/15 transition-all group/item">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-xl">delete_forever</span>
+                <span class="text-xs font-black">Delete Current Page</span>
+              </div>
+              <span class="material-symbols-outlined text-sm opacity-0 group-hover/item:opacity-100 transition-opacity">open_in_new</span>
+            </a>
+          {%- endif -%}
+
+          <!-- Global actions -->
+          <p class="text-[9px] font-black uppercase tracking-widest text-on-surface-variant/40 pt-2.5">Global Store Management</p>
+          
+          <a href="/admin/pages/new" target="_blank" class="flex items-center justify-between p-3.5 rounded-2xl bg-surface border border-outline-variant hover:border-primary/45 text-on-surface-variant hover:text-on-surface transition-all group/item">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-xl text-primary">add_circle</span>
+              <span class="text-xs font-black">Add New Page</span>
+            </div>
+            <span class="material-symbols-outlined text-sm opacity-0 group-hover/item:opacity-100 transition-opacity">open_in_new</span>
+          </a>
+
+          <a href="/admin/pages" target="_blank" class="flex items-center justify-between p-3.5 rounded-2xl bg-surface border border-outline-variant hover:border-primary/45 text-on-surface-variant hover:text-on-surface transition-all group/item">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-xl text-primary">article</span>
+              <span class="text-xs font-black">Manage & Delete Pages</span>
+            </div>
+            <span class="material-symbols-outlined text-sm opacity-0 group-hover/item:opacity-100 transition-opacity">open_in_new</span>
+          </a>
+
+          <a href="/admin/themes/current/editor" target="_blank" class="flex items-center justify-between p-3.5 rounded-2xl bg-surface border border-outline-variant hover:border-primary/45 text-on-surface-variant hover:text-on-surface transition-all group/item">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-xl text-primary">grid_view</span>
+              <span class="text-xs font-black">Theme Visual Customizer</span>
+            </div>
+            <span class="material-symbols-outlined text-sm opacity-0 group-hover/item:opacity-100 transition-opacity">open_in_new</span>
+          </a>
+
+          <a href="/admin/themes/current" target="_blank" class="flex items-center justify-between p-3.5 rounded-2xl bg-surface border border-outline-variant hover:border-primary/45 text-on-surface-variant hover:text-on-surface transition-all group/item">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-xl text-primary">code</span>
+              <span class="text-xs font-black">Open Edit Code Dashboard</span>
+            </div>
+            <span class="material-symbols-outlined text-sm opacity-0 group-hover/item:opacity-100 transition-opacity">open_in_new</span>
+          </a>
+        </div>
+
+        <div class="p-3 bg-surface-container rounded-2xl text-[9px] text-on-surface-variant leading-relaxed flex items-start gap-2.5">
+          <span class="material-symbols-outlined text-primary text-sm shrink-0">info</span>
+          <span>Access requires staff authorization. Use double-click logo or Ctrl+Shift+A on any storefront page to show/hide this panel.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TGPCOP Control Center Activation Script -->
+    <script>
+      (function() {
+        const adminPanel = document.getElementById('tgpcop-admin-panel');
+        const adminBtn = document.getElementById('tgpcop-admin-btn');
+        const adminConsole = document.getElementById('tgpcop-admin-console');
+        const adminClose = document.getElementById('tgpcop-admin-close');
+
+        if (!adminPanel) return;
+
+        // Force check for saved unlock state
+        const isUnlocked = localStorage.getItem('tgpcop_admin_unlocked') === 'true';
+        if (isUnlocked) {
+          adminPanel.classList.remove('hidden');
+        }
+
+        // Toggle Console Box
+        if (adminBtn) {
+          adminBtn.addEventListener('click', () => {
+            adminConsole.classList.toggle('hidden');
+            const icon = adminBtn.querySelector('.material-symbols-outlined');
+            if (icon) {
+              icon.style.transform = adminConsole.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(90deg)';
+              icon.style.transition = 'transform 0.3s ease';
+            }
+          });
+        }
+
+        if (adminClose) {
+          adminClose.addEventListener('click', () => {
+            adminConsole.classList.add('hidden');
+            const icon = adminBtn.querySelector('.material-symbols-outlined');
+            if (icon) icon.style.transform = 'rotate(0deg)';
+          });
+        }
+
+        // Keyboard Shortcut: Ctrl + Shift + A
+        document.addEventListener('keydown', (e) => {
+          if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+            e.preventDefault();
+            toggleAdminActivation();
+          }
+        });
+
+        // Logo Double Click Trigger
+        const headerLogo = document.querySelector('header img');
+        if (headerLogo) {
+          headerLogo.style.cursor = 'pointer';
+          headerLogo.addEventListener('dblclick', () => {
+            toggleAdminActivation();
+          });
+        }
+
+        function toggleAdminActivation() {
+          const currentlyUnlocked = localStorage.getItem('tgpcop_admin_unlocked') === 'true';
+          if (currentlyUnlocked) {
+            localStorage.removeItem('tgpcop_admin_unlocked');
+            adminPanel.classList.add('hidden');
+            adminConsole.classList.add('hidden');
+            console.log('🔒 TGPCOP Store Admin Toolbar Locked.');
+          } else {
+            localStorage.setItem('tgpcop_admin_unlocked', 'true');
+            adminPanel.classList.remove('hidden');
+            adminConsole.classList.remove('hidden');
+            console.log('🔓 TGPCOP Store Admin Toolbar Activated!');
+          }
+        }
+      })();
+    </script>
   </body>
 </html>
