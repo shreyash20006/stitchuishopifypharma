@@ -3,18 +3,56 @@
   Specially tailored to collect student academic information and redirect to Shopify Checkout.
 {%- endcomment -%}
 
-<section class="pt-24 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto min-h-[75vh]">
+<style>
+  #checkout-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+  #checkout-section-{{ section.id }} .text-primary, 
+  #checkout-section-{{ section.id }} .text-\[\#004429\] {
+    color: {{ section.settings.primary_brand_color }} !important;
+  }
+  #checkout-section-{{ section.id }} .bg-primary\/5,
+  #checkout-section-{{ section.id }} .bg-\[\#00442908\],
+  #checkout-section-{{ section.id }} .bg-\[\#00442906\] {
+    background-color: {{ section.settings.primary_brand_color }}10 !important;
+  }
+  #checkout-section-{{ section.id }} .bg-primary {
+    background-color: {{ section.settings.primary_brand_color }} !important;
+  }
+  #checkout-section-{{ section.id }} .border-primary,
+  #checkout-section-{{ section.id }} .border-\[\#00442915\] {
+    border-color: {{ section.settings.primary_brand_color }}30 !important;
+  }
+  #checkout-section-{{ section.id }} .border-primary {
+    border-color: {{ section.settings.primary_brand_color }} !important;
+  }
+  #checkout-section-{{ section.id }} .from-primary {
+    --tw-gradient-from: {{ section.settings.primary_brand_color }} !important;
+  }
+  #checkout-section-{{ section.id }} .to-\[\#005a36\] {
+    --tw-gradient-to: {{ section.settings.primary_brand_color }}dd !important;
+  }
+  #checkout-section-{{ section.id }} .course-pill.active-pill {
+    border-color: {{ section.settings.primary_brand_color }} !important;
+    background-color: {{ section.settings.primary_brand_color }}15 !important;
+    color: {{ section.settings.primary_brand_color }} !important;
+  }
+</style>
+
+<section id="checkout-section-{{ section.id }}" class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto min-h-[75vh]">
   <div class="flex flex-col gap-8">
     
     <!-- Title & Navigation -->
     <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-outline-variant pb-6 gap-4">
       <div>
-        <h1 class="text-4xl font-extrabold text-on-surface tracking-tight">Secure Checkout</h1>
-        <p class="text-on-surface-variant text-sm mt-1">Fill in your academic details to receive instant high-quality PDF resources.</p>
+        <h1 class="text-4xl font-extrabold text-on-surface tracking-tight">{{ section.settings.title }}</h1>
+        <p class="text-on-surface-variant text-sm mt-1">{{ section.settings.subtitle }}</p>
       </div>
       <a href="/cart" class="text-primary font-bold hover:underline flex items-center gap-2 self-start md:self-auto">
         <span class="material-symbols-outlined text-lg">arrow_back</span>
-        Return to Shopping Cart
+        {{ section.settings.back_to_cart_text }}
       </a>
     </div>
 
@@ -52,14 +90,14 @@
               <div class="flex items-center gap-3 border-b border-gray-100 pb-4">
                 <span class="material-symbols-outlined text-primary text-2xl font-bold">school</span>
                 <div>
-                  <h3 class="text-xl font-bold text-on-surface">1. Academic & Delivery Info</h3>
-                  <p class="text-xs text-on-surface-variant">We need this to instantly deliver and customize your study materials.</p>
+                  <h3 class="text-xl font-bold text-on-surface">{{ section.settings.step_1_header }}</h3>
+                  <p class="text-xs text-on-surface-variant">{{ section.settings.step_1_subtitle }}</p>
                 </div>
               </div>
 
               <!-- Full Name -->
               <div class="space-y-2 relative">
-                <label for="student-name" class="block text-sm font-bold text-on-surface">Full Name</label>
+                <label for="student-name" class="block text-sm font-bold text-on-surface">{{ section.settings.field_name_label }}</label>
                 <div class="relative">
                   <span class="material-symbols-outlined absolute left-4 top-3.5 text-gray-400 text-xl">person</span>
                   <input type="text" id="student-name" required placeholder="Shreyash Patil" 
@@ -71,7 +109,7 @@
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Email Address -->
                 <div class="space-y-2">
-                  <label for="student-email" class="block text-sm font-bold text-on-surface">Email Address (For PDF Delivery)</label>
+                  <label for="student-email" class="block text-sm font-bold text-on-surface">{{ section.settings.field_email_label }}</label>
                   <div class="relative">
                     <span class="material-symbols-outlined absolute left-4 top-3.5 text-gray-400 text-xl">mail</span>
                     <input type="email" id="student-email" required placeholder="student@example.com" 
@@ -81,7 +119,7 @@
 
                 <!-- Whatsapp Number -->
                 <div class="space-y-2">
-                  <label for="student-whatsapp" class="block text-sm font-bold text-on-surface">WhatsApp Number (For Support & Updates)</label>
+                  <label for="student-whatsapp" class="block text-sm font-bold text-on-surface">{{ section.settings.field_whatsapp_label }}</label>
                   <div class="relative">
                     <span class="fab fa-whatsapp absolute left-4 top-4 text-gray-400 text-xl"></span>
                     <input type="tel" id="student-whatsapp" required placeholder="9876543210" 
@@ -92,18 +130,24 @@
 
               <!-- Course / Stream Selection -->
               <div class="space-y-3">
-                <span class="block text-sm font-bold text-on-surface">Select Your Course</span>
-                <input type="hidden" id="student-course" value="B.Pharmacy">
+                <span class="block text-sm font-bold text-on-surface">{{ section.settings.course_label_text }}</span>
+                <input type="hidden" id="student-course" value="{{ section.settings.course_1_label }}">
                 <div class="grid grid-cols-3 gap-3">
-                  <button type="button" onclick="setCourse('B.Pharmacy', this)" class="course-pill py-3 px-4 rounded-2xl font-bold text-sm text-center border-2 border-primary bg-primary/5 text-primary transition-all shadow-sm">
-                    B.Pharmacy
-                  </button>
-                  <button type="button" onclick="setCourse('D.Pharmacy', this)" class="course-pill py-3 px-4 rounded-2xl font-bold text-sm text-center border-2 border-outline-variant text-on-surface-variant hover:border-primary hover:bg-primary/5 transition-all">
-                    D.Pharmacy
-                  </button>
-                  <button type="button" onclick="setCourse('GPAT Prep', this)" class="course-pill py-3 px-4 rounded-2xl font-bold text-sm text-center border-2 border-outline-variant text-on-surface-variant hover:border-primary hover:bg-primary/5 transition-all">
-                    GPAT Prep
-                  </button>
+                  {%- if section.settings.course_1_label != blank -%}
+                    <button type="button" onclick="setCourse('{{ section.settings.course_1_label }}', this)" class="course-pill py-3 px-4 rounded-2xl font-bold text-sm text-center border-2 border-primary bg-primary/5 text-primary transition-all shadow-sm active-pill">
+                      {{ section.settings.course_1_label }}
+                    </button>
+                  {%- endif -%}
+                  {%- if section.settings.course_2_label != blank -%}
+                    <button type="button" onclick="setCourse('{{ section.settings.course_2_label }}', this)" class="course-pill py-3 px-4 rounded-2xl font-bold text-sm text-center border-2 border-outline-variant text-on-surface-variant hover:border-primary hover:bg-primary/5 transition-all">
+                      {{ section.settings.course_2_label }}
+                    </button>
+                  {%- endif -%}
+                  {%- if section.settings.course_3_label != blank -%}
+                    <button type="button" onclick="setCourse('{{ section.settings.course_3_label }}', this)" class="course-pill py-3 px-4 rounded-2xl font-bold text-sm text-center border-2 border-outline-variant text-on-surface-variant hover:border-primary hover:bg-primary/5 transition-all">
+                      {{ section.settings.course_3_label }}
+                    </button>
+                  {%- endif -%}
                 </div>
               </div>
 
@@ -127,7 +171,7 @@
 
                 <!-- College Name -->
                 <div class="md:col-span-8 space-y-2">
-                  <label for="student-college" class="block text-sm font-bold text-on-surface">College / University Name</label>
+                  <label for="student-college" class="block text-sm font-bold text-on-surface">{{ section.settings.field_college_label }}</label>
                   <div class="relative">
                     <span class="material-symbols-outlined absolute left-4 top-3.5 text-gray-400 text-xl">account_balance</span>
                     <input type="text" id="student-college" required placeholder="TGP College of Pharmacy" 
@@ -158,8 +202,8 @@
                 <div class="flex items-center gap-3">
                   <span class="material-symbols-outlined text-primary text-2xl font-bold">verified_user</span>
                   <div>
-                    <h3 class="text-xl font-bold text-on-surface">2. Complete Your Purchase</h3>
-                    <p class="text-xs text-on-surface-variant">Your checkout is safe and encrypted.</p>
+                    <h3 class="text-xl font-bold text-on-surface">{{ section.settings.step_2_header }}</h3>
+                    <p class="text-xs text-on-surface-variant">{{ section.settings.step_2_subtitle }}</p>
                   </div>
                 </div>
                 <button type="button" onclick="goToStep1()" class="text-xs font-black text-primary bg-primary/5 hover:bg-primary/10 px-3 py-1.5 rounded-full transition-all flex items-center gap-1">
@@ -169,25 +213,25 @@
               </div>
 
               <!-- Student Details Preview Card -->
-              <div class="p-5 bg-[#00442906] border border-[#00442915] rounded-2xl space-y-3">
-                <h4 class="text-xs font-bold text-[#004429] uppercase tracking-wider">Verified Academic Profile</h4>
+              <div class="p-5 bg-primary/5 border border-[#00442915] rounded-2xl space-y-3">
+                <h4 class="text-xs font-bold text-primary uppercase tracking-wider">Verified Academic Profile</h4>
                 
                 <div class="grid grid-cols-2 gap-4 text-sm">
                   <div>
                     <span class="block text-[10px] text-gray-400 uppercase font-bold tracking-tight">Name</span>
-                    <span id="preview-name" class="font-bold text-[#141b2b]">-</span>
+                    <span id="preview-name" class="font-bold text-[#141b2b] dark:text-white">-</span>
                   </div>
                   <div>
                     <span class="block text-[10px] text-gray-400 uppercase font-bold tracking-tight">Delivery Email</span>
-                    <span id="preview-email" class="font-bold text-[#141b2b] break-all">-</span>
+                    <span id="preview-email" class="font-bold text-[#141b2b] dark:text-white break-all">-</span>
                   </div>
                   <div>
                     <span class="block text-[10px] text-gray-400 uppercase font-bold tracking-tight">WhatsApp / Course</span>
-                    <span id="preview-course" class="font-bold text-[#141b2b]">-</span>
+                    <span id="preview-course" class="font-bold text-[#141b2b] dark:text-white">-</span>
                   </div>
                   <div>
                     <span class="block text-[10px] text-gray-400 uppercase font-bold tracking-tight">College / University</span>
-                    <span id="preview-college" class="font-bold text-[#141b2b] line-clamp-1">-</span>
+                    <span id="preview-college" class="font-bold text-[#141b2b] dark:text-white line-clamp-1">-</span>
                   </div>
                 </div>
               </div>
@@ -206,23 +250,23 @@
                   </button>
                 </div>
                 <!-- Applied Alert -->
-                <div id="discount-status" class="hidden text-xs font-bold text-[#004429] flex items-center gap-1.5">
+                <div id="discount-status" class="hidden text-xs font-bold text-primary flex items-center gap-1.5">
                   <span class="material-symbols-outlined text-sm">check_circle</span>
                   <span>Discount code will be automatically applied at the payment page.</span>
                 </div>
               </div>
 
               <!-- Payment Gateways Logos -->
-              <div class="p-5 border border-gray-100 rounded-2xl space-y-4">
+              <div class="p-5 border border-gray-100 rounded-2xl space-y-4 bg-white/40">
                 <div class="flex items-center justify-between">
-                  <span class="text-sm font-bold text-on-surface">Accepted Secure Methods</span>
+                  <span class="text-sm font-bold text-on-surface">{{ section.settings.accepted_methods_headline }}</span>
                   <span class="text-[10px] font-black text-gray-400 uppercase flex items-center gap-1">
                     <span class="material-symbols-outlined text-sm text-green-500">lock_open</span>
                     SSL Encrypted
                   </span>
                 </div>
                 
-                <div class="grid grid-cols-4 gap-3 bg-gray-50 p-3 rounded-xl">
+                <div class="grid grid-cols-4 gap-3 bg-gray-50/50 p-3 rounded-xl">
                   <div class="bg-white p-2 rounded-lg border border-gray-200 flex items-center justify-center h-10 shadow-sm">
                     <img src="https://img.icons8.com/color/48/upi.png" class="h-5" alt="UPI">
                   </div>
@@ -238,7 +282,7 @@
                 </div>
                 
                 <p class="text-[10px] text-on-surface-variant/70 leading-relaxed text-center">
-                  Payments are powered by Shopify Secure. We support credit/debit cards, Netbanking, Google Pay, PhonePe, Paytm, and all Indian UPI handles.
+                  {{ section.settings.payment_note }}
                 </p>
               </div>
 
@@ -247,12 +291,12 @@
                 <button type="submit" id="checkout-submit-btn"
                   class="w-full py-5 bg-gradient-to-r from-primary to-[#005a36] text-white font-extrabold text-lg rounded-2xl hover:brightness-105 transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-3 active:scale-[0.98]">
                   <span class="material-symbols-outlined font-black">lock</span>
-                  <span id="btn-text">PAY & SECURELY DOWNLOAD</span>
+                  <span id="btn-text">{{ section.settings.submit_button_text }}</span>
                   <span id="btn-spinner" class="hidden animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full"></span>
                 </button>
                 
                 <p class="text-[10px] text-center text-on-surface-variant opacity-60">
-                  By clicking, you will be redirected to the secure gateway. Upon payment, you can instantly download the materials and a copy will be emailed.
+                  {{ section.settings.submit_note }}
                 </p>
               </div>
             </div>
@@ -263,15 +307,15 @@
         <!-- Right: Order Summary Sidebar (4 Cols) -->
         <div class="lg:col-span-5 xl:col-span-4 sticky top-28 space-y-6">
           
-          <div class="glass-card p-6 md:p-8 rounded-3xl border border-outline-variant shadow-xl bg-white space-y-6">
-            <h2 class="text-2xl font-extrabold text-on-surface tracking-tight border-b border-gray-100 pb-4">Order Summary</h2>
+          <div class="glass-card p-6 md:p-8 rounded-3xl border border-outline-variant shadow-xl bg-white dark:bg-[#0E1612] space-y-6">
+            <h2 class="text-2xl font-extrabold text-on-surface tracking-tight border-b border-gray-100 dark:border-gray-800 pb-4">{{ section.settings.summary_headline }}</h2>
             
             <!-- Cart Items Container -->
-            <div class="space-y-4 max-h-[300px] overflow-y-auto no-scrollbar pr-1 border-b border-gray-50 pb-5">
+            <div class="space-y-4 max-h-[300px] overflow-y-auto no-scrollbar pr-1 border-b border-gray-50 dark:border-gray-800 pb-5">
               {%- for item in cart.items -%}
                 <div class="flex gap-4 items-center">
                   <!-- Product Image / Cover -->
-                  <div class="w-16 h-22 bg-surface-container-low rounded-xl overflow-hidden border border-gray-100 flex-shrink-0 relative">
+                  <div class="w-16 h-22 bg-surface-container-low rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 flex-shrink-0 relative">
                     {%- if item.image -%}
                       <img src="{{ item.image | image_url: width: 150 }}" alt="{{ item.title }}" class="w-full h-full object-contain p-1.5">
                     {%- else -%}
@@ -332,32 +376,34 @@
             </div>
             
             <!-- Safe & Lifetime Updates Banner -->
-            <div class="p-4 bg-[#00442908] border border-[#00442915] rounded-2xl flex items-start gap-3">
-              <span class="material-symbols-outlined text-[#004429] mt-0.5">verified</span>
-              <div>
-                <h5 class="text-xs font-bold text-[#004429]">✓ PCI Syllabus & Free Updates</h5>
-                <p class="text-[10px] text-on-surface-variant/80 mt-0.5 leading-relaxed">
-                  All notes conform to PCI syllabus guidelines. Receive free textbook updates and curriculum revisions directly in your library inbox.
-                </p>
+            {%- if section.settings.syllabus_banner_title != blank -%}
+              <div class="p-4 bg-primary/5 border border-primary/10 rounded-2xl flex items-start gap-3">
+                <span class="material-symbols-outlined text-primary mt-0.5">verified</span>
+                <div>
+                  <h5 class="text-xs font-bold text-primary">{{ section.settings.syllabus_banner_title }}</h5>
+                  <p class="text-[10px] text-on-surface-variant/80 mt-0.5 leading-relaxed">
+                    {{ section.settings.syllabus_banner_description }}
+                  </p>
+                </div>
               </div>
-            </div>
+            {%- endif -%}
 
           </div>
 
           <!-- Checkout Security Badges -->
           <div class="glass-card p-6 rounded-2xl border border-outline-variant bg-white/40 text-center space-y-4">
-            <span class="text-xs font-black text-on-surface-variant/60 uppercase tracking-widest">Guaranteed Safe Checkout</span>
+            <span class="text-xs font-black text-on-surface-variant/60 uppercase tracking-widest">{{ section.settings.trust_headline }}</span>
             <div class="flex justify-center items-center gap-6 opacity-60">
               <div class="flex flex-col items-center gap-1.5">
                 <span class="material-symbols-outlined text-2xl text-primary">security</span>
                 <span class="text-[9px] font-bold text-on-surface-variant">SSL Secured</span>
               </div>
-              <div class="w-px h-8 bg-gray-200"></div>
+              <div class="w-px h-8 bg-gray-200 dark:bg-gray-800"></div>
               <div class="flex flex-col items-center gap-1.5">
                 <span class="material-symbols-outlined text-2xl text-primary">download</span>
                 <span class="text-[9px] font-bold text-on-surface-variant">Instant PDF</span>
               </div>
-              <div class="w-px h-8 bg-gray-200"></div>
+              <div class="w-px h-8 bg-gray-200 dark:bg-gray-800"></div>
               <div class="flex flex-col items-center gap-1.5">
                 <span class="material-symbols-outlined text-2xl text-primary">support_agent</span>
                 <span class="text-[9px] font-bold text-on-surface-variant">24/7 Chat</span>
@@ -397,14 +443,11 @@
     
     // Toggle active styles on buttons
     document.querySelectorAll('.course-pill').forEach(pill => {
-      pill.classList.remove('border-primary', 'bg-primary/5', 'text-primary');
-      pill.classList.add('border-outline-variant', 'text-on-surface-variant');
-      pill.classList.remove('shadow-sm');
+      pill.classList.remove('active-pill');
+      pill.className = "course-pill py-3 px-4 rounded-2xl font-bold text-sm text-center border-2 border-outline-variant text-on-surface-variant hover:border-primary hover:bg-primary/5 transition-all";
     });
     
-    element.classList.add('border-primary', 'bg-primary/5', 'text-primary');
-    element.classList.remove('border-outline-variant', 'text-on-surface-variant');
-    element.classList.add('shadow-sm');
+    element.className = "course-pill py-3 px-4 rounded-2xl font-bold text-sm text-center border-2 border-primary bg-primary/5 text-primary transition-all shadow-sm active-pill";
   }
 
   // Go to step 1
@@ -602,6 +645,197 @@
 {% schema %}
 {
   "name": "Main Checkout",
-  "settings": []
+  "settings": [
+    {
+      "type": "header",
+      "content": "Header & Titles"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Checkout Title",
+      "default": "Secure Checkout"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Checkout Subtitle",
+      "default": "Fill in your academic details to receive instant high-quality PDF resources."
+    },
+    {
+      "type": "text",
+      "id": "back_to_cart_text",
+      "label": "Back to Cart Link Text",
+      "default": "Return to Shopping Cart"
+    },
+    {
+      "type": "header",
+      "content": "Step 1: Student Information"
+    },
+    {
+      "type": "text",
+      "id": "step_1_header",
+      "label": "Step 1 Header",
+      "default": "1. Academic & Delivery Info"
+    },
+    {
+      "type": "text",
+      "id": "step_1_subtitle",
+      "label": "Step 1 Subtitle",
+      "default": "We need this to instantly deliver and customize your study materials."
+    },
+    {
+      "type": "text",
+      "id": "course_label_text",
+      "label": "Course Selection Headline",
+      "default": "Select Your Course"
+    },
+    {
+      "type": "text",
+      "id": "course_1_label",
+      "label": "Course 1 Label",
+      "default": "B.Pharmacy"
+    },
+    {
+      "type": "text",
+      "id": "course_2_label",
+      "label": "Course 2 Label",
+      "default": "D.Pharmacy"
+    },
+    {
+      "type": "text",
+      "id": "course_3_label",
+      "label": "Course 3 Label",
+      "default": "GPAT Prep"
+    },
+    {
+      "type": "text",
+      "id": "field_name_label",
+      "label": "Name Field Label",
+      "default": "Full Name"
+    },
+    {
+      "type": "text",
+      "id": "field_email_label",
+      "label": "Email Field Label",
+      "default": "Email Address (For PDF Delivery)"
+    },
+    {
+      "type": "text",
+      "id": "field_whatsapp_label",
+      "label": "WhatsApp Field Label",
+      "default": "WhatsApp Number (For Support & Updates)"
+    },
+    {
+      "type": "text",
+      "id": "field_college_label",
+      "label": "College Field Label",
+      "default": "College / University Name"
+    },
+    {
+      "type": "header",
+      "content": "Step 2: Payment & Promo Settings"
+    },
+    {
+      "type": "text",
+      "id": "step_2_header",
+      "label": "Step 2 Header",
+      "default": "2. Complete Your Purchase"
+    },
+    {
+      "type": "text",
+      "id": "step_2_subtitle",
+      "label": "Step 2 Subtitle",
+      "default": "Your checkout is safe and encrypted."
+    },
+    {
+      "type": "text",
+      "id": "accepted_methods_headline",
+      "label": "Payment Headline",
+      "default": "Accepted Secure Methods"
+    },
+    {
+      "type": "textarea",
+      "id": "payment_note",
+      "label": "Payment Security Note",
+      "default": "Payments are powered by Shopify Secure. We support credit/debit cards, Netbanking, Google Pay, PhonePe, Paytm, and all Indian UPI handles."
+    },
+    {
+      "type": "text",
+      "id": "submit_button_text",
+      "label": "Submit Button Label",
+      "default": "PAY & SECURELY DOWNLOAD"
+    },
+    {
+      "type": "textarea",
+      "id": "submit_note",
+      "label": "Submit Footer Note",
+      "default": "By clicking, you will be redirected to the secure gateway. Upon payment, you can instantly download the materials and a copy will be emailed."
+    },
+    {
+      "type": "header",
+      "content": "Order Summary & Sidebar"
+    },
+    {
+      "type": "text",
+      "id": "summary_headline",
+      "label": "Summary Headline",
+      "default": "Order Summary"
+    },
+    {
+      "type": "text",
+      "id": "syllabus_banner_title",
+      "label": "Syllabus Alert Headline",
+      "default": "✓ PCI Syllabus & Free Updates"
+    },
+    {
+      "type": "textarea",
+      "id": "syllabus_banner_description",
+      "label": "Syllabus Alert Text",
+      "default": "All notes conform to PCI syllabus guidelines. Receive free textbook updates and curriculum revisions directly in your library inbox."
+    },
+    {
+      "type": "text",
+      "id": "trust_headline",
+      "label": "Trust Headline",
+      "default": "Guaranteed Safe Checkout"
+    },
+    {
+      "type": "header",
+      "content": "Design & Spacing Layout"
+    },
+    {
+      "type": "color",
+      "id": "primary_brand_color",
+      "label": "Primary Highlight Color",
+      "default": "#004429"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background Color",
+      "default": "#F9FAFB"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    }
+  ]
 }
 {% endschema %}
