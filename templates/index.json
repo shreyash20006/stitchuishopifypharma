@@ -64,13 +64,6 @@
         "title": "National GPAT Alerts & Mnemonic Boards",
         "subtitle": "Real-time exam insights, syllabus updates, and daily pharmacy preparation challenges."
       }
-    },
-    "newsletter": {
-      "type": "newsletter-premium",
-      "settings": {
-        "heading": "Stay Updated with TGPCOP NOTES 📚",
-        "description": "Get latest B.Pharmacy notes, exam updates, GPAT materials, discounts & important PDF uploads directly in your inbox."
-      }
     }
   },
   "order": [
@@ -81,7 +74,6 @@
     "new_arrivals",
     "gpat_updates",
     "community",
-    "faq_testimonials",
-    "newsletter"
+    "faq_testimonials"
   ]
 }
