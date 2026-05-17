@@ -256,32 +256,97 @@
                 </div>
               </div>
 
-              <!-- Payment Gateways Logos -->
-              <div class="p-5 border border-gray-100 rounded-2xl space-y-4 bg-white/40">
-                <div class="flex items-center justify-between">
-                  <span class="text-sm font-bold text-on-surface">{{ section.settings.accepted_methods_headline }}</span>
-                  <span class="text-[10px] font-black text-gray-400 uppercase flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm text-green-500">lock_open</span>
-                    SSL Encrypted
+              <!-- Premium Payment Gateways Tab Switcher -->
+              <div class="p-6 border border-outline-variant/60 rounded-3xl space-y-5 bg-white/50 dark:bg-black/25 shadow-sm">
+                <div class="flex items-center justify-between border-b border-outline-variant/30 pb-3">
+                  <span class="text-sm font-black text-on-surface tracking-tight">{{ section.settings.accepted_methods_headline }}</span>
+                  <span class="text-[10px] font-black text-[#008a54] dark:text-[#00c878] uppercase flex items-center gap-1 bg-[#008a54]/5 dark:bg-[#00c878]/10 px-2 py-0.5 rounded-full border border-[#008a54]/10">
+                    <span class="material-symbols-outlined text-[12px] font-black">lock</span>
+                    PCI-DSS Compliant
                   </span>
                 </div>
-                
-                <div class="grid grid-cols-4 gap-3 bg-gray-50/50 p-3 rounded-xl">
-                  <div class="bg-white p-2 rounded-lg border border-gray-200 flex items-center justify-center h-10 shadow-sm">
-                    <img src="https://img.icons8.com/color/48/upi.png" class="h-5" alt="UPI">
+
+                <!-- Tab Headers -->
+                <div class="grid grid-cols-2 gap-2 p-1 bg-surface-container-low dark:bg-surface-container-low rounded-2xl border border-outline-variant/40">
+                  <button type="button" onclick="switchPaymentTab('upi', this)" class="payment-tab-btn py-2.5 px-4 rounded-xl font-extrabold text-xs text-center flex items-center justify-center gap-2 border-2 border-primary bg-white dark:bg-surface text-primary shadow-sm transition-all duration-300">
+                    <span class="material-symbols-outlined text-sm">qr_code_2</span>
+                    UPI / QR Code
+                  </button>
+                  <button type="button" onclick="switchPaymentTab('card', this)" class="payment-tab-btn py-2.5 px-4 rounded-xl font-extrabold text-xs text-center flex items-center justify-center gap-2 border border-transparent text-on-surface-variant hover:text-on-surface hover:bg-white/40 dark:hover:bg-surface/40 transition-all duration-300">
+                    <span class="material-symbols-outlined text-sm">credit_card</span>
+                    Cards & Netbanking
+                  </button>
+                </div>
+
+                <!-- Tab Content 1: UPI & Instant QR Pay -->
+                <div id="payment-tab-upi" class="space-y-4 transition-all duration-300">
+                  <div class="grid grid-cols-4 gap-2.5">
+                    <!-- PhonePe -->
+                    <div onclick="selectGateway('phonepe', this)" class="gateway-card bg-white dark:bg-surface border-2 border-primary/20 hover:border-primary p-2.5 rounded-2xl flex flex-col items-center justify-center h-16 shadow-sm hover:scale-[1.03] active:scale-95 cursor-pointer relative transition-all duration-200 active-gateway">
+                      <img src="https://img.icons8.com/color/48/phonepe.png" class="h-6 object-contain" alt="PhonePe">
+                      <span class="text-[8px] font-black text-on-surface-variant mt-1.5 uppercase">PhonePe</span>
+                      <span class="gateway-check absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-primary text-white flex items-center justify-center text-[8px] font-black border border-white">✓</span>
+                    </div>
+                    <!-- Google Pay -->
+                    <div onclick="selectGateway('gpay', this)" class="gateway-card bg-white dark:bg-surface border border-outline-variant hover:border-primary p-2.5 rounded-2xl flex flex-col items-center justify-center h-16 shadow-sm hover:scale-[1.03] active:scale-95 cursor-pointer relative transition-all duration-200">
+                      <img src="https://img.icons8.com/color/48/google-pay.png" class="h-6 object-contain" alt="Google Pay">
+                      <span class="text-[8px] font-black text-on-surface-variant mt-1.5 uppercase">G-Pay</span>
+                      <span class="gateway-check absolute top-1 right-1.5 w-3.5 h-3.5 rounded-full bg-primary text-white flex items-center justify-center text-[8px] font-black border border-white hidden">✓</span>
+                    </div>
+                    <!-- Paytm -->
+                    <div onclick="selectGateway('paytm', this)" class="gateway-card bg-white dark:bg-surface border border-outline-variant hover:border-primary p-2.5 rounded-2xl flex flex-col items-center justify-center h-16 shadow-sm hover:scale-[1.03] active:scale-95 cursor-pointer relative transition-all duration-200">
+                      <img src="https://img.icons8.com/color/48/paytm.png" class="h-5 object-contain" alt="Paytm">
+                      <span class="text-[8px] font-black text-on-surface-variant mt-2.5 uppercase">Paytm</span>
+                      <span class="gateway-check absolute top-1 right-1.5 w-3.5 h-3.5 rounded-full bg-primary text-white flex items-center justify-center text-[8px] font-black border border-white hidden">✓</span>
+                    </div>
+                    <!-- Generic UPI QR -->
+                    <div onclick="selectGateway('upi_qr', this)" class="gateway-card bg-white dark:bg-surface border border-outline-variant hover:border-primary p-2.5 rounded-2xl flex flex-col items-center justify-center h-16 shadow-sm hover:scale-[1.03] active:scale-95 cursor-pointer relative transition-all duration-200">
+                      <img src="https://img.icons8.com/color/48/upi.png" class="h-4 object-contain" alt="UPI QR">
+                      <span class="text-[8px] font-black text-on-surface-variant mt-3.5 uppercase">UPI QR</span>
+                      <span class="gateway-check absolute top-1 right-1.5 w-3.5 h-3.5 rounded-full bg-primary text-white flex items-center justify-center text-[8px] font-black border border-white hidden">✓</span>
+                    </div>
                   </div>
-                  <div class="bg-white p-2 rounded-lg border border-gray-200 flex items-center justify-center h-10 shadow-sm">
-                    <img src="https://img.icons8.com/color/48/visa.png" class="h-5" alt="Visa">
-                  </div>
-                  <div class="bg-white p-2 rounded-lg border border-gray-200 flex items-center justify-center h-10 shadow-sm">
-                    <img src="https://img.icons8.com/color/48/mastercard.png" class="h-5" alt="Mastercard">
-                  </div>
-                  <div class="bg-white p-2 rounded-lg border border-gray-200 flex items-center justify-center h-10 shadow-sm">
-                    <img src="https://img.icons8.com/color/48/google-pay.png" class="h-6" alt="GPay">
+                  
+                  <div class="p-3.5 bg-primary/5 rounded-2xl border border-primary/10 flex items-start gap-2.5">
+                    <span class="material-symbols-outlined text-primary text-sm font-black mt-0.5">bolt</span>
+                    <p id="gateway-hint-text" class="text-[10px] text-on-surface-variant/90 font-bold leading-relaxed">
+                      ⚡ Pay instantly via your PhonePe UPI handle. Simply keep your PhonePe app open on your phone or enter your UPI ID.
+                    </p>
                   </div>
                 </div>
-                
-                <p class="text-[10px] text-on-surface-variant/70 leading-relaxed text-center">
+
+                <!-- Tab Content 2: Cards & Netbanking -->
+                <div id="payment-tab-card" class="space-y-4 hidden transition-all duration-300">
+                  <div class="grid grid-cols-3 gap-2.5">
+                    <!-- Cards -->
+                    <div class="bg-white dark:bg-surface border border-outline-variant/60 p-2.5 rounded-2xl flex flex-col items-center justify-center h-16 shadow-sm hover:scale-[1.03] transition-all">
+                      <div class="flex items-center gap-1 justify-center">
+                        <img src="https://img.icons8.com/color/48/visa.png" class="h-3.5 object-contain" alt="Visa">
+                        <img src="https://img.icons8.com/color/48/mastercard.png" class="h-3.5 object-contain" alt="Mastercard">
+                      </div>
+                      <span class="text-[8px] font-black text-on-surface-variant mt-2 uppercase">Debit / Credit</span>
+                    </div>
+                    <!-- Netbanking -->
+                    <div class="bg-white dark:bg-surface border border-outline-variant/60 p-2.5 rounded-2xl flex flex-col items-center justify-center h-16 shadow-sm hover:scale-[1.03] transition-all">
+                      <span class="material-symbols-outlined text-gray-500 text-lg">account_balance</span>
+                      <span class="text-[8px] font-black text-on-surface-variant mt-1.5 uppercase">Netbanking</span>
+                    </div>
+                    <!-- RuPay -->
+                    <div class="bg-white dark:bg-surface border border-outline-variant/60 p-2.5 rounded-2xl flex flex-col items-center justify-center h-16 shadow-sm hover:scale-[1.03] transition-all">
+                      <img src="https://img.icons8.com/color/48/rupay.png" class="h-3 object-contain" alt="RuPay">
+                      <span class="text-[8px] font-black text-on-surface-variant mt-2 uppercase">RuPay / Debit</span>
+                    </div>
+                  </div>
+                  
+                  <div class="p-3.5 bg-primary/5 rounded-2xl border border-primary/10 flex items-start gap-2.5">
+                    <span class="material-symbols-outlined text-primary text-sm font-black mt-0.5">security</span>
+                    <p class="text-[10px] text-on-surface-variant/90 font-bold leading-relaxed">
+                      🔒 Payments are securely managed by Shopify Payments using standard 256-bit Secure Socket Layer encryption technology.
+                    </p>
+                  </div>
+                </div>
+
+                <p class="text-[9px] text-on-surface-variant/50 leading-relaxed text-center">
                   {{ section.settings.payment_note }}
                 </p>
               </div>
@@ -638,8 +703,56 @@
       let fallbackUrl = '/checkout';
       if (discount) fallbackUrl += '?discount=' + encodeURIComponent(discount);
       window.location.href = fallbackUrl;
-    });
   });
+
+  // Switch between UPI and Card tabs
+  function switchPaymentTab(tabName, element) {
+    // Tabs container visibility
+    const upiContent = document.getElementById('payment-tab-upi');
+    const cardContent = document.getElementById('payment-tab-card');
+    
+    if (tabName === 'upi') {
+      upiContent.classList.remove('hidden');
+      cardContent.classList.add('hidden');
+    } else {
+      upiContent.classList.add('hidden');
+      cardContent.classList.remove('hidden');
+    }
+    
+    // Manage button states
+    document.querySelectorAll('.payment-tab-btn').forEach(btn => {
+      btn.className = "payment-tab-btn py-2.5 px-4 rounded-xl font-extrabold text-xs text-center flex items-center justify-center gap-2 border border-transparent text-on-surface-variant hover:text-on-surface hover:bg-white/40 dark:hover:bg-surface/40 transition-all duration-300";
+    });
+    
+    element.className = "payment-tab-btn py-2.5 px-4 rounded-xl font-extrabold text-xs text-center flex items-center justify-center gap-2 border-2 border-primary bg-white dark:bg-surface text-primary shadow-sm transition-all duration-300";
+  }
+
+  // Select a specific gateway option and update hint message
+  function selectGateway(gatewayName, element) {
+    // Clear all active gateway cards
+    document.querySelectorAll('.gateway-card').forEach(card => {
+      card.classList.remove('border-primary', 'bg-primary/5', 'active-gateway');
+      card.classList.add('border-outline-variant');
+      card.querySelector('.gateway-check').classList.add('hidden');
+    });
+    
+    // Activate clicked card
+    element.classList.remove('border-outline-variant');
+    element.classList.add('border-primary', 'bg-primary/5', 'active-gateway');
+    element.querySelector('.gateway-check').classList.remove('hidden');
+    
+    // Dynamic text hints
+    const hintText = document.getElementById('gateway-hint-text');
+    if (gatewayName === 'phonepe') {
+      hintText.innerHTML = "⚡ Pay instantly via your PhonePe UPI handle. Simply keep your PhonePe app open on your phone or enter your PhonePe mobile number.";
+    } else if (gatewayName === 'gpay') {
+      hintText.innerHTML = "⚡ Quick redirection to Google Pay. Verify with your fingerprint/PIN on mobile, or pay securely using your Google Wallet profile.";
+    } else if (gatewayName === 'paytm') {
+      hintText.innerHTML = "⚡ Complete checkout with Paytm Wallet, Net Banking, or secure UPI. Instant status sync upon payment validation.";
+    } else if (gatewayName === 'upi_qr') {
+      hintText.innerHTML = "⚡ A custom dynamic QR Code will be loaded on the checkout page. Scan with ANY UPI app (BHIM, PhonePe, Paytm, Google Pay, Mobikwik, etc.) to complete payment instantly.";
+    }
+  }
 </script>
 
 {% schema %}
