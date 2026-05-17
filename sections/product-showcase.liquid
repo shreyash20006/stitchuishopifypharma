@@ -18,19 +18,32 @@
     </div>
 
     <div class="product-slider flex gap-8 overflow-x-auto pb-12 snap-x no-scrollbar -mx-4 px-4">
+      {%- assign products_rendered = 0 -%}
       {%- if section.blocks.size > 0 -%}
         {%- for block in section.blocks -%}
           {%- if block.settings.product != blank -%}
             <div class="min-w-[280px] md:min-w-[340px] lg:min-w-[380px] snap-start" {{ block.shopify_attributes }}>
               {% render 'product-card', product: block.settings.product %}
             </div>
+            {%- assign products_rendered = products_rendered | plus: 1 -%}
           {%- endif -%}
         {%- endfor -%}
-      {%- else -%}
-        <!-- Empty state placeholder -->
-        {%- for i in (1..4) -%}
-          <div class="min-w-[300px] aspect-[3/4] bg-gray-100 rounded-[40px] animate-pulse"></div>
-        {%- endfor -%}
+      {%- endif -%}
+
+      {%- if products_rendered == 0 -%}
+        <!-- Fallback: Automatically render actual products if no blocks are manually selected -->
+        {%- if collections.all.products_count > 0 -%}
+          {%- for product in collections.all.products limit: 8 -%}
+            <div class="min-w-[280px] md:min-w-[340px] lg:min-w-[380px] snap-start">
+              {% render 'product-card', product: product %}
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          <!-- Empty state placeholder -->
+          {%- for i in (1..4) -%}
+            <div class="min-w-[300px] aspect-[3/4] bg-gray-100 rounded-[40px] animate-pulse"></div>
+          {%- endfor -%}
+        {%- endif -%}
       {%- endif -%}
     </div>
     
