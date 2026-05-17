@@ -1,17 +1,66 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
       "type": "product-branded",
-      "settings": {}
+      "settings": {},
+      "blocks": {
+        "badge": {
+          "type": "badge",
+          "settings": {
+            "badge_text": "PCI New Syllabus"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "trust_card": {
+          "type": "trust_card",
+          "settings": {
+            "title": "Verified Academic Content",
+            "text": "Instant PDF delivery. Access your notes immediately after payment."
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "cart_btn_text": "ADD TO CART",
+            "show_checkout_btn": true,
+            "checkout_btn_text": "BUY IT NOW",
+            "show_rating_badge": true
+          }
+        },
+        "features": {
+          "type": "features",
+          "settings": {
+            "feature_1": "PCI Syllabus Aligned (Latest 2024)",
+            "feature_2": "Hand-drawn Mechanism Diagrams",
+            "feature_3": "GPAT Focused Quick-Recall Points"
+          }
+        },
+        "judgeme_widget": {
+          "type": "judgeme_widget",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "badge",
+        "title",
+        "price",
+        "trust_card",
+        "description",
+        "buy_buttons",
+        "features",
+        "judgeme_widget"
+      ]
     },
     "1778877851f5c4afd6": {
       "type": "apps",

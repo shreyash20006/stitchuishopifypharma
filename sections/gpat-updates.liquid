@@ -1,0 +1,258 @@
+<section class="py-24 transition-all duration-300" style="background-color: {{ section.settings.bg_color | default: '#ffffff' }};">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+      <div class="space-y-4 max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider bg-primary/10 text-primary">
+          <span class="material-symbols-outlined text-sm">notifications_active</span>
+          {{ section.settings.badge_text | default: "GPAT 2026 PREPARATION" }}
+        </div>
+        <h2 class="text-3xl md:text-5xl font-black text-on-background tracking-tight">
+          {{ section.settings.title | default: "National GPAT Alerts & Mnemonic Boards" }}
+        </h2>
+        <p class="text-on-surface-variant font-medium text-lg max-w-xl">
+          {{ section.settings.subtitle | default: "Real-time exam insights, syllabus updates, and daily pharmacy preparation challenges." }}
+        </p>
+      </div>
+      {%- if section.settings.btn_link != blank -%}
+        <a href="{{ section.settings.btn_link }}" class="px-8 py-4 bg-primary text-white font-bold rounded-2xl shadow-lg hover:scale-105 transition-transform shrink-0 w-fit">
+          {{ section.settings.btn_text | default: "View GPAT Notes" }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          
+          {%- when 'update_card' -%}
+            <div class="glass-card p-8 rounded-[32px] border border-outline-variant hover:border-primary/20 hover:shadow-2xl transition-all duration-500 group flex flex-col justify-between" {{ block.shopify_attributes }}>
+              <div class="space-y-6">
+                <span class="inline-block px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider text-primary bg-primary/10">
+                  {{ block.settings.category | default: "Exam Update" }}
+                </span>
+                <h4 class="text-2xl font-black text-on-surface tracking-tight group-hover:text-primary transition-colors">
+                  {{ block.settings.title }}
+                </h4>
+                <p class="text-on-surface-variant leading-relaxed text-sm">
+                  {{ block.settings.description }}
+                </p>
+              </div>
+              
+              {%- if block.settings.link_url != blank -%}
+                <div class="pt-8 mt-auto">
+                  <a href="{{ block.settings.link_url }}" class="text-sm font-black text-primary hover:text-primary/80 transition-colors flex items-center gap-2 group/btn">
+                    {{ block.settings.link_text | default: "Read syllabus bulletin" }}
+                    <span class="material-symbols-outlined text-lg transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
+                  </a>
+                </div>
+              {%- endif -%}
+            </div>
+
+          {%- when 'mcq_card' -%}
+            <div class="glass-card p-8 rounded-[32px] border border-outline-variant hover:border-primary/20 hover:shadow-2xl transition-all duration-500 flex flex-col justify-between relative overflow-hidden" {{ block.shopify_attributes }}>
+              <div class="space-y-6">
+                <div class="flex items-center justify-between">
+                  <span class="px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider text-error bg-error/10">
+                    {{ block.settings.category | default: "Daily Challenge" }}
+                  </span>
+                  <span class="material-symbols-outlined text-[#EAB308]" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+                </div>
+                
+                <h4 class="text-lg font-black text-on-surface tracking-tight leading-snug">
+                  {{ block.settings.question }}
+                </h4>
+                
+                <div class="space-y-3 pt-2">
+                  <button class="w-full text-left p-3.5 rounded-xl border border-outline-variant hover:border-primary/20 hover:bg-primary/5 transition-all text-xs font-bold flex items-center gap-3 text-on-surface-variant" onclick="alert('Correct Answer is Option {{ block.settings.correct_option }}! Explanation: {{ block.settings.explanation | escape }}')">
+                    <span class="w-6 h-6 flex items-center justify-center rounded-lg bg-surface-container font-black text-[10px]">A</span>
+                    {{ block.settings.option_a }}
+                  </button>
+                  <button class="w-full text-left p-3.5 rounded-xl border border-outline-variant hover:border-primary/20 hover:bg-primary/5 transition-all text-xs font-bold flex items-center gap-3 text-on-surface-variant" onclick="alert('Correct Answer is Option {{ block.settings.correct_option }}! Explanation: {{ block.settings.explanation | escape }}')">
+                    <span class="w-6 h-6 flex items-center justify-center rounded-lg bg-surface-container font-black text-[10px]">B</span>
+                    {{ block.settings.option_b }}
+                  </button>
+                  <button class="w-full text-left p-3.5 rounded-xl border border-outline-variant hover:border-primary/20 hover:bg-primary/5 transition-all text-xs font-bold flex items-center gap-3 text-on-surface-variant" onclick="alert('Correct Answer is Option {{ block.settings.correct_option }}! Explanation: {{ block.settings.explanation | escape }}')">
+                    <span class="w-6 h-6 flex items-center justify-center rounded-lg bg-surface-container font-black text-[10px]">C</span>
+                    {{ block.settings.option_c }}
+                  </button>
+                  <button class="w-full text-left p-3.5 rounded-xl border border-outline-variant hover:border-primary/20 hover:bg-primary/5 transition-all text-xs font-bold flex items-center gap-3 text-on-surface-variant" onclick="alert('Correct Answer is Option {{ block.settings.correct_option }}! Explanation: {{ block.settings.explanation | escape }}')">
+                    <span class="w-6 h-6 flex items-center justify-center rounded-lg bg-surface-container font-black text-[10px]">D</span>
+                    {{ block.settings.option_d }}
+                  </button>
+                </div>
+              </div>
+              
+              <div class="pt-6 border-t border-outline-variant/40 mt-6 flex justify-between items-center text-[10px] uppercase font-black tracking-wider text-on-surface-variant/40">
+                <span>Tap any option to solve</span>
+                <span class="text-primary hover:underline cursor-pointer" onclick="alert('Correct Answer is Option {{ block.settings.correct_option }}! Explanation: {{ block.settings.explanation | escape }}')">Show Explanation</span>
+              </div>
+            </div>
+
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "GPAT & Study Updates",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Section Badge",
+      "default": "GPAT 2026 PREPARATION"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "National GPAT Alerts & Mnemonic Boards"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Real-time exam insights, syllabus updates, and daily pharmacy preparation challenges."
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Label",
+      "default": "View GPAT Notes"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "update_card",
+      "name": "Syllabus & News Alert",
+      "settings": [
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category Tag",
+          "default": "Exam Update"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Alert Title",
+          "default": "GPAT 2026 Expected Timeline & Dates"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "NTA is expected to announce registrations in Jan 2026. Keep your Semester files and transcripts updated. Read the full compliance guidelines here."
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Title",
+          "default": "Read syllabus bulletin"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        }
+      ]
+    },
+    {
+      "type": "mcq_card",
+      "name": "Daily MCQ Challenge",
+      "settings": [
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Difficulty Tag",
+          "default": "High-Yield MCQ"
+        },
+        {
+          "type": "textarea",
+          "id": "question",
+          "label": "MCQ Question Text",
+          "default": "Which of the following is a competitive neuromuscular blocking drug?"
+        },
+        {
+          "type": "text",
+          "id": "option_a",
+          "label": "Option A",
+          "default": "Succinylcholine"
+        },
+        {
+          "type": "text",
+          "id": "option_b",
+          "label": "Option B",
+          "default": "Pancuronium"
+        },
+        {
+          "type": "text",
+          "id": "option_c",
+          "label": "Option C",
+          "default": "Neostigmine"
+        },
+        {
+          "type": "text",
+          "id": "option_d",
+          "label": "Option D",
+          "default": "Decamethonium"
+        },
+        {
+          "type": "select",
+          "id": "correct_option",
+          "label": "Correct Option Letter",
+          "options": [
+            { "value": "A", "label": "A" },
+            { "value": "B", "label": "B" },
+            { "value": "C", "label": "C" },
+            { "value": "D", "label": "D" }
+          ],
+          "default": "B"
+        },
+        {
+          "type": "textarea",
+          "id": "explanation",
+          "label": "Explanation Message",
+          "default": "Pancuronium is a long-acting non-depolarizing (competitive) blocker, whereas succinylcholine is a depolarizing neuromuscular blocker."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "GPAT & Study Updates",
+      "blocks": [
+        {
+          "type": "update_card",
+          "settings": {
+            "category": "GPAT Mnemonics",
+            "title": "Easy Way to Remember Cephalosporin Generations",
+            "description": "First generation have 'fa/pha' in name (except Cefaclor, Cefamandole). Use our specialized GPAT revision card to master all 5 generations instantly."
+          }
+        },
+        {
+          "type": "mcq_card",
+          "settings": {
+            "question": "Which receptor blocker acts as a secondary messenger via cAMP reduction?"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

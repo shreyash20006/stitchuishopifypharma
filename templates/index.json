@@ -49,6 +49,14 @@
         "testimonial_title": "Student Success Stories"
       }
     },
+    "gpat_updates": {
+      "type": "gpat-updates",
+      "settings": {
+        "badge_text": "GPAT 2026 PREPARATION",
+        "title": "National GPAT Alerts & Mnemonic Boards",
+        "subtitle": "Real-time exam insights, syllabus updates, and daily pharmacy preparation challenges."
+      }
+    },
     "newsletter": {
       "type": "newsletter-premium",
       "settings": {
@@ -63,6 +71,7 @@
     "why_us",
     "bestsellers",
     "new_arrivals",
+    "gpat_updates",
     "community",
     "faq_testimonials",
     "newsletter"

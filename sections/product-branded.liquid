@@ -1,4 +1,4 @@
-<main class="pt-24 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<main class="pt-24 pb-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto transition-all duration-300">
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
     <!-- Image Gallery -->
     <div class="lg:col-span-7 space-y-6">
@@ -14,9 +14,118 @@
       </div>
     </div>
 
-    <!-- Product Info -->
+    <!-- Product Info Column -->
     <div class="lg:col-span-5 space-y-8 sticky top-24 h-fit">
-      <div class="space-y-4">
+      
+      {%- if section.blocks.size > 0 -%}
+        
+        {%- for block in section.blocks -%}
+          <div class="product-block product-block--{{ block.type }}" {{ block.shopify_attributes }}>
+            {%- case block.type -%}
+              
+              {%- when '@app' -%}
+                {% render block %}
+
+              {%- when 'badge' -%}
+                {%- if block.settings.badge_text != blank -%}
+                  <div class="flex items-center gap-4">
+                    <span class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest"
+                          style="background-color: {{ block.settings.badge_bg | default: '#0B5D3B' }}15; color: {{ block.settings.badge_color | default: '#0B5D3B' }};">
+                      {{ block.settings.badge_text }}
+                    </span>
+                  </div>
+                {%- endif -%}
+
+              {%- when 'title' -%}
+                <h1 class="text-4xl md:text-5xl font-bold text-on-surface leading-tight tracking-tight">{{ product.title }}</h1>
+
+              {%- when 'price' -%}
+                <div class="flex items-end gap-4">
+                  <span class="text-3xl font-bold text-primary">{{ product.price | money }}</span>
+                  {%- if product.compare_at_price > product.price -%}
+                    <span class="text-xl text-on-surface-variant line-through mb-1">{{ product.compare_at_price | money }}</span>
+                    <span class="bg-error/10 text-error px-3 py-1 rounded-lg text-sm font-bold mb-1">Save {{ product.compare_at_price | minus: product.price | money }}</span>
+                  {%- endif -%}
+                </div>
+
+              {%- when 'trust_card' -%}
+                <div class="flex items-start gap-4 p-5 rounded-2xl bg-primary/5 border border-primary/10">
+                  <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">{{ block.settings.icon | default: 'verified' }}</span>
+                  <div>
+                    <p class="font-bold text-sm text-on-surface">{{ block.settings.title | default: 'Verified Academic Content' }}</p>
+                    <p class="text-sm text-on-surface-variant">{{ block.settings.text | default: 'Instant PDF delivery. Access your notes immediately after payment.' }}</p>
+                  </div>
+                </div>
+
+              {%- when 'description' -%}
+                <div class="prose max-w-none text-lg text-on-surface-variant leading-relaxed">
+                  {{ product.description }}
+                </div>
+
+              {%- when 'buy_buttons' -%}
+                <div class="space-y-4 pt-2">
+                  <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" class="space-y-4">
+                    <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                    <input type="hidden" name="quantity" value="1">
+                    
+                    <button type="submit" class="w-full py-4 rounded-xl bg-primary text-white font-bold hover:bg-primary/90 transition-all shadow-lg flex items-center justify-center gap-2">
+                      <span class="material-symbols-outlined">shopping_cart</span>
+                      {{ block.settings.cart_btn_text | default: 'ADD TO CART' }} - {{ product.price | money }}
+                    </button>
+                    
+                    {%- if block.settings.show_checkout_btn -%}
+                      <button type="submit" name="checkout" class="w-full py-4 rounded-xl bg-white border-2 border-primary text-primary font-bold hover:bg-primary/5 transition-all">
+                        {{ block.settings.checkout_btn_text | default: 'BUY IT NOW' }}
+                      </button>
+                    {%- endif -%}
+                  </form>
+                  
+                  {%- if block.settings.show_rating_badge -%}
+                    <!-- Judge.me Star Rating Badge -->
+                    <div class="pt-4 flex justify-center md:justify-start">
+                      <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'> 
+                        {{ product.metafields.judgeme.badge }} 
+                      </div> 
+                    </div>
+                  {%- endif -%}
+                </div>
+
+              {%- when 'features' -%}
+                <div class="pt-6 space-y-4 border-t border-outline-variant">
+                  {%- if block.settings.feature_1 != blank -%}
+                    <div class="flex items-center gap-3">
+                      <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                      <span class="text-sm text-on-surface-variant">{{ block.settings.feature_1 }}</span>
+                    </div>
+                  {%- endif -%}
+                  {%- if block.settings.feature_2 != blank -%}
+                    <div class="flex items-center gap-3">
+                      <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                      <span class="text-sm text-on-surface-variant">{{ block.settings.feature_2 }}</span>
+                    </div>
+                  {%- endif -%}
+                  {%- if block.settings.feature_3 != blank -%}
+                    <div class="flex items-center gap-3">
+                      <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                      <span class="text-sm text-on-surface-variant">{{ block.settings.feature_3 }}</span>
+                    </div>
+                  {%- endif -%}
+                </div>
+
+              {%- when 'judgeme_widget' -%}
+                <div class="pt-6 border-t border-outline-variant">
+                  <div id='judgeme_product_reviews' class='jdgm-widget jdgm-review-widget' data-id='{{ product.id }}' data-auto-install='false'>
+                    {{ product.metafields.judgeme.widget }}
+                  </div>
+                </div>
+
+            {%- endcase -%}
+          </div>
+        {%- endfor -%}
+
+      {%- else -%}
+        
+        <!-- Standard Fallback Layout (If no blocks configured yet) -->
         <div class="flex items-center gap-4">
           <span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">PCI New Syllabus</span>
         </div>
@@ -28,74 +137,66 @@
             <span class="bg-error/10 text-error px-3 py-1 rounded-lg text-sm font-bold mb-1">Save {{ product.compare_at_price | minus: product.price | money }}</span>
           {%- endif -%}
         </div>
-      </div>
 
-      <div class="flex items-start gap-4 p-4 rounded-2xl bg-primary/5 border border-primary/10">
-        <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
-        <div>
-          <p class="font-bold text-sm text-on-surface">Verified Academic Content</p>
-          <p class="text-sm text-on-surface-variant">Instant PDF delivery. Access your notes immediately after payment.</p>
+        <div class="flex items-start gap-4 p-4 rounded-2xl bg-primary/5 border border-primary/10">
+          <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+          <div>
+            <p class="font-bold text-sm text-on-surface">Verified Academic Content</p>
+            <p class="text-sm text-on-surface-variant">Instant PDF delivery. Access your notes immediately after payment.</p>
+          </div>
         </div>
-      </div>
 
-      <p class="text-lg text-on-surface-variant leading-relaxed">
-        {{ product.description }}
-      </p>
+        <p class="text-lg text-on-surface-variant leading-relaxed">
+          {{ product.description }}
+        </p>
 
-      <!-- Judge.me Review Widget (Inside Block) -->
-      <div class="pt-4 border-t border-outline-variant">
-        <!-- Start of Judge.me code (Widget) -->
-        <div id='judgeme_product_reviews' class='jdgm-widget jdgm-review-widget' data-id='{{ product.id }}' data-auto-install='false'>
-          {{ product.metafields.judgeme.widget }}
-        </div>
-        <!-- End of Judge.me code -->
-      </div>
-
-      <div class="space-y-4 pt-6">
-        <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" class="space-y-4">
-          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-          <input type="hidden" name="quantity" value="1">
+        <div class="space-y-4 pt-6">
+          <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" class="space-y-4">
+            <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+            <input type="hidden" name="quantity" value="1">
+            
+            <button type="submit" class="w-full py-4 rounded-xl bg-primary text-white font-bold hover:bg-primary/90 transition-all shadow-lg flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined">shopping_cart</span>
+              ADD TO CART - {{ product.price | money }}
+            </button>
+            
+            <button type="submit" name="checkout" class="w-full py-4 rounded-xl bg-white border-2 border-primary text-primary font-bold hover:bg-primary/5 transition-all">
+              BUY IT NOW
+            </button>
+          </form>
           
-          <button type="submit" class="w-full py-4 rounded-xl bg-primary text-white font-bold hover:bg-primary/90 transition-all shadow-lg flex items-center justify-center gap-2">
-            <span class="material-symbols-outlined">shopping_cart</span>
-            ADD TO CART - {{ product.price | money }}
-          </button>
-          
-          <button type="submit" name="checkout" class="w-full py-4 rounded-xl bg-white border-2 border-primary text-primary font-bold hover:bg-primary/5 transition-all">
-            BUY IT NOW
-          </button>
-        </form>
-        
-        <!-- Judge.me Star Rating (Trust Boost below Buttons) -->
-        <div class="pt-4 flex justify-center md:justify-start">
-          <!-- Start of Judge.me code (Badge) --> 
-          <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'> 
-            {{ product.metafields.judgeme.badge }} 
-          </div> 
-          <!-- End of Judge.me code -->
+          <div class="pt-4 flex justify-center md:justify-start">
+            <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'> 
+              {{ product.metafields.judgeme.badge }} 
+            </div> 
+          </div>
         </div>
-      </div>
 
-      <div class="pt-6 space-y-4 border-t border-outline-variant">
-        <div class="flex items-center gap-3">
-          <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-          <span class="text-sm text-on-surface-variant">PCI Syllabus Aligned (Latest 2024)</span>
+        <div class="pt-6 space-y-4 border-t border-outline-variant">
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            <span class="text-sm text-on-surface-variant">PCI Syllabus Aligned (Latest 2024)</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            <span class="text-sm text-on-surface-variant">Hand-drawn Mechanism Diagrams</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            <span class="text-sm text-on-surface-variant">GPAT Focused Quick-Recall Points</span>
+          </div>
         </div>
-        <div class="flex items-center gap-3">
-          <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-          <span class="text-sm text-on-surface-variant">Hand-drawn Mechanism Diagrams</span>
+
+        <div class="pt-6 border-t border-outline-variant">
+          <div id='judgeme_product_reviews' class='jdgm-widget jdgm-review-widget' data-id='{{ product.id }}' data-auto-install='false'>
+            {{ product.metafields.judgeme.widget }}
+          </div>
         </div>
-        <div class="flex items-center gap-3">
-          <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-          <span class="text-sm text-on-surface-variant">GPAT Focused Quick-Recall Points</span>
-        </div>
-      </div>
+
+      {%- endif -%}
+
     </div>
   </div>
-
-  <!-- Bento Features Grid Removed -->
-
-  <!-- Judge.me Review Widget Section Removed from here -->
 </main>
 
 <!-- Sticky Purchase Bar -->
@@ -121,42 +222,148 @@
   "settings": [],
   "blocks": [
     {
-      "type": "review",
-      "name": "Student Review",
+      "type": "@app"
+    },
+    {
+      "type": "badge",
+      "name": "Promo Badge",
+      "limit": 2,
       "settings": [
         {
           "type": "text",
-          "id": "author",
-          "label": "Student Name",
-          "default": "Aditya Sharma"
+          "id": "badge_text",
+          "label": "Badge Text",
+          "default": "PCI New Syllabus"
         },
         {
+          "type": "color",
+          "id": "badge_bg",
+          "label": "Badge Background Color",
+          "default": "#0B5D3B"
+        },
+        {
+          "type": "color",
+          "id": "badge_color",
+          "label": "Badge Text Color",
+          "default": "#0B5D3B"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "Product Title",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "Product Price",
+      "limit": 1
+    },
+    {
+      "type": "trust_card",
+      "name": "Trust Banner Card",
+      "limit": 2,
+      "settings": [
+        {
           "type": "text",
-          "id": "author_info",
-          "label": "Semester/College",
-          "default": "6th Sem, B.Pharm"
+          "id": "title",
+          "label": "Title",
+          "default": "Verified Academic Content"
         },
         {
           "type": "textarea",
-          "id": "content",
-          "label": "Review Content",
-          "default": "The pharmacological classifications are so easy to remember now. Highly recommended for anyone struggling with memorization."
+          "id": "text",
+          "label": "Description",
+          "default": "Instant PDF delivery. Access your notes immediately after payment."
         },
         {
-          "type": "range",
-          "id": "rating",
-          "min": 1,
-          "max": 5,
-          "step": 1,
-          "default": 5,
-          "label": "Rating"
+          "type": "text",
+          "id": "icon",
+          "label": "Material Icon Name",
+          "default": "verified"
         }
       ]
+    },
+    {
+      "type": "description",
+      "name": "Product Description",
+      "limit": 1
+    },
+    {
+      "type": "buy_buttons",
+      "name": "Purchase Form Buttons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "cart_btn_text",
+          "label": "Add to Cart Label",
+          "default": "ADD TO CART"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_checkout_btn",
+          "label": "Show Direct Checkout Button",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "checkout_btn_text",
+          "label": "Direct Checkout Label",
+          "default": "BUY IT NOW"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating_badge",
+          "label": "Display Judge.me Star Badge",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "features",
+      "name": "Academic Checklist",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature_1",
+          "label": "Feature Item 1",
+          "default": "PCI Syllabus Aligned (Latest 2024)"
+        },
+        {
+          "type": "text",
+          "id": "feature_2",
+          "label": "Feature Item 2",
+          "default": "Hand-drawn Mechanism Diagrams"
+        },
+        {
+          "type": "text",
+          "id": "feature_3",
+          "label": "Feature Item 3",
+          "default": "GPAT Focused Quick-Recall Points"
+        }
+      ]
+    },
+    {
+      "type": "judgeme_widget",
+      "name": "Judge.me Review Widget",
+      "limit": 1
     }
   ],
   "presets": [
     {
-      "name": "Branded Product"
+      "name": "Branded Product",
+      "blocks": [
+        { "type": "badge" },
+        { "type": "title" },
+        { "type": "price" },
+        { "type": "trust_card" },
+        { "type": "description" },
+        { "type": "buy_buttons" },
+        { "type": "features" },
+        { "type": "judgeme_widget" }
+      ]
     }
   ]
 }
