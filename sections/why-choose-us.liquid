@@ -3,28 +3,28 @@
   Allows complete drag-and-drop customization of B.Pharm feature cards, badges, statistics, and social triggers.
 {%- endcomment -%}
 
-<section class="py-24 overflow-hidden bg-white dark:!bg-[#0A0F0D] border-t border-gray-100 dark:border-[#1F362A]/30">
+<section class="py-24 overflow-hidden bg-white dark:!bg-surface border-t border-gray-100 dark:border-border-subtle/30">
   <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop space-y-20">
     
     <!-- Section Header -->
     <div class="text-center space-y-6 max-w-3xl mx-auto" data-aos="fade-up">
       {%- if section.settings.badge_text != blank -%}
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#004429]/5 dark:bg-[#8ad4a8]/10 border border-[#004429]/10 dark:border-[#8ad4a8]/20 mb-2">
-          <span class="material-symbols-outlined text-[#004429] dark:text-[#8ad4a8] text-sm" style="font-variation-settings: 'FILL' 1;">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/5 dark:bg-secondary/10 border border-secondary/10 dark:border-secondary/20 mb-2">
+          <span class="material-symbols-outlined text-secondary dark:text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">
             {{ section.settings.badge_icon | default: 'verified' }}
           </span>
-          <span class="text-[10px] font-black uppercase tracking-widest text-[#004429] dark:text-[#8ad4a8]">{{ section.settings.badge_text }}</span>
+          <span class="text-[10px] font-black uppercase tracking-widest text-secondary dark:text-tertiary">{{ section.settings.badge_text }}</span>
         </div>
       {%- endif -%}
       
       {%- if section.settings.title != blank -%}
-        <h2 class="text-4xl md:text-6xl font-black text-[#001D11] dark:text-[#EDF7F2] tracking-tight">
+        <h2 class="text-4xl md:text-6xl font-black text-primary dark:text-[#EAF0F6] tracking-tight">
           {{ section.settings.title }}
         </h2>
       {%- endif -%}
       
       {%- if section.settings.subtitle != blank -%}
-        <p class="text-lg text-on-surface-variant/80 dark:text-[#9EAF9F]/70 font-medium leading-relaxed">
+        <p class="text-lg text-on-surface-variant/80 dark:text-on-surface-variant/70 font-medium leading-relaxed">
           {{ section.settings.subtitle }}
         </p>
       {%- endif -%}
@@ -39,27 +39,27 @@
             
             <div class="group relative rounded-[2.5rem] p-8 border transition-all duration-500 flex flex-col h-full {{ block.shopify_attributes }}
               {% if is_dark %}
-                bg-[#001D11] border-white/10 hover:border-[#004429] dark:hover:border-[#8ad4a8] hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)]
+                bg-[#072B6B] border-white/10 hover:border-[#2E9E36] dark:hover:border-[#41C94B] hover:shadow-[0_20px_50px_rgba(46,158,54,0.3)]
               {% else %}
-                bg-white dark:bg-[#0E1612] border-outline-variant dark:border-[#1F362A]/50 hover:border-[#004429] dark:hover:border-[#8ad4a8] hover:shadow-[0_20px_50px_rgba(0,68,41,0.1)]
+                bg-white dark:bg-surface border-outline-variant dark:border-border-subtle/50 hover:border-[#072B6B] dark:hover:border-[#2E9E36] hover:shadow-[0_20px_50px_rgba(7,43,107,0.15)]
               {% endif %}" 
               data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
               
               <!-- Soft Glow effect on hover -->
               <div class="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity rounded-[2.5rem]
                 {% if is_dark %}
-                  from-[#004429]/20 to-transparent
+                  from-[#2E9E36]/20 to-transparent
                 {% else %}
-                  from-[#004429]/5 dark:from-[#8ad4a8]/10 to-transparent
+                  from-[#072B6B]/5 dark:from-[#2E9E36]/10 to-transparent
                 {% endif %}"></div>
               
               <div class="relative space-y-6 flex-grow">
                 <!-- Icon Frame -->
                 <div class="w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500
                   {% if is_dark %}
-                    bg-[#004429]/20 text-white
+                    bg-white/10 text-white
                   {% else %}
-                    bg-[#004429]/10 dark:bg-[#8ad4a8]/15 text-[#004429] dark:text-[#8ad4a8]
+                    bg-primary/10 dark:bg-secondary/15 text-primary dark:text-secondary
                   {% endif %}">
                   <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">
                     {{ block.settings.icon | default: 'psychology' }}
@@ -68,10 +68,10 @@
                 
                 <!-- Text contents -->
                 <div class="space-y-3">
-                  <h3 class="text-2xl font-black {% if is_dark %}text-white{% else %}text-[#001D11] dark:text-[#EDF7F2]{% endif %}">
+                  <h3 class="text-2xl font-black {% if is_dark %}text-white{% else %}text-primary dark:text-[#EAF0F6]{% endif %}">
                     {{ block.settings.title }}
                   </h3>
-                  <p class="text-sm leading-relaxed {% if is_dark %}text-white/60{% else %}text-on-surface-variant dark:text-[#9EAF9F]/70{% endif %}">
+                  <p class="text-sm leading-relaxed {% if is_dark %}text-white/60{% else %}text-on-surface-variant dark:text-on-surface-variant/70{% endif %}">
                     {{ block.settings.description }}
                   </p>
                 </div>
@@ -84,12 +84,12 @@
                         {% if is_dark %}
                           bg-white/5 border-white/10
                         {% else %}
-                          bg-surface-container-lowest dark:bg-[#101B15] border-outline-variant dark:border-[#1F362A]/40
+                          bg-surface-container-lowest dark:bg-surface-container-low border-outline-variant dark:border-border-subtle/40
                         {% endif %}">
-                        <p class="text-xl font-black {% if is_dark %}text-white{% else %}text-[#004429] dark:text-[#8ad4a8]{% endif %}">
+                        <p class="text-xl font-black {% if is_dark %}text-white{% else %}text-secondary dark:text-tertiary{% endif %}">
                           {{ block.settings.stat_1_val }}
                         </p>
-                        <p class="text-[10px] uppercase font-bold {% if is_dark %}text-white/40{% else %}text-on-surface-variant/40 dark:text-[#9EAF9F]/40{% endif %}">
+                        <p class="text-[10px] uppercase font-bold {% if is_dark %}text-white/40{% else %}text-on-surface-variant/40 dark:text-on-surface-variant/40{% endif %}">
                           {{ block.settings.stat_1_lbl }}
                         </p>
                       </div>
@@ -100,12 +100,12 @@
                         {% if is_dark %}
                           bg-white/5 border-white/10
                         {% else %}
-                          bg-surface-container-lowest dark:bg-[#101B15] border-outline-variant dark:border-[#1F362A]/40
+                          bg-surface-container-lowest dark:bg-surface-container-low border-outline-variant dark:border-border-subtle/40
                         {% endif %}">
-                        <p class="text-xl font-black {% if is_dark %}text-white{% else %}text-[#004429] dark:text-[#8ad4a8]{% endif %}">
+                        <p class="text-xl font-black {% if is_dark %}text-white{% else %}text-secondary dark:text-tertiary{% endif %}">
                           {{ block.settings.stat_2_val }}
                         </p>
-                        <p class="text-[10px] uppercase font-bold {% if is_dark %}text-white/40{% else %}text-on-surface-variant/40 dark:text-[#9EAF9F]/40{% endif %}">
+                        <p class="text-[10px] uppercase font-bold {% if is_dark %}text-white/40{% else %}text-on-surface-variant/40 dark:text-on-surface-variant/40{% endif %}">
                           {{ block.settings.stat_2_lbl }}
                         </p>
                       </div>
@@ -118,22 +118,22 @@
                   {% if is_dark %}
                     bg-white/5 border-white/10
                   {% else %}
-                    bg-surface-container-high dark:bg-[#15221B] border-outline-variant dark:border-[#1F362A]/40
+                    bg-surface-container-high dark:bg-[#1E293B] border-outline-variant dark:border-border-subtle/40
                   {% endif %}">
                   {%- if block.settings.image != blank -%}
                     <img src="{{ block.settings.image | image_url: width: 800 }}" 
                          alt="{{ block.settings.title }}" 
                          class="w-full h-full object-cover transition-transform duration-700 group-hover/media:scale-110">
                   {%- else -%}
-                    <div class="w-full h-full flex flex-col items-center justify-center opacity-25 {% if is_dark %}text-white{% else %}text-on-surface-variant dark:text-[#9EAF9F]{% endif %}">
+                    <div class="w-full h-full flex flex-col items-center justify-center opacity-25 {% if is_dark %}text-white{% else %}text-on-surface-variant dark:text-on-surface-variant{% endif %}">
                       <span class="material-symbols-outlined text-4xl mb-2">{{ block.settings.placeholder_icon | default: 'draw' }}</span>
                       <p class="text-[10px] font-bold">{{ block.settings.placeholder_text | default: 'Preview Sample' }}</p>
                     </div>
                   {%- endif -%}
                   
                   {%- if block.settings.hover_badge != blank -%}
-                    <div class="absolute inset-0 bg-[#004429]/40 backdrop-blur-sm opacity-0 group-hover/media:opacity-100 transition-all duration-300 flex items-center justify-center">
-                      <span class="px-6 py-2 bg-white dark:bg-[#0E1612] text-[#004429] dark:text-[#8ad4a8] font-black text-xs uppercase tracking-widest shadow-xl">
+                    <div class="absolute inset-0 bg-[#072B6B]/40 backdrop-blur-sm opacity-0 group-hover/media:opacity-100 transition-all duration-300 flex items-center justify-center">
+                      <span class="px-6 py-2 bg-white dark:bg-surface text-primary dark:text-secondary font-black text-xs uppercase tracking-widest shadow-xl rounded-lg">
                         {{ block.settings.hover_badge }}
                       </span>
                     </div>
@@ -146,9 +146,9 @@
                 <a href="{{ block.settings.btn_link | default: '/collections/all' }}" 
                    class="relative mt-8 w-full py-4 rounded-2xl font-black text-sm uppercase tracking-widest text-center border-2 border-transparent transition-all shadow-lg active:scale-95 z-10
                      {% if is_dark %}
-                       bg-[#004429] dark:bg-[#0b5d3b] text-white hover:bg-white hover:text-[#004429] dark:hover:bg-white dark:hover:text-[#0b5d3b]
+                       bg-secondary text-white hover:bg-white hover:text-primary dark:hover:bg-white dark:hover:text-primary
                      {% else %}
-                       bg-[#001D11] dark:bg-[#15221B] text-white hover:bg-[#004429] dark:hover:bg-[#0b5d3b]
+                       bg-[#072B6B] dark:bg-[#0E4DA4] text-white hover:bg-secondary dark:hover:bg-secondary
                      {% endif %}">
                   {{ block.settings.btn_text }}
                 </a>
@@ -160,14 +160,14 @@
 
     <!-- Rating Strip & Community -->
     {%- if section.settings.show_rating_strip -%}
-      <div class="flex flex-col md:flex-row items-center justify-between gap-8 pt-12 border-t border-outline-variant dark:border-[#1F362A]/40">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8 pt-12 border-t border-outline-variant dark:border-border-subtle/40">
         <div class="flex items-center gap-4">
-          <div class="flex text-[#004429] dark:text-[#8ad4a8]">
+          <div class="flex text-secondary dark:text-tertiary">
             {%- for i in (1..5) -%}
               <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
             {%- endfor -%}
           </div>
-          <span class="text-sm font-bold text-[#001D11] dark:text-[#EDF7F2]">{{ section.settings.rating_text }}</span>
+          <span class="text-sm font-bold text-primary dark:text-[#EAF0F6]">{{ section.settings.rating_text }}</span>
         </div>
         
         {%- if section.settings.social_link != blank -%}

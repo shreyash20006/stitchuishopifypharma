@@ -1,4 +1,4 @@
-<footer class="w-full mt-20 bg-gradient-to-br from-[#004429] to-[#002111] text-surface-variant pt-16 pb-8 px-margin-mobile md:px-margin-desktop border-t border-white/5">
+<footer class="w-full mt-20 bg-gradient-to-br from-[#072B6B] to-[#041535] text-surface-variant pt-16 pb-8 px-margin-mobile md:px-margin-desktop border-t border-white/5">
   <div class="max-w-container-max mx-auto space-y-16">
     
     <!-- Follow Community Image -->
@@ -17,11 +17,11 @@
       {%- endif -%}
       
       <div class="bg-black/20 backdrop-blur-md p-4 flex flex-wrap justify-center gap-6 text-[11px] uppercase tracking-[0.2em] text-primary-fixed font-black">
-        <a href="{{ settings.social_whatsapp_link | default: 'https://whatsapp.com/channel/0029Vb7bPYAICVfklGHiIW0v' }}" target="_blank" class="hover:text-white transition-colors">WhatsApp</a>
-        <a href="{{ settings.social_telegram_link | default: 'https://t.me/tgpcopnotes' }}" target="_blank" class="hover:text-white transition-colors">Telegram</a>
-        <a href="{{ settings.social_instagram_link | default: 'https://instagram.com/tgpcop.notes' }}" target="_blank" class="hover:text-white transition-colors">Instagram</a>
-        <a href="{{ settings.social_twitter_link | default: 'https://x.com/TGPCOPNOTES' }}" target="_blank" class="hover:text-white transition-colors">X (Twitter)</a>
-        <a href="{{ settings.social_pinterest_link | default: 'https://pin.it/6Df5gqrxL' }}" target="_blank" class="hover:text-white transition-colors">Pinterest</a>
+        <a href="{{ settings.social_whatsapp_link | default: 'https://whatsapp.com/channel/0029Vb7bPYAICVfklGHiIW0v' }}" target="_blank" class="hover:text-secondary transition-colors">WhatsApp</a>
+        <a href="{{ settings.social_telegram_link | default: 'https://t.me/tgpcopnotes' }}" target="_blank" class="hover:text-secondary transition-colors">Telegram</a>
+        <a href="{{ settings.social_instagram_link | default: 'https://instagram.com/tgpcop.notes' }}" target="_blank" class="hover:text-secondary transition-colors">Instagram</a>
+        <a href="{{ settings.social_twitter_link | default: 'https://x.com/TGPCOPNOTES' }}" target="_blank" class="hover:text-secondary transition-colors">X (Twitter)</a>
+        <a href="{{ settings.social_pinterest_link | default: 'https://pin.it/6Df5gqrxL' }}" target="_blank" class="hover:text-secondary transition-colors">Pinterest</a>
       </div>
     </div>
 
@@ -40,7 +40,7 @@
         <h4 class="text-primary-fixed font-black text-xs uppercase tracking-widest">{{ section.settings.menu_1_title | default: 'Explore' }}</h4>
         <nav class="flex flex-col gap-4">
           {%- for link in section.settings.menu_1.links -%}
-            <a href="{{ link.url }}" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">{{ link.title }}</a>
+            <a href="{{ link.url }}" class="text-sm text-white/70 hover:text-secondary hover:translate-x-1 transition-all">{{ link.title }}</a>
           {%- endfor -%}
         </nav>
       </div>
@@ -50,7 +50,7 @@
         <h4 class="text-primary-fixed font-black text-xs uppercase tracking-widest">{{ section.settings.menu_2_title | default: 'Policies' }}</h4>
         <nav class="flex flex-col gap-4">
           {%- for link in section.settings.menu_2.links -%}
-            <a href="{{ link.url }}" class="text-sm text-white/70 hover:text-white hover:translate-x-1 transition-all">{{ link.title }}</a>
+            <a href="{{ link.url }}" class="text-sm text-white/70 hover:text-secondary hover:translate-x-1 transition-all">{{ link.title }}</a>
           {%- endfor -%}
         </nav>
       </div>
@@ -60,14 +60,14 @@
         <h4 class="text-primary-fixed font-black text-xs uppercase tracking-widest">{{ section.settings.contact_title | default: 'Support' }}</h4>
         <div class="space-y-4">
           {%- if section.settings.contact_email != blank -%}
-            <a href="mailto:{{ section.settings.contact_email }}" class="flex items-center gap-3 text-sm text-white/70 group">
-              <span class="material-symbols-outlined text-primary-fixed group-hover:scale-110 transition-transform">mail</span>
+            <a href="mailto:{{ section.settings.contact_email }}" class="flex items-center gap-3 text-sm text-white/70 group hover:text-secondary transition-colors">
+              <span class="material-symbols-outlined text-primary-fixed group-hover:scale-110 group-hover:text-secondary transition-all">mail</span>
               {{ section.settings.contact_email }}
             </a>
           {%- endif -%}
           {%- if section.settings.contact_link != blank -%}
-            <a href="{{ section.settings.contact_link }}" class="flex items-center gap-3 text-sm text-white/70 group">
-              <span class="material-symbols-outlined text-primary-fixed group-hover:scale-110 transition-transform">location_on</span>
+            <a href="{{ section.settings.contact_link }}" class="flex items-center gap-3 text-sm text-white/70 group hover:text-secondary transition-colors">
+              <span class="material-symbols-outlined text-primary-fixed group-hover:scale-110 group-hover:text-secondary transition-all">location_on</span>
               {{ section.settings.contact_link_text | default: 'Contact Information' }}
             </a>
           {%- endif -%}
@@ -78,28 +78,28 @@
     <!-- Trust Badges -->
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 py-12 border-y border-white/10">
       <div class="flex items-center gap-4 group">
-        <span class="material-symbols-outlined text-primary-fixed text-4xl group-hover:rotate-12 transition-transform">{{ section.settings.badge_1_icon | default: 'cloud_download' }}</span>
+        <span class="material-symbols-outlined text-primary-fixed group-hover:text-secondary text-4xl group-hover:rotate-12 transition-all duration-300">{{ section.settings.badge_1_icon | default: 'cloud_download' }}</span>
         <div>
           <h4 class="font-black text-[10px] text-white uppercase tracking-wider">{{ section.settings.badge_1_title | default: 'INSTANT DOWNLOAD' }}</h4>
           <p class="text-[10px] text-white/40 uppercase">{{ section.settings.badge_1_sub | default: 'Get notes instantly' }}</p>
         </div>
       </div>
       <div class="flex items-center gap-4 group">
-        <span class="material-symbols-outlined text-primary-fixed text-4xl group-hover:rotate-12 transition-transform">{{ section.settings.badge_2_icon | default: 'verified_user' }}</span>
+        <span class="material-symbols-outlined text-primary-fixed group-hover:text-secondary text-4xl group-hover:rotate-12 transition-all duration-300">{{ section.settings.badge_2_icon | default: 'verified_user' }}</span>
         <div>
           <h4 class="font-black text-[10px] text-white uppercase tracking-wider">{{ section.settings.badge_2_title | default: 'SAFE PAYMENT' }}</h4>
           <p class="text-[10px] text-white/40 uppercase">{{ section.settings.badge_2_sub | default: 'Secure checkout' }}</p>
         </div>
       </div>
       <div class="flex items-center gap-4 group">
-        <span class="material-symbols-outlined text-primary-fixed text-4xl group-hover:rotate-12 transition-transform">{{ section.settings.badge_3_icon | default: 'picture_as_pdf' }}</span>
+        <span class="material-symbols-outlined text-primary-fixed group-hover:text-secondary text-4xl group-hover:rotate-12 transition-all duration-300">{{ section.settings.badge_3_icon | default: 'picture_as_pdf' }}</span>
         <div>
           <h4 class="font-black text-[10px] text-white uppercase tracking-wider">{{ section.settings.badge_3_title | default: 'EXAM FOCUSED' }}</h4>
           <p class="text-[10px] text-white/40 uppercase">{{ section.settings.badge_3_sub | default: 'High quality PDFs' }}</p>
         </div>
       </div>
       <div class="flex items-center gap-4 group">
-        <span class="material-symbols-outlined text-primary-fixed text-4xl group-hover:rotate-12 transition-transform">{{ section.settings.badge_4_icon | default: 'headset_mic' }}</span>
+        <span class="material-symbols-outlined text-primary-fixed group-hover:text-secondary text-4xl group-hover:rotate-12 transition-all duration-300">{{ section.settings.badge_4_icon | default: 'headset_mic' }}</span>
         <div>
           <h4 class="font-black text-[10px] text-white uppercase tracking-wider">{{ section.settings.badge_4_title | default: 'SUPPORT' }}</h4>
           <p class="text-[10px] text-white/40 uppercase">{{ section.settings.badge_4_sub | default: 'Available 24/7' }}</p>

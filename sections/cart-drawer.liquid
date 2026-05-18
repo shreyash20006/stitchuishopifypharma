@@ -5,9 +5,9 @@
   <!-- Header -->
   <div class="p-6 md:p-8 border-b border-gray-100 flex justify-between items-center bg-white sticky top-0 z-10">
     <div class="flex items-center gap-3">
-      <span class="material-symbols-outlined text-[#004429] text-3xl">shopping_basket</span>
+      <span class="material-symbols-outlined text-[#072B6B] text-3xl">shopping_basket</span>
       <h2 class="text-2xl font-black text-[#141b2b] tracking-tight">Your Cart</h2>
-      <span id="cart-count-badge" class="bg-[#004429] text-white text-[10px] font-black px-2.5 py-1 rounded-full">{{ cart.item_count }}</span>
+      <span id="cart-count-badge" class="bg-[#2E9E36] text-white text-[10px] font-black px-2.5 py-1 rounded-full">{{ cart.item_count }}</span>
     </div>
     <button id="cart-drawer-close" class="p-2.5 hover:bg-gray-100 rounded-full transition-all text-gray-400 hover:text-gray-900">
       <span class="material-symbols-outlined text-[28px]">close</span>
@@ -23,13 +23,13 @@
             <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.product.title }}" class="w-full h-full object-cover">
           </div>
           <div class="flex-grow py-1">
-            <h3 class="text-lg font-black text-[#141b2b] leading-tight mb-1 group-hover:text-[#004429] transition-colors">
+            <h3 class="text-lg font-black text-[#141b2b] leading-tight mb-1 group-hover:text-[#072B6B] transition-colors">
               {{ item.product.title }}
             </h3>
             <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Digital Ebook • PDF</p>
             
             <div class="flex items-center justify-between">
-              <span class="text-xl font-black text-[#004429]">{{ item.final_line_price | money }}</span>
+              <span class="text-xl font-black text-[#072B6B]">{{ item.final_line_price | money }}</span>
               <button class="remove-cart-item p-2 text-gray-300 hover:text-error transition-colors" data-key="{{ item.key }}">
                 <span class="material-symbols-outlined text-[20px]">delete</span>
               </button>
@@ -42,7 +42,7 @@
         <span class="material-symbols-outlined text-[100px] mb-6">shopping_cart_off</span>
         <p class="text-xl font-black text-[#141b2b]">Your cart is empty</p>
         <p class="text-sm font-bold text-gray-500 mt-2">Start adding some notes to get started!</p>
-        <a href="/collections/all" class="mt-8 px-8 py-3 bg-[#004429] text-white rounded-xl font-black shadow-lg">Browse Catalog</a>
+        <a href="/collections/all" class="mt-8 px-8 py-3 bg-[#072B6B] hover:bg-[#0E4DA4] text-white rounded-xl font-black shadow-lg transition-colors">Browse Catalog</a>
       </div>
     {%- endif -%}
   </div>
@@ -56,16 +56,16 @@
           <p class="text-3xl font-black text-[#141b2b]">{{ cart.total_price | money }}</p>
         </div>
         <div class="text-right">
-          <p class="text-[10px] font-bold text-[#004429] bg-[#00442910] px-3 py-1 rounded-full">SECURE CHECKOUT</p>
+          <p class="text-[10px] font-bold text-[#2E9E36] bg-[#2E9E3615] px-3 py-1 rounded-full">SECURE CHECKOUT</p>
         </div>
       </div>
 
       <div class="space-y-3">
-        <a href="/pages/checkout" class="w-full py-5 rounded-2xl bg-[#004429] text-white font-black text-lg shadow-xl hover:bg-[#003320] transition-all flex items-center justify-center gap-3 active:scale-[0.98]">
+        <a href="/pages/checkout" class="w-full py-5 rounded-2xl bg-[#072B6B] text-white font-black text-lg shadow-xl hover:bg-[#0E4DA4] transition-all flex items-center justify-center gap-3 active:scale-[0.98]">
           <span class="material-symbols-outlined">lock</span>
           CHECKOUT NOW
         </a>
-        <button id="continue-shopping" class="w-full py-4 text-sm font-black text-gray-400 hover:text-[#004429] transition-colors">
+        <button id="continue-shopping" class="w-full py-4 text-sm font-black text-gray-400 hover:text-[#072B6B] transition-colors">
           CONTINUE SHOPPING
         </button>
       </div>
@@ -80,7 +80,7 @@
 </div>
 
 <div id="cart-toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 z-[200] bg-[#141b2b] text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-4 translate-y-20 opacity-0 transition-all duration-500 pointer-events-none">
-  <div class="w-8 h-8 bg-[#004429] rounded-full flex items-center justify-center">
+  <div class="w-8 h-8 bg-[#2E9E36] rounded-full flex items-center justify-center">
     <span class="material-symbols-outlined text-[18px]">check</span>
   </div>
   <span class="font-bold tracking-tight">Added to Cart! 🛒</span>

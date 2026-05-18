@@ -1,17 +1,17 @@
-<section class="py-24 bg-white dark:bg-[#0A0F0D] transition-colors border-t border-gray-100 dark:border-[#1F362A]/30 overflow-hidden">
+<section class="py-24 bg-white dark:bg-[#070F1E] transition-colors border-t border-gray-100 dark:border-white/5 overflow-hidden">
   <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
     <div class="flex justify-between items-center mb-16">
       <div>
-        <h2 class="text-4xl md:text-6xl font-black text-[#001D11] dark:text-[#EDF7F2] tracking-tight">{{ section.settings.title }}</h2>
+        <h2 class="text-4xl md:text-6xl font-black text-[#072B6B] dark:text-white tracking-tight">{{ section.settings.title }}</h2>
         {%- if section.settings.subtitle != blank -%}
-          <p class="text-lg text-on-surface-variant/80 dark:text-[#9EAF9F]/70 font-medium mt-2 leading-relaxed">{{ section.settings.subtitle }}</p>
+          <p class="text-lg text-on-surface-variant/80 dark:text-gray-400 font-medium mt-2 leading-relaxed">{{ section.settings.subtitle }}</p>
         {%- endif -%}
       </div>
       <div class="flex gap-4">
-        <button class="slider-prev w-12 h-12 rounded-full border border-[#004429]/20 dark:border-[#8ad4a8]/30 flex items-center justify-center bg-white dark:bg-[#0E1612] text-[#004429] dark:text-[#8ad4a8] hover:bg-[#004429] dark:hover:bg-[#0b5d3b] hover:text-white dark:hover:text-white transition-all group shadow-sm">
+        <button class="slider-prev w-12 h-12 rounded-full border border-[#072B6B]/20 dark:border-white/10 flex items-center justify-center bg-white dark:bg-white/5 text-[#072B6B] dark:text-white hover:bg-[#072B6B] hover:text-white dark:hover:bg-[#2E9E36] dark:hover:text-white transition-all group shadow-sm">
           <span class="material-symbols-outlined font-bold transition-transform group-hover:-translate-x-1">chevron_left</span>
         </button>
-        <button class="slider-next w-12 h-12 rounded-full border border-[#004429]/20 dark:border-[#8ad4a8]/30 flex items-center justify-center bg-white dark:bg-[#0E1612] text-[#004429] dark:text-[#8ad4a8] hover:bg-[#004429] dark:hover:bg-[#0b5d3b] hover:text-white dark:hover:text-white transition-all group shadow-sm">
+        <button class="slider-next w-12 h-12 rounded-full border border-[#072B6B]/20 dark:border-white/10 flex items-center justify-center bg-white dark:bg-white/5 text-[#072B6B] dark:text-white hover:bg-[#072B6B] hover:text-white dark:hover:bg-[#2E9E36] dark:hover:text-white transition-all group shadow-sm">
           <span class="material-symbols-outlined font-bold transition-transform group-hover:translate-x-1">chevron_right</span>
         </button>
       </div>
@@ -49,7 +49,7 @@
     
     {% if section.settings.view_all_link != blank %}
       <div class="mt-12 text-center md:hidden">
-        <a href="{{ section.settings.view_all_link }}" class="inline-block bg-[#004429] dark:bg-[#0b5d3b] text-white px-8 py-4 rounded-2xl font-bold hover:shadow-lg transition-all active:scale-95">
+        <a href="{{ section.settings.view_all_link }}" class="inline-block bg-[#072B6B] hover:bg-[#0E4DA4] dark:bg-[#2E9E36] dark:hover:bg-[#41C94B] text-white px-8 py-4 rounded-2xl font-bold hover:shadow-lg transition-all active:scale-95">
           {{ section.settings.view_all_text }}
         </a>
       </div>

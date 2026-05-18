@@ -1,19 +1,19 @@
-<section class="py-20 bg-[#F9FAFB] dark:bg-[#0A0F0D]">
+<section class="py-20 bg-[#F5F8FB] dark:bg-[#070F1E]">
   <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
     <div class="flex justify-between items-end mb-12">
       <div>
         <h2 class="text-3xl md:text-4xl font-black text-[#141b2b] dark:text-[#EDF7F2]">{{ section.settings.title }}</h2>
-        <p class="text-gray-500 dark:text-[#9EAF9F]/60 font-medium mt-2">{{ section.settings.subtitle }}</p>
+        <p class="text-gray-500 dark:text-slate-400 font-medium mt-2">{{ section.settings.subtitle }}</p>
       </div>
       {% if section.settings.view_all_link != blank %}
-        <a href="{{ section.settings.view_all_link }}" class="text-[#004429] dark:text-[#8ad4a8] font-bold hover:underline hidden md:block">{{ section.settings.view_all_text }} →</a>
+        <a href="{{ section.settings.view_all_link }}" class="text-[#072B6B] dark:text-[#41C94B] font-bold hover:underline hidden md:block">{{ section.settings.view_all_text }} →</a>
       {% endif %}
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-{{ section.settings.columns_desktop }} gap-8">
       {%- for block in section.blocks -%}
         {%- assign collection = block.settings.collection -%}
-        <a href="{{ collection.url | default: '#' }}" class="group relative overflow-hidden rounded-[32px] aspect-[4/5] shadow-sm hover:shadow-[0_25px_60px_rgba(0,68,41,0.25)] transition-all duration-500 border border-gray-100 dark:border-[#1F362A]/50" {{ block.shopify_attributes }}>
+        <a href="{{ collection.url | default: '#' }}" class="group relative overflow-hidden rounded-[32px] aspect-[4/5] shadow-sm hover:shadow-[0_25px_60px_rgba(7,43,107,0.25)] transition-all duration-500 border border-gray-100 dark:border-[#1E293B]/50" {{ block.shopify_attributes }}>
           {%- if block.settings.image != blank -%}
             <img src="{{ block.settings.image | image_url: width: 800 }}" 
                  alt="{{ block.settings.title | default: collection.title }}" 
@@ -23,8 +23,8 @@
                  alt="{{ collection.title }}" 
                  class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
           {%- else -%}
-            <div class="absolute inset-0 w-full h-full bg-[#00442905] dark:bg-[#15221B]/30 flex items-center justify-center">
-              <span class="material-symbols-outlined text-6xl text-[#00442910] dark:text-[#8ad4a8]/10">category</span>
+            <div class="absolute inset-0 w-full h-full bg-[#072B6B]/5 dark:bg-[#0F172A]/30 flex items-center justify-center">
+              <span class="material-symbols-outlined text-6xl text-[#072B6B]/10 dark:text-[#41C94B]/10">category</span>
             </div>
           {%- endif -%}
           
@@ -43,7 +43,7 @@
     
     {% if section.settings.view_all_link != blank %}
       <div class="mt-12 text-center md:hidden">
-        <a href="{{ section.settings.view_all_link }}" class="inline-block bg-[#004429] dark:bg-[#0b5d3b] text-white px-8 py-4 rounded-2xl font-bold">
+        <a href="{{ section.settings.view_all_link }}" class="inline-block bg-[#072B6B] dark:bg-[#0E4DA4] text-white px-8 py-4 rounded-2xl font-bold hover:bg-[#2E9E36] transition-colors">
           {{ section.settings.view_all_text }}
         </a>
       </div>

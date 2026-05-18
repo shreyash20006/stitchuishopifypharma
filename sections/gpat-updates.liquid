@@ -1,21 +1,21 @@
-<section class="py-24 bg-white dark:bg-[#0A0F0D] transition-all duration-300 border-t border-gray-100 dark:border-[#1F362A]/30">
+<section class="py-24 bg-white dark:bg-[#070F1E] transition-all duration-300 border-t border-gray-100 dark:border-white/5">
   <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
     <!-- Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
       <div class="space-y-4 max-w-2xl">
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#004429]/5 dark:bg-[#8ad4a8]/10 border border-[#004429]/10 dark:border-[#8ad4a8]/20 text-xs font-black uppercase tracking-wider text-[#004429] dark:text-[#8ad4a8]">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#2E9E36]/5 dark:bg-[#2E9E36]/10 border border-[#2E9E36]/10 dark:border-[#2E9E36]/20 text-xs font-black uppercase tracking-wider text-[#2E9E36] dark:text-[#2E9E36]">
           <span class="material-symbols-outlined text-sm">notifications_active</span>
           {{ section.settings.badge_text | default: "GPAT 2026 PREPARATION" }}
         </div>
-        <h2 class="text-4xl md:text-6xl font-black text-[#001D11] dark:text-[#EDF7F2] tracking-tight">
+        <h2 class="text-4xl md:text-6xl font-black text-[#072B6B] dark:text-white tracking-tight">
           {{ section.settings.title | default: "National GPAT Alerts & Mnemonic Boards" }}
         </h2>
-        <p class="text-lg text-on-surface-variant/80 dark:text-[#9EAF9F]/70 font-medium leading-relaxed max-w-xl">
+        <p class="text-lg text-on-surface-variant/80 dark:text-gray-400 font-medium leading-relaxed max-w-xl">
           {{ section.settings.subtitle | default: "Real-time exam insights, syllabus updates, and daily pharmacy preparation challenges." }}
         </p>
       </div>
       {%- if section.settings.btn_link != blank -%}
-        <a href="{{ section.settings.btn_link }}" class="px-8 py-4 bg-[#004429] dark:bg-[#0b5d3b] text-white font-black text-sm uppercase tracking-widest rounded-2xl shadow-lg hover:bg-[#001D11] dark:hover:bg-white dark:hover:text-[#004429] hover:shadow-xl transition-all hover:scale-105 shrink-0 w-fit">
+        <a href="{{ section.settings.btn_link }}" class="px-8 py-4 bg-[#072B6B] dark:bg-[#2E9E36] text-white font-black text-sm uppercase tracking-widest rounded-2xl shadow-lg hover:bg-[#0E4DA4] dark:hover:bg-[#2E9E36]/20 hover:shadow-xl transition-all hover:scale-105 shrink-0 w-fit">
           {{ section.settings.btn_text | default: "View GPAT Notes" }}
         </a>
       {%- endif -%}
@@ -27,22 +27,22 @@
         {%- case block.type -%}
           
           {%- when 'update_card' -%}
-            <div class="bg-white dark:bg-[#0E1612] p-8 rounded-[32px] border border-outline-variant dark:border-[#1F362A]/40 hover:border-[#004429] dark:hover:border-[#8ad4a8] hover:shadow-[0_20px_50px_rgba(0,68,41,0.08)] transition-all duration-500 group flex flex-col justify-between" {{ block.shopify_attributes }}>
+            <div class="bg-white dark:bg-white/5 p-8 rounded-[32px] border border-outline-variant dark:border-white/10 hover:border-[#072B6B] dark:hover:border-[#2E9E36] hover:shadow-[0_20px_50px_rgba(7,43,107,0.08)] transition-all duration-500 group flex flex-col justify-between" {{ block.shopify_attributes }}>
               <div class="space-y-6">
-                <span class="inline-block px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider text-[#004429] dark:text-[#8ad4a8] bg-[#004429]/10 dark:bg-[#8ad4a8]/15 border border-[#004429]/10 dark:border-[#8ad4a8]/20">
+                <span class="inline-block px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider text-[#2E9E36] dark:text-[#2E9E36] bg-[#2E9E36]/10 dark:bg-[#2E9E36]/15 border border-[#2E9E36]/10 dark:border-[#2E9E36]/20">
                   {{ block.settings.category | default: "Exam Update" }}
                 </span>
-                <h4 class="text-2xl font-black text-[#001D11] dark:text-[#EDF7F2] tracking-tight group-hover:text-[#004429] dark:group-hover:text-[#8ad4a8] transition-colors">
+                <h4 class="text-2xl font-black text-[#072B6B] dark:text-white tracking-tight group-hover:text-[#2E9E36] transition-colors">
                   {{ block.settings.title }}
                 </h4>
-                <p class="text-on-surface-variant/80 dark:text-[#9EAF9F]/70 leading-relaxed text-sm">
+                <p class="text-on-surface-variant/80 dark:text-gray-400 leading-relaxed text-sm">
                   {{ block.settings.description }}
                 </p>
               </div>
               
               {%- if block.settings.link_url != blank -%}
                 <div class="pt-8 mt-auto border-t border-gray-50 dark:border-white/5">
-                  <a href="{{ block.settings.link_url }}" class="text-sm font-black text-[#004429] dark:text-[#8ad4a8] hover:text-[#001D11] dark:hover:text-white transition-colors flex items-center gap-2 group/btn">
+                  <a href="{{ block.settings.link_url }}" class="text-sm font-black text-[#072B6B] dark:text-[#2E9E36] hover:text-[#0E4DA4] dark:hover:text-white transition-colors flex items-center gap-2 group/btn">
                     {{ block.settings.link_text | default: "Read syllabus bulletin" }}
                     <span class="material-symbols-outlined text-lg transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
                   </a>
@@ -51,7 +51,7 @@
             </div>
 
           {%- when 'mcq_card' -%}
-            <div class="bg-white dark:bg-[#0E1612] p-8 rounded-[32px] border border-outline-variant dark:border-[#1F362A]/40 hover:border-[#004429] dark:hover:border-[#8ad4a8] hover:shadow-[0_20px_50px_rgba(0,68,41,0.08)] transition-all duration-500 flex flex-col justify-between relative overflow-hidden" {{ block.shopify_attributes }}>
+            <div class="bg-white dark:bg-white/5 p-8 rounded-[32px] border border-outline-variant dark:border-white/10 hover:border-[#072B6B] dark:hover:border-[#2E9E36] hover:shadow-[0_20px_50px_rgba(7,43,107,0.08)] transition-all duration-500 flex flex-col justify-between relative overflow-hidden" {{ block.shopify_attributes }}>
               <div class="space-y-6">
                 <div class="flex items-center justify-between">
                   <span class="px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/20 border border-rose-100 dark:border-rose-900/30">
@@ -60,41 +60,35 @@
                   <span class="material-symbols-outlined text-[#EAB308]" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
                 </div>
                 
-                <h4 class="text-lg font-black text-[#001D11] dark:text-[#EDF7F2] tracking-tight leading-snug">
+                <h4 class="text-lg font-black text-[#072B6B] dark:text-white tracking-tight leading-snug">
                   {{ block.settings.question }}
                 </h4>
                 
                 <div class="space-y-3 pt-2">
-                  <button class="w-full text-left p-4 rounded-2xl border border-outline-variant dark:border-[#1F362A]/50 hover:border-[#004429] dark:hover:border-[#8ad4a8] hover:bg-[#004429]/5 dark:hover:bg-[#8ad4a8]/5 transition-all text-xs font-bold flex items-center gap-4 text-on-surface-variant dark:text-[#9EAF9F]/80 bg-surface-container-lowest dark:bg-[#101B15] shadow-sm hover:shadow-md" onclick="alert('Correct Answer is Option {{ block.settings.correct_option }}! Explanation: {{ block.settings.explanation | escape }}')">
-                    <span class="w-7 h-7 flex items-center justify-center rounded-lg bg-[#004429]/10 dark:bg-[#8ad4a8]/20 text-[#004429] dark:text-[#8ad4a8] font-black text-[10px]">A</span>
+                  <button class="w-full text-left p-4 rounded-2xl border border-outline-variant dark:border-white/10 hover:border-[#072B6B] dark:hover:border-[#2E9E36] hover:bg-[#072B6B]/5 dark:hover:bg-[#2E9E36]/5 transition-all text-xs font-bold flex items-center gap-4 text-on-surface-variant dark:text-gray-300 bg-surface-container-lowest dark:bg-white/5 shadow-sm hover:shadow-md" onclick="alert('Correct Answer is Option {{ block.settings.correct_option }}! Explanation: {{ block.settings.explanation | escape }}')">
+                    <span class="w-7 h-7 flex items-center justify-center rounded-lg bg-[#2E9E36]/10 dark:bg-[#2E9E36]/20 text-[#2E9E36] font-black text-[10px]">A</span>
                     {{ block.settings.option_a }}
                   </button>
-                  <button class="w-full text-left p-4 rounded-2xl border border-outline-variant dark:border-[#1F362A]/50 hover:border-[#004429] dark:hover:border-[#8ad4a8] hover:bg-[#004429]/5 dark:hover:bg-[#8ad4a8]/5 transition-all text-xs font-bold flex items-center gap-4 text-on-surface-variant dark:text-[#9EAF9F]/80 bg-surface-container-lowest dark:bg-[#101B15] shadow-sm hover:shadow-md" onclick="alert('Correct Answer is Option {{ block.settings.correct_option }}! Explanation: {{ block.settings.explanation | escape }}')">
-                    <span class="w-7 h-7 flex items-center justify-center rounded-lg bg-[#004429]/10 dark:bg-[#8ad4a8]/20 text-[#004429] dark:text-[#8ad4a8] font-black text-[10px]">B</span>
+                  <button class="w-full text-left p-4 rounded-2xl border border-outline-variant dark:border-white/10 hover:border-[#072B6B] dark:hover:border-[#2E9E36] hover:bg-[#072B6B]/5 dark:hover:bg-[#2E9E36]/5 transition-all text-xs font-bold flex items-center gap-4 text-on-surface-variant dark:text-gray-300 bg-surface-container-lowest dark:bg-white/5 shadow-sm hover:shadow-md" onclick="alert('Correct Answer is Option {{ block.settings.correct_option }}! Explanation: {{ block.settings.explanation | escape }}')">
+                    <span class="w-7 h-7 flex items-center justify-center rounded-lg bg-[#2E9E36]/10 dark:bg-[#2E9E36]/20 text-[#2E9E36] font-black text-[10px]">B</span>
                     {{ block.settings.option_b }}
                   </button>
-                  <button class="w-full text-left p-4 rounded-2xl border border-outline-variant dark:border-[#1F362A]/50 hover:border-[#004429] dark:hover:border-[#8ad4a8] hover:bg-[#004429]/5 dark:hover:bg-[#8ad4a8]/5 transition-all text-xs font-bold flex items-center gap-4 text-on-surface-variant dark:text-[#9EAF9F]/80 bg-surface-container-lowest dark:bg-[#101B15] shadow-sm hover:shadow-md" onclick="alert('Correct Answer is Option {{ block.settings.correct_option }}! Explanation: {{ block.settings.explanation | escape }}')">
-                    <span class="w-7 h-7 flex items-center justify-center rounded-lg bg-[#004429]/10 dark:bg-[#8ad4a8]/20 text-[#004429] dark:text-[#8ad4a8] font-black text-[10px]">C</span>
+                  <button class="w-full text-left p-4 rounded-2xl border border-outline-variant dark:border-white/10 hover:border-[#072B6B] dark:hover:border-[#2E9E36] hover:bg-[#072B6B]/5 dark:hover:bg-[#2E9E36]/5 transition-all text-xs font-bold flex items-center gap-4 text-on-surface-variant dark:text-gray-300 bg-surface-container-lowest dark:bg-white/5 shadow-sm hover:shadow-md" onclick="alert('Correct Answer is Option {{ block.settings.correct_option }}! Explanation: {{ block.settings.explanation | escape }}')">
+                    <span class="w-7 h-7 flex items-center justify-center rounded-lg bg-[#2E9E36]/10 dark:bg-[#2E9E36]/20 text-[#2E9E36] font-black text-[10px]">C</span>
                     {{ block.settings.option_c }}
                   </button>
-                  <button class="w-full text-left p-4 rounded-2xl border border-outline-variant dark:border-[#1F362A]/50 hover:border-[#004429] dark:hover:border-[#8ad4a8] hover:bg-[#004429]/5 dark:hover:bg-[#8ad4a8]/5 transition-all text-xs font-bold flex items-center gap-4 text-on-surface-variant dark:text-[#9EAF9F]/80 bg-surface-container-lowest dark:bg-[#101B15] shadow-sm hover:shadow-md" onclick="alert('Correct Answer is Option {{ block.settings.correct_option }}! Explanation: {{ block.settings.explanation | escape }}')">
-                    <span class="w-7 h-7 flex items-center justify-center rounded-lg bg-[#004429]/10 dark:bg-[#8ad4a8]/20 text-[#004429] dark:text-[#8ad4a8] font-black text-[10px]">D</span>
+                  <button class="w-full text-left p-4 rounded-2xl border border-outline-variant dark:border-white/10 hover:border-[#072B6B] dark:hover:border-[#2E9E36] hover:bg-[#072B6B]/5 dark:hover:bg-[#2E9E36]/5 transition-all text-xs font-bold flex items-center gap-4 text-on-surface-variant dark:text-gray-300 bg-surface-container-lowest dark:bg-white/5 shadow-sm hover:shadow-md" onclick="alert('Correct Answer is Option {{ block.settings.correct_option }}! Explanation: {{ block.settings.explanation | escape }}')">
+                    <span class="w-7 h-7 flex items-center justify-center rounded-lg bg-[#2E9E36]/10 dark:bg-[#2E9E36]/20 text-[#2E9E36] font-black text-[10px]">D</span>
                     {{ block.settings.option_d }}
                   </button>
                 </div>
               </div>
               
-              <div class="pt-6 border-t border-[#1F362A]/20 dark:border-[#1F362A]/40 mt-6 flex justify-between items-center text-[10px] uppercase font-black tracking-wider text-on-surface-variant/40 dark:text-[#9EAF9F]/40">
+              <div class="pt-6 border-t border-gray-100 dark:border-white/10 mt-6 flex justify-between items-center text-[10px] uppercase font-black tracking-wider text-on-surface-variant/40 dark:text-gray-500">
                 <span>Tap any option to solve</span>
-                <span class="text-[#004429] dark:text-[#8ad4a8] hover:underline cursor-pointer" onclick="alert('Correct Answer is Option {{ block.settings.correct_option }}! Explanation: {{ block.settings.explanation | escape }}')">Show Explanation</span>
+                <span class="text-[#2E9E36] hover:underline cursor-pointer" onclick="alert('Correct Answer is Option {{ block.settings.correct_option }}! Explanation: {{ block.settings.explanation | escape }}')">Show Explanation</span>
               </div>
             </div>
-
-        {%- endcase -%}
-      {%- endfor -%}
-    </div>
-  </div>
-</section>
 
         {%- endcase -%}
       {%- endfor -%}

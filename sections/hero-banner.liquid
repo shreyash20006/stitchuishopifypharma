@@ -47,9 +47,9 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 70% 60% at 50% 55%, #004429 0%, transparent 65%),
-      radial-gradient(ellipse 40% 30% at 30% 20%, #0d948818 0%, transparent 60%),
-      radial-gradient(ellipse 35% 25% at 75% 80%, #1d4ed812 0%, transparent 60%);
+      radial-gradient(ellipse 70% 60% at 50% 55%, #072B6B 0%, transparent 65%),
+      radial-gradient(ellipse 40% 30% at 30% 20%, #2E9E3618 0%, transparent 60%),
+      radial-gradient(ellipse 35% 25% at 75% 80%, #2563EB12 0%, transparent 60%);
     z-index: 0;
   }
 
@@ -59,9 +59,9 @@
     bottom: 0; left: 0; right: 0;
     height: 45%;
     background:
-      linear-gradient(transparent 0%, #00442920 100%),
-      repeating-linear-gradient(90deg, #0d948812 0, #0d948812 1px, transparent 1px, transparent 50px),
-      repeating-linear-gradient(0deg, #0d948812 0, #0d948812 1px, transparent 1px, transparent 50px);
+      linear-gradient(transparent 0%, #2E9E3620 100%),
+      repeating-linear-gradient(90deg, #2E9E3612 0, #2E9E3612 1px, transparent 1px, transparent 50px),
+      repeating-linear-gradient(0deg, #2E9E3612 0, #2E9E3612 1px, transparent 1px, transparent 50px);
     transform: perspective(400px) rotateX(60deg);
     transform-origin: bottom center;
     z-index: 1;
@@ -100,8 +100,8 @@
     position: absolute;
     top: 50%; left: 50%;
     width: 38%; height: 2px;
-    background: linear-gradient(90deg, transparent, #0d9488, transparent);
-    box-shadow: 0 0 6px #0d9488, 0 0 12px #0d948860;
+    background: linear-gradient(90deg, transparent, #2E9E36, transparent);
+    box-shadow: 0 0 6px #2E9E36, 0 0 12px #2E9E3660;
     transform-origin: left center;
     transform: translateY(-50%);
     border-radius: 1px;
@@ -116,9 +116,9 @@
   .mol-node {
     position: absolute;
     width: 10px; height: 10px;
-    background: #0d9488;
+    background: #2E9E36;
     border-radius: 50%;
-    box-shadow: 0 0 8px #0d9488, 0 0 20px #0d948880;
+    box-shadow: 0 0 8px #2E9E36, 0 0 20px #2E9E3680;
     transform: translate(-50%, -50%);
   }
   .mol-node:nth-child(7)  { top: 2%;  left: 50%; }
@@ -131,14 +131,14 @@
   .mol-center {
     position: absolute;
     inset: 25%;
-    border: 1.5px dashed #0d948870;
+    border: 1.5px dashed #2E9E3670;
     border-radius: 50%;
-    box-shadow: inset 0 0 10px #0d948820;
+    box-shadow: inset 0 0 10px #2E9E3620;
     animation: mol-center-pulse 3s ease-in-out infinite alternate;
   }
   @keyframes mol-center-pulse {
-    from { opacity: 0.5; box-shadow: inset 0 0 10px #0d948820; }
-    to   { opacity: 1;   box-shadow: inset 0 0 20px #0d948850, 0 0 10px #0d948840; }
+    from { opacity: 0.5; box-shadow: inset 0 0 10px #2E9E3620; }
+    to   { opacity: 1;   box-shadow: inset 0 0 20px #2E9E3650, 0 0 10px #2E9E3640; }
   }
 
   /* Second smaller molecule bottom-left */
@@ -151,9 +151,9 @@
     z-index: 1;
     opacity: 0.6;
   }
-  .molecule-2 .mol-node { width: 6px; height: 6px; background: #d4a74a; box-shadow: 0 0 6px #d4a74a, 0 0 14px #d4a74a80; }
-  .molecule-2 .mol-bond { background: linear-gradient(90deg, transparent, #d4a74a, transparent); box-shadow: 0 0 4px #d4a74a; }
-  .molecule-2 .mol-center { border-color: #d4a74a60; }
+  .molecule-2 .mol-node { width: 6px; height: 6px; background: #2563EB; box-shadow: 0 0 6px #2563EB, 0 0 14px #2563EB80; }
+  .molecule-2 .mol-bond { background: linear-gradient(90deg, transparent, #2563EB, transparent); box-shadow: 0 0 4px #2563EB; }
+  .molecule-2 .mol-center { border-color: #2563EB60; }
 
   /* ══════════════════════════════════════════
      FLOATING PILLS / CAPSULES
@@ -165,26 +165,26 @@
     display: flex;
     border-radius: 100px;
     overflow: hidden;
-    box-shadow: 0 4px 16px #0008, 0 0 8px #0d948840;
+    box-shadow: 0 4px 16px #0008, 0 0 8px #2E9E3640;
   }
   .pill-half { flex: 1; }
 
   /* pill definitions */
   .pill.p1 { width: 36px; height: 15px; top: 18%; left: 12%; animation: pill-float 7s ease-in-out infinite, pill-tumble 7s linear infinite; }
-  .pill.p1 .pill-half:first-child  { background: #0d9488; }
+  .pill.p1 .pill-half:first-child  { background: #2E9E36; }
   .pill.p1 .pill-half:last-child   { background: #e2e8f0; }
 
   .pill.p2 { width: 28px; height: 12px; top: 70%; left: 82%; animation: pill-float 9s ease-in-out infinite 2s, pill-tumble 5s linear infinite; }
-  .pill.p2 .pill-half:first-child  { background: #d4a74a; }
+  .pill.p2 .pill-half:first-child  { background: #2563EB; }
   .pill.p2 .pill-half:last-child   { background: #e2e8f0; }
 
   .pill.p3 { width: 32px; height: 13px; top: 35%; left: 88%; animation: pill-float 8s ease-in-out infinite 1s, pill-tumble 8s linear infinite reverse; }
-  .pill.p3 .pill-half:first-child  { background: #1d4ed8; }
+  .pill.p3 .pill-half:first-child  { background: #072B6B; }
   .pill.p3 .pill-half:last-child   { background: #e2e8f0; }
 
   .pill.p4 { width: 22px; height: 9px; top: 80%; left: 20%; animation: pill-float 6s ease-in-out infinite 3s, pill-tumble 6s linear infinite; }
-  .pill.p4 .pill-half:first-child  { background: #004429; }
-  .pill.p4 .pill-half:last-child   { background: #0d9488; }
+  .pill.p4 .pill-half:first-child  { background: #072B6B; }
+  .pill.p4 .pill-half:last-child   { background: #2E9E36; }
 
   .pill.p5 { width: 30px; height: 12px; top: 12%; left: 72%; animation: pill-float 10s ease-in-out infinite 0.5s, pill-tumble 10s linear infinite reverse; }
   .pill.p5 .pill-half:first-child  { background: #dc2626; }
@@ -237,16 +237,16 @@
   }
 
   /* spark positions */
-  .spark.sp1  { left: 20%; --d:6s; --delay:0s;   --sz:6px;  --col:#0d9488; }
-  .spark.sp2  { left: 35%; --d:7s; --delay:1s;   --sz:4px;  --col:#d4a74a; }
-  .spark.sp3  { left: 48%; --d:5s; --delay:2s;   --sz:8px;  --col:#5eead4; }
-  .spark.sp4  { left: 60%; --d:8s; --delay:0.5s; --sz:5px;  --col:#1d4ed8; }
-  .spark.sp5  { left: 73%; --d:6s; --delay:3s;   --sz:4px;  --col:#0d9488; }
-  .spark.sp6  { left: 28%; --d:9s; --delay:1.5s; --sz:6px;  --col:#d4a74a; }
+  .spark.sp1  { left: 20%; --d:6s; --delay:0s;   --sz:6px;  --col:#2E9E36; }
+  .spark.sp2  { left: 35%; --d:7s; --delay:1s;   --sz:4px;  --col:#2563EB; }
+  .spark.sp3  { left: 48%; --d:5s; --delay:2s;   --sz:8px;  --col:#41C94B; }
+  .spark.sp4  { left: 60%; --d:8s; --delay:0.5s; --sz:5px;  --col:#072B6B; }
+  .spark.sp5  { left: 73%; --d:6s; --delay:3s;   --sz:4px;  --col:#2E9E36; }
+  .spark.sp6  { left: 28%; --d:9s; --delay:1.5s; --sz:6px;  --col:#2563EB; }
   .spark.sp7  { left: 55%; --d:7s; --delay:2.5s; --sz:5px;  --col:#f0cb7a; }
-  .spark.sp8  { left: 40%; --d:5s; --delay:3.5s; --sz:9px;  --col:#0d9488; }
-  .spark.sp9  { left: 65%; --d:8s; --delay:4s;   --sz:4px;  --col:#5eead4; }
-  .spark.sp10 { left: 80%; --d:6s; --delay:0.8s; --sz:6px;  --col:#1d4ed8; }
+  .spark.sp8  { left: 40%; --d:5s; --delay:3.5s; --sz:9px;  --col:#2E9E36; }
+  .spark.sp9  { left: 65%; --d:8s; --delay:4s;   --sz:4px;  --col:#41C94B; }
+  .spark.sp10 { left: 80%; --d:6s; --delay:0.8s; --sz:6px;  --col:#072B6B; }
 
   /* ══════════════════════════════════════════
      BOOK STACK
@@ -414,72 +414,72 @@
   }
 
   /* ══════════════════════════════════════════
-     BOOK 1 — PHARMACOLOGY  (Forest Green & Gold)
+     BOOK 1 — PHARMACOLOGY  (Pharma Green & Gold)
   ══════════════════════════════════════════ */
   .b1 .book-cover-front {
-    background: linear-gradient(145deg, #003320 0%, #005c38 40%, #003d28 100%);
-    border: 1px solid #d4a74a40;
+    background: linear-gradient(145deg, #0e3d14 0%, #2E9E36 40%, #154c1b 100%);
+    border: 1px solid #41C94B60;
     box-shadow: inset 0 0 30px #00000050;
   }
-  .b1 .book-cover-back  { background: linear-gradient(145deg, #002a1a, #003d28); }
-  .b1 .book-spine        { background: linear-gradient(180deg, #002a1a, #004429, #002a1a); }
-  .b1 .spine-text        { color: #d4a74a; }
+  .b1 .book-cover-back  { background: linear-gradient(145deg, #0b300f, #154c1b); }
+  .b1 .book-spine        { background: linear-gradient(180deg, #0b300f, #2E9E36, #0b300f); }
+  .b1 .spine-text        { color: #ffffff; }
   .b1 .book-inner        {
-    background: linear-gradient(160deg, #001a10 0%, #00251a 100%);
+    background: linear-gradient(160deg, #061c09 0%, #0e3713 100%);
   }
-  .b1 .inner-line { background: linear-gradient(90deg, #d4a74a, #f0cb7a40); box-shadow: 0 0 6px #d4a74a80; }
+  .b1 .inner-line { background: linear-gradient(90deg, #2E9E36, #41C94B40); box-shadow: 0 0 6px #2E9E3680; }
 
   /* border ornament lines */
   .b1 .book-cover-front::before, .b1 .book-cover-front::after {
     content: '';
     position: absolute;
-    border: 1px solid #d4a74a30;
+    border: 1px solid #41C94B30;
     border-radius: 2px;
   }
   .b1 .book-cover-front::before { inset: 6%; }
   .b1 .book-cover-front::after  { inset: 9%; }
 
   /* ══════════════════════════════════════════
-     BOOK 2 — PHARMACEUTICS  (Teal & Silver)
+     BOOK 2 — PHARMACEUTICS  (Deep Navy & Blue)
   ══════════════════════════════════════════ */
   .b2 .book-cover-front {
-    background: linear-gradient(145deg, #092929 0%, #0c3d3d 40%, #07302f 100%);
-    border: 1px solid #0d948860;
+    background: linear-gradient(145deg, #031535 0%, #072B6B 40%, #051d4d 100%);
+    border: 1px solid #2563EB60;
     box-shadow: inset 0 0 30px #00000050;
   }
-  .b2 .book-cover-back  { background: linear-gradient(145deg, #061e1e, #0a2f2f); }
-  .b2 .book-spine        { background: linear-gradient(180deg, #061e1e, #0d3838, #061e1e); }
-  .b2 .spine-text        { color: #94a3b8; }
-  .b2 .book-inner        { background: linear-gradient(160deg, #040f0f 0%, #071a1a 100%); }
-  .b2 .inner-line { background: linear-gradient(90deg, #0d9488, #5eead440); box-shadow: 0 0 6px #0d948880; }
+  .b2 .book-cover-back  { background: linear-gradient(145deg, #020c21, #051d4d); }
+  .b2 .book-spine        { background: linear-gradient(180deg, #020c21, #072B6B, #020c21); }
+  .b2 .spine-text        { color: #cbd5e1; }
+  .b2 .book-inner        { background: linear-gradient(160deg, #010612 0%, #031433 100%); }
+  .b2 .inner-line { background: linear-gradient(90deg, #2563EB, #60a5fa40); box-shadow: 0 0 6px #2563EB80; }
 
   .b2 .book-cover-front::before, .b2 .book-cover-front::after {
     content: '';
     position: absolute;
-    border: 1px solid #0d948840;
+    border: 1px solid #2563EB40;
     border-radius: 2px;
   }
   .b2 .book-cover-front::before { inset: 6%; }
   .b2 .book-cover-front::after  { inset: 9%; }
 
   /* ══════════════════════════════════════════
-     BOOK 3 — GPAT NOTES  (Royal Blue & White)
+     BOOK 3 — GPAT NOTES  (Navy-Green Tech Combo)
   ══════════════════════════════════════════ */
   .b3 .book-cover-front {
-    background: linear-gradient(145deg, #0c1e4a 0%, #1d3a7a 40%, #112260 100%);
-    border: 1px solid #3b82f660;
+    background: linear-gradient(145deg, #072B6B 0%, #1c52b5 50%, #2E9E36 100%);
+    border: 1px solid #2E9E3680;
     box-shadow: inset 0 0 30px #00000050;
   }
-  .b3 .book-cover-back  { background: linear-gradient(145deg, #081429, #0f1e4a); }
-  .b3 .book-spine        { background: linear-gradient(180deg, #081429, #142050, #081429); }
-  .b3 .spine-text        { color: #f0f9ff; }
-  .b3 .book-inner        { background: linear-gradient(160deg, #050e1f 0%, #0a1635 100%); }
-  .b3 .inner-line { background: linear-gradient(90deg, #3b82f6, #bfdbfe40); box-shadow: 0 0 6px #3b82f680; }
+  .b3 .book-cover-back  { background: linear-gradient(145deg, #031535, #0b300f); }
+  .b3 .book-spine        { background: linear-gradient(180deg, #031535, #2E9E36, #031535); }
+  .b3 .spine-text        { color: #ffffff; }
+  .b3 .book-inner        { background: linear-gradient(160deg, #010814 0%, #041f0a 100%); }
+  .b3 .inner-line { background: linear-gradient(90deg, #2E9E36, #41C94B40); box-shadow: 0 0 6px #2E9E3680; }
 
   .b3 .book-cover-front::before, .b3 .book-cover-front::after {
     content: '';
     position: absolute;
-    border: 1px solid #3b82f630;
+    border: 1px solid #2E9E3640;
     border-radius: 2px;
   }
   .b3 .book-cover-front::before { inset: 6%; }
@@ -521,23 +521,23 @@
   }
 
   /* color variants */
-  .b1 .book-title    { color: #f0cb7a; }
-  .b1 .book-subtitle { color: #94a3b8; }
+  .b1 .book-title    { color: #41C94B; }
+  .b1 .book-subtitle { color: #cbd5e1; }
   .b1 .book-edition  { color: #cbd5e1; }
-  .b1 .book-divider  { background: linear-gradient(90deg, transparent, #d4a74a, transparent); }
-  .b1 .book-icon     { color: #d4a74a; }
+  .b1 .book-divider  { background: linear-gradient(90deg, transparent, #2E9E36, transparent); }
+  .b1 .book-icon     { color: #2E9E36; }
 
-  .b2 .book-title    { color: #5eead4; }
-  .b2 .book-subtitle { color: #94a3b8; }
+  .b2 .book-title    { color: #60a5fa; }
+  .b2 .book-subtitle { color: #cbd5e1; }
   .b2 .book-edition  { color: #cbd5e1; }
-  .b2 .book-divider  { background: linear-gradient(90deg, transparent, #0d9488, transparent); }
-  .b2 .book-icon     { color: #14b8a6; }
+  .b2 .book-divider  { background: linear-gradient(90deg, transparent, #2563EB, transparent); }
+  .b2 .book-icon     { color: #2563EB; }
 
   .b3 .book-title    { color: #e0f2fe; }
-  .b3 .book-subtitle { color: #94a3b8; }
-  .b3 .book-edition  { color: #bfdbfe; }
-  .b3 .book-divider  { background: linear-gradient(90deg, transparent, #3b82f6, transparent); }
-  .b3 .book-icon     { color: #60a5fa; }
+  .b3 .book-subtitle { color: #cbd5e1; }
+  .b3 .book-edition  { color: #cbd5e1; }
+  .b3 .book-divider  { background: linear-gradient(90deg, transparent, #2E9E36, transparent); }
+  .b3 .book-icon     { color: #41C94B; }
 
   /* ══════════════════════════════════════════
      FLOATING FORMULAS / LABELS
@@ -560,15 +560,15 @@
   }
 
   .ft1 { top: 15%; left: 3%;  --dur:9s;  --del:0s;
-         background: #0d948820; border: 1px solid #0d948850; color: #5eead4; }
+         background: #2E9E3620; border: 1px solid #2E9E3650; color: #41C94B; }
   .ft2 { top: 42%; right: 2%; --dur:7s;  --del:1s;
-         background: #d4a74a18; border: 1px solid #d4a74a50; color: #f0cb7a; }
+         background: #2563EB18; border: 1px solid #2563EB50; color: #60a5fa; }
   .ft3 { bottom: 28%; left: 2%; --dur:10s; --del:2s;
-         background: #1d4ed820; border: 1px solid #3b82f640; color: #93c5fd; }
+         background: #072B6B20; border: 1px solid #072B6B40; color: #93c5fd; }
   .ft4 { top: 8%;   right: 28%; --dur:8s;  --del:0.5s;
-         background: #00442920; border: 1px solid #00714a50; color: #6ee7b7; }
+         background: #2E9E3620; border: 1px solid #2E9E3650; color: #41C94B; }
   .ft5 { bottom: 18%; right: 3%; --dur:11s; --del:3s;
-         background: #0d948818; border: 1px solid #0d948840; color: #5eead4; }
+         background: #2563EB18; border: 1px solid #2563EB40; color: #60a5fa; }
 
   /* ── TITLE LABEL BOTTOM ── */
   .scene-title {
@@ -579,12 +579,12 @@
     font-family: 'Space Mono', monospace;
     font-size: clamp(8px, 1.5vw, 12px);
     letter-spacing: 0.4em;
-    color: #0d9488;
+    color: #2E9E36;
     text-transform: uppercase;
     opacity: 0.7;
     white-space: nowrap;
     z-index: 10;
-    text-shadow: 0 0 20px #0d9488;
+    text-shadow: 0 0 20px #2E9E36;
     animation: title-pulse 3s ease-in-out infinite alternate;
   }
   @keyframes title-pulse {
@@ -606,10 +606,10 @@
     from { opacity: 0.15; transform: scale(0.8); }
     to   { opacity: 0.3;  transform: scale(1.1); }
   }
-  .cg-tl { top: -40px; left: -40px; background: #004429; }
-  .cg-tr { top: -30px; right: -30px; background: #0d9488; animation-delay: 2s; }
-  .cg-bl { bottom: -40px; left: -40px; background: #1d4ed8; animation-delay: 4s; }
-  .cg-br { bottom: -30px; right: -30px; background: #d4a74a; animation-delay: 1s; }
+  .cg-tl { top: -40px; left: -40px; background: #072B6B; }
+  .cg-tr { top: -30px; right: -30px; background: #2E9E36; animation-delay: 2s; }
+  .cg-bl { bottom: -40px; left: -40px; background: #2563EB; animation-delay: 4s; }
+  .cg-br { bottom: -30px; right: -30px; background: #2E9E36; animation-delay: 1s; }
 
   /* ── DNA HELIX ACCENT ── */
   .dna-strip {
@@ -643,15 +643,15 @@
     box-shadow: 0 0 6px var(--dc, #0d9488);
     animation: dna-pulse 2s ease-in-out infinite alternate;
   }
-  .dna-node-pair:nth-child(1)  { top: 0%;  --lc:#0d948860; } .dna-node-pair:nth-child(1) .dna-dot { --dc:#0d9488; animation-delay: 0s; }
-  .dna-node-pair:nth-child(2)  { top: 11%; --lc:#d4a74a50; } .dna-node-pair:nth-child(2) .dna-dot { --dc:#d4a74a; animation-delay: 0.2s; }
-  .dna-node-pair:nth-child(3)  { top: 22%; --lc:#0d948860; } .dna-node-pair:nth-child(3) .dna-dot { --dc:#0d9488; animation-delay: 0.4s; }
-  .dna-node-pair:nth-child(4)  { top: 33%; --lc:#3b82f650; } .dna-node-pair:nth-child(4) .dna-dot { --dc:#3b82f6; animation-delay: 0.6s; }
-  .dna-node-pair:nth-child(5)  { top: 44%; --lc:#0d948860; } .dna-node-pair:nth-child(5) .dna-dot { --dc:#0d9488; animation-delay: 0.8s; }
-  .dna-node-pair:nth-child(6)  { top: 55%; --lc:#d4a74a50; } .dna-node-pair:nth-child(6) .dna-dot { --dc:#d4a74a; animation-delay: 1s; }
-  .dna-node-pair:nth-child(7)  { top: 66%; --lc:#0d948860; } .dna-node-pair:nth-child(7) .dna-dot { --dc:#0d9488; animation-delay: 1.2s; }
-  .dna-node-pair:nth-child(8)  { top: 77%; --lc:#3b82f650; } .dna-node-pair:nth-child(8) .dna-dot { --dc:#3b82f6; animation-delay: 1.4s; }
-  .dna-node-pair:nth-child(9)  { top: 88%; --lc:#0d948860; } .dna-node-pair:nth-child(9) .dna-dot { --dc:#0d9488; animation-delay: 1.6s; }
+  .dna-node-pair:nth-child(1)  { top: 0%;  --lc:#2E9E3660; } .dna-node-pair:nth-child(1) .dna-dot { --dc:#2E9E36; animation-delay: 0s; }
+  .dna-node-pair:nth-child(2)  { top: 11%; --lc:#2563EB50; } .dna-node-pair:nth-child(2) .dna-dot { --dc:#2563EB; animation-delay: 0.2s; }
+  .dna-node-pair:nth-child(3)  { top: 22%; --lc:#2E9E3660; } .dna-node-pair:nth-child(3) .dna-dot { --dc:#2E9E36; animation-delay: 0.4s; }
+  .dna-node-pair:nth-child(4)  { top: 33%; --lc:#2563EB50; } .dna-node-pair:nth-child(4) .dna-dot { --dc:#2563EB; animation-delay: 0.6s; }
+  .dna-node-pair:nth-child(5)  { top: 44%; --lc:#2E9E3660; } .dna-node-pair:nth-child(5) .dna-dot { --dc:#2E9E36; animation-delay: 0.8s; }
+  .dna-node-pair:nth-child(6)  { top: 55%; --lc:#2563EB50; } .dna-node-pair:nth-child(6) .dna-dot { --dc:#2563EB; animation-delay: 1s; }
+  .dna-node-pair:nth-child(7)  { top: 66%; --lc:#2E9E3660; } .dna-node-pair:nth-child(7) .dna-dot { --dc:#2E9E36; animation-delay: 1.2s; }
+  .dna-node-pair:nth-child(8)  { top: 77%; --lc:#2563EB50; } .dna-node-pair:nth-child(8) .dna-dot { --dc:#2563EB; animation-delay: 1.4s; }
+  .dna-node-pair:nth-child(9)  { top: 88%; --lc:#2E9E3660; } .dna-node-pair:nth-child(9) .dna-dot { --dc:#2E9E36; animation-delay: 1.6s; }
   @keyframes dna-pulse {
     from { opacity: 0.5; transform: scale(0.8); }
     to   { opacity: 1;   transform: scale(1.3); }
@@ -663,7 +663,7 @@
     position: absolute;
     top: -28px; left: 50%;
     transform: translateX(-50%) translateY(4px);
-    background: #0d9488;
+    background: #2E9E36;
     color: #fff;
     font-family: 'Space Mono', monospace;
     font-size: clamp(6px, 1vw, 9px);
@@ -675,7 +675,7 @@
     transition: opacity 0.3s, transform 0.3s;
     z-index: 99;
     letter-spacing: 0.1em;
-    box-shadow: 0 0 12px #0d948880;
+    box-shadow: 0 0 12px #2E9E3680;
   }
   .book:hover::after {
     opacity: 1;
@@ -695,28 +695,28 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <!-- Content Side -->
       <div class="relative z-10 space-y-8 animate-fade-in">
-        <span class="inline-block px-5 py-2 rounded-full font-bold text-xs tracking-widest uppercase shadow-sm"
-              style="background-color: {{ section.settings.badge_bg | default: '#cfe9da' }}; color: {{ section.settings.badge_text_color | default: '#52695e' }};">
+        <span class="inline-block px-5 py-2 rounded-full font-bold text-xs tracking-widest uppercase shadow-sm animate-pulse"
+              style="background-color: {{ section.settings.badge_bg | default: '#2E9E3615' }}; color: {{ section.settings.badge_text_color | default: '#2E9E36' }};">
           {{ section.settings.badge_text }}
         </span>
         
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-[#141b2b] leading-[1.1] tracking-tight">
-          {{ section.settings.title_rich | default: 'QUALITY PHARMACY NOTES MADE FOR <span class="text-[#004429]">B.PHARM & D.PHARM</span> STUDENTS' }}
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black text-[#072B6B] dark:text-slate-100 leading-[1.1] tracking-tight">
+          {{ section.settings.title_rich | default: 'QUALITY PHARMACY NOTES MADE FOR <span class="text-[#2E9E36]">B.PHARM & D.PHARM</span> STUDENTS' }}
         </h1>
         
-        <p class="text-lg md:text-xl text-gray-500 font-medium leading-relaxed max-w-xl">
+        <p class="text-lg md:text-xl text-slate-500 dark:text-slate-400 font-medium leading-relaxed max-w-xl">
           {{ section.settings.description }}
         </p>
         
         <div class="flex flex-wrap gap-4 pt-4">
           <a href="{{ section.settings.button_link | default: '/collections/all' }}" 
-             class="px-10 py-5 rounded-2xl font-bold hover:scale-105 transition-all shadow-xl"
-             style="background-color: {{ section.settings.btn_bg_color | default: '#004429' }}; color: {{ section.settings.btn_text_color | default: '#ffffff' }}; shadow-color: {{ section.settings.btn_bg_color | default: '#004429' }}20;">
+             class="px-10 py-5 rounded-2xl font-bold hover:scale-105 transition-all shadow-xl hover:bg-[#2E9E36] hover:text-white"
+             style="background-color: {{ section.settings.btn_bg_color | default: '#072B6B' }}; color: {{ section.settings.btn_text_color | default: '#ffffff' }}; shadow-color: {{ section.settings.btn_bg_color | default: '#072B6B' }}20;">
             {{ section.settings.button_text }}
           </a>
           <a href="{{ section.settings.secondary_button_link | default: '#' }}" 
-             class="bg-white border-2 px-10 py-5 rounded-2xl font-bold hover:bg-[#004429] hover:text-white transition-all flex items-center gap-2 group"
-             style="border-color: {{ section.settings.btn_secondary_border | default: '#e6ebe8' }}; color: {{ section.settings.btn_secondary_text | default: '#004429' }};">
+             class="bg-white border-2 px-10 py-5 rounded-2xl font-bold hover:bg-[#072B6B] hover:text-white hover:border-[#072B6B] transition-all flex items-center gap-2 group shadow-sm"
+             style="border-color: {{ section.settings.btn_secondary_border | default: '#DCE3EA' }}; color: {{ section.settings.btn_secondary_text | default: '#072B6B' }};">
             <span class="material-symbols-outlined group-hover:rotate-12 transition-transform">chat</span>
             {{ section.settings.secondary_button_text }}
           </a>
@@ -727,7 +727,7 @@
       <div class="relative">
         {%- if section.settings.enable_book_animation -%}
           <!-- 3D Pharmacy Books Animation Scene -->
-          <div class="scene-wrap border border-emerald-100/50 dark:border-emerald-900/30 shadow-2xl relative overflow-hidden" style="min-height: {{ section.settings.banner_height }}px;">
+          <div class="scene-wrap border border-slate-100/50 dark:border-slate-800/30 shadow-2xl relative overflow-hidden" style="min-height: {{ section.settings.banner_height }}px;">
             
             <!-- Corner glows -->
             <div class="corner-glow cg-tl"></div>
@@ -924,8 +924,8 @@
 
           </div>
         {%- else -%}
-          <div class="bg-[#E8F1EC] dark:bg-emerald-950/30 rounded-[48px] p-8 md:p-12 overflow-hidden aspect-video lg:aspect-square flex items-center justify-center relative group border border-emerald-100/50 dark:border-emerald-900/30" style="min-height: {{ section.settings.banner_height }}px;">
-            <div class="absolute inset-0 bg-gradient-to-tr from-[#00442908] to-transparent pointer-events-none"></div>
+          <div class="bg-[#F5F8FB] dark:bg-slate-900/30 rounded-[48px] p-8 md:p-12 overflow-hidden aspect-video lg:aspect-square flex items-center justify-center relative group border border-slate-100/50 dark:border-slate-800/30" style="min-height: {{ section.settings.banner_height }}px;">
+            <div class="absolute inset-0 bg-gradient-to-tr from-[#072B6B]/5 to-transparent pointer-events-none"></div>
             {%- if section.settings.hero_image != blank -%}
               <img src="{{ section.settings.hero_image | image_url: width: 1400 }}" 
                    alt="{{ section.settings.badge_text }}" 
@@ -933,13 +933,13 @@
             {%- else -%}
               <img src="{{ 'hero-illustration.png' | asset_url }}" 
                    alt="TGPCOP Study Hub Platform" 
-                   class="w-full h-full object-contain drop-shadow-[0_20px_60px_rgba(0,68,41,0.15)] transition-all duration-700 group-hover:scale-105">
+                   class="w-full h-full object-contain drop-shadow-[0_20px_60px_rgba(7,43,107,0.15)] transition-all duration-700 group-hover:scale-105">
             {%- endif -%}
           </div>
         {%- endif -%}
         <!-- Decorative elements -->
-        <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-[#8ad4a8]/20 rounded-full blur-3xl"></div>
-        <div class="absolute -top-6 -right-6 w-48 h-48 bg-[#004429]/5 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-[#2E9E36]/15 rounded-full blur-3xl"></div>
+        <div class="absolute -top-6 -right-6 w-48 h-48 bg-[#072B6B]/5 rounded-full blur-3xl"></div>
       </div>
     </div>
   </div>
@@ -959,7 +959,7 @@
       "type": "inline_richtext",
       "id": "title_rich",
       "label": "Heading (Use <span> for green text)",
-      "default": "QUALITY PHARMACY NOTES MADE FOR <span class=\"text-[#004429]\">B.PHARM & D.PHARM</span> STUDENTS"
+      "default": "QUALITY PHARMACY NOTES MADE FOR <span class=\"text-[#2E9E36]\">B.PHARM & D.PHARM</span> STUDENTS"
     },
     {
       "type": "textarea",
@@ -1034,19 +1034,19 @@
       "type": "color",
       "id": "badge_bg",
       "label": "Badge Background Color",
-      "default": "#cfe9da"
+      "default": "#2E9E3615"
     },
     {
       "type": "color",
       "id": "badge_text_color",
       "label": "Badge Text Color",
-      "default": "#52695e"
+      "default": "#2E9E36"
     },
     {
       "type": "color",
       "id": "btn_bg_color",
       "label": "Primary Button Background",
-      "default": "#004429"
+      "default": "#072B6B"
     },
     {
       "type": "color",
@@ -1058,13 +1058,13 @@
       "type": "color",
       "id": "btn_secondary_border",
       "label": "Secondary Button Border Color",
-      "default": "#e6ebe8"
+      "default": "#DCE3EA"
     },
     {
       "type": "color",
       "id": "btn_secondary_text",
       "label": "Secondary Button Text Color",
-      "default": "#004429"
+      "default": "#072B6B"
     }
   ],
   "presets": [

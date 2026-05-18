@@ -14,7 +14,7 @@
       {%- for block in section.blocks -%}
         <div class="text-center p-10 rounded-[32px] hover:bg-[#F9F9FF] transition-all duration-500 border-2 border-transparent hover:border-[#E5E7EB] group" {{ block.shopify_attributes }}>
           <div class="w-20 h-20 bg-{{ block.settings.color_scheme | default: 'primary' }}/10 text-{{ block.settings.color_scheme | default: 'primary' }} rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-sm"
-               style="background-color: {{ block.settings.bg_color | default: '#00442910' }}; color: {{ block.settings.icon_color | default: '#004429' }};">
+               style="background-color: {{ block.settings.bg_color | default: '#2E9E3610' }}; color: {{ block.settings.icon_color | default: '#2E9E36' }};">
             <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">{{ block.settings.icon }}</span>
           </div>
           <h4 class="text-2xl font-black text-[#141b2b] mb-4">{{ block.settings.title }}</h4>
@@ -78,13 +78,13 @@
           "type": "color",
           "id": "bg_color",
           "label": "Icon Background Color",
-          "default": "#00442910"
+          "default": "#2E9E3610"
         },
         {
           "type": "color",
           "id": "icon_color",
           "label": "Icon Color",
-          "default": "#004429"
+          "default": "#2E9E36"
         },
         {
           "type": "text",
@@ -105,10 +105,10 @@
     {
       "name": "Why Choose TGPCOP",
       "blocks": [
-        { "type": "feature", "settings": { "icon": "edit_note", "bg_color": "#00442910", "icon_color": "#004429", "title": "Handwritten", "text": "Personalized, easy-to-read notes that feel like your own best work." } },
+        { "type": "feature", "settings": { "icon": "edit_note", "bg_color": "#2E9E3610", "icon_color": "#2E9E36", "title": "Handwritten", "text": "Personalized, easy-to-read notes that feel like your own best work." } },
         { "type": "feature", "settings": { "icon": "target", "bg_color": "#4b00a710", "icon_color": "#4b00a7", "title": "Exam Focused", "text": "Strictly mapped to PCI syllabus and previous year patterns." } },
-        { "type": "feature", "settings": { "icon": "download", "bg_color": "#4c635810", "icon_color": "#4c6358", "title": "Instant Download", "text": "Get your PDFs immediately after payment. Study anywhere, anytime." } },
-        { "type": "feature", "settings": { "icon": "school", "bg_color": "#00442910", "icon_color": "#004429", "title": "GPAT Ready", "text": "Comprehensive materials designed for national competitive excellence." } }
+        { "type": "feature", "settings": { "icon": "download", "bg_color": "#072B6B10", "icon_color": "#072B6B", "title": "Instant Download", "text": "Get your PDFs immediately after payment. Study anywhere, anytime." } },
+        { "type": "feature", "settings": { "icon": "school", "bg_color": "#2E9E3610", "icon_color": "#2E9E36", "title": "GPAT Ready", "text": "Comprehensive materials designed for national competitive excellence." } }
       ]
     }
   ]

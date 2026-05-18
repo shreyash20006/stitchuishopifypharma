@@ -1,5 +1,5 @@
 <section class="py-20 px-margin-mobile md:px-margin-desktop">
-  <div class="max-w-container-max mx-auto bg-gradient-to-br from-[#004429] to-[#25D366] rounded-[48px] overflow-hidden shadow-2xl relative">
+  <div class="max-w-container-max mx-auto bg-gradient-to-br from-[#072B6B] to-[#2E9E36] rounded-[48px] overflow-hidden shadow-2xl relative">
     <!-- Decorative background elements -->
     <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-[100px] -mr-48 -mt-48"></div>
     <div class="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-[80px] -ml-32 -mb-32"></div>
@@ -11,7 +11,7 @@
             {% if section.settings.logo != blank %}
               <img src="{{ section.settings.logo | image_url: width: 200 }}" alt="Logo" class="w-full h-full object-contain">
             {% else %}
-               <span class="material-symbols-outlined text-[#25D366] text-5xl flex items-center justify-center h-full">groups</span>
+               <span class="material-symbols-outlined text-[#2E9E36] text-5xl flex items-center justify-center h-full">groups</span>
             {% endif %}
           </div>
           <span class="text-xl font-bold tracking-tight opacity-90">{{ section.settings.badge_text }}</span>
@@ -25,7 +25,7 @@
           {{ section.settings.text }}
         </p>
         
-        <a href="{{ section.settings.button_link | default: '#' }}" class="inline-flex items-center gap-4 bg-white text-[#25D366] px-10 py-5 rounded-2xl font-black text-lg hover:scale-105 transition-all shadow-2xl group">
+        <a href="{{ section.settings.button_link | default: '#' }}" class="inline-flex items-center gap-4 bg-white text-[#072B6B] hover:text-[#2E9E36] px-10 py-5 rounded-2xl font-black text-lg hover:scale-105 transition-all shadow-2xl group">
           <span class="material-symbols-outlined font-bold group-hover:rotate-12 transition-transform">chat</span>
           {{ section.settings.button_text }}
         </a>
@@ -40,7 +40,7 @@
         {% else %}
           <img src="{{ 'community-milestone.png' | asset_url }}" 
                alt="TGPCOP Community Milestone" 
-               class="relative z-10 w-full max-w-md drop-shadow-[0_30px_60px_rgba(0,68,41,0.25)] animate-float">
+               class="relative z-10 w-full max-w-md drop-shadow-[0_30px_60px_rgba(7,43,107,0.25)] animate-float">
         {% endif %}
       </div>
     </div>
