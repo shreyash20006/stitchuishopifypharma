@@ -26,6 +26,50 @@
     },
     "collections": {
       "type": "collection-list-premium",
+      "blocks": {
+        "collection_z4FBWt": {
+          "type": "collection",
+          "settings": {
+            "collection": "b-pharmacy-4th-semester-notes-bundle-tgpcop-notes",
+            "title": ""
+          }
+        },
+        "collection_wEQENL": {
+          "type": "collection",
+          "settings": {
+            "collection": "b-pharmacy-5th-semester-notes-bundle-tgpcop-notes",
+            "title": ""
+          }
+        },
+        "collection_xMcaff": {
+          "type": "collection",
+          "settings": {
+            "collection": "b-pharmacy-6th-semester-notes-bundle-tgpcop-notes",
+            "title": ""
+          }
+        },
+        "collection_pMghnh": {
+          "type": "collection",
+          "settings": {
+            "collection": "b-pharmacy-7th-semester-notes-bundle-tgpcop-notes",
+            "title": ""
+          }
+        },
+        "collection_KgFka7": {
+          "type": "collection",
+          "settings": {
+            "collection": "b-pharmacy-8th-semester-notes-bundle-tgpcop-notes",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_z4FBWt",
+        "collection_wEQENL",
+        "collection_xMcaff",
+        "collection_pMghnh",
+        "collection_KgFka7"
+      ],
       "settings": {
         "title": "Featured Collections",
         "subtitle": "Curated resources for every stage of your pharmacy journey.",
@@ -33,83 +77,6 @@
         "columns_desktop": 3,
         "view_all_text": "View All Collections",
         "view_all_link": ""
-      }
-    },
-    "why_us": {
-      "type": "why-choose-us",
-      "blocks": {
-        "visual": {
-          "type": "feature_card",
-          "settings": {
-            "use_dark_theme": false,
-            "icon": "psychology",
-            "title": "Visual Learning Strategy",
-            "description": "Structured handwritten-style notes with memory anchors and visual understanding blocks.",
-            "stat_1_val": "70%",
-            "stat_1_lbl": "Faster Recall",
-            "stat_2_val": "100%",
-            "stat_2_lbl": "Syllabus Coverage",
-            "placeholder_icon": "draw",
-            "placeholder_text": "Handwritten Samples",
-            "hover_badge": "Preview Notes",
-            "btn_text": "View Sample Notes",
-            "btn_link": ""
-          }
-        },
-        "revision": {
-          "type": "feature_card",
-          "settings": {
-            "use_dark_theme": true,
-            "icon": "bolt",
-            "title": "Quick Revision Strategy",
-            "description": "One-shot revision tables and exam-focused summaries for last minute preparation.",
-            "stat_1_val": "5 Min",
-            "stat_1_lbl": "Quick Sheets",
-            "stat_2_val": "IMP",
-            "stat_2_lbl": "Topic Focus",
-            "placeholder_icon": "table_rows",
-            "placeholder_text": "Revision Tables",
-            "hover_badge": "View Charts",
-            "btn_text": "Download Preview",
-            "btn_link": ""
-          }
-        },
-        "exam": {
-          "type": "feature_card",
-          "settings": {
-            "use_dark_theme": false,
-            "icon": "assignment_turned_in",
-            "title": "Exam Oriented Content",
-            "description": "Previous year questions, important answers and university-focused preparation.",
-            "stat_1_val": "PYQs",
-            "stat_1_lbl": "Included",
-            "stat_2_val": "TOP",
-            "stat_2_lbl": "Most Asked",
-            "placeholder_icon": "quiz",
-            "placeholder_text": "Paper Samples",
-            "hover_badge": "Start Learning",
-            "btn_text": "Get Started",
-            "btn_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "visual",
-        "revision",
-        "exam"
-      ],
-      "settings": {
-        "bg_color": "#ffffff",
-        "columns_desktop": 3,
-        "badge_text": "Trusted by 50,000+ B.Pharmacy Students",
-        "badge_icon": "verified",
-        "title": "Why study with TGPCOP?",
-        "subtitle": "We don't just provide notes; we provide a high-performance visual learning system designed specifically for pharmacy excellence.",
-        "show_rating_strip": true,
-        "rating_text": "4.9/5 Average Student Rating",
-        "social_text": "Join Telegram Community",
-        "social_icon": "send",
-        "social_link": ""
       }
     },
     "bestsellers": {
@@ -163,7 +130,6 @@
   "order": [
     "hero",
     "collections",
-    "why_us",
     "bestsellers",
     "new_arrivals",
     "gpat_updates",
