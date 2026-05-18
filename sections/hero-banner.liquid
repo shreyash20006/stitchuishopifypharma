@@ -1,4 +1,6 @@
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Crimson+Pro:wght@400;600&family=Space+Mono:wght@400;700&display=swap');
+
   .hero-banner__media,
   .hero-banner__image-wrapper,
   .hero-banner .media,
@@ -20,6 +22,671 @@
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── 3D BOOK ANIMATION STYLES ── */
+  .scene-wrap *, .scene-wrap *::before, .scene-wrap *::after { box-sizing: border-box; }
+
+  /* ── CONTAINER ── */
+  .scene-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #060d12;
+    border-radius: 48px;
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* ── RADIAL BG GLOW ── */
+  .scene-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 55%, #004429 0%, transparent 65%),
+      radial-gradient(ellipse 40% 30% at 30% 20%, #0d948818 0%, transparent 60%),
+      radial-gradient(ellipse 35% 25% at 75% 80%, #1d4ed812 0%, transparent 60%);
+    z-index: 0;
+  }
+
+  /* ── GRID FLOOR ── */
+  .grid-floor {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 45%;
+    background:
+      linear-gradient(transparent 0%, #00442920 100%),
+      repeating-linear-gradient(90deg, #0d948812 0, #0d948812 1px, transparent 1px, transparent 50px),
+      repeating-linear-gradient(0deg, #0d948812 0, #0d948812 1px, transparent 1px, transparent 50px);
+    transform: perspective(400px) rotateX(60deg);
+    transform-origin: bottom center;
+    z-index: 1;
+  }
+
+  /* ── MAIN STAGE ── */
+  .stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    perspective: 1000px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ══════════════════════════════════════════
+     MOLECULAR BENZENE BACKGROUND
+  ══════════════════════════════════════════ */
+  .molecule {
+    position: absolute;
+    top: 8%; right: 6%;
+    width: 22%;
+    aspect-ratio: 1;
+    animation: mol-spin 25s linear infinite;
+    z-index: 1;
+  }
+  @keyframes mol-spin { to { transform: rotate(360deg); } }
+
+  .mol-ring {
+    position: absolute;
+    inset: 0;
+  }
+  .mol-bond {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 38%; height: 2px;
+    background: linear-gradient(90deg, transparent, #0d9488, transparent);
+    box-shadow: 0 0 6px #0d9488, 0 0 12px #0d948860;
+    transform-origin: left center;
+    transform: translateY(-50%);
+    border-radius: 1px;
+  }
+  .mol-bond:nth-child(1)  { transform: translateY(-50%) rotate(0deg);   }
+  .mol-bond:nth-child(2)  { transform: translateY(-50%) rotate(60deg);  }
+  .mol-bond:nth-child(3)  { transform: translateY(-50%) rotate(120deg); }
+  .mol-bond:nth-child(4)  { transform: translateY(-50%) rotate(180deg); }
+  .mol-bond:nth-child(5)  { transform: translateY(-50%) rotate(240deg); }
+  .mol-bond:nth-child(6)  { transform: translateY(-50%) rotate(300deg); }
+
+  .mol-node {
+    position: absolute;
+    width: 10px; height: 10px;
+    background: #0d9488;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #0d9488, 0 0 20px #0d948880;
+    transform: translate(-50%, -50%);
+  }
+  .mol-node:nth-child(7)  { top: 2%;  left: 50%; }
+  .mol-node:nth-child(8)  { top: 25%; left: 87%; }
+  .mol-node:nth-child(9)  { top: 75%; left: 87%; }
+  .mol-node:nth-child(10) { top: 98%; left: 50%; }
+  .mol-node:nth-child(11) { top: 75%; left: 13%; }
+  .mol-node:nth-child(12) { top: 25%; left: 13%; }
+
+  .mol-center {
+    position: absolute;
+    inset: 25%;
+    border: 1.5px dashed #0d948870;
+    border-radius: 50%;
+    box-shadow: inset 0 0 10px #0d948820;
+    animation: mol-center-pulse 3s ease-in-out infinite alternate;
+  }
+  @keyframes mol-center-pulse {
+    from { opacity: 0.5; box-shadow: inset 0 0 10px #0d948820; }
+    to   { opacity: 1;   box-shadow: inset 0 0 20px #0d948850, 0 0 10px #0d948840; }
+  }
+
+  /* Second smaller molecule bottom-left */
+  .molecule-2 {
+    position: absolute;
+    bottom: 12%; left: 5%;
+    width: 14%;
+    aspect-ratio: 1;
+    animation: mol-spin 18s linear infinite reverse;
+    z-index: 1;
+    opacity: 0.6;
+  }
+  .molecule-2 .mol-node { width: 6px; height: 6px; background: #d4a74a; box-shadow: 0 0 6px #d4a74a, 0 0 14px #d4a74a80; }
+  .molecule-2 .mol-bond { background: linear-gradient(90deg, transparent, #d4a74a, transparent); box-shadow: 0 0 4px #d4a74a; }
+  .molecule-2 .mol-center { border-color: #d4a74a60; }
+
+  /* ══════════════════════════════════════════
+     FLOATING PILLS / CAPSULES
+  ══════════════════════════════════════════ */
+  .pills-layer { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+
+  .pill {
+    position: absolute;
+    display: flex;
+    border-radius: 100px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px #0008, 0 0 8px #0d948840;
+  }
+  .pill-half { flex: 1; }
+
+  /* pill definitions */
+  .pill.p1 { width: 36px; height: 15px; top: 18%; left: 12%; animation: pill-float 7s ease-in-out infinite, pill-tumble 7s linear infinite; }
+  .pill.p1 .pill-half:first-child  { background: #0d9488; }
+  .pill.p1 .pill-half:last-child   { background: #e2e8f0; }
+
+  .pill.p2 { width: 28px; height: 12px; top: 70%; left: 82%; animation: pill-float 9s ease-in-out infinite 2s, pill-tumble 5s linear infinite; }
+  .pill.p2 .pill-half:first-child  { background: #d4a74a; }
+  .pill.p2 .pill-half:last-child   { background: #e2e8f0; }
+
+  .pill.p3 { width: 32px; height: 13px; top: 35%; left: 88%; animation: pill-float 8s ease-in-out infinite 1s, pill-tumble 8s linear infinite reverse; }
+  .pill.p3 .pill-half:first-child  { background: #1d4ed8; }
+  .pill.p3 .pill-half:last-child   { background: #e2e8f0; }
+
+  .pill.p4 { width: 22px; height: 9px; top: 80%; left: 20%; animation: pill-float 6s ease-in-out infinite 3s, pill-tumble 6s linear infinite; }
+  .pill.p4 .pill-half:first-child  { background: #004429; }
+  .pill.p4 .pill-half:last-child   { background: #0d9488; }
+
+  .pill.p5 { width: 30px; height: 12px; top: 12%; left: 72%; animation: pill-float 10s ease-in-out infinite 0.5s, pill-tumble 10s linear infinite reverse; }
+  .pill.p5 .pill-half:first-child  { background: #dc2626; }
+  .pill.p5 .pill-half:last-child   { background: #e2e8f0; }
+
+  .pill.p6 { width: 24px; height: 10px; top: 55%; left: 5%; animation: pill-float 7.5s ease-in-out infinite 4s, pill-tumble 7s linear infinite; }
+  .pill.p6 .pill-half:first-child  { background: #7c3aed; }
+  .pill.p6 .pill-half:last-child   { background: #e2e8f0; }
+
+  @keyframes pill-float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-18px); }
+  }
+  @keyframes pill-tumble {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* ══════════════════════════════════════════
+     SPARKLES / RESEARCH BUBBLES
+  ══════════════════════════════════════════ */
+  .sparkles { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+  .spark {
+    position: absolute;
+    border-radius: 50%;
+    animation: spark-rise var(--d, 5s) ease-in var(--delay, 0s) infinite;
+    bottom: 10%;
+    opacity: 0;
+  }
+  .spark-dot {
+    width: var(--sz, 5px);
+    height: var(--sz, 5px);
+    background: var(--col, #0d9488);
+    box-shadow: 0 0 6px var(--col, #0d9488), 0 0 12px var(--col, #0d948880);
+    border-radius: 50%;
+  }
+  .spark-ring {
+    width: var(--sz, 8px);
+    height: var(--sz, 8px);
+    border: 1.5px solid var(--col, #0d9488);
+    box-shadow: 0 0 6px var(--col, #0d9488);
+    border-radius: 50%;
+  }
+
+  @keyframes spark-rise {
+    0%   { opacity: 0;   transform: translateY(0)      scale(0.5); }
+    20%  { opacity: 0.9; transform: translateY(-30px)  scale(1);   }
+    80%  { opacity: 0.5; transform: translateY(-130px) scale(0.8); }
+    100% { opacity: 0;   transform: translateY(-180px) scale(0.3); }
+  }
+
+  /* spark positions */
+  .spark.sp1  { left: 20%; --d:6s; --delay:0s;   --sz:6px;  --col:#0d9488; }
+  .spark.sp2  { left: 35%; --d:7s; --delay:1s;   --sz:4px;  --col:#d4a74a; }
+  .spark.sp3  { left: 48%; --d:5s; --delay:2s;   --sz:8px;  --col:#5eead4; }
+  .spark.sp4  { left: 60%; --d:8s; --delay:0.5s; --sz:5px;  --col:#1d4ed8; }
+  .spark.sp5  { left: 73%; --d:6s; --delay:3s;   --sz:4px;  --col:#0d9488; }
+  .spark.sp6  { left: 28%; --d:9s; --delay:1.5s; --sz:6px;  --col:#d4a74a; }
+  .spark.sp7  { left: 55%; --d:7s; --delay:2.5s; --sz:5px;  --col:#f0cb7a; }
+  .spark.sp8  { left: 40%; --d:5s; --delay:3.5s; --sz:9px;  --col:#0d9488; }
+  .spark.sp9  { left: 65%; --d:8s; --delay:4s;   --sz:4px;  --col:#5eead4; }
+  .spark.sp10 { left: 80%; --d:6s; --delay:0.8s; --sz:6px;  --col:#1d4ed8; }
+
+  /* ══════════════════════════════════════════
+     BOOK STACK
+  ══════════════════════════════════════════ */
+  .book-stack {
+    position: relative;
+    width: 48%;
+    perspective: 1200px;
+    transform-style: preserve-3d;
+    animation: stack-float 4s ease-in-out infinite;
+    z-index: 10;
+  }
+  @keyframes stack-float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-16px); }
+  }
+
+  /* ── BOOK BASE ── */
+  .book {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+  }
+
+  /* stacking offsets */
+  .book-1 { transform: rotateX(8deg) rotateY(-5deg);  margin-bottom: -64%; }
+  .book-2 { transform: rotateX(8deg) rotateY(3deg);   margin-bottom: -62%; }
+  .book-3 { transform: rotateX(8deg) rotateY(-2deg);  }
+
+  /* hover: slide out + open */
+  .book-1:hover {
+    transform: rotateX(8deg) rotateY(-5deg) translateX(-18%) translateY(-12%) translateZ(40px);
+    z-index: 20;
+  }
+  .book-2:hover {
+    transform: rotateX(8deg) rotateY(3deg) translateX(5%) translateY(-18%) translateZ(60px);
+    z-index: 20;
+  }
+  .book-3:hover {
+    transform: rotateX(8deg) rotateY(-2deg) translateX(-8%) translateY(-22%) translateZ(80px);
+    z-index: 20;
+  }
+  .book:hover .book-cover { transform: rotateY(-40deg); }
+
+  /* ── BOOK FACES ── */
+  .book-face {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    border-radius: 2px 8px 8px 2px;
+  }
+
+  /* ── FRONT COVER ── */
+  .book-cover {
+    position: absolute;
+    inset: 0;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.34, 1.3, 0.64, 1);
+    z-index: 5;
+    border-radius: 2px 8px 8px 2px;
+    overflow: hidden;
+  }
+  .book-cover-front {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8%;
+    padding: 10% 8%;
+    backface-visibility: hidden;
+    border-radius: 2px 8px 8px 2px;
+  }
+  .book-cover-back {
+    position: absolute;
+    inset: 0;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    border-radius: 2px 8px 8px 2px;
+  }
+
+  /* ── SPINE ── */
+  .book-spine {
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+    width: 12%;
+    transform: rotateY(-90deg) translateZ(0);
+    transform-origin: left center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px 0 0 2px;
+    overflow: hidden;
+  }
+  .spine-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(5px, 1.2vw, 10px);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+  }
+
+  /* ── PAGES ── */
+  .book-pages {
+    position: absolute;
+    top: 1%; bottom: 1%;
+    right: 0;
+    width: 90%;
+    background: repeating-linear-gradient(
+      to bottom,
+      #e8e0d0 0px, #e8e0d0 3px,
+      #f5f0e8 3px, #f5f0e8 5px
+    );
+    border-radius: 0 4px 4px 0;
+    transform: translateZ(-2px);
+    box-shadow: inset -2px 0 6px #0003;
+  }
+
+  /* ── INNER NOTES (revealed on hover) ── */
+  .book-inner {
+    position: absolute;
+    inset: 0;
+    transform: rotateY(180deg);
+    backface-visibility: visible;
+    border-radius: 2px 8px 8px 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 12% 8%;
+    gap: 6%;
+  }
+  .inner-line {
+    height: 2px;
+    border-radius: 1px;
+    opacity: 0;
+    transform: scaleX(0.3);
+    transition: opacity 0.4s 0.3s, transform 0.4s 0.3s;
+  }
+  .book:hover .inner-line {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  .inner-line:nth-child(odd)  { width: 90%; }
+  .inner-line:nth-child(even) { width: 70%; }
+  .inner-line:nth-child(3n)   { width: 55%; }
+
+  /* ── BOOK SHADOW ── */
+  .book-shadow {
+    position: absolute;
+    bottom: -8%; left: 10%; right: 10%;
+    height: 20px;
+    background: radial-gradient(ellipse at center, #0008 0%, transparent 70%);
+    filter: blur(8px);
+    transform: rotateX(90deg) translateZ(-5px);
+    z-index: -1;
+  }
+
+  /* ══════════════════════════════════════════
+     BOOK 1 — PHARMACOLOGY  (Forest Green & Gold)
+  ══════════════════════════════════════════ */
+  .b1 .book-cover-front {
+    background: linear-gradient(145deg, #003320 0%, #005c38 40%, #003d28 100%);
+    border: 1px solid #d4a74a40;
+    box-shadow: inset 0 0 30px #00000050;
+  }
+  .b1 .book-cover-back  { background: linear-gradient(145deg, #002a1a, #003d28); }
+  .b1 .book-spine        { background: linear-gradient(180deg, #002a1a, #004429, #002a1a); }
+  .b1 .spine-text        { color: #d4a74a; }
+  .b1 .book-inner        {
+    background: linear-gradient(160deg, #001a10 0%, #00251a 100%);
+  }
+  .b1 .inner-line { background: linear-gradient(90deg, #d4a74a, #f0cb7a40); box-shadow: 0 0 6px #d4a74a80; }
+
+  /* border ornament lines */
+  .b1 .book-cover-front::before, .b1 .book-cover-front::after {
+    content: '';
+    position: absolute;
+    border: 1px solid #d4a74a30;
+    border-radius: 2px;
+  }
+  .b1 .book-cover-front::before { inset: 6%; }
+  .b1 .book-cover-front::after  { inset: 9%; }
+
+  /* ══════════════════════════════════════════
+     BOOK 2 — PHARMACEUTICS  (Teal & Silver)
+  ══════════════════════════════════════════ */
+  .b2 .book-cover-front {
+    background: linear-gradient(145deg, #092929 0%, #0c3d3d 40%, #07302f 100%);
+    border: 1px solid #0d948860;
+    box-shadow: inset 0 0 30px #00000050;
+  }
+  .b2 .book-cover-back  { background: linear-gradient(145deg, #061e1e, #0a2f2f); }
+  .b2 .book-spine        { background: linear-gradient(180deg, #061e1e, #0d3838, #061e1e); }
+  .b2 .spine-text        { color: #94a3b8; }
+  .b2 .book-inner        { background: linear-gradient(160deg, #040f0f 0%, #071a1a 100%); }
+  .b2 .inner-line { background: linear-gradient(90deg, #0d9488, #5eead440); box-shadow: 0 0 6px #0d948880; }
+
+  .b2 .book-cover-front::before, .b2 .book-cover-front::after {
+    content: '';
+    position: absolute;
+    border: 1px solid #0d948840;
+    border-radius: 2px;
+  }
+  .b2 .book-cover-front::before { inset: 6%; }
+  .b2 .book-cover-front::after  { inset: 9%; }
+
+  /* ══════════════════════════════════════════
+     BOOK 3 — GPAT NOTES  (Royal Blue & White)
+  ══════════════════════════════════════════ */
+  .b3 .book-cover-front {
+    background: linear-gradient(145deg, #0c1e4a 0%, #1d3a7a 40%, #112260 100%);
+    border: 1px solid #3b82f660;
+    box-shadow: inset 0 0 30px #00000050;
+  }
+  .b3 .book-cover-back  { background: linear-gradient(145deg, #081429, #0f1e4a); }
+  .b3 .book-spine        { background: linear-gradient(180deg, #081429, #142050, #081429); }
+  .b3 .spine-text        { color: #f0f9ff; }
+  .b3 .book-inner        { background: linear-gradient(160deg, #050e1f 0%, #0a1635 100%); }
+  .b3 .inner-line { background: linear-gradient(90deg, #3b82f6, #bfdbfe40); box-shadow: 0 0 6px #3b82f680; }
+
+  .b3 .book-cover-front::before, .b3 .book-cover-front::after {
+    content: '';
+    position: absolute;
+    border: 1px solid #3b82f630;
+    border-radius: 2px;
+  }
+  .b3 .book-cover-front::before { inset: 6%; }
+  .b3 .book-cover-front::after  { inset: 9%; }
+
+  /* ── BOOK TYPOGRAPHY ELEMENTS ── */
+  .book-icon {
+    font-size: clamp(14px, 4vw, 28px);
+    line-height: 1;
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+  .book-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(7px, 1.8vw, 13px);
+    font-weight: 900;
+    text-align: center;
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+    text-shadow: 0 2px 8px #0006;
+  }
+  .book-subtitle {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(4px, 0.9vw, 7px);
+    text-align: center;
+    letter-spacing: 0.3em;
+    opacity: 0.7;
+  }
+  .book-edition {
+    font-family: 'Crimson Pro', serif;
+    font-size: clamp(5px, 1.1vw, 9px);
+    text-align: center;
+    font-style: italic;
+    opacity: 0.6;
+  }
+  .book-divider {
+    width: 60%;
+    height: 1px;
+    border-radius: 1px;
+  }
+
+  /* color variants */
+  .b1 .book-title    { color: #f0cb7a; }
+  .b1 .book-subtitle { color: #94a3b8; }
+  .b1 .book-edition  { color: #cbd5e1; }
+  .b1 .book-divider  { background: linear-gradient(90deg, transparent, #d4a74a, transparent); }
+  .b1 .book-icon     { color: #d4a74a; }
+
+  .b2 .book-title    { color: #5eead4; }
+  .b2 .book-subtitle { color: #94a3b8; }
+  .b2 .book-edition  { color: #cbd5e1; }
+  .b2 .book-divider  { background: linear-gradient(90deg, transparent, #0d9488, transparent); }
+  .b2 .book-icon     { color: #14b8a6; }
+
+  .b3 .book-title    { color: #e0f2fe; }
+  .b3 .book-subtitle { color: #94a3b8; }
+  .b3 .book-edition  { color: #bfdbfe; }
+  .b3 .book-divider  { background: linear-gradient(90deg, transparent, #3b82f6, transparent); }
+  .b3 .book-icon     { color: #60a5fa; }
+
+  /* ══════════════════════════════════════════
+     FLOATING FORMULAS / LABELS
+  ══════════════════════════════════════════ */
+  .labels-layer { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+
+  .formula-tag {
+    position: absolute;
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(6px, 1.2vw, 10px);
+    padding: 4px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.08em;
+    animation: tag-drift var(--dur, 8s) ease-in-out var(--del, 0s) infinite alternate;
+    white-space: nowrap;
+  }
+  @keyframes tag-drift {
+    0%   { transform: translateY(0)   translateX(0)   rotate(-1deg); opacity: 0.7; }
+    100% { transform: translateY(-20px) translateX(8px) rotate(2deg);  opacity: 1; }
+  }
+
+  .ft1 { top: 15%; left: 3%;  --dur:9s;  --del:0s;
+         background: #0d948820; border: 1px solid #0d948850; color: #5eead4; }
+  .ft2 { top: 42%; right: 2%; --dur:7s;  --del:1s;
+         background: #d4a74a18; border: 1px solid #d4a74a50; color: #f0cb7a; }
+  .ft3 { bottom: 28%; left: 2%; --dur:10s; --del:2s;
+         background: #1d4ed820; border: 1px solid #3b82f640; color: #93c5fd; }
+  .ft4 { top: 8%;   right: 28%; --dur:8s;  --del:0.5s;
+         background: #00442920; border: 1px solid #00714a50; color: #6ee7b7; }
+  .ft5 { bottom: 18%; right: 3%; --dur:11s; --del:3s;
+         background: #0d948818; border: 1px solid #0d948840; color: #5eead4; }
+
+  /* ── TITLE LABEL BOTTOM ── */
+  .scene-title {
+    position: absolute;
+    bottom: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(8px, 1.5vw, 12px);
+    letter-spacing: 0.4em;
+    color: #0d9488;
+    text-transform: uppercase;
+    opacity: 0.7;
+    white-space: nowrap;
+    z-index: 10;
+    text-shadow: 0 0 20px #0d9488;
+    animation: title-pulse 3s ease-in-out infinite alternate;
+  }
+  @keyframes title-pulse {
+    from { opacity: 0.5; letter-spacing: 0.35em; }
+    to   { opacity: 0.9; letter-spacing: 0.4em; }
+  }
+
+  /* ── DECORATIVE CORNER GLOWS ── */
+  .corner-glow {
+    position: absolute;
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.25;
+    z-index: 0;
+    animation: corner-breathe 6s ease-in-out infinite alternate;
+  }
+  @keyframes corner-breathe {
+    from { opacity: 0.15; transform: scale(0.8); }
+    to   { opacity: 0.3;  transform: scale(1.1); }
+  }
+  .cg-tl { top: -40px; left: -40px; background: #004429; }
+  .cg-tr { top: -30px; right: -30px; background: #0d9488; animation-delay: 2s; }
+  .cg-bl { bottom: -40px; left: -40px; background: #1d4ed8; animation-delay: 4s; }
+  .cg-br { bottom: -30px; right: -30px; background: #d4a74a; animation-delay: 1s; }
+
+  /* ── DNA HELIX ACCENT ── */
+  .dna-strip {
+    position: absolute;
+    right: 2%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5%;
+    height: 55%;
+    z-index: 2;
+  }
+  .dna-node-pair {
+    position: absolute;
+    left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .dna-node-pair::after {
+    content: '';
+    position: absolute;
+    left: 20%; right: 20%;
+    height: 1px;
+    background: var(--lc, #0d948840);
+    box-shadow: 0 0 4px var(--lc, #0d9488);
+  }
+  .dna-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--dc, #0d9488);
+    box-shadow: 0 0 6px var(--dc, #0d9488);
+    animation: dna-pulse 2s ease-in-out infinite alternate;
+  }
+  .dna-node-pair:nth-child(1)  { top: 0%;  --lc:#0d948860; } .dna-node-pair:nth-child(1) .dna-dot { --dc:#0d9488; animation-delay: 0s; }
+  .dna-node-pair:nth-child(2)  { top: 11%; --lc:#d4a74a50; } .dna-node-pair:nth-child(2) .dna-dot { --dc:#d4a74a; animation-delay: 0.2s; }
+  .dna-node-pair:nth-child(3)  { top: 22%; --lc:#0d948860; } .dna-node-pair:nth-child(3) .dna-dot { --dc:#0d9488; animation-delay: 0.4s; }
+  .dna-node-pair:nth-child(4)  { top: 33%; --lc:#3b82f650; } .dna-node-pair:nth-child(4) .dna-dot { --dc:#3b82f6; animation-delay: 0.6s; }
+  .dna-node-pair:nth-child(5)  { top: 44%; --lc:#0d948860; } .dna-node-pair:nth-child(5) .dna-dot { --dc:#0d9488; animation-delay: 0.8s; }
+  .dna-node-pair:nth-child(6)  { top: 55%; --lc:#d4a74a50; } .dna-node-pair:nth-child(6) .dna-dot { --dc:#d4a74a; animation-delay: 1s; }
+  .dna-node-pair:nth-child(7)  { top: 66%; --lc:#0d948860; } .dna-node-pair:nth-child(7) .dna-dot { --dc:#0d9488; animation-delay: 1.2s; }
+  .dna-node-pair:nth-child(8)  { top: 77%; --lc:#3b82f650; } .dna-node-pair:nth-child(8) .dna-dot { --dc:#3b82f6; animation-delay: 1.4s; }
+  .dna-node-pair:nth-child(9)  { top: 88%; --lc:#0d948860; } .dna-node-pair:nth-child(9) .dna-dot { --dc:#0d9488; animation-delay: 1.6s; }
+  @keyframes dna-pulse {
+    from { opacity: 0.5; transform: scale(0.8); }
+    to   { opacity: 1;   transform: scale(1.3); }
+  }
+
+  /* ── HOVER TOOLTIP ── */
+  .book::after {
+    content: attr(data-tip);
+    position: absolute;
+    top: -28px; left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: #0d9488;
+    color: #fff;
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(6px, 1vw, 9px);
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 99;
+    letter-spacing: 0.1em;
+    box-shadow: 0 0 12px #0d948880;
+  }
+  .book:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ── RESPONSIVE TWEAKS ── */
+  @media (max-width: 600px) {
+    .formula-tag { display: none; }
+    .scene-title { letter-spacing: 0.2em; }
+    .molecule { width: 18%; }
   }
 </style>
 
@@ -58,18 +725,218 @@
 
       <!-- Image Side -->
       <div class="relative">
-        <div class="bg-[#E8F1EC] dark:bg-emerald-950/30 rounded-[48px] p-8 md:p-12 overflow-hidden aspect-video lg:aspect-square flex items-center justify-center relative group border border-emerald-100/50 dark:border-emerald-900/30" style="min-height: {{ section.settings.banner_height }}px;">
-          <div class="absolute inset-0 bg-gradient-to-tr from-[#00442908] to-transparent pointer-events-none"></div>
-          {%- if section.settings.hero_image != blank -%}
-            <img src="{{ section.settings.hero_image | image_url: width: 1400 }}" 
-                 alt="{{ section.settings.badge_text }}" 
-                 class="w-full h-full hero-img-contain drop-shadow-[0_20px_60px_rgba(0,0,0,0.1)] transition-all duration-700 group-hover:scale-105 group-hover:-rotate-1">
-          {%- else -%}
-            <img src="{{ 'hero-illustration.png' | asset_url }}" 
-                 alt="TGPCOP Study Hub Platform" 
-                 class="w-full h-full object-contain drop-shadow-[0_20px_60px_rgba(0,68,41,0.15)] transition-all duration-700 group-hover:scale-105">
-          {%- endif -%}
-        </div>
+        {%- if section.settings.enable_book_animation -%}
+          <!-- 3D Pharmacy Books Animation Scene -->
+          <div class="scene-wrap border border-emerald-100/50 dark:border-emerald-900/30 shadow-2xl relative overflow-hidden" style="min-height: {{ section.settings.banner_height }}px;">
+            
+            <!-- Corner glows -->
+            <div class="corner-glow cg-tl"></div>
+            <div class="corner-glow cg-tr"></div>
+            <div class="corner-glow cg-bl"></div>
+            <div class="corner-glow cg-br"></div>
+
+            <!-- Grid floor -->
+            <div class="grid-floor"></div>
+
+            <!-- Benzene molecule BG -->
+            <div class="molecule" aria-hidden="true">
+              <div class="mol-ring">
+                <div class="mol-bond"></div>
+                <div class="mol-bond"></div>
+                <div class="mol-bond"></div>
+                <div class="mol-bond"></div>
+                <div class="mol-bond"></div>
+                <div class="mol-bond"></div>
+                <div class="mol-node"></div>
+                <div class="mol-node"></div>
+                <div class="mol-node"></div>
+                <div class="mol-node"></div>
+                <div class="mol-node"></div>
+                <div class="mol-node"></div>
+              </div>
+              <div class="mol-center"></div>
+            </div>
+
+            <!-- Second molecule -->
+            <div class="molecule-2" aria-hidden="true">
+              <div class="mol-ring">
+                <div class="mol-bond"></div>
+                <div class="mol-bond"></div>
+                <div class="mol-bond"></div>
+                <div class="mol-bond"></div>
+                <div class="mol-bond"></div>
+                <div class="mol-bond"></div>
+                <div class="mol-node"></div>
+                <div class="mol-node"></div>
+                <div class="mol-node"></div>
+                <div class="mol-node"></div>
+                <div class="mol-node"></div>
+                <div class="mol-node"></div>
+              </div>
+              <div class="mol-center"></div>
+            </div>
+
+            <!-- DNA strip -->
+            <div class="dna-strip" aria-hidden="true">
+              <div class="dna-node-pair"><div class="dna-dot"></div><div class="dna-dot"></div></div>
+              <div class="dna-node-pair"><div class="dna-dot"></div><div class="dna-dot"></div></div>
+              <div class="dna-node-pair"><div class="dna-dot"></div><div class="dna-dot"></div></div>
+              <div class="dna-node-pair"><div class="dna-dot"></div><div class="dna-dot"></div></div>
+              <div class="dna-node-pair"><div class="dna-dot"></div><div class="dna-dot"></div></div>
+              <div class="dna-node-pair"><div class="dna-dot"></div><div class="dna-dot"></div></div>
+              <div class="dna-node-pair"><div class="dna-dot"></div><div class="dna-dot"></div></div>
+              <div class="dna-node-pair"><div class="dna-dot"></div><div class="dna-dot"></div></div>
+              <div class="dna-node-pair"><div class="dna-dot"></div><div class="dna-dot"></div></div>
+            </div>
+
+            <!-- Pills -->
+            <div class="pills-layer" aria-hidden="true">
+              <div class="pill p1"><div class="pill-half"></div><div class="pill-half"></div></div>
+              <div class="pill p2"><div class="pill-half"></div><div class="pill-half"></div></div>
+              <div class="pill p3"><div class="pill-half"></div><div class="pill-half"></div></div>
+              <div class="pill p4"><div class="pill-half"></div><div class="pill-half"></div></div>
+              <div class="pill p5"><div class="pill-half"></div><div class="pill-half"></div></div>
+              <div class="pill p6"><div class="pill-half"></div><div class="pill-half"></div></div>
+            </div>
+
+            <!-- Sparkles -->
+            <div class="sparkles" aria-hidden="true">
+              <div class="spark sp1"><div class="spark-dot"></div></div>
+              <div class="spark sp2"><div class="spark-ring"></div></div>
+              <div class="spark sp3"><div class="spark-dot"></div></div>
+              <div class="spark sp4"><div class="spark-ring"></div></div>
+              <div class="spark sp5"><div class="spark-dot"></div></div>
+              <div class="spark sp6"><div class="spark-ring"></div></div>
+              <div class="spark sp7"><div class="spark-dot"></div></div>
+              <div class="spark sp8"><div class="spark-ring"></div></div>
+              <div class="spark sp9"><div class="spark-dot"></div></div>
+              <div class="spark sp10"><div class="spark-ring"></div></div>
+            </div>
+
+            <!-- Formula tags -->
+            <div class="labels-layer" aria-hidden="true">
+              <div class="formula-tag ft1">C₆H₅COOH</div>
+              <div class="formula-tag ft2">LD₅₀ / ED₅₀</div>
+              <div class="formula-tag ft3">ADME · PK</div>
+              <div class="formula-tag ft4">Rx ⚕ OTC</div>
+              <div class="formula-tag ft5">pKa · log P</div>
+            </div>
+
+            <!-- ── MAIN STAGE ── -->
+            <div class="stage">
+              <div class="book-stack">
+
+                <!-- BOOK 1 — PHARMACOLOGY -->
+                <div class="book book-1 b1" data-tip="hover to open">
+                  <div class="book-pages"></div>
+                  <div class="book-face">
+                    <div class="book-cover">
+                      <!-- Front face -->
+                      <div class="book-cover-front">
+                        <div class="book-icon">⚗️</div>
+                        <div class="book-title">PHARMA&shy;COLOGY</div>
+                        <div class="book-divider"></div>
+                        <div class="book-subtitle">COMPLETE GUIDE</div>
+                        <div class="book-edition">Receptor Theory & Drug Action</div>
+                      </div>
+                      <!-- Inner pages revealed on open -->
+                      <div class="book-inner">
+                        <div class="inner-line"></div>
+                        <div class="inner-line"></div>
+                        <div class="inner-line"></div>
+                        <div class="inner-line"></div>
+                        <div class="inner-line"></div>
+                        <div class="inner-line"></div>
+                        <div class="inner-line"></div>
+                      </div>
+                    </div>
+                    <!-- Spine -->
+                    <div class="book-spine">
+                      <span class="spine-text">PHARMACOLOGY</span>
+                    </div>
+                  </div>
+                  <div class="book-shadow"></div>
+                </div>
+
+                <!-- BOOK 2 — PHARMACEUTICS -->
+                <div class="book book-2 b2" data-tip="hover to open">
+                  <div class="book-pages"></div>
+                  <div class="book-face">
+                    <div class="book-cover">
+                      <div class="book-cover-front">
+                        <div class="book-icon">🧪</div>
+                        <div class="book-title">PHARMA&shy;CEUTICS</div>
+                        <div class="book-divider"></div>
+                        <div class="book-subtitle">DOSAGE FORMS</div>
+                        <div class="book-edition">Formulation & Drug Delivery</div>
+                      </div>
+                      <div class="book-inner">
+                        <div class="inner-line"></div>
+                        <div class="inner-line"></div>
+                        <div class="inner-line"></div>
+                        <div class="inner-line"></div>
+                        <div class="inner-line"></div>
+                        <div class="inner-line"></div>
+                        <div class="inner-line"></div>
+                      </div>
+                    </div>
+                    <div class="book-spine">
+                      <span class="spine-text">PHARMACEUTICS</span>
+                    </div>
+                  </div>
+                  <div class="book-shadow"></div>
+                </div>
+
+                <!-- BOOK 3 — GPAT NOTES -->
+                <div class="book book-3 b3" data-tip="hover to open">
+                  <div class="book-pages"></div>
+                  <div class="book-face">
+                    <div class="book-cover">
+                      <div class="book-cover-front">
+                        <div class="book-icon">📋</div>
+                        <div class="book-title">GPAT<br>NOTES</div>
+                        <div class="book-divider"></div>
+                        <div class="book-subtitle">EXAM EDITION</div>
+                        <div class="book-edition">Graduate Pharmacy Aptitude Test</div>
+                      </div>
+                      <div class="book-inner">
+                        <div class="inner-line"></div>
+                        <div class="inner-line"></div>
+                        <div class="inner-line"></div>
+                        <div class="inner-line"></div>
+                        <div class="inner-line"></div>
+                        <div class="inner-line"></div>
+                        <div class="inner-line"></div>
+                      </div>
+                    </div>
+                    <div class="book-spine">
+                      <span class="spine-text">GPAT NOTES</span>
+                    </div>
+                  </div>
+                  <div class="book-shadow"></div>
+                </div>
+
+              </div><!-- /book-stack -->
+            </div><!-- /stage -->
+
+            <!-- Scene title -->
+            <div class="scene-title" aria-label="Pharmacy Learning">⚕ Pharmacy Learning ⚕</div>
+
+          </div>
+        {%- else -%}
+          <div class="bg-[#E8F1EC] dark:bg-emerald-950/30 rounded-[48px] p-8 md:p-12 overflow-hidden aspect-video lg:aspect-square flex items-center justify-center relative group border border-emerald-100/50 dark:border-emerald-900/30" style="min-height: {{ section.settings.banner_height }}px;">
+            <div class="absolute inset-0 bg-gradient-to-tr from-[#00442908] to-transparent pointer-events-none"></div>
+            {%- if section.settings.hero_image != blank -%}
+              <img src="{{ section.settings.hero_image | image_url: width: 1400 }}" 
+                   alt="{{ section.settings.badge_text }}" 
+                   class="w-full h-full hero-img-contain drop-shadow-[0_20px_60px_rgba(0,0,0,0.1)] transition-all duration-700 group-hover:scale-105 group-hover:-rotate-1">
+            {%- else -%}
+              <img src="{{ 'hero-illustration.png' | asset_url }}" 
+                   alt="TGPCOP Study Hub Platform" 
+                   class="w-full h-full object-contain drop-shadow-[0_20px_60px_rgba(0,68,41,0.15)] transition-all duration-700 group-hover:scale-105">
+            {%- endif -%}
+          </div>
+        {%- endif -%}
         <!-- Decorative elements -->
         <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-[#8ad4a8]/20 rounded-full blur-3xl"></div>
         <div class="absolute -top-6 -right-6 w-48 h-48 bg-[#004429]/5 rounded-full blur-3xl"></div>
@@ -121,6 +988,12 @@
       "type": "url",
       "id": "secondary_button_link",
       "label": "Secondary Button Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_book_animation",
+      "label": "Enable 3D Book Animation",
+      "default": true
     },
     {
       "type": "image_picker",
