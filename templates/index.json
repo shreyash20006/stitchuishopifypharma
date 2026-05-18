@@ -104,8 +104,8 @@
         "badge_text": "GPAT 2026 PREPARATION",
         "title": "National GPAT Alerts & Mnemonic Boards",
         "subtitle": "Real-time exam insights, syllabus updates, and daily pharmacy preparation challenges.",
-        "btn_text": "View GPAT Notes",
-        "btn_link": "",
+        "btn_text": "GPAT 2026 Exam",
+        "btn_link": "https://ntaexam.net/gpat-2026/",
         "bg_color": "#ffffff"
       }
     },
@@ -121,9 +121,72 @@
     },
     "faq_testimonials": {
       "type": "faq-testimonials",
+      "blocks": {
+        "testimonial_AyNUHF": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "TGPCOP Notes completely changed my semester prep. I scored 8.5 CGPA thanks to these!",
+            "author": "Rahul Sharma",
+            "info": "3rd Year, B.Pharm"
+          }
+        },
+        "testimonial_niALTc": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "TGPCOP Notes completely changed my semester prep. I scored 8.5 CGPA thanks to these!",
+            "author": "Rahul Sharma",
+            "info": "3rd Year, B.Pharm"
+          }
+        },
+        "testimonial_3AmLP8": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "TGPCOP Notes completely changed my semester prep. I scored 8.5 CGPA thanks to these!",
+            "author": "Rahul Sharma",
+            "info": "3rd Year, B.Pharm"
+          }
+        },
+        "faq_CMPUmi": {
+          "type": "faq",
+          "settings": {
+            "question": "How will I receive my notes?",
+            "answer": "Get your PDFs immediately after payment. Study anywhere, anytime."
+          }
+        },
+        "faq_8wc3gP": {
+          "type": "faq",
+          "settings": {
+            "question": "How will I receive my notes?",
+            "answer": "Get your PDFs immediately after payment. Study anywhere, anytime."
+          }
+        },
+        "faq_bdnqjM": {
+          "type": "faq",
+          "settings": {
+            "question": "How will I receive my notes?",
+            "answer": "Get your PDFs immediately after payment. Study anywhere, anytime."
+          }
+        },
+        "faq_gGy7kV": {
+          "type": "faq",
+          "settings": {
+            "question": "How will I receive my notes?",
+            "answer": "Get your PDFs immediately after payment. Study anywhere, anytime."
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_AyNUHF",
+        "testimonial_niALTc",
+        "testimonial_3AmLP8",
+        "faq_CMPUmi",
+        "faq_8wc3gP",
+        "faq_bdnqjM",
+        "faq_gGy7kV"
+      ],
       "settings": {
         "faq_title": "Frequently Asked Questions",
-        "testimonial_title": "Student Success Stories"
+        "testimonial_title": ""
       }
     }
   },
