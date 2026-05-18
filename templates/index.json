@@ -19,7 +19,7 @@
         "button_link": "",
         "secondary_button_text": "Join WhatsApp",
         "secondary_button_link": "",
-        "hero_image": "shopify://shop_images/rn-image_picker_lib_temp_ea1e45e5-6b6d-4334-8c28-69248595e9e9.png",
+        "hero_image": "shopify://shop_images/WhatsApp_Image_2026-05-14_at_10.17.21_PM.jpg",
         "image_fit": "contain",
         "banner_height": 600
       }
@@ -127,7 +127,8 @@
           "settings": {
             "quote": "TGPCOP Notes completely changed my semester prep. I scored 8.5 CGPA thanks to these!",
             "author": "Rahul Sharma",
-            "info": "3rd Year, B.Pharm"
+            "info": "3rd Year, B.Pharm",
+            "image": "shopify://shop_images/logo_notes.jpg"
           }
         },
         "testimonial_niALTc": {
